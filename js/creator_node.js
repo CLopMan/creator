@@ -22,11 +22,12 @@
 
 // load components
 
+// receives the content of architecture file as a string 
 function load_architecture ( arch_str )
 {
     var ret = {} ;
 
-    arch_obj = JSON.parse(arch_str) ;
+    arch_obj = JSON.parse(arch_str) ; // architecture object
     ret = load_arch_select(arch_obj) ;
 
     return ret ;
@@ -153,12 +154,12 @@ function get_state ( )
             }
 
             // skip default results
-            if (typeof elto_dvalue == "undefined") {
+            /*if (typeof elto_dvalue == "undefined") {
                 continue ;
             }
             if (elto_value == elto_dvalue) {
                 continue ;
-            }
+            }*/
 
             // value != default value => dumpt it
             elto_string = "0x" + elto_value.toString(16) ;

@@ -115,7 +115,7 @@ cat js/creator_bigint.js \
     \
     js/creator_ui.js \
     js/app.js > js/creator_web.js
-terser -o js/min.creator_web.js js/creator_web.js
+npx terser -o js/min.creator_web.js js/creator_web.js # allows run local package
 rm -fr js/creator_web.js
 
 

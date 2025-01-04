@@ -1818,6 +1818,26 @@ function track_stack_reset()
  *  Register operations
  */
 
+
+function parseVector( vec, n ) {
+  let result = "";
+  for (let i = 0; i < n; ++i) {
+    let hexNumber; 
+    if (vec[i] < 0) {
+      hexNumber = (0xFFFF + 1 + vec[i]).toString(16);
+    } else {
+      hexNumber = vec[i].toString(16);
+    }
+    if (hexNumber.length < 4) {
+      hexNumber = hexNumber.padStart(4, '0')
+    }
+    //console.log(">>>", hexNumber)
+    result +=hexNumber;
+  }
+
+  return "0x"+result;
+}
+
 function crex_findReg ( value1 )
 {
   var ret = {} ;
@@ -1897,10 +1917,23 @@ function readRegister ( indexComp, indexElem, register_type )
   }
 
   if ((architecture.components[indexComp].type == "ctrl_registers") ||
-      (architecture.components[indexComp].type == "int_registers"))
+      (architecture.components[indexComp].type == "int_registers") )
   {
     console_log(parseInt(architecture.components[indexComp].elements[indexElem].value));
+    let value = architecture.components[indexComp].elements[indexElem].value;
     return parseInt(architecture.components[indexComp].elements[indexElem].value);
+  }
+  if (architecture.components[indexComp].type == "vec_registers") {
+    let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
+    const bitMask = BigInt(0xFFFF);
+    const vl = 16; // suponiendo elem = 16
+    result = [];
+    for (let i = 0; i < vl; ++i) {
+      result.unshift(Number(value & bitMask));
+      value >>= BigInt(16);
+    }
+    //console.log(">>> ", indexComp, indexElem, register_type, " <> ", result);
+    return result;
   }
 
   if (architecture.components[indexComp].type == "fp_registers")
@@ -1942,6 +1975,8 @@ function readRegister ( indexComp, indexElem, register_type )
 
 function writeRegister ( value, indexComp, indexElem, register_type )
 {
+  console.log(">>> trying to write (value, indexComp, indexElem):", value, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
+  
   var draw = {
     space: [] ,
     info: [] ,
@@ -1957,6 +1992,7 @@ function writeRegister ( value, indexComp, indexElem, register_type )
   if ((architecture.components[indexComp].type == "int_registers") ||
       (architecture.components[indexComp].type == "ctrl_registers"))
   {
+    /***/
       if ((architecture.components[indexComp].elements[indexElem].properties.includes('write') !== true))
       {
         if ((architecture.components[indexComp].elements[indexElem].properties.includes('ignore_write') !== false)){
@@ -1970,7 +2006,6 @@ function writeRegister ( value, indexComp, indexElem, register_type )
 
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
-
       architecture.components[indexComp].elements[indexElem].value = bi_intToBigInt(value,10);
       creator_callstack_writeRegister(indexComp, indexElem);
 
@@ -1982,6 +2017,38 @@ function writeRegister ( value, indexComp, indexElem, register_type )
       if (typeof window !== "undefined") {
         btn_glow(architecture.components[indexComp].elements[indexElem].name, "Int") ;
       }
+    /***/
+  }
+  if (architecture.components[indexComp].type == "vec_registers") {
+    if ((architecture.components[indexComp].elements[indexElem].properties.includes('write') !== true))
+      {
+        if ((architecture.components[indexComp].elements[indexElem].properties.includes('ignore_write') !== false)){
+          return;
+        }
+
+        for (var i = 0; i < instructions.length; i++) {
+           draw.space.push(i);
+        }
+        draw.danger.push(execution_index);
+
+        throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
+      }
+      let parsedValue = parseVector(value, 16); // concatenates every value in a 128 bit-length sequence
+      console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
+
+      architecture.components[indexComp].elements[indexElem].value = BigInt(parsedValue);
+
+      creator_callstack_writeRegister(indexComp, indexElem);
+
+      if ((architecture.components[indexComp].elements[indexElem].properties.includes('stack_pointer') !== false) &&
+          (value != parseInt(architecture.memory_layout[4].value))) {
+            writeStackLimit(parseInt(bi_intToBigInt(value,10)));
+      }
+
+      if (typeof window !== "undefined") {
+        btn_glow(architecture.components[indexComp].elements[indexElem].name, "Int") ;
+      }
+
   }
 
   else if (architecture.components[indexComp].type =="fp_registers")
@@ -3157,6 +3224,7 @@ var load_binary = false;
 
 // Load architecture
 
+// receives the architecture as an object (json)
 function load_arch_select ( cfg ) //TODO: repeated?
 {
       var ret = {
@@ -6758,6 +6826,13 @@ var run_program         = 0; // 0: stopped, 1: running, 2: stopped-by-breakpoint
 var execution_init      = 1;
 var instructions_packed = 100;
 
+function vectorNotEq( vec1, vec2 ) {
+  for (let i = 0; i < vec1.length; ++i) {
+    if (vec1[i] !== vec2[i]) return true;
+  }
+  return false;
+
+}
 
 function packExecute ( error, err_msg, err_type, draw )
 {
@@ -6803,7 +6878,6 @@ function execute_instruction ( )
     else if (run_program === 3) {
       return packExecute(false, '', 'info', null);
     }
-
     //Search a main tag
     if (execution_init === 1)
     {
@@ -6858,7 +6932,6 @@ function execute_instruction ( )
       }
     }
 
-
     var instructionExec = instructions[execution_index].loaded;
     var instructionExecParts = instructionExec.split(' ');
 
@@ -6881,7 +6954,6 @@ function execute_instruction ( )
 
       var numCop = 0;
       var numCopCorrect = 0;
-
       for (var y = 0; y < architecture.instructions[i].fields.length; y++) {
         if(architecture.instructions[i].fields[y].type == "co")
         {
@@ -6917,7 +6989,6 @@ function execute_instruction ( )
         {
           re = new RegExp("[Ff]"+f);
           var res = instruction_loaded.search(re);
-
           if (res != -1)
           {
             var value = null;
@@ -6945,7 +7016,10 @@ function execute_instruction ( )
                 var bin = instructionExec.substring(((instruction_nwords*31) - instruction_fields[f].startbit), ((instruction_nwords*32) - instruction_fields[f].stopbit));
                 value = get_register_binary ("ctrl_registers", bin);
                 break; 
-
+              case "VEC-Reg":
+                var bin = instructionExec.substring(((instruction_nwords*31) - instruction_fields[f].startbit), ((instruction_nwords*32) - instruction_fields[f].stopbit));
+                value = get_register_binary ("vec_registers", bin);
+                break;
               case "inm-signed":
               case "inm-unsigned":
               case "address":
@@ -6978,9 +7052,16 @@ function execute_instruction ( )
 
         binary = true;
       }
-
+      
+      if (architecture.instructions[i].name == "vadd.vx") {
+        console.log(">>> name", architecture.instructions[i].name);
+        console.log(">>> auxSig", auxSig); 
+        console.log(">>> instruction", instructionExec, "\n", instructionExecParts);
+        console.log(">>> look here", instructionExecParts[0], instructionExecParts.length, auxSig.length);
+      }
       if (architecture.instructions[i].name == instructionExecParts[0] && instructionExecParts.length == auxSig.length)
       {
+        console.log("heyyy")
         type = architecture.instructions[i].type;
         signatureDef = architecture.instructions[i].signature_definition;
 
@@ -7009,7 +7090,9 @@ function execute_instruction ( )
         console_log(signatureRawParts);
 
         auxDef = architecture.instructions[i].definition;
+        console.log(">>> nwords")
         nwords = architecture.instructions[i].nwords;
+        console.log(">>> nwords after", nwords)
         binary = false;
         break;
       }
@@ -7019,6 +7102,8 @@ function execute_instruction ( )
     //Increase PC
     var pc_reg = crex_findReg_bytag ("program_counter");
     word_size = parseInt(architecture.arch_conf[1].value) / 8;
+    console.log(">>> ", word_size = parseInt(architecture.arch_conf[1].value) / 8);
+    console.log(">>> update pc register", "prev value: ", readRegister(pc_reg.indexComp, pc_reg.indexElem), nwords, word_size);
     writeRegister(readRegister(pc_reg.indexComp, pc_reg.indexElem) + (nwords * word_size), 0,0);
     console_log(auxDef);
 
@@ -7050,7 +7135,7 @@ function execute_instruction ( )
       //Generate all registers, values, etc. readings
       for (var i = 1; i < signatureRawParts.length; i++)
       {
-        if (signatureParts[i] == "INT-Reg" || signatureParts[i] == "SFP-Reg" || signatureParts[i] == "DFP-Reg" || signatureParts[i] == "Ctrl-Reg")
+        if (signatureParts[i] == "INT-Reg" || signatureParts[i] == "SFP-Reg" || signatureParts[i] == "DFP-Reg" || signatureParts[i] == "Ctrl-Reg" || signatureParts[i] == "VEC-Reg")
         {
           for (var j = 0; j < architecture.components.length; j++)
           {
@@ -7069,7 +7154,9 @@ function execute_instruction ( )
                 }
                 //Write register only if value is diferent
                 else{
-                  var_writings_definitions[signatureRawParts[i]]  = "if(" + signatureRawParts[i] + " != " + signatureRawParts[i] + "_prev)" +
+                  let operator = signatureRawParts[i] + " != " + signatureRawParts[i] + "_prev";
+                  if (signatureParts[i] == "VEC-Reg") { operator = "vectorNotEq(" + signatureRawParts[i] + "," + signatureRawParts[i] + "_prev)"}
+                  var_writings_definitions[signatureRawParts[i]]  = "if(" + operator + ")" +
                                                                     " { writeRegister("+ signatureRawParts[i]+" ,"+j+" ,"+z+", \""+ signatureParts[i] + "\"); }\n";
                 }
               }
@@ -7099,8 +7186,8 @@ function execute_instruction ( )
       {
         for (var j = architecture.components[i].elements.length-1; j >= 0; j--)
         {
-          var clean_name = clean_string(architecture.components[i].elements[j].name[0], 'reg_');
-          var clean_aliases = architecture.components[i].elements[j].name.map((x)=> clean_string(x, 'reg_')).join('|');
+          var clean_name = clean_string(architecture.components[i].elements[j].name[0], 'reg_'); // elimina el prefijo reg
+          var clean_aliases = architecture.components[i].elements[j].name.map((x)=> clean_string(x, 'reg_')).join('|'); // une nombres auxiliares para su uso en regex
 
           re = new RegExp( "(?:\\W|^)(((" + clean_aliases +") *=)[^=])", "g");
           if (auxDef.search(re) != -1){
@@ -7136,10 +7223,11 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " +
-           "   try {\n" +
+           "   try {\n" + console.log(" >>> instruction", auxDef) + 
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
+                  "console.log('>>> EXPCEPTION EVAL')\n" +
            "     throw e;\n" +
            "   }\n" +
            "}; ") ;
@@ -7154,6 +7242,7 @@ function execute_instruction ( )
     }
     catch ( e )
     {
+      console.log (">>> exception instructio", e)
       var msg = '' ;
       if (e instanceof SyntaxError)
         msg = 'The definition of the instruction contains errors, please review it' + e.stack ; //TODO
@@ -7715,11 +7804,12 @@ function get_number_binary (bin)
 
 // load components
 
+// receives the content of architecture file as a string 
 function load_architecture ( arch_str )
 {
     var ret = {} ;
 
-    arch_obj = JSON.parse(arch_str) ;
+    arch_obj = JSON.parse(arch_str) ; // architecture object
     ret = load_arch_select(arch_obj) ;
 
     return ret ;
@@ -7846,12 +7936,12 @@ function get_state ( )
             }
 
             // skip default results
-            if (typeof elto_dvalue == "undefined") {
+            /*if (typeof elto_dvalue == "undefined") {
                 continue ;
             }
             if (elto_value == elto_dvalue) {
                 continue ;
-            }
+            }*/
 
             // value != default value => dumpt it
             elto_string = "0x" + elto_value.toString(16) ;

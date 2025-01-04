@@ -24,6 +24,34 @@
  *  Register operations
  */
 
+
+// TODO: substitude n to be the width of an element (sew) and extract vector size as vl / sew
+/**
+ * This function transform an array to an hex number result of concatenation of every digit.
+ * [3, 24, -1, 7] -> 0x00030018FFFF0007
+ * @param {*} vec : array
+ * @param {*} n  : number of elements
+ * @returns hexadecimal string with every digit
+ */
+function parseVector( vec, n ) {
+  let result = "";
+  for (let i = 0; i < n; ++i) {
+    let hexNumber; 
+    if (vec[i] < 0) {
+      hexNumber = (0xFFFF + 1 + vec[i]).toString(16);
+    } else {
+      hexNumber = vec[i].toString(16);
+    }
+    if (hexNumber.length < 4) {
+      hexNumber = hexNumber.padStart(4, '0')
+    }
+    //console.log(">>>", hexNumber)
+    result +=hexNumber;
+  }
+
+  return "0x"+result;
+}
+
 function crex_findReg ( value1 )
 {
   var ret = {} ;
@@ -103,10 +131,24 @@ function readRegister ( indexComp, indexElem, register_type )
   }
 
   if ((architecture.components[indexComp].type == "ctrl_registers") ||
-      (architecture.components[indexComp].type == "int_registers"))
+      (architecture.components[indexComp].type == "int_registers") )
   {
     console_log(parseInt(architecture.components[indexComp].elements[indexElem].value));
+    let value = architecture.components[indexComp].elements[indexElem].value;
     return parseInt(architecture.components[indexComp].elements[indexElem].value);
+  }
+  // read vector register
+  if (architecture.components[indexComp].type == "vec_registers") {
+    let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
+    const bitMask = BigInt(0xFFFF);
+    const vl = 16; // suponiendo sew = 16
+    result = [];
+    for (let i = 0; i < vl; ++i) {
+      result.unshift(Number(value & bitMask));
+      value >>= BigInt(16);
+    }
+    //console.log(">>> ", indexComp, indexElem, register_type, " <> ", result);
+    return result;
   }
 
   if (architecture.components[indexComp].type == "fp_registers")
@@ -148,6 +190,8 @@ function readRegister ( indexComp, indexElem, register_type )
 
 function writeRegister ( value, indexComp, indexElem, register_type )
 {
+  console.log(">>> trying to write (value, indexComp, indexElem):", value, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
+  
   var draw = {
     space: [] ,
     info: [] ,
@@ -163,6 +207,7 @@ function writeRegister ( value, indexComp, indexElem, register_type )
   if ((architecture.components[indexComp].type == "int_registers") ||
       (architecture.components[indexComp].type == "ctrl_registers"))
   {
+    /***/
       if ((architecture.components[indexComp].elements[indexElem].properties.includes('write') !== true))
       {
         if ((architecture.components[indexComp].elements[indexElem].properties.includes('ignore_write') !== false)){
@@ -176,7 +221,6 @@ function writeRegister ( value, indexComp, indexElem, register_type )
 
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
-
       architecture.components[indexComp].elements[indexElem].value = bi_intToBigInt(value,10);
       creator_callstack_writeRegister(indexComp, indexElem);
 
@@ -188,6 +232,38 @@ function writeRegister ( value, indexComp, indexElem, register_type )
       if (typeof window !== "undefined") {
         btn_glow(architecture.components[indexComp].elements[indexElem].name, "Int") ;
       }
+    /***/
+  }
+  if (architecture.components[indexComp].type == "vec_registers") {
+    if ((architecture.components[indexComp].elements[indexElem].properties.includes('write') !== true))
+      {
+        if ((architecture.components[indexComp].elements[indexElem].properties.includes('ignore_write') !== false)){
+          return;
+        }
+
+        for (var i = 0; i < instructions.length; i++) {
+           draw.space.push(i);
+        }
+        draw.danger.push(execution_index);
+
+        throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
+      }
+      let parsedValue = parseVector(value, 16); // concatenates every value in a 128 bit-length sequence
+      console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
+
+      architecture.components[indexComp].elements[indexElem].value = BigInt(parsedValue);
+
+      creator_callstack_writeRegister(indexComp, indexElem);
+
+      if ((architecture.components[indexComp].elements[indexElem].properties.includes('stack_pointer') !== false) &&
+          (value != parseInt(architecture.memory_layout[4].value))) {
+            writeStackLimit(parseInt(bi_intToBigInt(value,10)));
+      }
+
+      if (typeof window !== "undefined") {
+        btn_glow(architecture.components[indexComp].elements[indexElem].name, "Int") ;
+      }
+
   }
 
   else if (architecture.components[indexComp].type =="fp_registers")

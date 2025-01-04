@@ -36,7 +36,8 @@
 
                   reg_representation_options: [
                                                 { text: 'INT/Ctrl Registers', value: 'int_registers' },
-                                                { text: 'FP Registers',       value: 'fp_registers'  }
+                                                { text: 'FP Registers',       value: 'fp_registers'  },
+                                                { text: 'VEC Registers',      value: 'vec_registers' }
                                               ]
                 }
               },
@@ -54,6 +55,9 @@
                   else if(e == "fp_registers")
                   {
                     this.current_reg_type = "fp_registers";
+                  } else if (e == "vec_registers") 
+                  {
+                    this.current_reg_type = "vec_registers"
                   }
 
                   /* Google Analytics */
@@ -63,7 +67,7 @@
                 get_pressed(button)
                 {
                   if (button == "registers") {
-                    if (app._data.data_mode == "int_registers" || app._data.data_mode == "fp_registers")
+                    if (app._data.data_mode == "int_registers" || app._data.data_mode == "fp_registers" || app._data.data_mode == "vec_registers")
                     {
                       return "secondary";
                     }
@@ -85,6 +89,10 @@
                   if (app._data.data_mode == "fp_registers")
                   {
                     current_reg_name = "FP Registers";
+                  }
+                  if (app._data.data_mode == "vec_registers")
+                  {
+                    current_reg_name = "VEC Registers";
                   }
 
                   return current_reg_name;
@@ -120,6 +128,7 @@
               '                    @click="change_data_view(current_reg_type)">' +
               '          <b-dropdown-item @click="change_data_view(\'int_registers\')">CPU-INT/Ctrl Registers</b-dropdown-item>' +
               '          <b-dropdown-item @click="change_data_view(\'fp_registers\')">CPU-FP Registers</b-dropdown-item>' +
+              '          <b-dropdown-item @click="change_data_view(\'vec_registers\')">CPU-VEC Registers</b-dropdown-item>' +
               '        </b-dropdown>' +
               '' +
               '        <b-button id="memory_btn"' +

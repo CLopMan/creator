@@ -49,7 +49,7 @@
 
                   switch(view){
                     case "hex":
-                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
+                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers" || architecture.components[this._props.component.index].type == "vec_registers" ) {
                         ret = (((register.value).toString(16)).padStart(register.nbits/4, "0")).toUpperCase();
                       }
                       else {
@@ -63,7 +63,7 @@
                       break;
 
                     case "bin":
-                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
+                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers" || architecture.components[this._props.component.index].type == "vec_registers" ) {
                         ret = (((register.value).toString(2)).padStart(register.nbits, "0"));
                       }
                       else {
@@ -77,7 +77,7 @@
                       break;
 
                     case "signed":
-                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
+                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers" || architecture.components[this._props.component.index].type == "vec_registers" ) {
                         if ((((register.value).toString(2)).padStart(register.nbits, '0')).charAt(0) == 1){
                           ret = parseInt(register.value.toString(10))-0x100000000;
                         }
@@ -97,7 +97,7 @@
                       break;
 
                     case "unsigned":
-                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
+                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers" || architecture.components[this._props.component.index].type == "vec_registers" ) {
                         ret = parseInt(register.value.toString(10)) >>> 0;
                       }
                       else {
@@ -112,7 +112,7 @@
                       break;
 
                     case "char":
-                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
+                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers" || architecture.components[this._props.component.index].type == "vec_registers" ) {
                         ret = hex2char8((((register.value).toString(16)).padStart(register.nbits/4, "0")));
                       }
                       else {
@@ -126,7 +126,7 @@
                       break;
 
                     case "ieee32":
-                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
+                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers" || architecture.components[this._props.component.index].type == "vec_registers" ) {
                         ret = hex2float("0x"+(((register.value).toString(16)).padStart(8, "0")));
                       }
                       else {
@@ -135,7 +135,7 @@
                       break;
 
                     case "ieee64":
-                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
+                      if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers" || architecture.components[this._props.component.index].type == "vec_registers" ) {
                         ret = hex2double("0x"+(((register.value).toString(16)).padStart(16, "0")));
                       }
                       else {
@@ -192,6 +192,9 @@
                           writeRegister(parseFloat(this.newValue, 10), comp, i, "DFP-Reg");
                         }
                       }
+                    } else if (type == "vec_registers") {
+                      console.log("vec register detecte")
+
                     }
                   }
                   this.newValue = '';

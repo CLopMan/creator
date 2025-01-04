@@ -65,12 +65,19 @@
                     }
                     return this.reg_representation_options_int;
                   }
-                  else{
+                  else if (this._props.data_mode = "fp_registers"){
                     if (this._props.data_mode != this.local_data_mode) {
                       this.reg_representation = "ieee32";
                       this.local_data_mode = this._props.data_mode;
                     }
                     return this.reg_representation_options_fp;
+                  }
+                  else { // vec registers represented in hex
+                    if (this._props.data_mode != this.local_data_mode) {
+                      this.reg_representation = "hex";
+                      this.local_data_mode = this._props.data_mode;
+                    }
+
                   }
                 },
               },

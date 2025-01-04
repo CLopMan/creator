@@ -1,0 +1,66 @@
+creator_preload_task: objeto con las tareas en orden para iniciar la applicación.
+{
+      "name": "VEC registers",
+      "type": "vec_registers",
+      "double_precision": false,
+      "elements": [
+        {
+          "name": [ "v1"],
+          "nbits": 256,
+          "value": -1,
+          "propoerties": [
+            "write",
+            "read"
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "vload",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2",
+      "signature": "vload,VEC-Reg,inm-signed",
+      "signatureRaw": "vload rd inm",
+      "co": "0110011",
+      "cop": "0000000000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vload",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "rd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 31,
+          "stopbit": 20
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 19,
+          "stopbit": 12,
+          "valueField": "0000000"
+        }
+      ],
+      "definition": "rd = inm",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    }

@@ -32,6 +32,13 @@ var run_program         = 0; // 0: stopped, 1: running, 2: stopped-by-breakpoint
 var execution_init      = 1;
 var instructions_packed = 100;
 
+function vectorNotEq( vec1, vec2 ) {
+  for (let i = 0; i < vec1.length; ++i) {
+    if (vec1[i] !== vec2[i]) return true;
+  }
+  return false;
+
+}
 
 function packExecute ( error, err_msg, err_type, draw )
 {
@@ -77,7 +84,6 @@ function execute_instruction ( )
     else if (run_program === 3) {
       return packExecute(false, '', 'info', null);
     }
-
     //Search a main tag
     if (execution_init === 1)
     {
@@ -132,7 +138,6 @@ function execute_instruction ( )
       }
     }
 
-
     var instructionExec = instructions[execution_index].loaded;
     var instructionExecParts = instructionExec.split(' ');
 
@@ -155,7 +160,6 @@ function execute_instruction ( )
 
       var numCop = 0;
       var numCopCorrect = 0;
-
       for (var y = 0; y < architecture.instructions[i].fields.length; y++) {
         if(architecture.instructions[i].fields[y].type == "co")
         {
@@ -191,7 +195,6 @@ function execute_instruction ( )
         {
           re = new RegExp("[Ff]"+f);
           var res = instruction_loaded.search(re);
-
           if (res != -1)
           {
             var value = null;
@@ -219,7 +222,10 @@ function execute_instruction ( )
                 var bin = instructionExec.substring(((instruction_nwords*31) - instruction_fields[f].startbit), ((instruction_nwords*32) - instruction_fields[f].stopbit));
                 value = get_register_binary ("ctrl_registers", bin);
                 break; 
-
+              case "VEC-Reg":
+                var bin = instructionExec.substring(((instruction_nwords*31) - instruction_fields[f].startbit), ((instruction_nwords*32) - instruction_fields[f].stopbit));
+                value = get_register_binary ("vec_registers", bin);
+                break;
               case "inm-signed":
               case "inm-unsigned":
               case "address":
@@ -252,9 +258,16 @@ function execute_instruction ( )
 
         binary = true;
       }
-
+      
+      if (architecture.instructions[i].name == "vadd.vx") {
+        console.log(">>> name", architecture.instructions[i].name);
+        console.log(">>> auxSig", auxSig); 
+        console.log(">>> instruction", instructionExec, "\n", instructionExecParts);
+        console.log(">>> look here", instructionExecParts[0], instructionExecParts.length, auxSig.length);
+      }
       if (architecture.instructions[i].name == instructionExecParts[0] && instructionExecParts.length == auxSig.length)
       {
+        console.log("heyyy")
         type = architecture.instructions[i].type;
         signatureDef = architecture.instructions[i].signature_definition;
 
@@ -283,7 +296,9 @@ function execute_instruction ( )
         console_log(signatureRawParts);
 
         auxDef = architecture.instructions[i].definition;
+        console.log(">>> nwords")
         nwords = architecture.instructions[i].nwords;
+        console.log(">>> nwords after", nwords)
         binary = false;
         break;
       }
@@ -293,6 +308,8 @@ function execute_instruction ( )
     //Increase PC
     var pc_reg = crex_findReg_bytag ("program_counter");
     word_size = parseInt(architecture.arch_conf[1].value) / 8;
+    console.log(">>> ", word_size = parseInt(architecture.arch_conf[1].value) / 8);
+    console.log(">>> update pc register", "prev value: ", readRegister(pc_reg.indexComp, pc_reg.indexElem), nwords, word_size);
     writeRegister(readRegister(pc_reg.indexComp, pc_reg.indexElem) + (nwords * word_size), 0,0);
     console_log(auxDef);
 
@@ -324,7 +341,7 @@ function execute_instruction ( )
       //Generate all registers, values, etc. readings
       for (var i = 1; i < signatureRawParts.length; i++)
       {
-        if (signatureParts[i] == "INT-Reg" || signatureParts[i] == "SFP-Reg" || signatureParts[i] == "DFP-Reg" || signatureParts[i] == "Ctrl-Reg")
+        if (signatureParts[i] == "INT-Reg" || signatureParts[i] == "SFP-Reg" || signatureParts[i] == "DFP-Reg" || signatureParts[i] == "Ctrl-Reg" || signatureParts[i] == "VEC-Reg")
         {
           for (var j = 0; j < architecture.components.length; j++)
           {
@@ -343,7 +360,9 @@ function execute_instruction ( )
                 }
                 //Write register only if value is diferent
                 else{
-                  var_writings_definitions[signatureRawParts[i]]  = "if(" + signatureRawParts[i] + " != " + signatureRawParts[i] + "_prev)" +
+                  let operator = signatureRawParts[i] + " != " + signatureRawParts[i] + "_prev";
+                  if (signatureParts[i] == "VEC-Reg") { operator = "vectorNotEq(" + signatureRawParts[i] + "," + signatureRawParts[i] + "_prev)"}
+                  var_writings_definitions[signatureRawParts[i]]  = "if(" + operator + ")" +
                                                                     " { writeRegister("+ signatureRawParts[i]+" ,"+j+" ,"+z+", \""+ signatureParts[i] + "\"); }\n";
                 }
               }
@@ -373,8 +392,8 @@ function execute_instruction ( )
       {
         for (var j = architecture.components[i].elements.length-1; j >= 0; j--)
         {
-          var clean_name = clean_string(architecture.components[i].elements[j].name[0], 'reg_');
-          var clean_aliases = architecture.components[i].elements[j].name.map((x)=> clean_string(x, 'reg_')).join('|');
+          var clean_name = clean_string(architecture.components[i].elements[j].name[0], 'reg_'); // elimina el prefijo reg
+          var clean_aliases = architecture.components[i].elements[j].name.map((x)=> clean_string(x, 'reg_')).join('|'); // une nombres auxiliares para su uso en regex
 
           re = new RegExp( "(?:\\W|^)(((" + clean_aliases +") *=)[^=])", "g");
           if (auxDef.search(re) != -1){
@@ -410,10 +429,11 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " +
-           "   try {\n" +
+           "   try {\n" + console.log(" >>> instruction", auxDef) + 
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
+                  "console.log('>>> EXPCEPTION EVAL')\n" +
            "     throw e;\n" +
            "   }\n" +
            "}; ") ;
@@ -428,6 +448,7 @@ function execute_instruction ( )
     }
     catch ( e )
     {
+      console.log (">>> exception instructio", e)
       var msg = '' ;
       if (e instanceof SyntaxError)
         msg = 'The definition of the instruction contains errors, please review it' + e.stack ; //TODO

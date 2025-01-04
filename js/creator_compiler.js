@@ -131,6 +131,7 @@ var load_binary = false;
 
 // Load architecture
 
+// receives the architecture as an object (json)
 function load_arch_select ( cfg ) //TODO: repeated?
 {
       var ret = {

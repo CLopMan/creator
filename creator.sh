@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
    //
    // Import
    //
@@ -114,7 +113,6 @@
            colors.enable() ;
            colors.setTheme(color_theme) ;
        }
-
        var limit_n_ins   = parseInt(argv.maxins) ;
        var output_format = argv.output.toUpperCase() ;
 
@@ -375,6 +373,7 @@
            {
                msg1 = "\n Error found." +
                       "\n " + ret.msg ;
+                
                throw msg1 ;
            }
 
