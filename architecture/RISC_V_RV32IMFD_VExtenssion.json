@@ -33,7 +33,7 @@
       "value": "1"
     }
   ],
-  "sew": 16,
+  "sew": 8,
 
   "components": [
     {
@@ -1111,7 +1111,7 @@
         }
         
       ],
-      "definition": "for(let i = 0; i < 8; ++i) {\nvd[i] = vs1[i] + vs2[i];\n}",
+      "definition": "for(let i = 0; i < checkVl()/architecture.sew; ++i) {\nvd[i] = vs1[i] + vs2[i];\n}",
       "separated": [
         false,
         false,
@@ -1159,7 +1159,7 @@
         }
         
       ],
-      "definition": "for(let i = 0; i < 8; ++i) {\nvd[i] = vs1[i] - vs2[i];\n}",
+      "definition": "for(let i = 0; i < checkVl()/architecture.sew; ++i) {\nvd[i] = vs1[i] - vs2[i];\n}",
       "separated": [
         false,
         false,
@@ -1208,7 +1208,7 @@
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs2 & mask;\nvd[0] = vs1[0] + addValue;",
+      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs2 & mask; console.log('>>> addvalue:', addValue);\nvd[0] = vs1[0] + addValue;",
       "separated": [
         false,
         false,
@@ -1256,7 +1256,7 @@
         }
         
       ],
-      "definition": "rs2 = rs2 & 0xFFFF; vd[0] = vs1[0] - rs2;",
+      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet subValue = rs2 & mask; vd[0] = vs1[0] - subValue;",
       "separated": [
         false,
         false,

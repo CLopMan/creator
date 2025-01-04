@@ -1832,7 +1832,7 @@ function parseVector( vec, sew, vl ) {
   let n = vl / sew; // vector size
   let hexDigits = sew / 4; // number of digits for hex representation
   let mask = Math.pow(2, sew) - 1; 
-  console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
+  //console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   for (let i = 0; i < n; ++i) {
     let hexNumber; 
     if (vec[i] < 0) {
@@ -1849,6 +1849,13 @@ function parseVector( vec, sew, vl ) {
 
   return "0x"+result;
 }
+
+function checkVl() {
+  let ret = crex_findReg("vl");
+  const vl = readRegister(ret.indexComp, ret.indexElem); 
+  return vl;
+}
+
 /**
  * 
  * @param {*} value BigInt readed from architecture
@@ -1857,8 +1864,7 @@ function parseVector( vec, sew, vl ) {
  */
 function readVector (value) {
     const bitMask = BigInt(Math.pow(2, architecture.sew) - 1);
-    let ret = crex_findReg("vl");
-    const vl = readRegister(ret.indexComp, ret.indexElem); 
+    const vl = checkVl(); 
     result = [];
     for (let i = 0; i < vl/architecture.sew; ++i) {
       result.unshift(Number(value & bitMask));
@@ -2077,7 +2083,7 @@ function writeRegister ( value, indexComp, indexElem, register_type )
 
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
-      let vl = 128; // TODO: use search register to check the value before
+      const vl = checkVl();
       let parsedValue = parseVector(value, architecture.sew, vl); // concatenates every value in a 128 bit-length sequence
       //console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
 
@@ -7100,7 +7106,6 @@ function execute_instruction ( )
       
       if (architecture.instructions[i].name == instructionExecParts[0] && instructionExecParts.length == auxSig.length)
       {
-        console.log("heyyy")
         type = architecture.instructions[i].type;
         signatureDef = architecture.instructions[i].signature_definition;
 
@@ -7258,7 +7263,7 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " +
-           "   try {\n" + console.log(" >>> instruction", auxDef) + 
+           "   try {\n" + console.log(" >>> instruction", auxDef) +  // TODO: delete console.logs
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +

@@ -55,6 +55,13 @@ function parseVector( vec, sew, vl ) {
 
   return "0x"+result;
 }
+
+function checkVl() {
+  let ret = crex_findReg("vl");
+  const vl = readRegister(ret.indexComp, ret.indexElem); 
+  return vl;
+}
+
 /**
  * 
  * @param {*} value BigInt readed from architecture
@@ -63,8 +70,7 @@ function parseVector( vec, sew, vl ) {
  */
 function readVector (value) {
     const bitMask = BigInt(Math.pow(2, architecture.sew) - 1);
-    let ret = crex_findReg("vl");
-    const vl = readRegister(ret.indexComp, ret.indexElem); 
+    const vl = checkVl(); 
     result = [];
     for (let i = 0; i < vl/architecture.sew; ++i) {
       result.unshift(Number(value & bitMask));
@@ -283,8 +289,7 @@ function writeRegister ( value, indexComp, indexElem, register_type )
 
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
-      let ret = crex_findReg("vl");
-      const vl = readRegister(ret.indexComp, ret.indexElem); 
+      const vl = checkVl();
       let parsedValue = parseVector(value, architecture.sew, vl); // concatenates every value in a 128 bit-length sequence
       //console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
 
