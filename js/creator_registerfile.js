@@ -74,7 +74,7 @@ function readVector (value) {
     result = [];
     for (let i = 0; i < vl/architecture.sew; ++i) {
       result.unshift(Number(value & bitMask));
-      value >>= BigInt(16);
+      value >>= BigInt(architecture.sew);
     }
     //console.log(">>> ", result);
     return result;
@@ -189,6 +189,7 @@ function readRegister ( indexComp, indexElem, register_type )
   // read vector register extract to function
   if (architecture.components[indexComp].type == "vec_registers") {
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
+    console.log("readed from ", architecture.components[indexComp].elements[indexElem].name, readVector(value));
     return readVector(value);
   }
 
@@ -291,9 +292,10 @@ function writeRegister ( value, indexComp, indexElem, register_type )
       }
       const vl = checkVl();
       let parsedValue = parseVector(value, architecture.sew, vl); // concatenates every value in a 128 bit-length sequence
-      //console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
+      console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
 
       architecture.components[indexComp].elements[indexElem].value = BigInt(parsedValue);
+      console.log(">>> look", architecture.components[indexComp].elements[indexElem].value);
 
       creator_callstack_writeRegister(indexComp, indexElem);
 

@@ -1208,7 +1208,7 @@
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs2 & mask; console.log('>>> addvalue:', addValue);\nvd[0] = vs1[0] + addValue;",
+      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs2 & mask;\nfor (let i = 0; i < checkVl()/architecture.sew; ++i) {\nvd[i] = vs1[i] + addValue;}",
       "separated": [
         false,
         false,
@@ -1256,7 +1256,7 @@
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet subValue = rs2 & mask; vd[0] = vs1[0] - subValue;",
+      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet subValue = rs2 & mask;\nfor (let i = 0; i < checkVl()/architecture.sew; ++i) {vd[i] = subValue - vs1[i];}",
       "separated": [
         false,
         false,
