@@ -259,12 +259,6 @@ function execute_instruction ( )
         binary = true;
       }
       
-      if (architecture.instructions[i].name == "vadd.vx") {
-        console.log(">>> name", architecture.instructions[i].name);
-        console.log(">>> auxSig", auxSig); 
-        console.log(">>> instruction", instructionExec, "\n", instructionExecParts);
-        console.log(">>> look here", instructionExecParts[0], instructionExecParts.length, auxSig.length);
-      }
       if (architecture.instructions[i].name == instructionExecParts[0] && instructionExecParts.length == auxSig.length)
       {
         console.log("heyyy")
@@ -296,9 +290,7 @@ function execute_instruction ( )
         console_log(signatureRawParts);
 
         auxDef = architecture.instructions[i].definition;
-        console.log(">>> nwords")
         nwords = architecture.instructions[i].nwords;
-        console.log(">>> nwords after", nwords)
         binary = false;
         break;
       }
@@ -308,8 +300,6 @@ function execute_instruction ( )
     //Increase PC
     var pc_reg = crex_findReg_bytag ("program_counter");
     word_size = parseInt(architecture.arch_conf[1].value) / 8;
-    console.log(">>> ", word_size = parseInt(architecture.arch_conf[1].value) / 8);
-    console.log(">>> update pc register", "prev value: ", readRegister(pc_reg.indexComp, pc_reg.indexElem), nwords, word_size);
     writeRegister(readRegister(pc_reg.indexComp, pc_reg.indexElem) + (nwords * word_size), 0,0);
     console_log(auxDef);
 

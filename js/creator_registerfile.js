@@ -33,23 +33,66 @@
  * @param {*} n  : number of elements
  * @returns hexadecimal string with every digit
  */
-function parseVector( vec, n ) {
+function parseVector( vec, sew, vl ) {
   let result = "";
+  let n = vl / sew; // vector size
+  let hexDigits = sew / 4; // number of digits for hex representation
+  let mask = Math.pow(2, sew) - 1; 
+  console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   for (let i = 0; i < n; ++i) {
     let hexNumber; 
     if (vec[i] < 0) {
-      hexNumber = (0xFFFF + 1 + vec[i]).toString(16);
+      hexNumber = (mask + 1 + vec[i]).toString(16);
     } else {
       hexNumber = vec[i].toString(16);
     }
-    if (hexNumber.length < 4) {
-      hexNumber = hexNumber.padStart(4, '0')
+    if (hexNumber.length < hexDigits) {
+      hexNumber = hexNumber.padStart(hexDigits, '0')
     }
     //console.log(">>>", hexNumber)
     result +=hexNumber;
   }
 
   return "0x"+result;
+}
+/**
+ * 
+ * @param {*} value BigInt readed from architecture
+ * 
+ * @returns value transformed into array
+ */
+function readVector (value) {
+    const bitMask = BigInt(Math.pow(2, architecture.sew) - 1);
+    let ret = crex_findReg("vl");
+    const vl = readRegister(ret.indexComp, ret.indexElem); 
+    result = [];
+    for (let i = 0; i < vl/architecture.sew; ++i) {
+      result.unshift(Number(value & bitMask));
+      value >>= BigInt(16);
+    }
+    //console.log(">>> ", result);
+    return result;
+}
+
+/**
+ * searchs a register by name and returns its indexes
+ * not needed
+ * @param {*} regName 
+ * @param {*} regBank 
+ * @returns -1 if not found. [CompIndex, elemIndex] when found
+ */
+function search_register (regName, regBank) {
+  for (let i = 0; i < architecture.components.length; ++i) {
+    if (architecture.components[i].name == regBank) {
+      let bank = architecture.components[i].elements;
+      for (let j = 0; j < bank.length; ++j) {
+        if (bank[j].name.indexOf(regName) !== -1) return [i, j];
+      }
+    }
+  }
+
+  return -1;
+
 }
 
 function crex_findReg ( value1 )
@@ -137,18 +180,10 @@ function readRegister ( indexComp, indexElem, register_type )
     let value = architecture.components[indexComp].elements[indexElem].value;
     return parseInt(architecture.components[indexComp].elements[indexElem].value);
   }
-  // read vector register
+  // read vector register extract to function
   if (architecture.components[indexComp].type == "vec_registers") {
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
-    const bitMask = BigInt(0xFFFF);
-    const vl = 16; // suponiendo sew = 16
-    result = [];
-    for (let i = 0; i < vl; ++i) {
-      result.unshift(Number(value & bitMask));
-      value >>= BigInt(16);
-    }
-    //console.log(">>> ", indexComp, indexElem, register_type, " <> ", result);
-    return result;
+    return readVector(value);
   }
 
   if (architecture.components[indexComp].type == "fp_registers")
@@ -248,8 +283,9 @@ function writeRegister ( value, indexComp, indexElem, register_type )
 
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
-      let parsedValue = parseVector(value, 16); // concatenates every value in a 128 bit-length sequence
-      console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
+      let vl = 128; // TODO: use search register to check the value before
+      let parsedValue = parseVector(value, architecture.sew, vl); // concatenates every value in a 128 bit-length sequence
+      //console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
 
       architecture.components[indexComp].elements[indexElem].value = BigInt(parsedValue);
 
