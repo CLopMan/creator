@@ -38,7 +38,7 @@ function parseVector( vec, sew, vl ) {
   let n = vl / sew; // vector size
   let hexDigits = sew / 4; // number of digits for hex representation
   let mask = Math.pow(2, sew) - 1; 
-  console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
+  //console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   for (let i = 0; i < n; ++i) {
     let hexNumber; 
     if (vec[i] < 0) {
@@ -283,7 +283,8 @@ function writeRegister ( value, indexComp, indexElem, register_type )
 
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
-      let vl = 128; // TODO: use search register to check the value before
+      let ret = crex_findReg("vl");
+      const vl = readRegister(ret.indexComp, ret.indexElem); 
       let parsedValue = parseVector(value, architecture.sew, vl); // concatenates every value in a 128 bit-length sequence
       //console.log(">>>", parsedValue, " - ", BigInt(parsedValue));
 

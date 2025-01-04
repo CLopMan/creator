@@ -261,7 +261,6 @@ function execute_instruction ( )
       
       if (architecture.instructions[i].name == instructionExecParts[0] && instructionExecParts.length == auxSig.length)
       {
-        console.log("heyyy")
         type = architecture.instructions[i].type;
         signatureDef = architecture.instructions[i].signature_definition;
 
@@ -419,7 +418,7 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " +
-           "   try {\n" + console.log(" >>> instruction", auxDef) + 
+           "   try {\n" + console.log(" >>> instruction", auxDef) +  // TODO: delete console.logs
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
@@ -438,7 +437,6 @@ function execute_instruction ( )
     }
     catch ( e )
     {
-      console.log (">>> exception instructio", e)
       var msg = '' ;
       if (e instanceof SyntaxError)
         msg = 'The definition of the instruction contains errors, please review it' + e.stack ; //TODO

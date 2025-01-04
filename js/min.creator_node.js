@@ -1864,7 +1864,7 @@ function readVector (value) {
       result.unshift(Number(value & bitMask));
       value >>= BigInt(16);
     }
-    console.log(">>> ", result);
+    //console.log(">>> ", result);
     return result;
 }
 
@@ -7277,7 +7277,6 @@ function execute_instruction ( )
     }
     catch ( e )
     {
-      console.log (">>> exception instructio", e)
       var msg = '' ;
       if (e instanceof SyntaxError)
         msg = 'The definition of the instruction contains errors, please review it' + e.stack ; //TODO
