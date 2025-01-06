@@ -25,7 +25,8 @@
  * 
  * @returns new vtype value
  */
-function updateVtype(vill, vma, vta, sew, lmulexp) {
+function updateVtype(vma, vta, sew, lmulexp) {
+    let vill  = 0;
     switch (sew) {
         case 8:
             sew = 0;
@@ -40,7 +41,21 @@ function updateVtype(vill, vma, vta, sew, lmulexp) {
             sew = 3;
             break;
         default:
+            vill = 1;
             console.log("WARN! Not valid value for sew, >>>", sew);
+    }
+    let lmulValues = [-3, -2, -1, 0, 1, 2, 3];
+    if (vma !== 0 && vma !== 1) {
+        vill = 1;
+        console.log("WARN! Not valid value for vma, >>>", vma)
+    }
+    if (vta !== 0 && vta !== 1) {
+        vill = 1;
+        console.log("WARN! Not valid value for vta, >>>", vta)
+    }
+    if (lmulValues.includes(lmulexp) !== true) {
+        vill = 1;
+        console.log("WARN! Not valid value for lmulexp, >>>", lmulexp);
     }
     if (lmulexp < 0) {lmulexp = Math.pow(2, 3) + lmulexp;} // CA2 negative
     let vtype_obj = crex_findReg("vtype");
@@ -52,14 +67,16 @@ function updateVtype(vill, vma, vta, sew, lmulexp) {
     let vta_str = vta.toString(); // 1 o 0
 
     let reserved = "0";
-    reserved.padStart(vtype.nbits - 1 - 8, "0");
-
-    let value = parseInt(vill_str + reserved + vma_str + vta_str + vsew + vlmul, 2);
+    reserved = reserved.padStart(vtype.nbits - 1 - 8, "0");
+    
+    let binValue = vill_str + reserved + vma_str + vta_str + vsew + vlmul;
+    console.log(">>>", binValue);
+    let value = parseInt(binValue, 2);
     writeRegister(value, vtype_obj.indexComp, vtype_obj.indexElem);
     return value;
 }
 
-// Read and write vectors 
+// Read and write vectors; 
 
 function transformVectorToHex( vec, sew, vlen ) {
   let result = "";
