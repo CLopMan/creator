@@ -126,7 +126,7 @@
           "default_value": 0,
           "properties": [
             "read",
-            "ignore_write"
+            "write"
           ]
         },{
           "name": [
