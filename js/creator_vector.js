@@ -81,13 +81,13 @@ function transformVectorToHex( vec, sew, vlen ) {
   let result = "";
   let n = vlen / sew; // vector size
   let hexDigits = sew / 4; // number of digits for hex representation
-  let mask = Math.pow(2, sew) - 1; 
-  //console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
+  let mask = BigInt(Math.pow(2, sew)) - BigInt(1); 
+  console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   
   for (let i = 0; i < n; ++i) {
     let hexNumber; 
     if (vec[i] < 0) {
-      hexNumber = (mask + 1 + vec[i]).toString(16);
+      hexNumber = (mask + BigInt(1) + BigInt(vec[i])).toString(16);
     } else {
       hexNumber = vec[i].toString(16);
     }
@@ -97,7 +97,7 @@ function transformVectorToHex( vec, sew, vlen ) {
     //console.log(">>>", hexNumber)
     result +=hexNumber;
   }
-
+  console.log(">>> hex vector:", result);
   return "0x"+result;
 }
 
@@ -108,11 +108,11 @@ function transformVectorToHex( vec, sew, vlen ) {
  * @returns value transformed into array
  */
 function readVector (value, sew) {
-    const bitMask = BigInt(Math.pow(2, sew) - 1);
+    const bitMask = BigInt(Math.pow(2, sew)) - BigInt(1);
     const vlen = architecture.vlen;
     result = [];
     for (let i = 0; i < vlen/sew; ++i) {
-      result.unshift(Number(value & bitMask));
+      result.unshift(readTo2C(BigInt(value & bitMask), sew));
       value >>= BigInt(architecture.sew);
     }
     //console.log(">>> ", result);
@@ -120,6 +120,21 @@ function readVector (value, sew) {
 }
 
 // end of read write vectors
+
+function readTo2C(number, bitsize) {
+  //console.log(">>> number: ", number);
+  let mask = 1n << BigInt(bitsize - 1);
+  //console.log(">>> masked",BigInt(number) & mask);
+  if ((BigInt(number) & mask) !== 0n) {
+    // negative
+    //console.log(">>> negative",number);
+    return BigInt(number) - (1n << BigInt(bitsize));
+  }
+  //console.log("return");
+  return BigInt(number);
+
+}
+
 
 /**
  * search for the value of vl register

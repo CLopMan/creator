@@ -214,8 +214,9 @@ function writeRegister ( value, indexComp, indexElem, register_type )
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
       const vlen = architecture.vlen;
+      console.log(">>> transform");
       let hexValue = transformVectorToHex(value, architecture.sew, vlen); // concatenates every value in a 128 bit-length sequence
-      //console.log(">>>", hexValue, " - ", BigInt(hexValue));
+      console.log(">>>", hexValue, " - ", BigInt(hexValue));
 
       architecture.components[indexComp].elements[indexElem].value = BigInt(hexValue);
 

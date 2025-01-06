@@ -36,7 +36,7 @@
   "vlen": 128,
   "lmul": 1,
   "elen": 64,
-  "sew": 16,
+  "sew": 64,
 
   "components": [
     {
@@ -110,7 +110,7 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 8,
+          "value": 2,
           "default_value": 8,
           "properties": [
             "read",
@@ -1211,7 +1211,7 @@
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs1 & mask;\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + addValue;}",
+      "definition": "let mask = BigInt(Math.pow(2, architecture.sew)) - BigInt(1);\nlet addValue = BigInt(rs1) & mask;\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = BigInt(vs2[i]) + addValue;}",
       "separated": [
         false,
         false,
@@ -1259,7 +1259,7 @@
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet subValue = rs1 & mask;\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - subValue;}",
+      "definition": "let mask = BigInt(Math.pow(2, architecture.sew)) - BigInt(1);\nlet subValue = BigInt(rs1) & mask;\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = BigInt(vs2[i]) - subValue;}",
       "separated": [
         false,
         false,
