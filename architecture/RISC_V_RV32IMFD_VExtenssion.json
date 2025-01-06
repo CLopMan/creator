@@ -1082,7 +1082,7 @@
       "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1",
       "signature": "vadd.vv,VEC-Reg,VEC-Reg,VEC-Reg",
-      "signatureRaw": "vadd.vv vd vs1 vs2",
+      "signatureRaw": "vadd.vv vd vs2 vs1",
       "co": "1010111",
       "cop": "0000000000",
       "nwords": 1,
@@ -1114,7 +1114,7 @@
         }
         
       ],
-      "definition": "for(let i = 0; i < checkVl(); ++i) {\nvd[i] = vs1[i] + vs2[i];\n}",
+      "definition": "for(let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + vs1[i];\n}",
       "separated": [
         false,
         false,
@@ -1130,7 +1130,7 @@
       "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1",
       "signature": "vsub.vv,VEC-Reg,VEC-Reg,VEC-Reg",
-      "signatureRaw": "vsub.vv vd vs1 vs2",
+      "signatureRaw": "vsub.vv vd vs2 vs1",
       "co": "1010111",
       "cop": "0000000000",
       "nwords": 1,
@@ -1162,7 +1162,7 @@
         }
         
       ],
-      "definition": "for(let i = 0; i < checkVl(); ++i) {\nvd[i] = vs1[i] - vs2[i];\n}",
+      "definition": "for(let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] - vs1[i];\n}",
       "separated": [
         false,
         false,
@@ -1179,7 +1179,7 @@
       "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1",
       "signature": "vadd.vx,VEC-Reg,VEC-Reg,INT-Reg",
-      "signatureRaw": "vadd.vx vd vs1 rs2",
+      "signatureRaw": "vadd.vx vd vs2 rs1",
       "co": "1010111",
       "cop": "0000000000",
       "nwords": 1,
@@ -1198,20 +1198,20 @@
           "stopbit": 7
         },
         {
-          "name": "vs1",
-          "type": "VEC-Reg",
+          "name": "rs1",
+          "type": "INT-Reg",
           "startbit": 19,
           "stopbit": 15
         },
         {
-          "name": "rs2",
-          "type": "INT-Reg",
+          "name": "vs2",
+          "type": "VEC-Reg",
           "startbit": 24,
           "stopbit": 20
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs2 & mask;\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs1[i] + addValue;}",
+      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs1 & mask;\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + addValue;}",
       "separated": [
         false,
         false,
@@ -1227,7 +1227,7 @@
       "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1",
       "signature": "vsub.vx,VEC-Reg,VEC-Reg,INT-Reg",
-      "signatureRaw": "vsub.vx vd vs1 rs2",
+      "signatureRaw": "vsub.vx vd vs2 rs1",
       "co": "1010111",
       "cop": "0000000000",
       "nwords": 1,
@@ -1246,20 +1246,116 @@
           "stopbit": 7
         },
         {
-          "name": "vs1",
+          "name": "vs2",
           "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+        
+      ],
+      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet subValue = rs1 & mask;\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - subValue;}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    { 
+      "name": "vadd.vi",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F3 F2 F1",
+      "signature": "vadd.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vadd.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "0000000000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vadd.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
           "startbit": 19,
           "stopbit": 15
         },
         {
-          "name": "rs2",
-          "type": "INT-Reg",
+          "name": "vs2",
+          "type": "VEC-Reg",
           "startbit": 24,
           "stopbit": 20
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet subValue = rs2 & mask;\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = subValue - vs1[i];}",
+      "definition": "for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] + inm;}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    { 
+      "name": "vsub.vi",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F3 F2 F1",
+      "signature": "vsub.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vsub.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "0000000000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsub.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+        
+      ],
+      "definition": "for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;}",
       "separated": [
         false,
         false,
