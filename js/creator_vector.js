@@ -16,12 +16,11 @@
 // Control registers
 
 /**
- * This function alows 
- * @param {*} vill illegal bit 
+ * This function allows updating vtype register easily
  * @param {*} vma mask agnostic
  * @param {*} vta tail agnistic
  * @param {*} sew single element width
- * @param {*} lmul exponent of lmul (lmul = 2^lmul)
+ * @param {*} lmulexp exponent of lmul (lmul = 2^lmulexp)
  * 
  * @returns new vtype value
  */
