@@ -15,7 +15,17 @@
 
 // Control registers
 
-function updateVtype(vill, vma, vta, sew, lmul) {
+/**
+ * This function alows 
+ * @param {*} vill illegal bit 
+ * @param {*} vma mask agnostic
+ * @param {*} vta tail agnistic
+ * @param {*} sew single element width
+ * @param {*} lmul exponent of lmul (lmul = 2^lmul)
+ * 
+ * @returns new vtype value
+ */
+function updateVtype(vill, vma, vta, sew, lmulexp) {
     switch (sew) {
         case 8:
             sew = 0;
@@ -32,10 +42,10 @@ function updateVtype(vill, vma, vta, sew, lmul) {
         default:
             console.log("WARN! Not valid value for sew, >>>", sew);
     }
-    if (lmul < 0) {lmul = Math.pow(2, 3) + lmul;} // CA2 negative
+    if (lmulexp < 0) {lmulexp = Math.pow(2, 3) + lmulexp;} // CA2 negative
     let vtype_obj = crex_findReg("vtype");
     let vtype = architecture.components[vtype_obj.indexComp].elements[vtype_obj.indexElem];
-    let vlmul = lmul.toString(2).padStart(3, "0");
+    let vlmul = lmulexp.toString(2).padStart(3, "0");
     let vsew = sew.toString(2).padStart(3, "0");;
     let vill_str= vill.toString(); // 1 o 0
     let vma_str = vma.toString(); // 1 o 0
@@ -44,8 +54,9 @@ function updateVtype(vill, vma, vta, sew, lmul) {
     let reserved = "0";
     reserved.padStart(vtype.nbits - 1 - 8, "0");
 
-    let value = vill_str + reserved + vma_str + vta_str + vsew + vlmul;
-    writeRegister(parseInt(value, 2), vtype_obj.indexComp, vtype_obj.indexElem);
+    let value = parseInt(vill_str + reserved + vma_str + vta_str + vsew + vlmul, 2);
+    writeRegister(value, vtype_obj.indexComp, vtype_obj.indexElem);
+    return value;
 }
 
 // Read and write vectors 
