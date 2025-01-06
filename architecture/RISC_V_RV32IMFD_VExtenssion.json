@@ -33,7 +33,10 @@
       "value": "1"
     }
   ],
-  "sew": 8,
+  "vlen": 128,
+  "lmul": 1,
+  "elen": 64,
+  "sew": 16,
 
   "components": [
     {
@@ -107,8 +110,8 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 128,
-          "default_value": 128,
+          "value": 8,
+          "default_value": 8,
           "properties": [
             "read",
             "ignore_write"
@@ -1111,7 +1114,7 @@
         }
         
       ],
-      "definition": "for(let i = 0; i < checkVl()/architecture.sew; ++i) {\nvd[i] = vs1[i] + vs2[i];\n}",
+      "definition": "for(let i = 0; i < checkVl(); ++i) {\nvd[i] = vs1[i] + vs2[i];\n}",
       "separated": [
         false,
         false,
@@ -1159,7 +1162,7 @@
         }
         
       ],
-      "definition": "for(let i = 0; i < checkVl()/architecture.sew; ++i) {\nvd[i] = vs1[i] - vs2[i];\n}",
+      "definition": "for(let i = 0; i < checkVl(); ++i) {\nvd[i] = vs1[i] - vs2[i];\n}",
       "separated": [
         false,
         false,
@@ -1208,7 +1211,7 @@
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs2 & mask;\nfor (let i = 0; i < checkVl()/architecture.sew; ++i) {\nvd[i] = vs1[i] + addValue;}",
+      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet addValue = rs2 & mask;\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs1[i] + addValue;}",
       "separated": [
         false,
         false,
@@ -1256,7 +1259,7 @@
         }
         
       ],
-      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet subValue = rs2 & mask;\nfor (let i = 0; i < checkVl()/architecture.sew; ++i) {vd[i] = subValue - vs1[i];}",
+      "definition": "let mask = Math.pow(2, architecture.sew) - 1;\nlet subValue = rs2 & mask;\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = subValue - vs1[i];}",
       "separated": [
         false,
         false,
