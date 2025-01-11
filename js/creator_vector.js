@@ -191,6 +191,16 @@ function readVector(indexComp, indexElem, lmulExp, sew) {
   return vector
 }
 
+/**
+ * write vector to register taking lmul into account 
+ * @param {*} indexComp 
+ * @param {*} indexElem 
+ * @param {*} value 
+ * @param {*} lmulExp 
+ * @param {*} sew 
+ * @param {*} vlen 
+ * @returns 
+ */
 function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
   if (lmul >= 1) {
@@ -200,10 +210,27 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
       console.log(">>>", hexValue, " - ", i);
 
     }
+    return 0
 
   } else {
     // TODO: lmul fraccionario
     return 
   }
+
+}
+
+/* Miscellaneous */
+
+/**
+ * 
+ * @param {*} vec1 
+ * @param {*} vec2 
+ * @returns False if any element of vec1 is diferent from vec2
+ */
+function vectorNotEq( vec1, vec2 ) {
+  for (let i = 0; i < vec1.length; ++i) {
+    if (vec1[i] !== vec2[i]) return true;
+  }
+  return false;
 
 }

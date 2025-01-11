@@ -32,13 +32,7 @@ var run_program         = 0; // 0: stopped, 1: running, 2: stopped-by-breakpoint
 var execution_init      = 1;
 var instructions_packed = 100;
 
-function vectorNotEq( vec1, vec2 ) {
-  for (let i = 0; i < vec1.length; ++i) {
-    if (vec1[i] !== vec2[i]) return true;
-  }
-  return false;
 
-}
 
 function packExecute ( error, err_msg, err_type, draw )
 {
