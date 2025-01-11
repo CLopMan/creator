@@ -34,7 +34,7 @@
     }
   ],
   "vlen": 128,
-  "lmul": 1,
+  "lmulExp": 2,
   "elen": 64,
   "sew": 64,
 
@@ -110,7 +110,7 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 2,
+          "value": 8,
           "default_value": 8,
           "properties": [
             "read",

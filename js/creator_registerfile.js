@@ -111,9 +111,12 @@ function readRegister ( indexComp, indexElem, register_type )
   }
   // read vector register extract to function
   if (architecture.components[indexComp].type == "vec_registers") {
-    let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
-    console.log("readed from ", architecture.components[indexComp].elements[indexElem].name, readVector(value, architecture.sew));
-    return readVector(value, architecture.sew);
+    let result = readVector(indexComp, indexElem, architecture.lmulExp, architecture.sew);
+    console.log(">>> readed:", result);
+    return result;
+
+
+    
   }
 
   if (architecture.components[indexComp].type == "fp_registers")
@@ -214,11 +217,8 @@ function writeRegister ( value, indexComp, indexElem, register_type )
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
       const vlen = architecture.vlen;
-      console.log(">>> transform");
-      let hexValue = transformVectorToHex(value, architecture.sew, vlen); // concatenates every value in a 128 bit-length sequence
-      console.log(">>>", hexValue, " - ", BigInt(hexValue));
+      writeVector(indexComp, indexElem, value, architecture.lmulExp, architecture.sew, vlen);
 
-      architecture.components[indexComp].elements[indexElem].value = BigInt(hexValue);
 
       creator_callstack_writeRegister(indexComp, indexElem);
 
