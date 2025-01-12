@@ -58,8 +58,16 @@
             "write",
             "program_counter"
           ]
-        },
-        {
+        }
+        
+      ]
+    },
+    {
+      "name": "Vec Control Registers",
+      "type": "ctrl_registers",
+      "double_precision": false,
+      "elements": [
+          {
           "name": [
             "vstart"
           ],
@@ -142,7 +150,7 @@
             "ignore_write"
           ]
         }
-      ]
+      ] 
     },
     {
       "name": "VEC registers",
