@@ -113,7 +113,6 @@ function readRegister ( indexComp, indexElem, register_type )
   if (architecture.components[indexComp].type == "vec_registers") {
     const vlen = architecture.vlen;
     let result = readVector(indexComp, indexElem, architecture.lmulExp, architecture.sew, vlen);
-    console.log(">>> readed:", result);
     return result;
 
 

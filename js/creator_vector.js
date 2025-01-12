@@ -91,6 +91,11 @@ function transformVectorToHex( vec, sew, vlen, start ) {
   while (vec.length < n) {
     vec.push(0n);
   }
+//  const vl = checkVl();
+//  if (vl < n) { // TODO: change condition to if agnostic
+//    updateTailAgnostic(vec, vl, sew);
+//  }
+  
   
   for (let i = vecIndex; i < n + vecIndex; ++i) {
     let hexNumber; 
@@ -164,8 +169,8 @@ function checkVl() {
  * Aplies the described agnostic behaivour described in the estandar. Tail elements = 1
  * @param {*} vec 
  */
-function updateTailAgnostic( vec, sew ) {
-  for (let i = checkVl(); i < architecture.vlen/sew; ++i) {
+function updateTailAgnostic( vec, vl, sew ) {
+  for (let i = vl; i < architecture.vlen/sew; ++i) {
     vec[i] = Math.pow(2, sew) - 1;
   }
 }
@@ -181,21 +186,26 @@ function updateTailAgnostic( vec, sew ) {
  * @returns array representation of vector
  */
 function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
+  console.log(">>> Readeding:");
   let lmul = Math.pow(2, lmulExp);
+  let vector;
   if (lmul >= 1) {
-    let vector = []
     for (let i = 0; i < lmul; ++i) {
+      vector = [];
       let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
-      vector = vector.concat(valueToArray(value, sew))
+      console.log(">>> here is the problem - 195");
+      vector = vector.concat(valueToArray(value, sew));
+      console.log(">>> here is the problem - 197");
     }
   } else {
     // acortar los arrays o ponerles una marca?
     let length = vlen/sew * lmul;
     console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
-    let vector = valueToArray(value, sew);
+    vector = valueToArray(value, sew);
     return vector.slice(0, length);
   }
+  console.log(">>> Readed:", vector);
   return vector
 }
 
@@ -210,11 +220,14 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
  * @returns hexadecimal representation of value
  */
 function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
+  console.log(">>> trying to write (value, indexComp, indexElem):", value, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
   let lmul = Math.pow(2, lmulExp);
+  console.log(">>> lmul = ", lmul);
+  let hexValue;
   for (let i = 0; i < lmul; ++i) {
-    let hexValue = transformVectorToHex(value, sew, vlen, i);
+    hexValue = transformVectorToHex(value, sew, vlen, i);
     architecture.components[indexComp].elements[indexElem + i].value = BigInt(hexValue);
-    //console.log(">>>", hexValue, " - ", i);
+    console.log(">>>", hexValue, " - ", i);
   }
   return hexValue;
 
