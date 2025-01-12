@@ -80,7 +80,7 @@ function updateVtype(vma, vta, sew, lmulexp) {
  * @returns hexadecimal string with every digit
  */
 function transformVectorToHex( vec, sew, vlen, start, ta ) {
-  let result = "";
+  let result = [];
   let n = vlen / sew; // vector size
   let hexDigits = sew / 4; // number of digits for hex representation
   let mask = BigInt(Math.pow(2, sew)) - BigInt(1); 
@@ -109,10 +109,10 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
       hexNumber = hexNumber.padStart(hexDigits, '0')
     }
     console.log(">>>", hexNumber)
-    result += hexNumber;
+    result.unshift(hexNumber);
   }
   //console.log(">>> hex vector:", result);
-  return "0x"+result;
+  return "0x" + result.join('');
 }
 
 /**
@@ -126,7 +126,7 @@ function valueToArray (value, sew) {
     const vlen = architecture.vlen;
     result = [];
     for (let i = 0; i < vlen/sew; ++i) {
-      result.unshift(readTo2C(BigInt(value & bitMask), sew));
+      result.push(readTo2C(BigInt(value & bitMask), sew));
       value >>= BigInt(architecture.sew);
     }
     //console.log(">>> ", result);
@@ -239,13 +239,13 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta) {
 
 function extractMask(indexComp, indexElem, vl, vlen) {
   let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
-  console.log(">>> VALUE:", value.toString(2));
+  //console.log(">>> VALUE:", value.toString(2));
   let padEnd = BigInt(vlen - vl);
-  console.log(">>> PADEND:", padEnd);
+  //console.log(">>> PADEND:", padEnd);
   let filter = (BigInt(Math.pow(2, vl)) - BigInt(1)) << padEnd;
-  console.log(">>> filter", filter.toString(2));
+  //console.log(">>> filter", filter.toString(2));
   let maskValue = (value & filter) >> padEnd;
-  console.log(">>> maskvalue", maskValue.toString(2));
+  //console.log(">>> maskvalue", maskValue.toString(2));
   let mask = [];
   for (let i = 0; i < vl; ++i) {
     mask.unshift((maskValue >> BigInt(i)) & 1n);
