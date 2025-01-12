@@ -165,6 +165,9 @@ function checkVl() {
   const vl = readRegister(ret.indexComp, ret.indexElem); 
   return vl;
 }
+function checkVlen() {
+  return architecture.vlen;
+}
 
 /**
  * Aplies the described agnostic behaivour described in the estandar. Tail elements = 1
@@ -237,27 +240,30 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta) {
 
 /* Mask */
 
+function extractMaskFromV0(vl, vlen) {
+  let v0Reg = crex_findReg("v0");
+  return extractMask(v0Reg.indexComp, v0Reg.indexElem, vl, vlen)
+}
+
 function extractMask(indexComp, indexElem, vl, vlen) {
   let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
   //console.log(">>> VALUE:", value.toString(2));
-  let padEnd = BigInt(vlen - vl);
-  //console.log(">>> PADEND:", padEnd);
-  let filter = (BigInt(Math.pow(2, vl)) - BigInt(1)) << padEnd;
+  let filter = (BigInt(Math.pow(2, vl)) - BigInt(1));
   //console.log(">>> filter", filter.toString(2));
-  let maskValue = (value & filter) >> padEnd;
+  let maskValue = (value & filter);
   //console.log(">>> maskvalue", maskValue.toString(2));
   let mask = [];
   for (let i = 0; i < vl; ++i) {
-    mask.unshift((maskValue >> BigInt(i)) & 1n);
+    mask.push((maskValue >> BigInt(i)) & 1n);
   }
   return mask;
 }
 
 function maskedOperation (vl, mask, ma, vs1, vs2, vd, operation) {
   let vecBackup = [...vd]; // copy array
-  vd = operation (vs1, vs2)
+  operation (vd, vs1, vs2)
   for (let i = 0; i < vl; ++i) {
-    if (mask[i]) {
+    if (!mask[i]) {
       if (ma) {
         vd[i] = -1; // agnostic
       } else {

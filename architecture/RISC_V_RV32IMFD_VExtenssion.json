@@ -34,11 +34,11 @@
     }
   ],
   "vlen": 128,
-  "lmulExp": 2,
+  "lmulExp": -1,
   "elen": 64,
   "sew": 16,
   "ma": 0,
-  "ta": 1,
+  "ta": 0,
 
   "components": [
     {
@@ -120,7 +120,7 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 26,
+          "value": 4,
           "default_value": 8,
           "properties": [
             "read",
@@ -1395,6 +1395,60 @@
         
       ],
       "definition": "for(let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + vs1[i];\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmadd.vv",
+      "type": "Vector arithmetic masked",
+      "signature_definition": "F0 F3 F2 F1 F4",
+      "signature": "vmadd.vv,VEC-Reg,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmadd.vv vd vs2 vs1 vm",
+      "co": "1010111",
+      "cop": "0000000000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmadd.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "vec_registers",
+          "startbit": 25,
+          "stopbit": 25
+        }
+        
+      ],
+      "definition": "function add (vd, vs1, vs2) {\nfor(let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + vs1[i];\n}}\n vd = maskedOperation(checkVl(), extractMaskFromV0(checkVl(), checkVlen()), architecture.ma, vs1, vs2, vd, add);",
       "separated": [
         false,
         false,
