@@ -1,9 +1,8 @@
 /**
  * Author: César López Mantecón
  * 
- * This file holds functionality to give support for Risc V V-extenssion 
+ * This file holds functionality to give for Risc V V-extenssion 
  */
-
 
 
 // Control registers
@@ -71,8 +70,9 @@ function updateVtype(vma, vta, sew, lmulexp) {
 // Read and write vectors; 
 
 /**
- * This function transform an array to an hex number result of concatenation of every digit.
+ * Transform an array to an hex number result of concatenation of every digit.
  * [3, 24, -1, 7] -> 0x00030018FFFF0007
+ * If more than one register is needed (lmul > 1) will split it
  * @param {*} vec : array
  * @param {*} sew : selected element width
  * @param {*} vlen: vector length in bits
@@ -170,7 +170,6 @@ function updateTailAgnostic( vec, sew ) {
   }
 }
 
-// IDEA: leer varios vectores a la vez en readRegister y WriteREgister para tener un único array de golpe según lmul
 // IDEA: tratamiento de agnostico o unchanged cuando generemos los valores a escribir en los vectores
 
 /**
@@ -208,7 +207,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
  * @param {*} lmulExp 
  * @param {*} sew 
  * @param {*} vlen 
- * @returns 
+ * @returns hexadecimal representation of value
  */
 function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
@@ -217,14 +216,14 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
     architecture.components[indexComp].elements[indexElem + i].value = BigInt(hexValue);
     //console.log(">>>", hexValue, " - ", i);
   }
-  return 0;
+  return hexValue;
 
 }
 
 /* Miscellaneous */
 
 /**
- * 
+ * Compare two arrays 
  * @param {*} vec1 
  * @param {*} vec2 
  * @returns False if any element of vec1 is diferent from vec2
