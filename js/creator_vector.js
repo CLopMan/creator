@@ -93,7 +93,9 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
   }
   const vl = checkVl();
   if (ta) { // TODO: change condition to if agnostic
-    updateTailAgnostic(vec, vl, sew);
+    console.log("check")
+    updateTailAgnostic(vec, vl);
+    // if lmul < 1 non-used elements will be transform
   }
   
   
@@ -107,7 +109,7 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
     if (hexNumber.length < hexDigits) {
       hexNumber = hexNumber.padStart(hexDigits, '0')
     }
-    //console.log(">>>", hexNumber)
+    console.log(">>>", hexNumber)
     result += hexNumber;
   }
   //console.log(">>> hex vector:", result);
@@ -169,10 +171,11 @@ function checkVl() {
  * Aplies the described agnostic behaivour described in the estandar. Tail elements = 1
  * @param {*} vec 
  */
-function updateTailAgnostic( vec, vl, sew ) {
-  for (let i = vl; i < architecture.vlen/sew; ++i) {
-    vec[i] = Math.pow(2, sew) - 1;
+function updateTailAgnostic( vec, vl) {
+  for (let i = vl; i < vec.length; ++i) {
+    vec[i] = -1;
   }
+  return vec;
 }
 
 // IDEA: tratamiento de agnostico o unchanged cuando generemos los valores a escribir en los vectores
@@ -188,12 +191,15 @@ function updateTailAgnostic( vec, vl, sew ) {
 function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
   let vector;
+  console.log(">>> lmul:", lmul);
   if (lmul >= 1) {
+    vector = [];
     for (let i = 0; i < lmul; ++i) {
-      vector = [];
-      let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
+      let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
       //console.log(">>> here is the problem - 195");
-      vector = vector.concat(valueToArray(value, sew));
+      let aux = valueToArray(value, sew);
+      console.log(">>> ", i, ":", aux);
+      vector = vector.concat(aux);
       //console.log(">>> here is the problem - 197");
     }
   } else {

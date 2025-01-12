@@ -34,11 +34,11 @@
     }
   ],
   "vlen": 128,
-  "lmulExp": 0,
+  "lmulExp": -1,
   "elen": 64,
   "sew": 16,
   "ma": 0,
-  "ta": 0,
+  "ta": 1,
 
   "components": [
     {
