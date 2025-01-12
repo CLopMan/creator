@@ -87,17 +87,16 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
   //console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   let vecIndex = start * n;
 
-  // lmul fraccionario
-  while (vec.length < n) {
-    vec.push(0n);
-  }
   const vl = checkVl();
   if (ta) { // TODO: change condition to if agnostic
     console.log("check")
     updateTailAgnostic(vec, vl);
-    // if lmul < 1 non-used elements will be transform
   }
-  
+
+  // lmul fraccionario
+  while (vec.length < n) {
+    vec.push(0n);
+  }
   
   for (let i = vecIndex; i < n + vecIndex; ++i) {
     let hexNumber; 
