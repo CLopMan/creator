@@ -1,0 +1,48 @@
+{
+      "name": "vsetvl",
+      "type": "Vector configuration",
+      "signature_definition": "F0 F3 F2 F1",
+      "signature": "vsetvl,INT-Reg,INT-Reg,INT-Reg",
+      "signatureRaw": "vsetvl rd rs1 rs2",
+      "co": "1010111",
+      "cop": "0000000000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsetvl",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "rd",
+          "type": "INT-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+        
+      ],
+      "definition": "",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    }

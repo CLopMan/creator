@@ -177,8 +177,6 @@ function updateTailAgnostic( vec, vl) {
   return vec;
 }
 
-// IDEA: tratamiento de agnostico o unchanged cuando generemos los valores a escribir en los vectores
-
 /**
  * Reads a vector taking lmul into account
  * @param {*} indexElem 
@@ -190,21 +188,21 @@ function updateTailAgnostic( vec, vl) {
 function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
   let vector;
-  console.log(">>> lmul:", lmul);
+  //console.log(">>> lmul:", lmul);
   if (lmul >= 1) {
     vector = [];
     for (let i = 0; i < lmul; ++i) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
       //console.log(">>> here is the problem - 195");
       let aux = valueToArray(value, sew);
-      console.log(">>> ", i, ":", aux);
+      //console.log(">>> ", i, ":", aux);
       vector = vector.concat(aux);
       //console.log(">>> here is the problem - 197");
     }
   } else {
-    // acortar los arrays o ponerles una marca?
+    // **acortar** los arrays o ponerles una marca?
     let length = vlen/sew * lmul;
-    console.log(">>>", length);
+    //console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
     vector = valueToArray(value, sew);
     return vector.slice(0, length);
@@ -235,6 +233,39 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta) {
   }
   return hexValue;
 
+}
+
+/* Mask */
+
+function extractMask(indexComp, indexElem, vl, vlen) {
+  let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
+  console.log(">>> VALUE:", value.toString(2));
+  let padEnd = BigInt(vlen - vl);
+  console.log(">>> PADEND:", padEnd);
+  let filter = (BigInt(Math.pow(2, vl)) - BigInt(1)) << padEnd;
+  console.log(">>> filter", filter.toString(2));
+  let maskValue = (value & filter) >> padEnd;
+  console.log(">>> maskvalue", maskValue.toString(2));
+  let mask = [];
+  for (let i = 0; i < vl; ++i) {
+    mask.unshift((maskValue >> BigInt(i)) & 1n);
+  }
+  return mask;
+}
+
+function maskedOperation (vl, mask, ma, vs1, vs2, vd, operation) {
+  let vecBackup = [...vd]; // copy array
+  vd = operation (vs1, vs2)
+  for (let i = 0; i < vl; ++i) {
+    if (mask[i]) {
+      if (ma) {
+        vd[i] = -1; // agnostic
+      } else {
+        vd[i] = vecBackup[i]; // non-disturbed
+      }
+    }
+  }
+  return vd;
 }
 
 /* Miscellaneous */
