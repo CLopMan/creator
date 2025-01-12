@@ -158,7 +158,6 @@ function readRegister ( indexComp, indexElem, register_type )
 
 function writeRegister ( value, indexComp, indexElem, register_type )
 {
-  console.log(">>> trying to write (value, indexComp, indexElem):", value, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
   
   var draw = {
     space: [] ,
@@ -217,7 +216,10 @@ function writeRegister ( value, indexComp, indexElem, register_type )
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
       const vlen = architecture.vlen;
-      writeVector(indexComp, indexElem, value, architecture.lmulExp, architecture.sew, vlen);
+      const sew = architecture.sew;
+      const lmulExp = architecture.lmulExp;
+      const ta = architecture.ta;
+      writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta);
 
 
       creator_callstack_writeRegister(indexComp, indexElem);

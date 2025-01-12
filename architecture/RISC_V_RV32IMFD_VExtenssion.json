@@ -37,6 +37,8 @@
   "lmulExp": 0,
   "elen": 64,
   "sew": 16,
+  "ma": 0,
+  "ta": 0,
 
   "components": [
     {
@@ -110,7 +112,7 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 8,
+          "value": 3,
           "default_value": 8,
           "properties": [
             "read",
