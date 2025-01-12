@@ -86,6 +86,11 @@ function transformVectorToHex( vec, sew, vlen, start ) {
   let mask = BigInt(Math.pow(2, sew)) - BigInt(1); 
   //console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   let vecIndex = start * n;
+
+  // lmul fraccionario
+  while (vec.length < n) {
+    vec.push(0n);
+  }
   
   for (let i = vecIndex; i < n + vecIndex; ++i) {
     let hexNumber; 
@@ -176,17 +181,21 @@ function updateTailAgnostic( vec, sew ) {
  * @param {*} sew 
  * @returns array representation of vector
  */
-function readVector(indexComp, indexElem, lmulExp, sew) {
+function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
-  let vector = []
   if (lmul >= 1) {
+    let vector = []
     for (let i = 0; i < lmul; ++i) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
       vector = vector.concat(valueToArray(value, sew))
     }
   } else {
-    // TODO: lmul fraccionario
-    return 
+    // acortar los arrays o ponerles una marca?
+    let length = vlen/sew * lmul;
+    console.log(">>>", length);
+    let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
+    let vector = valueToArray(value, sew);
+    return vector.slice(0, length);
   }
   return vector
 }
@@ -203,19 +212,12 @@ function readVector(indexComp, indexElem, lmulExp, sew) {
  */
 function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
-  if (lmul >= 1) {
-    for (let i = 0; i < lmul; ++i) {
-      let hexValue = transformVectorToHex(value, sew, vlen, i);
-      architecture.components[indexComp].elements[indexElem + i].value = BigInt(hexValue);
-      //console.log(">>>", hexValue, " - ", i);
-
-    }
-    return 0
-
-  } else {
-    // TODO: lmul fraccionario
-    return 
+  for (let i = 0; i < lmul; ++i) {
+    let hexValue = transformVectorToHex(value, sew, vlen, i);
+    architecture.components[indexComp].elements[indexElem + i].value = BigInt(hexValue);
+    //console.log(">>>", hexValue, " - ", i);
   }
+  return 0;
 
 }
 

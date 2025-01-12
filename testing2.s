@@ -2,4 +2,4 @@
 
 main: 
     li t0 16
-    vadd.vx v1 v1 t0
+    vadd.vx v0 v0 t0
