@@ -34,9 +34,9 @@
     }
   ],
   "vlen": 128,
-  "lmulExp": 2,
+  "lmulExp": 1,
   "elen": 64,
-  "sew": 64,
+  "sew": 16,
 
   "components": [
     {
@@ -110,7 +110,7 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 8,
+          "value": 16,
           "default_value": 8,
           "properties": [
             "read",
@@ -147,6 +147,16 @@
       "type": "vec_registers",
       "double_precission": false,
       "elements": [
+        {
+          "name": [ "v0"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
         {
           "name": [ "v1"],
           "nbits": 128,
@@ -189,6 +199,266 @@
         },
         {
           "name": [ "v5"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v6"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v7"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v8"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v9"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v10"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v11"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v12"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v13"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v14"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v15"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v16"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v17"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v18"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v19"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v20"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v21"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v22"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v23"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v24"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v25"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v26"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v27"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v28"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v29"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v30"],
+          "nbits": 128,
+          "value": 0,
+          "default_value": 0,
+          "properties": [
+            "write",
+            "read"
+          ]
+        },
+        {
+          "name": [ "v31"],
           "nbits": 128,
           "value": 0,
           "default_value": 0,

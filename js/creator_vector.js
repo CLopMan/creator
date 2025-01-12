@@ -62,7 +62,7 @@ function updateVtype(vma, vta, sew, lmulexp) {
     reserved = reserved.padStart(vtype.nbits - 1 - 8, "0");
     
     let binValue = vill_str + reserved + vma_str + vta_str + vsew + vlmul;
-    console.log(">>>", binValue);
+    //console.log(">>>", binValue);
     let value = parseInt(binValue, 2);
     writeRegister(value, vtype_obj.indexComp, vtype_obj.indexElem);
     return value;
@@ -84,7 +84,7 @@ function transformVectorToHex( vec, sew, vlen, start ) {
   let n = vlen / sew; // vector size
   let hexDigits = sew / 4; // number of digits for hex representation
   let mask = BigInt(Math.pow(2, sew)) - BigInt(1); 
-  console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
+  //console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   let vecIndex = start * n;
   
   for (let i = vecIndex; i < n + vecIndex; ++i) {
@@ -100,7 +100,7 @@ function transformVectorToHex( vec, sew, vlen, start ) {
     //console.log(">>>", hexNumber)
     result += hexNumber;
   }
-  console.log(">>> hex vector:", result);
+  //console.log(">>> hex vector:", result);
   return "0x"+result;
 }
 
@@ -207,7 +207,7 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
     for (let i = 0; i < lmul; ++i) {
       let hexValue = transformVectorToHex(value, sew, vlen, i);
       architecture.components[indexComp].elements[indexElem + i].value = BigInt(hexValue);
-      console.log(">>>", hexValue, " - ", i);
+      //console.log(">>>", hexValue, " - ", i);
 
     }
     return 0

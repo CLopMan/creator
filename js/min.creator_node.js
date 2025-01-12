@@ -6802,13 +6802,7 @@ var run_program         = 0; // 0: stopped, 1: running, 2: stopped-by-breakpoint
 var execution_init      = 1;
 var instructions_packed = 100;
 
-function vectorNotEq( vec1, vec2 ) {
-  for (let i = 0; i < vec1.length; ++i) {
-    if (vec1[i] !== vec2[i]) return true;
-  }
-  return false;
 
-}
 
 function packExecute ( error, err_msg, err_type, draw )
 {
@@ -7808,7 +7802,7 @@ function updateVtype(vma, vta, sew, lmulexp) {
     reserved = reserved.padStart(vtype.nbits - 1 - 8, "0");
     
     let binValue = vill_str + reserved + vma_str + vta_str + vsew + vlmul;
-    console.log(">>>", binValue);
+    //console.log(">>>", binValue);
     let value = parseInt(binValue, 2);
     writeRegister(value, vtype_obj.indexComp, vtype_obj.indexElem);
     return value;
@@ -7830,7 +7824,7 @@ function transformVectorToHex( vec, sew, vlen, start ) {
   let n = vlen / sew; // vector size
   let hexDigits = sew / 4; // number of digits for hex representation
   let mask = BigInt(Math.pow(2, sew)) - BigInt(1); 
-  console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
+  //console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   let vecIndex = start * n;
   
   for (let i = vecIndex; i < n + vecIndex; ++i) {
@@ -7846,7 +7840,7 @@ function transformVectorToHex( vec, sew, vlen, start ) {
     //console.log(">>>", hexNumber)
     result += hexNumber;
   }
-  console.log(">>> hex vector:", result);
+  //console.log(">>> hex vector:", result);
   return "0x"+result;
 }
 
@@ -7953,7 +7947,7 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
     for (let i = 0; i < lmul; ++i) {
       let hexValue = transformVectorToHex(value, sew, vlen, i);
       architecture.components[indexComp].elements[indexElem + i].value = BigInt(hexValue);
-      console.log(">>>", hexValue, " - ", i);
+      //console.log(">>>", hexValue, " - ", i);
 
     }
     return 0
@@ -7965,6 +7959,14 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen) {
 
 }
 
+/* Miscellaneous */
+
+/**
+ * 
+ * @param {*} vec1 
+ * @param {*} vec2 
+ * @returns False if any element of vec1 is diferent from vec2
+ */
 function vectorNotEq( vec1, vec2 ) {
   for (let i = 0; i < vec1.length; ++i) {
     if (vec1[i] !== vec2[i]) return true;
