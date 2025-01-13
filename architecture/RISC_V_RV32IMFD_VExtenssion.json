@@ -34,10 +34,10 @@
     }
   ],
   "vlen": 128,
-  "lmulExp": -1,
+  "lmulExp": 0,
   "elen": 64,
   "sew": 16,
-  "ma": 0,
+  "ma": 1,
   "ta": 0,
 
   "components": [
@@ -1641,7 +1641,7 @@
         }
         
       ],
-      "definition": "for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] + inm;}",
+      "definition": "for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] + BigInt(inm);}",
       "separated": [
         false,
         false,
@@ -1689,7 +1689,7 @@
         }
         
       ],
-      "definition": "for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;}",
+      "definition": "for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - BigInt(inm);}",
       "separated": [
         false,
         false,

@@ -7850,7 +7850,7 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
     if (hexNumber.length < hexDigits) {
       hexNumber = hexNumber.padStart(hexDigits, '0')
     }
-    console.log(">>>", hexNumber)
+    //console.log(">>>", hexNumber)
     result.unshift(hexNumber);
   }
   //console.log(">>> hex vector:", result);
@@ -7981,12 +7981,25 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta) {
 }
 
 /* Mask */
-
+/**
+ * Shortcut for extracting the mask
+ * @param {*} vl 
+ * @param {*} vlen 
+ * @returns 
+ */
 function extractMaskFromV0(vl, vlen) {
   let v0Reg = crex_findReg("v0");
   return extractMask(v0Reg.indexComp, v0Reg.indexElem, vl, vlen)
 }
 
+/**
+ * Extract the vl least significant bits as a mask 
+ * @param {*} indexComp 
+ * @param {*} indexElem 
+ * @param {*} vl 
+ * @param {*} vlen 
+ * @returns mask array
+ */
 function extractMask(indexComp, indexElem, vl, vlen) {
   let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
   //console.log(">>> VALUE:", value.toString(2));
@@ -8001,8 +8014,21 @@ function extractMask(indexComp, indexElem, vl, vlen) {
   return mask;
 }
 
+/**
+ * masked execution of operation. Operation must be a function with this header:
+ * operation(vd, vs1, vs2) where vd[i] = vs1 op vs2;
+ * @param {*} vl 
+ * @param {*} mask 
+ * @param {*} ma 
+ * @param {*} vs1 
+ * @param {*} vs2 
+ * @param {*} vd 
+ * @param {*} operation 
+ * @returns vd new value
+ */
 function maskedOperation (vl, mask, ma, vs1, vs2, vd, operation) {
   let vecBackup = [...vd]; // copy array
+  //console.log(">>>MASK:", mask)
   operation (vd, vs1, vs2)
   for (let i = 0; i < vl; ++i) {
     if (!mask[i]) {
@@ -8029,7 +8055,6 @@ function vectorNotEq( vec1, vec2 ) {
     if (vec1[i] !== vec2[i]) return true;
   }
   return false;
-
 }
 
 /*
