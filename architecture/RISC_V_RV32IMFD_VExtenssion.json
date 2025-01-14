@@ -1545,7 +1545,7 @@
         }
         
       ],
-      "definition": "let mask = BigInt(Math.pow(2, architecture.sew)) - BigInt(1);\nlet addValue = BigInt(rs1) & mask;\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = BigInt(vs2[i]) + addValue;}",
+      "definition": "function vaddVX(vd, vs2, rs1) {\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + rs1;\n}\n}\nvd = vecIntOperation(vd, vs2, rs1, architecture.sew, vaddVX);",
       "separated": [
         false,
         false,
@@ -1593,7 +1593,7 @@
         }
         
       ],
-      "definition": "let mask = BigInt(Math.pow(2, architecture.sew)) - BigInt(1);\nlet subValue = BigInt(rs1) & mask;\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = BigInt(vs2[i]) - subValue;}",
+      "definition": "function vsubVX(vd, vs2, rs1) {\n  for(let i = 0; i < checkVl(); ++i) {\n    vd[i] = vs2[i] - rs1;\n}\n}\nvecIntOperation(vd, vs2, rs1, architecture.sew, vsubVX);",
       "separated": [
         false,
         false,
@@ -1641,7 +1641,7 @@
         }
         
       ],
-      "definition": "for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] + BigInt(inm);}",
+      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] + inm;}}\nvecIntOperation(vd, vs2, inm, architecture.sew, vaddVI);",
       "separated": [
         false,
         false,
@@ -1689,7 +1689,7 @@
         }
         
       ],
-      "definition": "for (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - BigInt(inm);}",
+      "definition": "function vsubVI(vd, vs2, inm) {\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;}\n}\nvd = vecIntOperation(vd, vs2, inm, architecture.sew, vsubVI);",
       "separated": [
         false,
         false,

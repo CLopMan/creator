@@ -302,11 +302,14 @@ function maskedOperation (vl, mask, ma, vs1, vs2, vd, operation) {
 
 /* INT - VEC OPERATIONS */
 
-function intRegVecOperation(vd, rs1, vs1, sew, operation) {
+function vecIntOperation(vd, vs1, rs1, sew, operation) {
+  console.log(">>> vec int", vd, vs1, rs1, sew);
   let rs1_corrected = BigInt(rs1); // allows sew = 64
+  console.log(">>> rs1:", rs1_corrected);
   let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
-
-  operation (vd, rs1_corrected & mask, vs1);
+  console.log(">>> mask", mask);
+  operation (vd, vs1, rs1_corrected & mask);
+  console.log(">>> fin operation");
 
   return vd;
 
