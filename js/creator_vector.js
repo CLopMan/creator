@@ -245,9 +245,9 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta) {
  * @param {*} vlen 
  * @returns 
  */
-function extractMaskFromV0(vl, vlen) {
+function extractMaskFromV0(vl) {
   let v0Reg = crex_findReg("v0");
-  return extractMask(v0Reg.indexComp, v0Reg.indexElem, vl, vlen)
+  return extractMask(v0Reg.indexComp, v0Reg.indexElem, vl)
 }
 
 /**
@@ -258,7 +258,7 @@ function extractMaskFromV0(vl, vlen) {
  * @param {*} vlen 
  * @returns mask array
  */
-function extractMask(indexComp, indexElem, vl, vlen) {
+function extractMask(indexComp, indexElem, vl) {
   let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
   //console.log(">>> VALUE:", value.toString(2));
   let filter = (BigInt(Math.pow(2, vl)) - BigInt(1));
@@ -298,6 +298,18 @@ function maskedOperation (vl, mask, ma, vs1, vs2, vd, operation) {
     }
   }
   return vd;
+}
+
+/* INT - VEC OPERATIONS */
+
+function intRegVecOperation(vd, rs1, vs1, sew, operation) {
+  let rs1_corrected = BigInt(rs1); // allows sew = 64
+  let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
+
+  operation (vd, rs1_corrected & mask, vs1);
+
+  return vd;
+
 }
 
 /* Miscellaneous */
