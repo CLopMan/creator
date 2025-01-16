@@ -284,10 +284,12 @@ function extractMask(indexComp, indexElem, vl) {
  * @param {*} operation 
  * @returns vd new value
  */
-function maskedOperation (vl, mask, ma, vs1, vs2, vd, operation) {
+function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
   let vecBackup = [...vd]; // copy array
   //console.log(">>>MASK:", mask)
-  operation (vd, vs1, vs2)
+  if (operation !== null) {
+    operation (vd, vs1, vs2)
+  }
   for (let i = 0; i < vl; ++i) {
     if (!mask[i]) {
       if (ma) {
@@ -302,7 +304,13 @@ function maskedOperation (vl, mask, ma, vs1, vs2, vd, operation) {
 
 /* INT - VEC OPERATIONS */
 
-function vecIntOperation(vd, vs1, rs1, sew, operation) {
+function vecIntOperationWrapperFactory(operation, sew=architecture.sew) {
+  return function (vd, vs1, vs2) {
+    return vecIntOperation(vd, vs1, vs2, operation, sew);
+  }
+}
+
+function vecIntOperation(vd, vs1, rs1, operation, sew=architecture.sew) {
   console.log(">>> vec int", vd, vs1, rs1, sew);
   let rs1_corrected = BigInt(rs1); // allows sew = 64
   console.log(">>> rs1:", rs1_corrected);
