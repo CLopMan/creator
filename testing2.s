@@ -1,5 +1,5 @@
 .data
-result: .half 0,0,0,0,0,0,0,0,0,0,0,0
+result: .half 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 .text
 
@@ -10,3 +10,4 @@ main:
 
     vadd.vx v0 v0 t1
     vse16.v v0 0(t0)
+    vle16.v v2 0(t0)

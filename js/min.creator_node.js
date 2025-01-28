@@ -2015,6 +2015,7 @@ function writeRegister ( value, indexComp, indexElem, register_type )
       const lmulExp = architecture.lmulExp;
       const ta = architecture.ta;
       writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta);
+      console.log(">>> write successful");
 
 
       creator_callstack_writeRegister(indexComp, indexElem);
@@ -2481,12 +2482,12 @@ function main_memory_read_bydatatype ( addr, type )
 
           case 'vector16':
                 // TODO: lmul != 1
+                let size = 16;
                 ret = [];
-                var i = 0;
-                let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*2));
+                let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*size/8));
                 console.log(">>> vector16 reading", readedValue);
-                ret = valueToArray(readedValue, 16);
-                ret = fillVector(ret, architecture.vlen, architecture.sew);
+                ret = valueToArray(readedValue, size);
+                ret = expandVector(ret, (architecture.vlen / architecture.sew) * Math.pow(2, architecture.lmulExp));
         }
 
         return ret ;
@@ -7973,19 +7974,18 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
       //console.log(">>> here is the problem - 195");
       let aux = valueToArray(value, sew);
-      aux = aux.concat(new Array(vlen/sew - aux.length).fill(0n));
+      aux = fillVector(aux, vlen, sew); 
+      console.log(">>> ", i, ":", aux);
       //console.log(">>> ", i, ":", aux);
       vector = vector.concat(aux);
       //console.log(">>> here is the problem - 197");
     }
   } else {
     // **acortar** los arrays o ponerles una marca?
-    let length = vlen/sew * lmul;
     //console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
     vector = valueToArray(value, sew);
-    aux = fillVector(aux, vlen, sew);
-    return vector.slice(0, length);
+    vector = fillVector(vector, vlen, sew);
   }
   console.log(">>> Readed:", vector);
   return vector
@@ -8128,6 +8128,13 @@ function fillVector(vector, vlen, sew) {
   let lenght = vlen/sew - vector.length;
   if (lenght > 0) {
     vector = vector.concat(new Array(lenght).fill(0n));
+  }
+  return vector;
+}
+
+function expandVector(vector, length) {
+  if (length > vector.length) {
+    vector = vector.concat(new Array(length - vector.length).fill(0n))
   }
   return vector;
 }

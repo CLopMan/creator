@@ -330,12 +330,12 @@ function main_memory_read_bydatatype ( addr, type )
 
           case 'vector16':
                 // TODO: lmul != 1
+                let size = 16;
                 ret = [];
-                var i = 0;
-                let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*2));
+                let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*size/8));
                 console.log(">>> vector16 reading", readedValue);
-                ret = valueToArray(readedValue, 16);
-                ret = fillVector(ret, architecture.vlen, architecture.sew);
+                ret = valueToArray(readedValue, size);
+                ret = expandVector(ret, (architecture.vlen / architecture.sew) * Math.pow(2, architecture.lmulExp));
         }
 
         return ret ;
