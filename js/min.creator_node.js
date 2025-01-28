@@ -2480,6 +2480,7 @@ function main_memory_read_bydatatype ( addr, type )
                break;
 
           case 'vector16':
+                // TODO: lmul != 1
                 ret = [];
                 var i = 0;
                 let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*2));
@@ -7983,7 +7984,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     //console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
     vector = valueToArray(value, sew);
-    aux = aux.concat(new Array(vlen/sew - aux.length).fill(0n));
+    aux = fillVector(aux, vlen, sew);
     return vector.slice(0, length);
   }
   console.log(">>> Readed:", vector);
@@ -8120,9 +8121,14 @@ function vectorNotEq( vec1, vec2 ) {
 /**
  * This functions adds 0's at the end of vector untill vlen/sew lenght
  * @param {array} vector vector to be filled
+ * 
+ * @return {array} the same vector updated
  */
 function fillVector(vector, vlen, sew) {
-  vector = vector.concat(new Array(vlen/sew - vector.length).fill(0n));
+  let lenght = vlen/sew - vector.length;
+  if (lenght > 0) {
+    vector = vector.concat(new Array(lenght).fill(0n));
+  }
   return vector;
 }
 /*

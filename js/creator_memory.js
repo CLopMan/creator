@@ -329,6 +329,7 @@ function main_memory_read_bydatatype ( addr, type )
                break;
 
           case 'vector16':
+                // TODO: lmul != 1
                 ret = [];
                 var i = 0;
                 let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*2));
