@@ -331,9 +331,10 @@ function main_memory_read_bydatatype ( addr, type )
           case 'vector16':
                 ret = [];
                 var i = 0;
-                while (i < checkVl()) {
-                    ret.concat(valueToArray(main_memory_read(addr), 16));
-                }
+                let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*2));
+                console.log(">>> vector16 reading", readedValue);
+                ret = valueToArray(readedValue, 16);
+                ret = fillVector(ret, architecture.vlen, architecture.sew);
         }
 
         return ret ;

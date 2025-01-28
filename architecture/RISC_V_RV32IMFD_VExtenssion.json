@@ -2066,7 +2066,7 @@
           "stopbit": 7
         }
       ],
-      "definition": "capi_mem_write(inm+rs1, vs3, 'vector16', vs3_name);console.log('>>> memory - ', main_memory_read(rs1+inm));",
+      "definition": "capi_mem_write(inm+rs1, vs3, 'vector16', vs3_name);console.log('>>> memory - ', main_memory_read_bydatatype(rs1 + inm, 'vector16'));",
       "separated": [
         false,
         false,

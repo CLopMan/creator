@@ -2482,9 +2482,10 @@ function main_memory_read_bydatatype ( addr, type )
           case 'vector16':
                 ret = [];
                 var i = 0;
-                while (i < checkVl()) {
-                    ret.concat(valueToArray(main_memory_read(addr), 16));
-                }
+                let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*2));
+                console.log(">>> vector16 reading", readedValue);
+                ret = valueToArray(readedValue, 16);
+                ret = fillVector(ret, architecture.vlen, architecture.sew);
         }
 
         return ret ;
@@ -7982,7 +7983,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     //console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
     vector = valueToArray(value, sew);
-      aux = aux.concat(new Array(vlen/sew - aux.length).fill(0n));
+    aux = aux.concat(new Array(vlen/sew - aux.length).fill(0n));
     return vector.slice(0, length);
   }
   console.log(">>> Readed:", vector);
@@ -8116,6 +8117,14 @@ function vectorNotEq( vec1, vec2 ) {
   return false;
 }
 
+/**
+ * This functions adds 0's at the end of vector untill vlen/sew lenght
+ * @param {array} vector vector to be filled
+ */
+function fillVector(vector, vlen, sew) {
+  vector = vector.concat(new Array(vlen/sew - vector.length).fill(0n));
+  return vector;
+}
 /*
  *  Copyright 2018-2024 Felix Garcia Carballeira, Diego Camarmas Alonso, Alejandro Calderon Mateos
  *

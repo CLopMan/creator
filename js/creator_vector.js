@@ -210,7 +210,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     //console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
     vector = valueToArray(value, sew);
-      aux = aux.concat(new Array(vlen/sew - aux.length).fill(0n));
+    aux = aux.concat(new Array(vlen/sew - aux.length).fill(0n));
     return vector.slice(0, length);
   }
   console.log(">>> Readed:", vector);
@@ -342,4 +342,13 @@ function vectorNotEq( vec1, vec2 ) {
     if (vec1[i] !== vec2[i]) return true;
   }
   return false;
+}
+
+/**
+ * This functions adds 0's at the end of vector untill vlen/sew lenght
+ * @param {array} vector vector to be filled
+ */
+function fillVector(vector, vlen, sew) {
+  vector = vector.concat(new Array(vlen/sew - vector.length).fill(0n));
+  return vector;
 }
