@@ -1066,6 +1066,7 @@ function capi_mem_write ( addr, value, type, reg_name )
 	// 3) write into memory
 	try {
 		writeMemory(value, addr, type);
+		console.log(">>> write memory successful");
 	} 
 	catch(e) {
 		capi_raise("Invalid memory access to address '0x" + addr.toString(16) + "'") ;
@@ -2372,10 +2373,22 @@ function main_memory_read_nbytes ( addr, n )
         return value;
 }
 
-function main_memory_write_nbytes ( addr, value, n )
+function main_memory_write_nbytes ( addr, value, n)
 {
+        if (typeof(value) == 'bigint') { // not woriking right with negative bigints
+                console.log(">>> bigint: converting...");
+                if (value < 0) {
+                        console.log(">>> here 1", value)
+                        value = BigInt.asUintN(n*8, value);
+                        console.log(">>> here 2")
+                }
+        }
+
+        console.log(">>> value: ", value);
         var value_str = value.toString(16).padStart(2*n, "0") ;
         var chunks    = value_str.match(/.{1,2}/g) ;
+
+        console.log(">>> value_str - chunks\n", value_str, " - ", chunks, "\n============");
 
         for (var i = 0; i < chunks.length; i++) {
              main_memory_write_value(addr+i, chunks[i]) ;
@@ -2465,6 +2478,13 @@ function main_memory_read_bydatatype ( addr, type )
           case 'space':
                // TODO
                break;
+
+          case 'vector16':
+                ret = [];
+                var i = 0;
+                while (i < checkVl()) {
+                    ret.concat(valueToArray(main_memory_read(addr), 16));
+                }
         }
 
         return ret ;
@@ -2544,6 +2564,7 @@ function main_memory_write_bydatatype ( addr, value, type, value_human )
                 case 'integer':
                 case 'float':
                 case 'word':
+                     console.log(">>> value signed?", value);
                      size = word_size_bytes ;
                      ret = main_memory_write_nbytes(addr, value, size, type) ;
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
@@ -2592,6 +2613,15 @@ function main_memory_write_bydatatype ( addr, value, type, value_human )
                      ret = main_memory_write_nbytes(addr, value, size, type) ;
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
                      break;
+                
+                case 'vector16':
+                     size = 2;
+                     const vl = checkVl();
+                     for (let i = 0; i < vl; ++i) {
+                        ret = main_memory_write_nbytes(addr + i*size, value[i], size);
+                        console.log(">>> value writed:", value[i]);
+                     }
+                     main_memory_datatypes_update_or_create(addr, value_human, size, type);
         }
 
         // update view
@@ -7188,7 +7218,7 @@ function execute_instruction ( )
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
-                  "console.log('>>> EXPCEPTION EVAL')\n" +
+                  "console.log('>>> EXPCEPTION EVAL', e)\n" +
            "     throw e;\n" +
            "   }\n" +
            "}; ") ;
@@ -7865,11 +7895,12 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
  */
 function valueToArray (value, sew) {
     const bitMask = BigInt(Math.pow(2, sew)) - BigInt(1);
-    const vlen = architecture.vlen;
+    //const vlen = architecture.vlen;
     result = [];
-    for (let i = 0; i < vlen/sew; ++i) {
+    //for (let i = 0; i < vlen/sew; ++i) {
+    while(value > 0) {
       result.push(readTo2C(BigInt(value & bitMask), sew));
-      value >>= BigInt(architecture.sew);
+      value >>= BigInt(sew);
     }
     //console.log(">>> ", result);
     return result;
@@ -7940,6 +7971,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
       //console.log(">>> here is the problem - 195");
       let aux = valueToArray(value, sew);
+      aux = aux.concat(new Array(vlen/sew - aux.length).fill(0n));
       //console.log(">>> ", i, ":", aux);
       vector = vector.concat(aux);
       //console.log(">>> here is the problem - 197");
@@ -7950,6 +7982,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     //console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
     vector = valueToArray(value, sew);
+      aux = aux.concat(new Array(vlen/sew - aux.length).fill(0n));
     return vector.slice(0, length);
   }
   console.log(">>> Readed:", vector);
@@ -8014,6 +8047,7 @@ function extractMask(indexComp, indexElem, vl) {
   return mask;
 }
 
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
 /**
  * masked execution of operation. Operation must be a function with this header:
  * operation(vd, vs1, vs2) where vd[i] = vs1 op vs2;
@@ -8046,20 +8080,22 @@ function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=architecture.ma
 
 /* INT - VEC OPERATIONS */
 
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
 function vecIntOperationWrapperFactory(operation, sew=architecture.sew) {
   return function (vd, vs1, vs2) {
     return vecIntOperation(vd, vs1, vs2, operation, sew);
   }
 }
 
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
 function vecIntOperation(vd, vs1, rs1, operation, sew=architecture.sew) {
-  console.log(">>> vec int", vd, vs1, rs1, sew);
+  //console.log(">>> vec int", vd, vs1, rs1, sew);
   let rs1_corrected = BigInt(rs1); // allows sew = 64
-  console.log(">>> rs1:", rs1_corrected);
+  //console.log(">>> rs1:", rs1_corrected);
   let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
-  console.log(">>> mask", mask);
+  //console.log(">>> mask", mask);
   operation (vd, vs1, rs1_corrected & mask);
-  console.log(">>> fin operation");
+  //console.log(">>> fin operation");
 
   return vd;
 

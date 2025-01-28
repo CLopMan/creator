@@ -1,8 +1,12 @@
+.data
+result: .word 0,0,0,0,0,0,0,0,0,0,0,0
+
 .text
 
 main: 
-    li t0 1
-    li t1 9
-    vadd.vx v0 v0 t0
-    vadd.vx v1 v1 t1
-    vmadd.vv v1 v0 v2 v0
+    la t0 result
+    addi t1 x0 -92
+    #sw t1 0(t0)
+
+    vadd.vx v0 v0 t1
+    vse16.v v0 0(t0)

@@ -2031,6 +2031,52 @@
       "help": ""
     },
     {
+      "name": "vse16.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F2 F1 (F3)",
+      "signature": "vse16.v,VEC-Reg,inm-unsigned,(INT-Reg)",
+      "signatureRaw": "vse16.v vs3 inm (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vse16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        }
+      ],
+      "definition": "capi_mem_write(inm+rs1, vs3, 'vector16', vs3_name);console.log('>>> memory - ', main_memory_read(rs1+inm));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "addi",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",

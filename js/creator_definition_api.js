@@ -86,6 +86,7 @@ function capi_mem_write ( addr, value, type, reg_name )
 	// 3) write into memory
 	try {
 		writeMemory(value, addr, type);
+		console.log(">>> write memory successful");
 	} 
 	catch(e) {
 		capi_raise("Invalid memory access to address '0x" + addr.toString(16) + "'") ;

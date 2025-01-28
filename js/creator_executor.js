@@ -416,7 +416,7 @@ function execute_instruction ( )
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
-                  "console.log('>>> EXPCEPTION EVAL')\n" +
+                  "console.log('>>> EXPCEPTION EVAL', e)\n" +
            "     throw e;\n" +
            "   }\n" +
            "}; ") ;
