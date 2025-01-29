@@ -7,7 +7,7 @@ echo " ----------------"
 echo ""
 echo "  Requirements:"
 echo "  * terser, colors, yargs, readline-sync"
-npm install terser jshint colors yargs readline-sync
+#npm install terser jshint colors yargs readline-sync
 echo ""
 if [ $# -gt 0 ]; then
      set -x

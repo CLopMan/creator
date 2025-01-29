@@ -335,7 +335,8 @@ function main_memory_read_bydatatype ( addr, type )
                 let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*size/8));
                 console.log(">>> vector16 reading", readedValue);
                 ret = valueToArray(readedValue, size);
-                ret = expandVector(ret, (architecture.vlen / architecture.sew) * Math.pow(2, architecture.lmulExp));
+                const lenght = (architecture.vlen / architecture.sew) * Math.pow(2, architecture.lmulExp);
+                ret = fixVectorLength(ret, lenght);
         }
 
         return ret ;

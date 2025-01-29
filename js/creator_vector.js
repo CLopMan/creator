@@ -192,6 +192,7 @@ function updateTailAgnostic( vec, vl) {
 function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
   let vector;
+  const vectorLenth = vlen/sew;
   //console.log(">>> lmul:", lmul);
   if (lmul >= 1) {
     vector = [];
@@ -199,7 +200,8 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
       //console.log(">>> here is the problem - 195");
       let aux = valueToArray(value, sew);
-      aux = fillVector(aux, vlen, sew); 
+      //aux = fillVector(aux, vlen, sew); 
+      aux = fixVectorLength(aux, vectorLenth);
       console.log(">>> ", i, ":", aux);
       //console.log(">>> ", i, ":", aux);
       vector = vector.concat(aux);
@@ -210,7 +212,8 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     //console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
     vector = valueToArray(value, sew);
-    vector = fillVector(vector, vlen, sew);
+    // vector = fillVector(vector, );
+    vector = fixVectorLength(vector, vectorLenth);
   }
   console.log(">>> Readed:", vector);
   return vector
@@ -362,4 +365,17 @@ function expandVector(vector, length) {
     vector = vector.concat(new Array(length - vector.length).fill(0n))
   }
   return vector;
+}
+
+/**
+ * Truncates or expands a vector to have given lenght. When expand, 0's ard used as padding. 
+ * @param {array} vector 
+ * @param {*} lenght wanted length
+ */
+function fixVectorLength(vector, length) {
+  if (vector.length > length) { // truncates
+    return vector.slice(0, length);
+  } else {
+    return vector.concat(new Array(length - vector.length).fill(0n));
+  }
 }
