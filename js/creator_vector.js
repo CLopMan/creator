@@ -373,7 +373,7 @@ function expandVector(vector, length) {
  * @param {*} lenght wanted length
  */
 function fixVectorLength(vector, length) {
-  if (vector.length > length) { // truncates
+  if (vector.length >= length) { // truncates
     return vector.slice(0, length);
   } else {
     return vector.concat(new Array(length - vector.length).fill(0n));
