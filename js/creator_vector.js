@@ -282,12 +282,13 @@ function extractMask(indexComp, indexElem, vl) {
  * masked execution of operation. Operation must be a function with this header:
  * operation(vd, vs1, vs2) where vd[i] = vs1 op vs2;
  * @param {*} vl 
- * @param {*} mask 
- * @param {*} ma 
  * @param {*} vs1 
  * @param {*} vs2 
  * @param {*} vd 
+ * @param {*} opType arithmetic | store | load
  * @param {*} operation 
+ * @param {*} ma 
+ * @param {*} mask 
  * @returns vd new value
  */
 function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
@@ -296,16 +297,58 @@ function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=architecture.ma
   if (operation !== null) {
     operation (vd, vs1, vs2)
   }
+  // for (let i = 0; i < vl; ++i) {
+  //   if (!mask[i]) {
+  //     if (ma) {
+  //       vd[i] = -1; // agnostic
+  //     } else {
+  //       vd[i] = vecBackup[i]; // non-disturbed
+  //     }
+  //   }
+  // }
+  return applyMask(mask, ma, vd, vl);
+}
+
+function applyMask(mask, ma, vd, vl) {
+  let copy = [...vd];
   for (let i = 0; i < vl; ++i) {
     if (!mask[i]) {
       if (ma) {
-        vd[i] = -1; // agnostic
+        copy[i] = -1;
       } else {
-        vd[i] = vecBackup[i]; // non-disturbed
+        copy[i] = vd;
       }
     }
   }
-  return vd;
+  // TODO: add tail agnostic behaivour
+  return copy;
+}
+
+/**
+ * performs operation aplying mask 
+ * @param {int} vl 
+ * @param {*} addr 
+ * @param {*} data_type 
+ * @param {*} rd_name 
+ * @param {*} op_type  load | store
+ * @param {function} operation function
+ * @param {*} value value to be stored in addr. Can be null in load operations.
+ * @param {*} ma 
+ * @param {*} mask 
+ */
+function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, operation, value = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
+  switch (op_type) {
+    case "store":
+      operation(addr, applyMask(mask, ma, value, vl), data_type, rd_name); // does not modify value
+      break;
+    case "load":
+      value = operation(addr, data_type, rd_name);
+      return applyMask(mask, ma, value, vl);
+    default:
+      console.log("ERROR: operation not recognised.Types available: {'store', 'load'}");
+      break;
+  }
+  return 0;
 }
 
 /* INT - VEC OPERATIONS */
