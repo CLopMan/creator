@@ -336,12 +336,15 @@ function applyMask(mask, ma, vd, vl) {
  * @param {*} ma 
  * @param {*} mask 
  */
-function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, operation, value = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
+function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
+  let operation;
   switch (op_type) {
     case "store":
+      operation = capi_mem_write;
       operation(addr, applyMask(mask, ma, value, vl), data_type, rd_name); // does not modify value
       break;
     case "load":
+      operation = capi_mem_read;
       value = operation(addr, data_type, rd_name);
       return applyMask(mask, ma, value, vl);
     default:

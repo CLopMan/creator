@@ -1968,6 +1968,59 @@
         false
       ],
       "help": ""
+    },
+    {
+      "name": "vse16.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F2 F1 (F3) v0.t",
+      "signature": "vse16.v,VEC-Reg,inm-unsigned,(INT-Reg) v0.t",
+      "signatureRaw": "vse16.v vd inm (rs1) v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vse16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stoptbit": 25
+        }
+      ],
+      "definition": "maskedMemoryOperation(checkVl(), rs1+inm, 'vector16', vd_name, 'store', vd);console.log('>>> memory - ', main_memory_read_bydatatype(rs1 + inm, 'vector16'));",
+
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
     }, 
     {
       "name": "vse16.v",
@@ -2064,7 +2117,7 @@
           "stopbit":25
         }
       ],
-      "definition": "var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector16', rd_name, 'load', capi_mem_read)",
+      "definition": "var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector16', rd_name, 'load')",
       "separated": [
         false,
         false,

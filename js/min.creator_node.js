@@ -2485,8 +2485,9 @@ function main_memory_read_bydatatype ( addr, type )
                 let size = 16;
                 ret = [];
                 let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*size/8));
-                console.log(">>> vector16 reading", readedValue);
+                console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
                 ret = valueToArray(readedValue, size);
+                ret.reverse();
                 const lenght = (architecture.vlen / architecture.sew) * Math.pow(2, architecture.lmulExp);
                 ret = fixVectorLength(ret, lenght);
         }
@@ -8112,12 +8113,15 @@ function applyMask(mask, ma, vd, vl) {
  * @param {*} ma 
  * @param {*} mask 
  */
-function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, operation, value = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
+function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
+  let operation;
   switch (op_type) {
     case "store":
+      operation = capi_mem_write;
       operation(addr, applyMask(mask, ma, value, vl), data_type, rd_name); // does not modify value
       break;
     case "load":
+      operation = capi_mem_read;
       value = operation(addr, data_type, rd_name);
       return applyMask(mask, ma, value, vl);
     default:
