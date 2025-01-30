@@ -314,7 +314,7 @@ function applyMask(mask, ma, vd, vl) {
   for (let i = 0; i < vl; ++i) {
     if (!mask[i]) {
       if (ma) {
-        copy[i] = -1;
+        copy[i] = -1n;
       } else {
         copy[i] = vd;
       }

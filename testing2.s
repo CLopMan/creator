@@ -8,6 +8,6 @@ main:
     addi t1 x0 7
 
     vadd.vi v0 v0 7
-    vle16.v v2 0(t0)
-    vse16.v v2 0(t0)
-    vle16.v v4 0(t0)
+    vle16.v v2 0(t0) v0.t
+    vse16.v v2 0(t0) v0.t
+    ##vle16.v v4 0(t0)

@@ -332,6 +332,8 @@ function main_memory_read_bydatatype ( addr, type )
                 // TODO: lmul != 1
                 let size = 16;
                 ret = [];
+                let value_str = main_memory_read_nbytes(addr, checkVl()*size/8);
+                console.log(">>>value str: ", value_str);
                 let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*size/8));
                 console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
                 ret = valueToArray(readedValue, size);
