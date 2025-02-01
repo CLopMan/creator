@@ -111,8 +111,8 @@ function readRegister ( indexComp, indexElem, register_type )
   }
   // read vector register extract to function
   if (architecture.components[indexComp].type == "vec_registers") {
-    const vlen = architecture.vlen;
-    let result = readVector(indexComp, indexElem, architecture.lmulExp, architecture.sew, vlen);
+    const vlen = checkVlen();
+    let result = readVector(indexComp, indexElem, checkLMULEXP(), checkSEW(), vlen);
     return result;
 
 
@@ -215,10 +215,10 @@ function writeRegister ( value, indexComp, indexElem, register_type )
 
         throw packExecute(true, 'The register '+ architecture.components[indexComp].elements[indexElem].name.join(' | ') +' cannot be written', 'danger', null);
       }
-      const vlen = architecture.vlen;
-      const sew = architecture.sew;
-      const lmulExp = architecture.lmulExp;
-      const ta = architecture.ta;
+      const vlen = checkVlen();
+      const sew = checkSEW();
+      const lmulExp = checkLMULEXP();
+      const ta = checkTA();
       writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta);
       console.log(">>> write successful");
 

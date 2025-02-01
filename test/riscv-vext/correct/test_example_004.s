@@ -1,4 +1,4 @@
-# masked operations
+# masked arithmetic operations
 # lmulExp = 0
 
 .text

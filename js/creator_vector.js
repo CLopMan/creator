@@ -169,6 +169,18 @@ function checkVl() {
 function checkVlen() {
   return architecture.vlen;
 }
+function checkLMULEXP() {
+  return architecture.lmulExp;
+}
+function checkSEW() {
+  return architecture.sew;
+}
+function checkTA() {
+  return architecture.ta;
+}
+function checkMA() {
+  return architecture.ma;
+}
 
 /**
  * Aplies the described agnostic behaivour described in the estandar. Tail elements = 1
@@ -291,7 +303,7 @@ function extractMask(indexComp, indexElem, vl) {
  * @param {*} mask 
  * @returns vd new value
  */
-function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
+function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=checkMA(), mask=extractMaskFromV0(vl)) {
   let vecBackup = [...vd]; // copy array
   //console.log(">>>MASK:", mask)
   if (operation !== null) {
@@ -324,6 +336,22 @@ function applyMask(mask, ma, vd, vl) {
   return copy;
 }
 
+/*Memory */
+
+function readVectorFromMemory(addr, vl, sew, vlen, lmulExp) {
+  console.log(">>>", vl, sew, vlen, lmulExp);
+  let ret = [];
+  let value_str = main_memory_read_nbytes(addr, checkVl()*sew/8);
+  console.log(">>>value str: ", value_str);
+  let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, vl*sew/8));
+  console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
+  ret = valueToArray(readedValue, sew);
+  ret.reverse();
+  console.log(">>>", ret);
+  const lenght = (vlen / sew) * Math.pow(2, lmulExp);
+  return fixVectorLength(ret, lenght);
+}
+
 /**
  * performs operation aplying mask 
  * @param {int} vl 
@@ -336,7 +364,7 @@ function applyMask(mask, ma, vd, vl) {
  * @param {*} ma 
  * @param {*} mask 
  */
-function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = null, ma=architecture.ma, mask=extractMaskFromV0(vl)) {
+function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = null, ma=checkMA(), mask=extractMaskFromV0(vl)) {
   let operation;
   switch (op_type) {
     case "store":
@@ -357,14 +385,14 @@ function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = n
 /* INT - VEC OPERATIONS */
 
 //TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
-function vecIntOperationWrapperFactory(operation, sew=architecture.sew) {
+function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
   return function (vd, vs1, vs2) {
     return vecIntOperation(vd, vs1, vs2, operation, sew);
   }
 }
 
 //TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
-function vecIntOperation(vd, vs1, rs1, operation, sew=architecture.sew) {
+function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
   //console.log(">>> vec int", vd, vs1, rs1, sew);
   let rs1_corrected = BigInt(rs1); // allows sew = 64
   //console.log(">>> rs1:", rs1_corrected);
