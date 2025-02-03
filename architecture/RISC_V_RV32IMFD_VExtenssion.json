@@ -34,10 +34,10 @@
     }
   ],
   "vlen": 128,
-  "lmulExp": 0,
+  "lmulExp": 1,
   "elen": 64,
-  "sew": 16,
-  "ma": 1,
+  "sew": 8,
+  "ma": 0,
   "ta": 1,
 
   "components": [
@@ -1808,7 +1808,7 @@
         }
         
       ],
-      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {console.log('---', vs2[i], inm);\nvd[i] = vs2[i] + inm;}}\nvd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(vaddVI));",
+      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {//console.log('---', vs2[i], inm);\nvd[i] = vs2[i] + inm;}}\nvd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(vaddVI));",
       "separated": [
         false,
         false,
@@ -1856,7 +1856,7 @@
         }
         
       ],
-      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {console.log('---', vs2[i], inm);\nvd[i] = vs2[i] + inm;}}\nvecIntOperation(vd, vs2, inm, vaddVI);",
+      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {//console.log('---', vs2[i], inm);\nvd[i] = vs2[i] + inm;}}\nvecIntOperation(vd, vs2, inm, vaddVI);",
       "separated": [
         false,
         false,
@@ -2059,6 +2059,118 @@
         }
       ],
       "definition": "capi_mem_write(inm+rs1, vd, 'vector16', vd_name);\n//console.log('>>> memory - ', main_memory_read_bydatatype(rs1 + inm, 'vector16'));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vle8.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 F1 (F2) v0.t",
+      "signature": "vle8.v,VEC-Reg,inm-unsigned,(INT-Reg),v0.t",
+      "signatureRaw": "vle8.v rd inm (rs1) v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vle8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit":25,
+          "stopbit":25
+        }
+      ],
+      "definition": "console.log('>>> vec8');var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector8', rd_name, 'load')",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vle8.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 F1 (F2)",
+      "signature": "vle8.v,VEC-Reg,inm-unsigned,(INT-Reg)",
+      "signatureRaw": "vle8.v rd inm (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vle8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "var addr = capi_int2uint(rs1)+inm;\n rd = capi_mem_read(addr, 'vector8', rd_name);",
       "separated": [
         false,
         false,

@@ -2480,19 +2480,19 @@ function main_memory_read_bydatatype ( addr, type )
                // TODO
                break;
 
+          case 'vector8':
+                console.log(">>> vector8")
+                ret = readVectorFromMemory(addr, checkVl(), 8, checkVlen(), checkLMULEXP());
+                break;
           case 'vector16':
-                // TODO: lmul != 1
-                // let size = 16;
-                // ret = [];
-                // let value_str = main_memory_read_nbytes(addr, checkVl()*size/8);
-                // console.log(">>>value str: ", value_str);
-                // let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*size/8));
-                // console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
-                // ret = valueToArray(readedValue, size);
-                // ret.reverse();
-                // const lenght = (architecture.vlen / architecture.sew) * Math.pow(2, architecture.lmulExp);
-                // ret = fixVectorLength(ret, lenght);
                 ret = readVectorFromMemory(addr, checkVl(), 16, checkVlen(), checkLMULEXP());
+                break;
+          case 'vector32':
+                ret = readVectorFromMemory(addr, checkVl(), 32, checkVlen(), checkLMULEXP());
+                break;
+          case 'vector64':
+                ret = readVectorFromMemory(addr, checkVl(), 64, checkVlen(), checkLMULEXP());
+                break;
         }
 
         return ret ;
@@ -7869,16 +7869,18 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
 
   const vl = checkVl();
   if (ta) { // TODO: change condition to if agnostic
-    console.log("check")
-    updateTailAgnostic(vec, vl);
+    console.log(">>> check ta")
+    vec = updateTailAgnostic(vec, vl);
+    console.log(">>> finish check ta")
   }
 
   // lmul fraccionario
   while (vec.length < n) {
     vec.push(0n);
   }
-  
+  console.log (">>> transform to hex: ", vec) ;
   for (let i = vecIndex; i < n + vecIndex; ++i) {
+    console.log(">>> index", i, vec[i]);
     let hexNumber; 
     if (vec[i] < 0) {
       hexNumber = (mask + BigInt(1) + BigInt(vec[i])).toString(16);
@@ -7892,6 +7894,7 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
     result.unshift(hexNumber);
   }
   //console.log(">>> hex vector:", result);
+  console.log(">>> result:", result);
   return "0x" + result.join('');
 }
 
@@ -7937,6 +7940,9 @@ function readTo2C(number, bitsize) {
 }
 
 
+// TOOD: substitude this returns to check vtype register
+//       when config instructions are done
+//       also check will bit to raise exception if needed
 /**
  * search for the value of vl register
  * @returns vl value
@@ -7967,10 +7973,11 @@ function checkMA() {
  * @param {*} vec 
  */
 function updateTailAgnostic( vec, vl) {
+  let copy = [...vec];
   for (let i = vl; i < vec.length; ++i) {
-    vec[i] = -1;
+    copy[i] = -1n;
   }
-  return vec;
+  return copy;
 }
 
 /**
@@ -7990,10 +7997,12 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     vector = [];
     for (let i = 0; i < lmul; ++i) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
-      //console.log(">>> here is the problem - 195");
+      console.log(">>> value reded:", value);
       let aux = valueToArray(value, sew);
       //aux = fillVector(aux, vlen, sew); 
+      console.log(">>>", aux, "will be fixed");
       aux = fixVectorLength(aux, vectorLenth);
+      console.log(">>> fix 2", aux)
       console.log(">>> ", i, ":", aux);
       //console.log(">>> ", i, ":", aux);
       vector = vector.concat(aux);
@@ -8098,17 +8107,17 @@ function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=checkMA(), mask
   //     }
   //   }
   // }
-  return applyMask(mask, ma, vd, vl);
+  return applyMask(mask, ma, vd, vecBackup, vl);
 }
 
-function applyMask(mask, ma, vd, vl) {
+function applyMask(mask, ma, vd, backup, vl) {
   let copy = [...vd];
   for (let i = 0; i < vl; ++i) {
     if (!mask[i]) {
       if (ma) {
         copy[i] = -1n;
       } else {
-        copy[i] = vd;
+        copy[i] = backup[i];
       }
     }
   }
@@ -8118,7 +8127,7 @@ function applyMask(mask, ma, vd, vl) {
 
 /*Memory */
 
-function readVectorFromMemory(addr, vl, sew, vlen, lmulExp) {
+function readVectorFromMemory(addr, vl, sew, vlen, lmulExp, ESEW=checkSEW()) {
   console.log(">>>", vl, sew, vlen, lmulExp);
   let ret = [];
   let value_str = main_memory_read_nbytes(addr, checkVl()*sew/8);
@@ -8127,8 +8136,8 @@ function readVectorFromMemory(addr, vl, sew, vlen, lmulExp) {
   console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
   ret = valueToArray(readedValue, sew);
   ret.reverse();
-  console.log(">>>", ret);
-  const lenght = (vlen / sew) * Math.pow(2, lmulExp);
+  console.log(">>> vec extracted:", ret);
+  const lenght = (vlen / ESEW) * Math.pow(2, lmulExp);
   return fixVectorLength(ret, lenght);
 }
 
@@ -8146,22 +8155,109 @@ function readVectorFromMemory(addr, vl, sew, vlen, lmulExp) {
  */
 function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = null, ma=checkMA(), mask=extractMaskFromV0(vl)) {
   let operation;
+  let backup;
   switch (op_type) {
     case "store":
       operation = capi_mem_write;
-      operation(addr, applyMask(mask, ma, value, vl), data_type, rd_name); // does not modify value
+      backup = main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataTyme(data_type)/2);
+      operation(addr, applyMask(mask, ma, value, backup, vl), data_type, rd_name); // does not modify value
       break;
     case "load":
       operation = capi_mem_read;
       value = operation(addr, data_type, rd_name);
-      return applyMask(mask, ma, value, vl);
+      console.log(">>> readed value from memory", value);
+      let reg_obj = crex_findReg(rd_name);
+      backup = readRegister(reg_obj.indexComp, reg_obj.indexElem);
+      return applyMask(mask, ma, value, backup, vl);
     default:
       console.log("ERROR: operation not recognised.Types available: {'store', 'load'}");
       break;
   }
   return 0;
 }
+/**
+ * 
+ * @param {string} data_type : vector<size>
+ * 
+ * @return {int} 
+ */
+function resolveSizeFromDataTyme (data_type) {
+  switch (data_type) {
+    case 'vector8':
+      return 8;
+    case 'vector16':
+      return 16;
+    case 'vector32':
+      return 32;
+    case 'vector64':
+      return 64;
 
+    default:
+      console.log("WARN!! data type", data_type, "not allowed!");
+      return -1;
+  }
+
+}
+/* INT - VEC OPERATIONS */
+
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
+function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
+  return function (vd, vs1, vs2) {
+    return vecIntOperation(vd, vs1, vs2, operation, sew);
+  }
+}
+
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
+function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
+  //console.log(">>> vec int", vd, vs1, rs1, sew);
+  let rs1_corrected = BigInt(rs1); // allows sew = 64
+  //console.log(">>> rs1:", rs1_corrected);
+  let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
+  //console.log(">>> mask", mask);
+  operation (vd, vs1, rs1_corrected & mask);
+  
+
+}
+/* INT - VEC OPERATIONS */
+
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
+function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
+  return function (vd, vs1, vs2) {
+    return vecIntOperation(vd, vs1, vs2, operation, sew);
+  }
+}
+
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
+function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
+  //console.log(">>> vec int", vd, vs1, rs1, sew);
+  let rs1_corrected = BigInt(rs1); // allows sew = 64
+  //console.log(">>> rs1:", rs1_corrected);
+  let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
+  //console.log(">>> mask", mask);
+  operation (vd, vs1, rs1_corrected & mask);
+  
+
+}
+/* INT - VEC OPERATIONS */
+
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
+function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
+  return function (vd, vs1, vs2) {
+    return vecIntOperation(vd, vs1, vs2, operation, sew);
+  }
+}
+
+//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
+function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
+  //console.log(">>> vec int", vd, vs1, rs1, sew);
+  let rs1_corrected = BigInt(rs1); // allows sew = 64
+  //console.log(">>> rs1:", rs1_corrected);
+  let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
+  //console.log(">>> mask", mask);
+  operation (vd, vs1, rs1_corrected & mask);
+  
+
+}
 /* INT - VEC OPERATIONS */
 
 //TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
@@ -8194,9 +8290,11 @@ function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
  * @returns False if any element of vec1 is diferent from vec2
  */
 function vectorNotEq( vec1, vec2 ) {
+  console.log(">> vecnoteq", vec1, vec2);
   for (let i = 0; i < vec1.length; ++i) {
     if (vec1[i] !== vec2[i]) return true;
   }
+  console.log(">>> vec not eq false")
   return false;
 }
 
@@ -8227,6 +8325,7 @@ function expandVector(vector, length) {
  * @param {*} lenght wanted length
  */
 function fixVectorLength(vector, length) {
+  console.log(">>> fix vector length ", vector);
   if (vector.length >= length) { // truncates
     return vector.slice(0, length);
   } else {

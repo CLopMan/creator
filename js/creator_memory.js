@@ -328,19 +328,19 @@ function main_memory_read_bydatatype ( addr, type )
                // TODO
                break;
 
+          case 'vector8':
+                console.log(">>> vector8")
+                ret = readVectorFromMemory(addr, checkVl(), 8, checkVlen(), checkLMULEXP());
+                break;
           case 'vector16':
-                // TODO: lmul != 1
-                // let size = 16;
-                // ret = [];
-                // let value_str = main_memory_read_nbytes(addr, checkVl()*size/8);
-                // console.log(">>>value str: ", value_str);
-                // let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, checkVl()*size/8));
-                // console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
-                // ret = valueToArray(readedValue, size);
-                // ret.reverse();
-                // const lenght = (architecture.vlen / architecture.sew) * Math.pow(2, architecture.lmulExp);
-                // ret = fixVectorLength(ret, lenght);
                 ret = readVectorFromMemory(addr, checkVl(), 16, checkVlen(), checkLMULEXP());
+                break;
+          case 'vector32':
+                ret = readVectorFromMemory(addr, checkVl(), 32, checkVlen(), checkLMULEXP());
+                break;
+          case 'vector64':
+                ret = readVectorFromMemory(addr, checkVl(), 64, checkVlen(), checkLMULEXP());
+                break;
         }
 
         return ret ;
