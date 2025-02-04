@@ -5,6 +5,34 @@ import subprocess
 
 arch_path = "./architecture/"
 test_dir = "./test/riscv-vext/correct/"  # Cambia esto si los archivos están en otro directorio
+RISCV_VEXTENSSION = "RISC_V_RV32IMFD_VExtenssion.json"
+
+tests = [
+    {"vlen": 128, "lmulExp": 1, "elen": 64, "sew": 16, "ma": 0, "ta": 0, "vl": 14},# 0 - basic
+    {"vlen": 128, "lmulExp": -3, "elen": 64, "sew": 8, "ma": 0, "ta": 0, "vl": 2}, # 1 - lmul frac
+    {"vlen": 128, "lmulExp": 0, "elen": 64, "sew": 16, "ma": 0, "ta": 0, "vl": 7}, # 2 - lmul = 0
+    {"vlen": 128, "lmulExp": 1, "elen": 64, "sew": 16, "ma": 1, "ta": 0, "vl": 14},# 3 - ma
+    {"vlen": 128, "lmulExp": 1, "elen": 64, "sew": 16, "ma": 0, "ta": 1, "vl": 14},# 4 - ta
+]
+
+def modify_architecture(params: dict):
+    arch = None
+    with open(f"{arch_path}{RISCV_VEXTENSSION}", "r") as fd:
+        arch = json.load(fd);
+    
+    arch["vlen"] = params["vlen"];
+    arch["lmulExp"] = params["lmulExp"];
+    arch["elen"] = params["elen"];
+    arch["sew"] = params["sew"];
+    arch["ma"] = params["ma"];
+    arch["ta"] = params["ta"];
+    arch["components"][1]["elements"][4]["value"] = params["vl"];
+    
+    with open(f"{arch_path}{RISCV_VEXTENSSION}", "w") as fd:
+        json.dump(arch, fd, indent=2)
+        
+
+
 
 # def execute_test(test_name, architecture="RISC_V_RV32IMFD_VExtenssion.json"):
 #     command = ["./creator.sh", "-a", architecture, "-s", test_name]
@@ -41,7 +69,8 @@ def run_tests(test_number=None):
             print(f"Error: El archivo {test_file} no existe.")
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        run_tests(sys.argv[1])  # Ejecutar un test específico
-    else:
-        run_tests()  # Ejecutar todos los tests
+    # if len(sys.argv) > 1:
+    #     run_tests(sys.argv[1])  # Ejecutar un test específico
+    # else:
+    #     run_tests()  # Ejecutar todos los tests
+    modify_architecture(tests[1])
