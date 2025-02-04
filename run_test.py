@@ -2,6 +2,7 @@ import json
 import sys
 import os
 import subprocess
+import glob
 
 arch_path = "./architecture/"
 test_dir = "./test/riscv-vext/correct/"  # Cambia esto si los archivos están en otro directorio
@@ -16,6 +17,7 @@ tests = [
 ]
 
 def modify_architecture(params: dict):
+    print("architecture: ", params)
     arch = None
     with open(f"{arch_path}{RISCV_VEXTENSSION}", "r") as fd:
         arch = json.load(fd);
@@ -40,13 +42,19 @@ def modify_architecture(params: dict):
 #     return result.stdout if result.returncode == 0 else result.stderr
 
 def execute_test(test_name, architecture="RISC_V_RV32IMFD_VExtenssion.json", log_dir="vecLogs"):
-    os.makedirs(log_dir, exist_ok=True)
-    log_file = os.path.join(log_dir, f"{test_name}.log")
+    for i, d in enumerate(tests):
+        modify_architecture(d)
+        os.makedirs(log_dir, exist_ok=True)
+        log_file = os.path.join(log_dir, f"{test_name}-{i}.log")
 
-    with open(log_file, "w") as log:
-        command = ["./creator.sh", "-a", f"{arch_path}{architecture}", "-s", f"{test_dir}{test_name}"]
-        subprocess.run(command, stdout=log, stderr=log, text=True)
-    
+        with open(log_file, "w") as log:
+            command = ["./creator.sh", "-a", f"{arch_path}{architecture}", "-s", f"{test_dir}{test_name}"]
+            subprocess.run(command, stdout=log, stderr=log, text=True)
+            if (not check_test_success(log_file)):
+                print(f"Failed test - {log_file}")
+            else:
+                print(f"successful test - {log_file}")
+
     return log_file
 
 
@@ -68,9 +76,29 @@ def run_tests(test_number=None):
         else:
             print(f"Error: El archivo {test_file} no existe.")
 
+def check_test_success(log_file):
+    success = None
+
+    # Check for execution problems
+    with open(log_file, "r", encoding="utf-8") as f:
+        for line in f:
+            if "[Execute] Executed successfully." in line:
+                success = True  # Test exitoso
+                break
+            else:
+                success = False  # Test fallido o incorrecto
+    # TODO: expected vs obteined
+    return success
+
 if __name__ == "__main__":
-    # if len(sys.argv) > 1:
-    #     run_tests(sys.argv[1])  # Ejecutar un test específico
-    # else:
-    #     run_tests()  # Ejecutar todos los tests
-    modify_architecture(tests[1])
+    if len(sys.argv) > 1:
+        if (sys.argv[1] == "clear"):
+            log_dir = "vecLogs"
+            if os.path.exists(log_dir):
+                for log_file in glob.glob(os.path.join(log_dir, "*")):
+                    os.remove(log_file)
+            print("All log files deleted.")
+            sys.exit(0)
+        run_tests(sys.argv[1])  # Ejecutar un test específico
+    else:
+        run_tests()  # Ejecutar todos los tests

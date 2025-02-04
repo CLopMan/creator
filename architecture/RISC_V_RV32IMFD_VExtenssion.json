@@ -34,11 +34,11 @@
     }
   ],
   "vlen": 128,
-  "lmulExp": -3,
+  "lmulExp": 1,
   "elen": 64,
-  "sew": 8,
+  "sew": 16,
   "ma": 0,
-  "ta": 0,
+  "ta": 1,
   "components": [
     {
       "name": "Control registers",
@@ -118,7 +118,7 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 2,
+          "value": 14,
           "default_value": 8,
           "properties": [
             "read",
