@@ -2,6 +2,8 @@
 # test masked le se 64bits sized
 .data
 result: .word 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 
+store: .word 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+store_masked: .word 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 .text
 
 main: 
@@ -14,3 +16,12 @@ main:
 
     vle64.v v2 0(t0) v0.t # load with mask
     vle64.v v4 0(t0) # load without mask
+
+    la t1 store
+    la t2 store_masked
+
+    vse8.v v4 0(t1)
+    vse8.v v4 0(t2) v0.t
+
+    vle8.v v6 0(t1)
+    vle8.v v8 0(t2)

@@ -11,6 +11,5 @@ main:
     la t4 values
     vle8.v v2 0(t2) # indexes
 
-    vloxei8.v v4 0(t4) v2
-    vloxei8.v v6 0(t4) v2 v0.t
-
+    vloxei8.v v4 (t4) v2 # 14, 15, 12, 13, 10, 11, 8, 9, 6, 7, 4, 5, 2, 3, 0, 1
+    #vloxei8.v v6 0(t4) v2 v0.t
