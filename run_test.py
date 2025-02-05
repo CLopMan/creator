@@ -1,3 +1,10 @@
+"""
+Author: César López Mantecón
+
+This file allow automatic test execution with diverse architecture settings
+"""
+
+
 import json
 import sys
 import os
@@ -5,15 +12,15 @@ import subprocess
 import glob
 
 arch_path = "./architecture/"
-test_dir = "./test/riscv-vext/correct/"  # Cambia esto si los archivos están en otro directorio
+test_dir = "./test/riscv-vext/correct/"
 RISCV_VEXTENSSION = "RISC_V_RV32IMFD_VExtenssion.json"
 
 tests = [
-    {"vlen": 128, "lmulExp": 1, "elen": 64, "sew": 16, "ma": 0, "ta": 0, "vl": 14},# 0 - basic
-    {"vlen": 128, "lmulExp": -3, "elen": 64, "sew": 8, "ma": 0, "ta": 0, "vl": 2}, # 1 - lmul frac
-    {"vlen": 128, "lmulExp": 0, "elen": 64, "sew": 16, "ma": 0, "ta": 0, "vl": 7}, # 2 - lmul = 0
-    {"vlen": 128, "lmulExp": 1, "elen": 64, "sew": 16, "ma": 1, "ta": 0, "vl": 14},# 3 - ma
-    {"vlen": 128, "lmulExp": 1, "elen": 64, "sew": 16, "ma": 0, "ta": 1, "vl": 14},# 4 - ta
+    {"vlen": 128, "lmulExp":  1, "elen": 64, "sew": 16, "ma": 0, "ta": 0, "vl": 14},# 0 - basic
+    {"vlen": 128, "lmulExp": -3, "elen": 64, "sew": 8,  "ma": 0, "ta": 0, "vl":  2}, # 1 - lmul frac
+    {"vlen": 128, "lmulExp":  0, "elen": 64, "sew": 16, "ma": 0, "ta": 0, "vl": 7}, # 2 - lmul = 0
+    {"vlen": 128, "lmulExp":  1, "elen": 64, "sew": 16, "ma": 1, "ta": 0, "vl": 14},# 3 - ma
+    {"vlen": 128, "lmulExp":  1, "elen": 64, "sew": 16, "ma": 0, "ta": 1, "vl": 14},# 4 - ta
 ]
 
 def modify_architecture(params: dict):
@@ -32,14 +39,6 @@ def modify_architecture(params: dict):
     
     with open(f"{arch_path}{RISCV_VEXTENSSION}", "w") as fd:
         json.dump(arch, fd, indent=2)
-        
-
-
-
-# def execute_test(test_name, architecture="RISC_V_RV32IMFD_VExtenssion.json"):
-#     command = ["./creator.sh", "-a", architecture, "-s", test_name]
-#     result = subprocess.run(command, capture_output=True, text=True)
-#     return result.stdout if result.returncode == 0 else result.stderr
 
 def execute_test(test_name, architecture="RISC_V_RV32IMFD_VExtenssion.json", log_dir="vecLogs"):
     for i, d in enumerate(tests):
@@ -56,9 +55,6 @@ def execute_test(test_name, architecture="RISC_V_RV32IMFD_VExtenssion.json", log
                 print(f"successful test - {log_file}")
 
     return log_file
-
-
-
 
 def run_tests(test_number=None):
     test_prefix = "test_example_"

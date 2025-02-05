@@ -361,6 +361,14 @@ function readVectorFromMemory(addr, vl, sew, vlen, lmulExp, ESEW=checkSEW()) {
   return fixVectorLength(ret, lenght);
 }
 
+function writeVectorToMemory(addr, size, vec, vl) {
+  console.log(">>> vec -> mem", vec);
+  for (let i = 0; i < vl; ++i) {
+      ret = main_memory_write_nbytes(addr + i*size, vec[i], size);
+  }
+  return ret;
+}
+
 /**
  * performs operation aplying mask 
  * @param {int} vl 
@@ -374,13 +382,15 @@ function readVectorFromMemory(addr, vl, sew, vlen, lmulExp, ESEW=checkSEW()) {
  * @param {*} mask 
  */
 function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = null, ma=checkMA(), mask=extractMaskFromV0(vl)) {
+  console.log(">>>masked operation", op_type, data_type);
   let operation;
   let backup;
   switch (op_type) {
     case "store":
       operation = capi_mem_write;
-      backup = main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataTyme(data_type)/2);
+      backup = main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataType(data_type)/2);
       operation(addr, applyMask(mask, ma, value, backup, vl), data_type, rd_name); // does not modify value
+      console.log(">>> memory writed", addr, " - ", main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataType(data_type)/2));
       break;
     case "load":
       operation = capi_mem_read;
@@ -401,7 +411,7 @@ function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = n
  * 
  * @return {int} 
  */
-function resolveSizeFromDataTyme (data_type) {
+function resolveSizeFromDataType (data_type) {
   switch (data_type) {
     case 'vector8':
       return 8;

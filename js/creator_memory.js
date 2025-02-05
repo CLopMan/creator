@@ -19,6 +19,8 @@
  *
  */
 
+const { check } = require("yargs");
+
 
 /********************
  * Global variables *
@@ -329,7 +331,6 @@ function main_memory_read_bydatatype ( addr, type )
                break;
 
           case 'vector8':
-                console.log(">>> vector8")
                 ret = readVectorFromMemory(addr, checkVl(), 8, checkVlen(), checkLMULEXP());
                 break;
           case 'vector16':
@@ -470,14 +471,27 @@ function main_memory_write_bydatatype ( addr, value, type, value_human )
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
                      break;
                 
-                case 'vector16':
-                     size = 2;
-                     const vl = checkVl();
-                     for (let i = 0; i < vl; ++i) {
-                        ret = main_memory_write_nbytes(addr + i*size, value[i], size);
-                        console.log(">>> value writed:", value[i]);
-                     }
+                case 'vector8':
+                     size = 1;
+                     ret = writeVectorToMemory(addr, size, value, checkVl());
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
+                     break;
+                case 'vector16':
+                     console.log(">>> VEC16 write", addr);
+                     size = 2;
+                     ret = writeVectorToMemory(addr, size, value, checkVl());
+                     main_memory_datatypes_update_or_create(addr, value_human, size, type);
+                     break;
+                case 'vector32':
+                     size = 4;
+                     ret = writeVectorToMemory(addr, size, value, checkVl());
+                     main_memory_datatypes_update_or_create(addr, value_human, size, type);
+                     break;
+                case 'vector64':
+                     size = 8;
+                     ret = writeVectorToMemory(addr, size, value, checkVl());
+                     main_memory_datatypes_update_or_create(addr, value_human, size, type);
+                     break;
         }
 
         // update view

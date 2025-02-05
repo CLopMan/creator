@@ -2020,6 +2020,104 @@
       "help": ""
     },
     {
+      "name": "vse8.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F2 F1 (F3) v0.t",
+      "signature": "vse8.v,VEC-Reg,inm-unsigned,(INT-Reg) v0.t",
+      "signatureRaw": "vse8.v vd inm (rs1) v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vse8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stoptbit": 25
+        }
+      ],
+      "definition": "maskedMemoryOperation(checkVl(), rs1+inm, 'vector8', vd_name, 'store', vd);console.log('>>> memory - ', main_memory_read_bydatatype(rs1 + inm, 'vector8'));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vse8.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F2 F1 (F3)",
+      "signature": "vse8.v,VEC-Reg,inm-unsigned,(INT-Reg)",
+      "signatureRaw": "vse8.v vd inm (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vse8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        }
+      ],
+      "definition": "capi_mem_write(inm+rs1, vd, 'vector8', vd_name);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "vse16.v",
       "type": "Memory access masked",
       "signature_definition": "F0 F2 F1 (F3) v0.t",

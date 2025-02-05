@@ -1,4 +1,4 @@
-# sew = 16 lmulexp <= 1
+# lmulexp <= 1
 # test masked le se 64bits sized
 .data
 result: .word 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 

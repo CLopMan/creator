@@ -2171,6 +2171,8 @@ function updateSimple ( comp, elem )
  *
  */
 
+const { check } = require("yargs");
+
 
 /********************
  * Global variables *
@@ -2481,7 +2483,6 @@ function main_memory_read_bydatatype ( addr, type )
                break;
 
           case 'vector8':
-                console.log(">>> vector8")
                 ret = readVectorFromMemory(addr, checkVl(), 8, checkVlen(), checkLMULEXP());
                 break;
           case 'vector16':
@@ -2622,14 +2623,27 @@ function main_memory_write_bydatatype ( addr, value, type, value_human )
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
                      break;
                 
-                case 'vector16':
-                     size = 2;
-                     const vl = checkVl();
-                     for (let i = 0; i < vl; ++i) {
-                        ret = main_memory_write_nbytes(addr + i*size, value[i], size);
-                        console.log(">>> value writed:", value[i]);
-                     }
+                case 'vector8':
+                     size = 1;
+                     ret = writeVectorToMemory(addr, size, value, checkVl());
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
+                     break;
+                case 'vector16':
+                     console.log(">>> VEC16 write", addr);
+                     size = 2;
+                     ret = writeVectorToMemory(addr, size, value, checkVl());
+                     main_memory_datatypes_update_or_create(addr, value_human, size, type);
+                     break;
+                case 'vector32':
+                     size = 4;
+                     ret = writeVectorToMemory(addr, size, value, checkVl());
+                     main_memory_datatypes_update_or_create(addr, value_human, size, type);
+                     break;
+                case 'vector64':
+                     size = 8;
+                     ret = writeVectorToMemory(addr, size, value, checkVl());
+                     main_memory_datatypes_update_or_create(addr, value_human, size, type);
+                     break;
         }
 
         // update view
@@ -3277,7 +3291,7 @@ var creator_debug = false ;
 function console_log ( msg )
 {
   if (creator_debug) {
-      console_log(msg) ;
+      console.log(msg) ;
   }
 }
 
@@ -8141,6 +8155,14 @@ function readVectorFromMemory(addr, vl, sew, vlen, lmulExp, ESEW=checkSEW()) {
   return fixVectorLength(ret, lenght);
 }
 
+function writeVectorToMemory(addr, size, vec, vl) {
+  console.log(">>> vec -> mem", vec);
+  for (let i = 0; i < vl; ++i) {
+      ret = main_memory_write_nbytes(addr + i*size, vec[i], size);
+  }
+  return ret;
+}
+
 /**
  * performs operation aplying mask 
  * @param {int} vl 
@@ -8154,13 +8176,15 @@ function readVectorFromMemory(addr, vl, sew, vlen, lmulExp, ESEW=checkSEW()) {
  * @param {*} mask 
  */
 function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = null, ma=checkMA(), mask=extractMaskFromV0(vl)) {
+  console.log(">>>masked operation", op_type, data_type);
   let operation;
   let backup;
   switch (op_type) {
     case "store":
       operation = capi_mem_write;
-      backup = main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataTyme(data_type)/2);
+      backup = main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataType(data_type)/2);
       operation(addr, applyMask(mask, ma, value, backup, vl), data_type, rd_name); // does not modify value
+      console.log(">>> memory writed", addr, " - ", main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataType(data_type)/2));
       break;
     case "load":
       operation = capi_mem_read;
@@ -8181,7 +8205,7 @@ function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = n
  * 
  * @return {int} 
  */
-function resolveSizeFromDataTyme (data_type) {
+function resolveSizeFromDataType (data_type) {
   switch (data_type) {
     case 'vector8':
       return 8;
