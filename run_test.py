@@ -63,7 +63,9 @@ def run_tests(test_number=None):
 
     if test_number is None:
         # Ejecutar todos los tests
-        for i in range(1, 13):
+        tests = os.listdir(test_dir)
+
+        for i in range(1, len(tests)+1):
             execute_test(f"{test_prefix}{i:03}{test_extension}")
     else:
         # Ejecutar solo un test específico
