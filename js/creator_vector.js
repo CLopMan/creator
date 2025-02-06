@@ -61,7 +61,7 @@ function updateVtype(vma, vta, sew, lmulexp) {
     reserved = reserved.padStart(vtype.nbits - 1 - 8, "0");
     
     let binValue = vill_str + reserved + vma_str + vta_str + vsew + vlmul;
-    //console.log(">>>", binValue);
+    ////console.log(">>>", binValue);
     let value = parseInt(binValue, 2);
     writeRegister(value, vtype_obj.indexComp, vtype_obj.indexElem);
     return value;
@@ -89,21 +89,20 @@ function transformVectorToHex( vec, sew, vlen, start, ta, vl=checkVl() ) {
 
   //const vl = checkVl();
   if (ta) { // TODO: change condition to if agnostic
-    console.log(">>> check ta")
+    //console.log(">>> check ta")
     vec = updateTailAgnostic(vec, vl);
-    console.log(">>> finish check ta")
+    //console.log(">>> finish check ta")
   }
-
 
   // lmul fraccionario
   while (vec.length < n) {
     vec.push(0n);
   }
-  console.log (">>> transform to hex: ", vec) ;
+  //console.log (">>> transform to hex: ", vec) ;
   for (let i = vecIndex; i < n + vecIndex; ++i) {
     // correct number lenght
     vec[i] = BigInt(vec[i]) & mask;
-    console.log(">>> index", i, vec[i]);
+    //console.log(">>> index", i, vec[i]);
     let hexNumber; 
     if (vec[i] < 0) {
       hexNumber = (mask + BigInt(1) + BigInt(vec[i])).toString(16);
@@ -113,7 +112,7 @@ function transformVectorToHex( vec, sew, vlen, start, ta, vl=checkVl() ) {
     if (hexNumber.length < hexDigits) {
       hexNumber = hexNumber.padStart(hexDigits, '0')
     }
-    //console.log(">>>", hexNumber)
+    ////console.log(">>>", hexNumber)
     result.unshift(hexNumber);
   }
   //console.log(">>> hex vector:", result);
@@ -223,7 +222,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
       console.log(">>> value reded:", value);
       let aux = valueToArray(value, sew);
       //aux = fillVector(aux, vlen, sew); 
-      console.log(">>>", aux, "will be fixed");
+      //console.log(">>>", aux, "will be fixed");
       aux = fixVectorLength(aux, vectorLenth);
       console.log(">>> fix 2", aux)
       console.log(">>> ", i, ":", aux);
@@ -233,7 +232,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     }
   } else {
     // **acortar** los arrays o ponerles una marca?
-    //console.log(">>>", length);
+    ////console.log(">>>", length);
     let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
     vector = valueToArray(value, sew);
     // vector = fillVector(vector, );
@@ -261,7 +260,7 @@ function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta) {
   for (let i = 0; i < lmul; ++i) {
     hexValue = transformVectorToHex(value, sew, vlen, i, ta);
     architecture.components[indexComp].elements[indexElem + i].value = BigInt(hexValue);
-    //console.log(">>>", hexValue, " - ", i);
+    //////console.log(">>>", hexValue, " - ", i);
   }
   return hexValue;
 
@@ -321,15 +320,7 @@ function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=checkMA(), mask
   if (operation !== null) {
     operation (vd, vs1, vs2)
   }
-  // for (let i = 0; i < vl; ++i) {
-  //   if (!mask[i]) {
-  //     if (ma) {
-  //       vd[i] = -1; // agnostic
-  //     } else {
-  //       vd[i] = vecBackup[i]; // non-disturbed
-  //     }
-  //   }
-  // }
+
   return applyMask(mask, ma, vd, vecBackup, vl);
 }
 
@@ -350,18 +341,40 @@ function applyMask(mask, ma, vd, backup, vl) {
 
 /*Memory */
 
+/**
+ * Reads vector from memory
+ * @param {*} addr 
+ * @param {*} vl 
+ * @param {*} sew 
+ * @param {*} vlen 
+ * @param {*} lmulExp 
+ * @param {*} ESEW 
+ * @returns 
+ */
 function readVectorFromMemory(addr, vl, sew, vlen, lmulExp, ESEW=checkSEW()) {
-  console.log(">>>", vl, sew, vlen, lmulExp);
+  //console.log(">>>", vl, sew, vlen, lmulExp);
   let ret = [];
-  let value_str = main_memory_read_nbytes(addr, checkVl()*sew/8);
+  let value_str = main_memory_read_nbytes(addr, vl*sew/8);
+  let value_reversed = reverseStringValues(value_str, sew/4);
   console.log(">>>value str: ", value_str);
-  let readedValue = BigInt('0x' + main_memory_read_nbytes(addr, vl*sew/8));
+  let readedValue = BigInt('0x' + value_reversed);
   console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
   ret = valueToArray(readedValue, sew);
-  ret.reverse();
   console.log(">>> vec extracted:", ret);
   const lenght = (vlen / ESEW) * Math.pow(2, lmulExp);
   return fixVectorLength(ret, lenght);
+}
+
+function reverseStringValues(str, k) {
+  output = "";
+  aux_list = str.split("").reverse();
+  let i = 0;
+  while (i < str.length) {
+    output += aux_list.slice(i, i + k).reverse().join('');
+    i += k;
+  }
+  return output;
+
 }
 
 function writeVectorToMemory(addr, size, vec, vl) {

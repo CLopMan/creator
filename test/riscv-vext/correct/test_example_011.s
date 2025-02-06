@@ -1,7 +1,7 @@
 # lmulexp <= 1
 # Test vloxei8
 .data
-index: .byte 14, 15, 12, 13, 10, 11, 8, 9, 6, 7, 4, 5, 2, 3, 0, 1 
+index: .byte 1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14
 values: .byte 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 
 .text
@@ -11,5 +11,5 @@ main:
     la t4 values
     vle8.v v2 0(t2) # indexes
 
-    vloxei8.v v4 (t4) v2 # 14, 15, 12, 13, 10, 11, 8, 9, 6, 7, 4, 5, 2, 3, 0, 1
-    #vloxei8.v v6 0(t4) v2 v0.t
+    vloxei8.v v4 (t4) v2 # 1, 0, 
+    #vloxei8.v v6 (t4) v2 v0.t 

@@ -2664,6 +2664,59 @@
       "help": ""
     },
     {
+      "name": "vloxei8.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vloxei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vloxei8.v vd (rs1) vs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "console.log('>>> loxei8');\n let mem = capi_mem_read(rs1, 'vector8')\nconsole.log('>>>', mem);\n for(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];\nconsole.log('>>> i:', vs2[i], ' <-> ', mem[i]);}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",
