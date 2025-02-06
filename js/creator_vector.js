@@ -79,7 +79,7 @@ function updateVtype(vma, vta, sew, lmulexp) {
  * @param {*} start: vector index (lmul > 1)
  * @returns hexadecimal string with every digit
  */
-function transformVectorToHex( vec, sew, vlen, start, ta ) {
+function transformVectorToHex( vec, sew, vlen, start, ta, vl=checkVl() ) {
   let result = [];
   let n = vlen / sew; // vector size
   let hexDigits = sew / 4; // number of digits for hex representation
@@ -87,12 +87,13 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
   //console.log(">>> look here ",n, ">> ", mask, " >> ", hexDigits);
   let vecIndex = start * n;
 
-  const vl = checkVl();
+  //const vl = checkVl();
   if (ta) { // TODO: change condition to if agnostic
     console.log(">>> check ta")
     vec = updateTailAgnostic(vec, vl);
     console.log(">>> finish check ta")
   }
+
 
   // lmul fraccionario
   while (vec.length < n) {
@@ -100,6 +101,8 @@ function transformVectorToHex( vec, sew, vlen, start, ta ) {
   }
   console.log (">>> transform to hex: ", vec) ;
   for (let i = vecIndex; i < n + vecIndex; ++i) {
+    // correct number lenght
+    vec[i] = BigInt(vec[i]) & mask;
     console.log(">>> index", i, vec[i]);
     let hexNumber; 
     if (vec[i] < 0) {
@@ -236,7 +239,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     // vector = fillVector(vector, );
     vector = fixVectorLength(vector, vectorLenth);
   }
-  console.log(">>> Readed:", vector);
+  console.log(">>> Readed:", vector, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
   return vector
 }
 

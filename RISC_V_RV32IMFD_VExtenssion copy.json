@@ -1961,7 +1961,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function vsubVI(vd, vs2, inm) {\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;}}\nvd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(vsubVI));",
+      "definition": "function vsubVI(vd, vs2, inm) {\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;}\n}\nvd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(vsubVI));",
       "separated": [
         false,
         false,
@@ -2008,7 +2008,7 @@
           "stopbit": 20
         }
       ],
-      "definition": "function vsubVI(vd, vs2, inm) {\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;\nconsole.log('>>>', i, ':', vs2[i], '+', inm, '=', vd[i]);}\n}\nvd = vecIntOperation(vd, vs2, inm, vsubVI);",
+      "definition": "function vsubVI(vd, vs2, inm) {\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;}\n}\nvd = vecIntOperation(vd, vs2, inm, vsubVI);",
       "separated": [
         false,
         false,
@@ -2654,6 +2654,60 @@
         }
       ],
       "definition": "var addr = capi_int2uint(rs1)+inm;\n rd = capi_mem_read(addr, 'vector64', rd_name);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vloxei8.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vloxei8.v,VEC-Reg,(INT-Reg), VEC-Reg",
+      "signatureRaw": "vloxei8.v vd (rs1) vs1",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "var addr = capi_int2uint(rs1)+inm;\nrd = capi_mem_read(addr, 'vector64', rd_name);",
       "separated": [
         false,
         false,
