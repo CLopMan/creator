@@ -2665,6 +2665,65 @@
     },
     {
       "name": "vloxei8.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 (F2) F1 v0.t",
+      "signature": "vloxei8.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
+      "signatureRaw": "vloxei8.v vd (rs1) vs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let mem = capi_mem_read(rs1, 'vector8');\nlet backup = [...vd];\nfor(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];}\nvd = applyMask(extractMaskFromV0(checkVl()), checkMA(), vd, backup, checkVl());",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vloxei8.v",
       "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1",
       "signature": "vloxei8.v,VEC-Reg,(INT-Reg),VEC-Reg",

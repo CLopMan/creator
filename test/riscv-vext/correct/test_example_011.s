@@ -10,6 +10,9 @@ main:
     la t2 index
     la t4 values
     vle8.v v2 0(t2) # indexes
+    vadd.vi v6 v6 1
+    vadd.vi v0 v0 7
+    
 
     vloxei8.v v4 (t4) v2 # 1, 0, 
-    #vloxei8.v v6 (t4) v2 v0.t 
+    vloxei8.v v6 (t4) v2 v0.t 
