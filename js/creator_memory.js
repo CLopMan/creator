@@ -227,19 +227,17 @@ function main_memory_read_nbytes ( addr, n )
 function main_memory_write_nbytes ( addr, value, n)
 {
         if (typeof(value) == 'bigint') { // not woriking right with negative bigints
-                console.log(">>> bigint: converting...");
+                //console.log(">>> bigint: converting...");
                 if (value < 0) {
-                        console.log(">>> here 1", value)
                         value = BigInt.asUintN(n*8, value);
-                        console.log(">>> here 2")
                 }
         }
 
-        console.log(">>> value: ", value);
+        //console.log(">>> value: ", value);
         var value_str = value.toString(16).padStart(2*n, "0") ;
         var chunks    = value_str.match(/.{1,2}/g) ;
 
-        console.log(">>> value_str - chunks\n", value_str, " - ", chunks, "\n============");
+        //console.log(">>> value_str - chunks\n", value_str, " - ", chunks, "\n============");
 
         for (var i = 0; i < chunks.length; i++) {
              main_memory_write_value(addr+i, chunks[i]) ;
@@ -421,7 +419,7 @@ function main_memory_write_bydatatype ( addr, value, type, value_human )
                 case 'integer':
                 case 'float':
                 case 'word':
-                     console.log(">>> value signed?", value);
+                     //console.log(">>> value signed?", value);
                      size = word_size_bytes ;
                      ret = main_memory_write_nbytes(addr, value, size, type) ;
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
@@ -477,7 +475,7 @@ function main_memory_write_bydatatype ( addr, value, type, value_human )
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
                      break;
                 case 'vector16':
-                     console.log(">>> VEC16 write", addr);
+                     //console.log(">>> VEC16 write", addr);
                      size = 2;
                      ret = writeVectorToMemory(addr, size, value, checkVl());
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);

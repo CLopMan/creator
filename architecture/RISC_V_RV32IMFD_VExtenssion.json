@@ -1861,7 +1861,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {//console.log('---', vs2[i], inm);\nvd[i] = vs2[i] + inm;}}\nvd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(vaddVI));",
+      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + inm;}}\nvd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(vaddVI));",
       "separated": [
         false,
         false,
@@ -1908,7 +1908,7 @@
           "stopbit": 20
         }
       ],
-      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {//console.log('---', vs2[i], inm);\nvd[i] = vs2[i] + inm;}}\nvecIntOperation(vd, vs2, inm, vaddVI);",
+      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + inm;}}\nvecIntOperation(vd, vs2, inm, vaddVI);",
       "separated": [
         false,
         false,
@@ -2008,7 +2008,7 @@
           "stopbit": 20
         }
       ],
-      "definition": "function vsubVI(vd, vs2, inm) {\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;\nconsole.log('>>>', i, ':', vs2[i], '+', inm, '=', vd[i]);}\n}\nvd = vecIntOperation(vd, vs2, inm, vsubVI);",
+      "definition": "function vsubVI(vd, vs2, inm) {\nfor (let i = 0; i < checkVl(); ++i) {vd[i] = vs2[i] - inm;\n}\n}\nvd = vecIntOperation(vd, vs2, inm, vsubVI);",
       "separated": [
         false,
         false,
@@ -2061,7 +2061,7 @@
           "stoptbit": 25
         }
       ],
-      "definition": "maskedMemoryOperation(checkVl(), rs1+inm, 'vector8', vd_name, 'store', vd);console.log('>>> memory - ', main_memory_read_bydatatype(rs1 + inm, 'vector8'));",
+      "definition": "maskedMemoryOperation(checkVl(), rs1+inm, 'vector8', vd_name, 'store', vd);",
       "separated": [
         false,
         false,
@@ -2159,7 +2159,7 @@
           "stoptbit": 25
         }
       ],
-      "definition": "maskedMemoryOperation(checkVl(), rs1+inm, 'vector16', vd_name, 'store', vd);console.log('>>> memory - ', main_memory_read_bydatatype(rs1 + inm, 'vector16'));",
+      "definition": "maskedMemoryOperation(checkVl(), rs1+inm, 'vector16', vd_name, 'store', vd);",
       "separated": [
         false,
         false,
@@ -2205,7 +2205,203 @@
           "stopbit": 7
         }
       ],
-      "definition": "capi_mem_write(inm+rs1, vd, 'vector16', vd_name);\n//console.log('>>> memory - ', main_memory_read_bydatatype(rs1 + inm, 'vector16'));",
+      "definition": "capi_mem_write(inm+rs1, vd, 'vector16', vd_name);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vse32.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F2 F1 (F3) v0.t",
+      "signature": "vse32.v,VEC-Reg,inm-unsigned,(INT-Reg) v0.t",
+      "signatureRaw": "vse32.v vd inm (rs1) v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vse32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stoptbit": 25
+        }
+      ],
+      "definition": "maskedMemoryOperation(checkVl(), rs1+inm, 'vector32', vd_name, 'store', vd);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vse32.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F2 F1 (F3)",
+      "signature": "vse32.v,VEC-Reg,inm-unsigned,(INT-Reg)",
+      "signatureRaw": "vse32.v vd inm (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vse32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        }
+      ],
+      "definition": "capi_mem_write(inm+rs1, vd, 'vector32', vd_name);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vse64.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F2 F1 (F3) v0.t",
+      "signature": "vse64.v,VEC-Reg,inm-unsigned,(INT-Reg) v0.t",
+      "signatureRaw": "vse64.v vd inm (rs1) v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vse64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stoptbit": 25
+        }
+      ],
+      "definition": "maskedMemoryOperation(checkVl(), rs1+inm, 'vector64', vd_name, 'store', vd);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vse64.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F2 F1 (F3)",
+      "signature": "vse64.v,VEC-Reg,inm-unsigned,(INT-Reg)",
+      "signatureRaw": "vse64.v vd inm (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vse64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        }
+      ],
+      "definition": "capi_mem_write(inm+rs1, vd, 'vector64', vd_name);",
       "separated": [
         false,
         false,
@@ -2264,7 +2460,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "console.log('>>> vec8');var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector8', rd_name, 'load')",
+      "definition": "var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector8', rd_name, 'load')",
       "separated": [
         false,
         false,
@@ -2488,7 +2684,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "console.log('>>> vec32');var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector32', rd_name, 'load')",
+      "definition": "var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector32', rd_name, 'load')",
       "separated": [
         false,
         false,
@@ -2600,7 +2796,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "console.log('>>> vec32');var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector64', rd_name, 'load')",
+      "definition": "var addr = capi_int2uint(rs1)+inm;\n rd = maskedMemoryOperation(checkVl(), addr, 'vector64', rd_name, 'load')",
       "separated": [
         false,
         false,
@@ -2723,6 +2919,183 @@
       "help": ""
     },
     {
+      "name": "vloxei16.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 (F2) F1 v0.t",
+      "signature": "vloxei16.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
+      "signatureRaw": "vloxei16.v vd (rs1) vs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let mem = capi_mem_read(rs1, 'vector16');\nlet backup = [...vd];\nfor(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];}\nvd = applyMask(extractMaskFromV0(checkVl()), checkMA(), vd, backup, checkVl());",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vloxei32.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 (F2) F1 v0.t",
+      "signature": "vloxei32.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
+      "signatureRaw": "vloxei32.v vd (rs1) vs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let mem = capi_mem_read(rs1, 'vector32');\nlet backup = [...vd];\nfor(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];}\nvd = applyMask(extractMaskFromV0(checkVl()), checkMA(), vd, backup, checkVl());",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vloxei64.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 (F2) F1 v0.t",
+      "signature": "vloxei64.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
+      "signatureRaw": "vloxei64.v vd (rs1) vs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let mem = capi_mem_read(rs1, 'vector64');\nlet backup = [...vd];\nfor(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];}\nvd = applyMask(extractMaskFromV0(checkVl()), checkMA(), vd, backup, checkVl());",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "vloxei8.v",
       "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1",
@@ -2765,7 +3138,166 @@
           "valueField": "010"
         }
       ],
-      "definition": "console.log('>>> loxei8');\n let mem = capi_mem_read(rs1, 'vector8')\nconsole.log('>>>', mem);\n for(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];\nconsole.log('>>> i:', vs2[i], ' <-> ', mem[i]);}",
+      "definition": "\n let mem = capi_mem_read(rs1, 'vector8');\n for(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vloxei16.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vloxei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vloxei16.v vd (rs1) vs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let mem = capi_mem_read(rs1, 'vector16');\nfor(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vloxei32.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vloxei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vloxei32.v vd (rs1) vs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let mem = capi_mem_read(rs1, 'vector32');\n for(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vloxei64.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vloxei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vloxei64.v vd (rs1) vs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vloxei64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let mem = capi_mem_read(rs1, 'vector64');\n for(let i=0; i < checkVl(); ++i) {vd[vs2[i]] = mem[i];}",
       "separated": [
         false,
         false,

@@ -220,7 +220,7 @@ function writeRegister ( value, indexComp, indexElem, register_type )
       const lmulExp = checkLMULEXP();
       const ta = checkTA();
       writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta);
-      console.log(">>> write successful");
+      //console.log(">>> write successful");
 
 
       creator_callstack_writeRegister(indexComp, indexElem);

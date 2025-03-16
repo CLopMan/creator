@@ -154,12 +154,12 @@ function get_state ( )
             }
 
             // skip default results
-            /*if (typeof elto_dvalue == "undefined") {
+            if (typeof elto_dvalue == "undefined") {
                 continue ;
             }
             if (elto_value == elto_dvalue) {
                 continue ;
-            }*/
+            }
 
             // value != default value => dumpt it
             elto_string = "0x" + elto_value.toString(16) ;

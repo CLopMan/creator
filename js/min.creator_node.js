@@ -1066,7 +1066,7 @@ function capi_mem_write ( addr, value, type, reg_name )
 	// 3) write into memory
 	try {
 		writeMemory(value, addr, type);
-		console.log(">>> write memory successful");
+		//console.log(">>> write memory successful");
 	} 
 	catch(e) {
 		capi_raise("Invalid memory access to address '0x" + addr.toString(16) + "'") ;
@@ -2015,7 +2015,7 @@ function writeRegister ( value, indexComp, indexElem, register_type )
       const lmulExp = checkLMULEXP();
       const ta = checkTA();
       writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta);
-      console.log(">>> write successful");
+      //console.log(">>> write successful");
 
 
       creator_callstack_writeRegister(indexComp, indexElem);
@@ -2379,19 +2379,17 @@ function main_memory_read_nbytes ( addr, n )
 function main_memory_write_nbytes ( addr, value, n)
 {
         if (typeof(value) == 'bigint') { // not woriking right with negative bigints
-                console.log(">>> bigint: converting...");
+                //console.log(">>> bigint: converting...");
                 if (value < 0) {
-                        console.log(">>> here 1", value)
                         value = BigInt.asUintN(n*8, value);
-                        console.log(">>> here 2")
                 }
         }
 
-        console.log(">>> value: ", value);
+        //console.log(">>> value: ", value);
         var value_str = value.toString(16).padStart(2*n, "0") ;
         var chunks    = value_str.match(/.{1,2}/g) ;
 
-        console.log(">>> value_str - chunks\n", value_str, " - ", chunks, "\n============");
+        //console.log(">>> value_str - chunks\n", value_str, " - ", chunks, "\n============");
 
         for (var i = 0; i < chunks.length; i++) {
              main_memory_write_value(addr+i, chunks[i]) ;
@@ -2573,7 +2571,7 @@ function main_memory_write_bydatatype ( addr, value, type, value_human )
                 case 'integer':
                 case 'float':
                 case 'word':
-                     console.log(">>> value signed?", value);
+                     //console.log(">>> value signed?", value);
                      size = word_size_bytes ;
                      ret = main_memory_write_nbytes(addr, value, size, type) ;
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
@@ -2629,7 +2627,7 @@ function main_memory_write_bydatatype ( addr, value, type, value_human )
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
                      break;
                 case 'vector16':
-                     console.log(">>> VEC16 write", addr);
+                     //console.log(">>> VEC16 write", addr);
                      size = 2;
                      ret = writeVectorToMemory(addr, size, value, checkVl());
                      main_memory_datatypes_update_or_create(addr, value_human, size, type);
@@ -7236,7 +7234,7 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " + // TODO: manage exceptions of javascript
-           "   try {\n" + console.log(" >>> instruction", auxDef) +  // TODO: delete console.logs
+           "   try {\n" + /*console.log(" >>> instruction", auxDef) + */ // TODO: delete console.logs
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
@@ -7910,7 +7908,7 @@ function transformVectorToHex( vec, sew, vlen, start, ta, vl=checkVl() ) {
     result.unshift(hexNumber);
   }
   //console.log(">>> hex vector:", result);
-  console.log(">>> result:", result);
+  //console.log(">>> result:", result);
   return "0x" + result.join('');
 }
 
@@ -8013,13 +8011,13 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     vector = [];
     for (let i = 0; i < lmul; ++i) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
-      console.log(">>> value reded:", value);
+      //console.log(">>> value reded:", value);
       let aux = valueToArray(value, sew);
       //aux = fillVector(aux, vlen, sew); 
       //console.log(">>>", aux, "will be fixed");
       aux = fixVectorLength(aux, vectorLenth);
-      console.log(">>> fix 2", aux)
-      console.log(">>> ", i, ":", aux);
+      //console.log(">>> fix 2", aux)
+      //console.log(">>> ", i, ":", aux);
       //console.log(">>> ", i, ":", aux);
       vector = vector.concat(aux);
       //console.log(">>> here is the problem - 197");
@@ -8032,7 +8030,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     // vector = fillVector(vector, );
     vector = fixVectorLength(vector, vectorLenth);
   }
-  console.log(">>> Readed:", vector, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
+  //console.log(">>> Readed:", vector, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
   return vector
 }
 
@@ -8047,7 +8045,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
  * @returns hexadecimal representation of value
  */
 function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta) {
-  console.log(">>> trying to write (value, indexComp, indexElem):", value, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
+  //console.log(">>> trying to write (value, indexComp, indexElem):", value, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
   let lmul = Math.pow(2, lmulExp);
   //console.log(">>> lmul = ", lmul);
   let hexValue;
@@ -8150,11 +8148,11 @@ function readVectorFromMemory(addr, vl, sew, vlen, lmulExp, ESEW=checkSEW()) {
   let ret = [];
   let value_str = main_memory_read_nbytes(addr, vl*sew/8);
   let value_reversed = reverseStringValues(value_str, sew/4);
-  console.log(">>>value str: ", value_str);
+  //console.log(">>>value str: ", value_str);
   let readedValue = BigInt('0x' + value_reversed);
-  console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
-  ret = valueToArray(readedValue, sew);
-  console.log(">>> vec extracted:", ret);
+  //console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
+  ret = valueToArray(readedValue, sew); // valorar volcarlo directamente a registro
+  //console.log(">>> vec extracted:", ret);
   const lenght = (vlen / ESEW) * Math.pow(2, lmulExp);
   return fixVectorLength(ret, lenght);
 }
@@ -8172,7 +8170,7 @@ function reverseStringValues(str, k) {
 }
 
 function writeVectorToMemory(addr, size, vec, vl) {
-  console.log(">>> vec -> mem", vec);
+  //console.log(">>> vec -> mem", vec);
   for (let i = 0; i < vl; ++i) {
       ret = main_memory_write_nbytes(addr + i*size, vec[i], size);
   }
@@ -8192,7 +8190,7 @@ function writeVectorToMemory(addr, size, vec, vl) {
  * @param {*} mask 
  */
 function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = null, ma=checkMA(), mask=extractMaskFromV0(vl)) {
-  console.log(">>>masked operation", op_type, data_type);
+  //console.log(">>>masked operation", op_type, data_type);
   let operation;
   let backup;
   switch (op_type) {
@@ -8200,12 +8198,12 @@ function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = n
       operation = capi_mem_write;
       backup = main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataType(data_type)/2);
       operation(addr, applyMask(mask, ma, value, backup, vl), data_type, rd_name); // does not modify value
-      console.log(">>> memory writed", addr, " - ", main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataType(data_type)/2));
+      //console.log(">>> memory writed", addr, " - ", main_memory_read_bydatatype(addr, data_type, vl*resolveSizeFromDataType(data_type)/2));
       break;
     case "load":
       operation = capi_mem_read;
       value = operation(addr, data_type, rd_name);
-      console.log(">>> readed value from memory", value);
+      //console.log(">>> readed value from memory", value);
       let reg_obj = crex_findReg(rd_name);
       backup = readRegister(reg_obj.indexComp, reg_obj.indexElem);
       return applyMask(mask, ma, value, backup, vl);
@@ -8330,11 +8328,11 @@ function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
  * @returns False if any element of vec1 is diferent from vec2
  */
 function vectorNotEq( vec1, vec2 ) {
-  console.log(">> vecnoteq", vec1, vec2);
+  //console.log(">> vecnoteq", vec1, vec2);
   for (let i = 0; i < vec1.length; ++i) {
     if (vec1[i] !== vec2[i]) return true;
   }
-  console.log(">>> vec not eq false")
+  //console.log(">>> vec not eq false")
   return false;
 }
 
@@ -8365,7 +8363,7 @@ function expandVector(vector, length) {
  * @param {*} lenght wanted length
  */
 function fixVectorLength(vector, length) {
-  console.log(">>> fix vector length ", vector);
+  //console.log(">>> fix vector length ", vector);
   if (vector.length >= length) { // truncates
     return vector.slice(0, length);
   } else {
@@ -8527,12 +8525,12 @@ function get_state ( )
             }
 
             // skip default results
-            /*if (typeof elto_dvalue == "undefined") {
+            if (typeof elto_dvalue == "undefined") {
                 continue ;
             }
             if (elto_value == elto_dvalue) {
                 continue ;
-            }*/
+            }
 
             // value != default value => dumpt it
             elto_string = "0x" + elto_value.toString(16) ;
