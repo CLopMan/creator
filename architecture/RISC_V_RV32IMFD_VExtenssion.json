@@ -3308,6 +3308,218 @@
       "help": ""
     },
     {
+      "name": "vsoxei8.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vsoxei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vsoxei8.v vs1 (rs1) vs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsoxei8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let aux = fixVectorLength([], checkVl());\nfor (let i = 0; i < checkVl(); ++i) {\naux[vs2[i]] = vs1[i];\n}\ncapi_mem_write(rs1, aux, 'vector8', vs1_name);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsoxei16.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vsoxei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vsoxei16.v vs1 (rs1) vs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsoxei16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let aux = fixVectorLength([], checkVl());\nfor (let i = 0; i < checkVl(); ++i) {\naux[vs2[i]] = vs1[i];}\ncapi_mem_write(rs1, aux, 'vector16', vs1_name);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsoxei32.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vsoxei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vsoxei32.v vs1 (rs1) vs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsoxei32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let aux = fixVectorLength([], checkVl());\nfor (let i = 0; i < checkVl(); ++i) {\naux[vs2[i]] = vs1[i];}\ncapi_mem_write(rs1, aux, 'vector32', vs1_name);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsoxei64.v",
+      "type": "Memory access",
+      "signature_definition": "F0 F3 (F2) F1",
+      "signature": "vsoxei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vsoxei64.v vs1 (rs1) vs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsoxei64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let aux = fixVectorLength([], checkVl());\nfor (let i = 0; i < checkVl(); ++i) {\naux[vs2[i]] = vs1[i];}\ncapi_mem_write(rs1, aux, 'vector64', vs1_name);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",
