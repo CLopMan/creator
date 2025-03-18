@@ -326,6 +326,7 @@ function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=checkMA(), mask
 
 function applyMask(mask, ma, vd, backup, vl) {
   let copy = [...vd];
+  //console.log(">>> mask:", mask);
   for (let i = 0; i < vl; ++i) {
     if (!mask[i]) {
       if (ma) {
@@ -444,6 +445,7 @@ function resolveSizeFromDataType (data_type) {
   }
 
 }
+
 /* INT - VEC OPERATIONS */
 
 //TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
@@ -462,68 +464,6 @@ function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
   //console.log(">>> mask", mask);
   operation (vd, vs1, rs1_corrected & mask);
   
-
-}
-/* INT - VEC OPERATIONS */
-
-//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
-function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
-  return function (vd, vs1, vs2) {
-    return vecIntOperation(vd, vs1, vs2, operation, sew);
-  }
-}
-
-//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
-function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
-  //console.log(">>> vec int", vd, vs1, rs1, sew);
-  let rs1_corrected = BigInt(rs1); // allows sew = 64
-  //console.log(">>> rs1:", rs1_corrected);
-  let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
-  //console.log(">>> mask", mask);
-  operation (vd, vs1, rs1_corrected & mask);
-  
-
-}
-/* INT - VEC OPERATIONS */
-
-//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
-function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
-  return function (vd, vs1, vs2) {
-    return vecIntOperation(vd, vs1, vs2, operation, sew);
-  }
-}
-
-//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
-function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
-  //console.log(">>> vec int", vd, vs1, rs1, sew);
-  let rs1_corrected = BigInt(rs1); // allows sew = 64
-  //console.log(">>> rs1:", rs1_corrected);
-  let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
-  //console.log(">>> mask", mask);
-  operation (vd, vs1, rs1_corrected & mask);
-  
-
-}
-/* INT - VEC OPERATIONS */
-
-//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
-function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
-  return function (vd, vs1, vs2) {
-    return vecIntOperation(vd, vs1, vs2, operation, sew);
-  }
-}
-
-//TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
-function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
-  //console.log(">>> vec int", vd, vs1, rs1, sew);
-  let rs1_corrected = BigInt(rs1); // allows sew = 64
-  //console.log(">>> rs1:", rs1_corrected);
-  let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
-  //console.log(">>> mask", mask);
-  operation (vd, vs1, rs1_corrected & mask);
-  //console.log(">>> fin operation");
-
-  return vd;
 
 }
 

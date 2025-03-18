@@ -3309,6 +3309,242 @@
     },
     {
       "name": "vsoxei8.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 (F2) F1 v0.t",
+      "signature": "vsoxei8.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
+      "signatureRaw": "vsoxei8.v vd (rs1) vs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsoxei8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let mem = capi_mem_read(rs1, 'vector8');\nlet backup = [...mem];\nfor(let i=0; i < checkVl(); ++i) {mem[vs2[i]] = vd[i];}\nmem = applyMask(extractMaskFromV0(checkVl()), checkMA(), mem, backup, checkVl());\ncapi_mem_write(rs1, mem, 'vector8', vd_name)",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsoxei16.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 (F2) F1 v0.t",
+      "signature": "vsoxei16.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
+      "signatureRaw": "vsoxei16.v vd (rs1) vs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsoxei16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let vecType='vector16';\nlet mem = capi_mem_read(rs1, vecType);\nlet backup = [...mem];\nfor(let i=0; i < checkVl(); ++i) {mem[vs2[i]] = vd[i];}\nmem = applyMask(extractMaskFromV0(checkVl()), checkMA(), mem, backup, checkVl());\ncapi_mem_write(rs1, mem, vecType, vd_name)",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsoxei32.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 (F2) F1 v0.t",
+      "signature": "vsoxei32.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
+      "signatureRaw": "vsoxei32.v vd (rs1) vs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsoxei32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let vecType = 'vector32';\nlet mem = capi_mem_read(rs1, vecType);\nlet backup = [...mem];\nfor(let i=0; i < checkVl(); ++i) {mem[vs2[i]] = vd[i];}\nmem = applyMask(extractMaskFromV0(checkVl()), checkMA(), mem, backup, checkVl());\ncapi_mem_write(rs1, mem, vecType, vd_name)",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsoxei64.v",
+      "type": "Memory access masked",
+      "signature_definition": "F0 F3 (F2) F1 v0.t",
+      "signature": "vsoxei64.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
+      "signatureRaw": "vsoxei64.v vd (rs1) vs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsoxei64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "v0.t",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        },
+        {
+          "name": "cop",
+          "type": "cop",
+          "startbit": 14,
+          "stopbit": 12,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let vecType = 'vector64';\nlet mem = capi_mem_read(rs1, vecType);\nlet backup = [...mem];\nfor(let i=0; i < checkVl(); ++i) {mem[vs2[i]] = vd[i];}\nmem = applyMask(extractMaskFromV0(checkVl()), checkMA(), mem, backup, checkVl());\ncapi_mem_write(rs1, mem, vecType, vd_name)",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsoxei8.v",
       "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1",
       "signature": "vsoxei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
