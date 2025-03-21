@@ -514,6 +514,7 @@ function creator_memory_type2size ( type )
                 case 'b':
                 case 'bu':
                 case 'byte':
+                case 'vector8':
                      size = 1 ;
                      break;
 
@@ -521,6 +522,7 @@ function creator_memory_type2size ( type )
                 case 'hu':
                 case 'half':
                 case 'half_word':
+                case 'vector16':
                      size = word_size_bytes / 2 ;
                      break;
 
@@ -530,6 +532,7 @@ function creator_memory_type2size ( type )
                 case 'float':
                 case 'integer':
                 case 'instruction':
+                case 'vector32':
                      size = word_size_bytes ;
                      break;
 
@@ -537,6 +540,7 @@ function creator_memory_type2size ( type )
                 case 'du':
                 case 'double':
                 case 'double_word':
+                case 'vector64':
                       size = word_size_bytes * 2 ;
                       break;
         }
