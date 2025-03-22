@@ -1,5 +1,5 @@
 import sys
-file_name = "vlsseg"
+file_name = "vluxsegei"
 ext = "ins"
 
 nf = [_ for _ in range(1, 9, 1)]
@@ -36,7 +36,6 @@ instruction = """
   "help": ""
 }},"""
 
-structure = "vlsseg{}e{}.v vd (rs1){}"
 
 #################### AUX FUNCTIONS ####################
 def count_lines_in_file(filename):
@@ -74,6 +73,7 @@ def unify_lines(text):
 #################### ############# ####################
 
 #################### content funct ####################
+
 def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
@@ -87,7 +87,6 @@ def add_code(nfi, eew, m):
     code_unmask = f"""
         let nf = {nfi};
         let base_reg = crex_findReg(vd_name);
-        let addr = 0, addr_prev = 0;
         for (let i = 0; i < nf; ++i) {{
             let mem = capi_mem_read(rs1 + (i*(checkVl()*{eew//8}+rs2)), '{f'vector{eew}'}');
             writeRegister(mem, base_reg.indexComp, base_reg.indexElem + i);
@@ -111,20 +110,23 @@ def add_code(nfi, eew, m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
+structure = "vluxseg{}ei{}.v vd (rs1) vs2{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:
         for nfi in nf:
             for eewi in eew:
-                    name = structure.format(nfi, eewi, m)
-                    fields = add_fields(name.split()[0], m)
+                    sigRaw = structure.format(nfi, eewi, m) 
+                    sig_list = sigRaw.split()
+                    name = sig_list[0]
+                    fields = add_fields(name, m)
                     fd.write(
                         instruction.format(
-                            name.split()[0],
+                            name,
                             f"Memory Instruction{" Masked" if len(m) > 0 else ""}",
-                            f"F0 F1 (F2) F3{m}",
-                            f"{name.split()[0]},VEC-Reg,(INT-Reg),INT-Reg{',' if len(m) >0 else ''}{m[1:]}",
-                            f"{name.split()[0]} vd (rs1) rs2{m}",
+                            f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - 1 if len(m) else 0)])}{m}",
+                            f"{name},VEC-Reg,(INT-Reg),INT-Reg{',' if len(m) >0 else ''}{m[1:]}",
+                            f"{sigRaw}",
                             fields,
                             add_code(nfi, eewi, m)
                         )
