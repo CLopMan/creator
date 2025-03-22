@@ -1,5 +1,5 @@
 import sys
-file_name = "vlseg"
+file_name = "vlsseg"
 ext = "ins"
 
 nf = [_ for _ in range(1, 9, 1)]
@@ -36,7 +36,7 @@ instruction = """
   "help": ""
 }},"""
 
-structure = "vlseg{}e{}.v vd (rs1){}"
+structure = "vlsseg{}e{}.v vd (rs1){}"
 
 #################### AUX FUNCTIONS ####################
 def count_lines_in_file(filename):
@@ -78,7 +78,8 @@ def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
-        {field.format("rs1", "INT-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("rs1", "VEC-Reg", 19, 15)},
+        {field.format("rs2", "INT-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
@@ -86,17 +87,18 @@ def add_code(nfi, eew, m):
     code_unmask = f"""
         let nf = {nfi};
         let base_reg = crex_findReg(vd_name);
+        let addr = 0, addr_prev = 0;
         for (let i = 0; i < nf; ++i) {{
-            let mem = capi_mem_read(rs1 + i*checkVl()*{eew//8}, '{f'vector{eew}'}');
+            let mem = capi_mem_read(rs1 + (i*(checkVl()*{eew//8}+rs2)), '{f'vector{eew}'}');
             writeRegister(mem, base_reg.indexComp, base_reg.indexElem + i);
         }}
     """
 
     code_masked = f"""
-        let nf = {nfi}
+        let nf = {nfi};
         let base_reg = crex_findReg(vd_name);
         for (let i = 0; i < nf; ++i) {{
-            let mem = maskedMemoryOperation(checkVl(), rs1 + i*checkVl()*{eew//8}, 'vector{eew}', vd_name, 'load');
+            let mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*{eew//8}+rs2)), 'vector{eew}', vd_name, 'load');
             writeRegister(mem, base_reg.indexComp, base_reg.indexElem + i);
         }}
     """
@@ -120,9 +122,9 @@ with open(f"{file_name}.{ext}", "w") as fd:
                         instruction.format(
                             name.split()[0],
                             f"Memory Instruction{" Masked" if len(m) > 0 else ""}",
-                            f"F0 F1 (F2){m}",
-                            f"{name.split()[0]},VEC-Reg,(INT-Reg){',' if len(m) >0 else ''}{m[1:]}",
-                            f"{name.split()[0]} vd (rs1){m}",
+                            f"F0 F1 (F2) F3{m}",
+                            f"{name.split()[0]},VEC-Reg,(INT-Reg),INT-Reg{',' if len(m) >0 else ''}{m[1:]}",
+                            f"{name.split()[0]} vd (rs1) rs2{m}",
                             fields,
                             add_code(nfi, eewi, m)
                         )

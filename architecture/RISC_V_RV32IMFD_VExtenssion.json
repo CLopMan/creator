@@ -6796,6 +6796,3494 @@
       "help": ""
     },
     {
+      "name": "vlsseg1e8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg1e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg1e8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg1e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg1e16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg1e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg1e16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg1e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg1e32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg1e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg1e32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg1e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg1e64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg1e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg1e64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg1e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg2e8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg2e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg2e8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg2e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg2e16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg2e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg2e16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg2e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg2e32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg2e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg2e32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg2e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg2e64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg2e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg2e64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg2e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg3e8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg3e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg3e8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg3e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg3e16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg3e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg3e16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg3e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg3e32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg3e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg3e32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg3e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg3e64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg3e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg3e64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg3e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg4e8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg4e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg4e8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg4e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg4e16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg4e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg4e16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg4e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg4e32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg4e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg4e32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg4e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg4e64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg4e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg4e64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg4e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg5e8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg5e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg5e8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg5e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg5e16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg5e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg5e16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg5e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg5e32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg5e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg5e32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg5e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg5e64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg5e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg5e64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg5e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg6e8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg6e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg6e8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg6e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg6e16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg6e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg6e16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg6e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg6e32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg6e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg6e32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg6e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg6e64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg6e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg6e64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg6e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg7e8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg7e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg7e8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg7e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg7e16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg7e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg7e16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg7e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg7e32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg7e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg7e32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg7e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg7e64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg7e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg7e64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg7e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg8e8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg8e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg8e8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg8e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg8e16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg8e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg8e16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg8e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg8e32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg8e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg8e32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg8e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg8e64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlsseg8e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
+      "signatureRaw": "vlsseg8e64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg8e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg1e8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg1e8.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg1e8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg1e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg1e16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg1e16.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg1e16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg1e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg1e32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg1e32.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg1e32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg1e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg1e64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg1e64.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg1e64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg1e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg2e8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg2e8.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg2e8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg2e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg2e16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg2e16.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg2e16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg2e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg2e32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg2e32.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg2e32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg2e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg2e64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg2e64.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg2e64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg2e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg3e8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg3e8.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg3e8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg3e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg3e16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg3e16.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg3e16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg3e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg3e32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg3e32.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg3e32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg3e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg3e64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg3e64.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg3e64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg3e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg4e8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg4e8.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg4e8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg4e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg4e16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg4e16.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg4e16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg4e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg4e32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg4e32.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg4e32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg4e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg4e64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg4e64.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg4e64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg4e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg5e8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg5e8.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg5e8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg5e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg5e16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg5e16.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg5e16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg5e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg5e32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg5e32.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg5e32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg5e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg5e64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg5e64.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg5e64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg5e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg6e8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg6e8.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg6e8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg6e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg6e16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg6e16.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg6e16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg6e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg6e32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg6e32.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg6e32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg6e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg6e64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg6e64.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg6e64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg6e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg7e8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg7e8.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg7e8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg7e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg7e16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg7e16.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg7e16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg7e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg7e32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg7e32.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg7e32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg7e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg7e64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg7e64.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg7e64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg7e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg8e8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg8e8.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg8e8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg8e8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg8e16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg8e16.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg8e16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg8e16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg8e32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg8e32.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg8e32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg8e32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlsseg8e64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlsseg8e64.v,VEC-Reg,(INT-Reg),INT-Reg",
+      "signatureRaw": "vlsseg8e64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlsseg8e64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0,
+          "valueField": "010"
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7,
+          "valueField": "010"
+        },
+        {
+          "name": "rs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15,
+          "valueField": "010"
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20,
+          "valueField": "010"
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet addr = 0, addr_prev = 0;\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",
