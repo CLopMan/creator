@@ -78,8 +78,8 @@ def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
-        {field.format("rs1", "VEC-Reg", 19, 15)},
-        {field.format("rs2", "INT-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("rs1", "INT-Reg", 19, 15)},
+        {field.format("vs2", "VEC-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
@@ -87,18 +87,37 @@ def add_code(nfi, eew, m):
     code_unmask = f"""
         let nf = {nfi};
         let base_reg = crex_findReg(vd_name);
+        let vector_length = checkVl();
         for (let i = 0; i < nf; ++i) {{
-            let mem = capi_mem_read(rs1 + (i*(checkVl()*{eew//8}+rs2)), '{f'vector{eew}'}');
-            writeRegister(mem, base_reg.indexComp, base_reg.indexElem + i);
+            let mem = capi_mem_read(rs1 + i*(vector_length*{eew//8}), '{f'vector{eew}'}');
+            let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);
+
+            for (let e=0; e < vector_length; ++e) {{
+                curr_reg[vs2[e]] = mem[e];
+            }}
+
+            writeRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);
         }}
     """
 
     code_masked = f"""
         let nf = {nfi};
         let base_reg = crex_findReg(vd_name);
+        let vector_length = checkVl();
+        console.log('>>> vecl', vector_length);
+        let mask = extractMaskFromV0(vector_length);
         for (let i = 0; i < nf; ++i) {{
-            let mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*{eew//8}+rs2)), 'vector{eew}', vd_name, 'load');
-            writeRegister(mem, base_reg.indexComp, base_reg.indexElem + i);
+            let mem = capi_mem_read(rs1 + i*(vector_length*{eew//8}), '{f'vector{eew}'}');
+            let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');
+            let backup = [...curr_reg];
+
+            for (let e=0; e < vector_length; ++e) {{
+                curr_reg[vs2[e]] = mem[e];
+            }}
+
+            curr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);
+
+            writeRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);
         }}
     """
 
@@ -124,8 +143,8 @@ with open(f"{file_name}.{ext}", "w") as fd:
                         instruction.format(
                             name,
                             f"Memory Instruction{" Masked" if len(m) > 0 else ""}",
-                            f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - 1 if len(m) else 0)])}{m}",
-                            f"{name},VEC-Reg,(INT-Reg),INT-Reg{',' if len(m) >0 else ''}{m[1:]}",
+                            f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
+                            f"{name},VEC-Reg,(INT-Reg),VEC-Reg{',' if len(m) >0 else ''}{m[1:]}",
                             f"{sigRaw}",
                             fields,
                             add_code(nfi, eewi, m)

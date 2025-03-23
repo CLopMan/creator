@@ -345,24 +345,24 @@ function applyMask(mask, ma, vd, backup, vl) {
 /**
  * Reads vector from memory
  * @param {*} addr 
- * @param {*} vl 
- * @param {*} sew 
+ * @param {*} vl  vector length
+ * @param {*} eew effective element width
  * @param {*} vlen 
  * @param {*} lmulExp 
- * @param {*} ESEW 
+ * @param {*} SEW  real selected-element-width
  * @returns 
  */
-function readVectorFromMemory(addr, vl, sew, vlen, lmulExp, ESEW=checkSEW()) {
+function readVectorFromMemory(addr, vl, eew, vlen, lmulExp, SEW=checkSEW()) {
   //console.log(">>>", vl, sew, vlen, lmulExp);
   let ret = [];
-  let value_str = main_memory_read_nbytes(addr, vl*sew/8);
-  let value_reversed = reverseStringValues(value_str, sew/4);
+  let value_str = main_memory_read_nbytes(addr, vl*eew/8);
+  let value_reversed = reverseStringValues(value_str, eew/4);
   //console.log(">>>value str: ", value_str);
   let readedValue = BigInt('0x' + value_reversed);
   //console.log(">>> vector16 reading", readedValue, "\n>>> ", main_memory_read_nbytes(addr, size/8));
-  ret = valueToArray(readedValue, sew); // valorar volcarlo directamente a registro
+  ret = valueToArray(readedValue, eew); // valorar volcarlo directamente a registro
   //console.log(">>> vec extracted:", ret);
-  const lenght = (vlen / ESEW) * Math.pow(2, lmulExp);
+  const lenght = (vlen / SEW) * Math.pow(2, lmulExp);
   return fixVectorLength(ret, lenght);
 }
 
@@ -462,7 +462,7 @@ function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
   //console.log(">>> rs1:", rs1_corrected);
   let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
   //console.log(">>> mask", mask);
-  operation (vd, vs1, rs1_corrected & mask);
+  return operation (vd, vs1, rs1_corrected & mask);
   
 
 }
