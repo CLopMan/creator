@@ -6810,39 +6810,34 @@
           "name": "vlsseg1e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -6868,39 +6863,34 @@
           "name": "vlsseg1e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -6926,39 +6916,34 @@
           "name": "vlsseg1e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -6984,39 +6969,34 @@
           "name": "vlsseg1e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7042,39 +7022,34 @@
           "name": "vlsseg2e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7100,39 +7075,34 @@
           "name": "vlsseg2e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7158,39 +7128,34 @@
           "name": "vlsseg2e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7216,39 +7181,34 @@
           "name": "vlsseg2e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7274,39 +7234,34 @@
           "name": "vlsseg3e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7332,39 +7287,34 @@
           "name": "vlsseg3e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7390,39 +7340,34 @@
           "name": "vlsseg3e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7448,39 +7393,34 @@
           "name": "vlsseg3e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7506,39 +7446,34 @@
           "name": "vlsseg4e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7564,39 +7499,34 @@
           "name": "vlsseg4e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7622,39 +7552,34 @@
           "name": "vlsseg4e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7680,39 +7605,34 @@
           "name": "vlsseg4e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7738,39 +7658,34 @@
           "name": "vlsseg5e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7796,39 +7711,34 @@
           "name": "vlsseg5e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7854,39 +7764,34 @@
           "name": "vlsseg5e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7912,39 +7817,34 @@
           "name": "vlsseg5e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -7970,39 +7870,34 @@
           "name": "vlsseg6e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8028,39 +7923,34 @@
           "name": "vlsseg6e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8086,39 +7976,34 @@
           "name": "vlsseg6e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8144,39 +8029,34 @@
           "name": "vlsseg6e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8202,39 +8082,34 @@
           "name": "vlsseg7e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8260,39 +8135,34 @@
           "name": "vlsseg7e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8318,39 +8188,34 @@
           "name": "vlsseg7e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8376,39 +8241,34 @@
           "name": "vlsseg7e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8434,39 +8294,34 @@
           "name": "vlsseg8e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*1+rs2)), 'vector8', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8492,39 +8347,34 @@
           "name": "vlsseg8e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*2+rs2)), 'vector16', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8550,39 +8400,34 @@
           "name": "vlsseg8e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*4+rs2)), 'vector32', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8608,39 +8453,34 @@
           "name": "vlsseg8e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         },
         {
           "name": "vm",
           "type": "VEC-Reg",
           "startbit": 25,
-          "stopbit": 25,
-          "valueField": "010"
+          "stopbit": 25
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = maskedMemoryOperation(checkVl(), rs1 + (i*(checkVl()*8+rs2)), 'vector64', vd_name, 'load');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet mask = extractMaskFromV0(checkVl());\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nlet backup = [...curr_reg];\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\ncurr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8666,32 +8506,28 @@
           "name": "vlsseg1e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8717,32 +8553,28 @@
           "name": "vlsseg1e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8768,32 +8600,28 @@
           "name": "vlsseg1e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8819,32 +8647,28 @@
           "name": "vlsseg1e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8870,32 +8694,28 @@
           "name": "vlsseg2e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8921,32 +8741,28 @@
           "name": "vlsseg2e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -8972,32 +8788,28 @@
           "name": "vlsseg2e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9023,32 +8835,28 @@
           "name": "vlsseg2e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9074,32 +8882,28 @@
           "name": "vlsseg3e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9125,32 +8929,28 @@
           "name": "vlsseg3e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9176,32 +8976,28 @@
           "name": "vlsseg3e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9227,32 +9023,28 @@
           "name": "vlsseg3e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9278,32 +9070,28 @@
           "name": "vlsseg4e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9329,32 +9117,28 @@
           "name": "vlsseg4e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9380,32 +9164,28 @@
           "name": "vlsseg4e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9431,32 +9211,28 @@
           "name": "vlsseg4e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9482,32 +9258,28 @@
           "name": "vlsseg5e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9533,32 +9305,28 @@
           "name": "vlsseg5e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9584,32 +9352,28 @@
           "name": "vlsseg5e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9635,32 +9399,28 @@
           "name": "vlsseg5e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9686,32 +9446,28 @@
           "name": "vlsseg6e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9737,32 +9493,28 @@
           "name": "vlsseg6e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9788,32 +9540,28 @@
           "name": "vlsseg6e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9839,32 +9587,28 @@
           "name": "vlsseg6e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9890,32 +9634,28 @@
           "name": "vlsseg7e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9941,32 +9681,28 @@
           "name": "vlsseg7e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9992,32 +9728,28 @@
           "name": "vlsseg7e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10043,32 +9775,28 @@
           "name": "vlsseg7e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10094,32 +9822,28 @@
           "name": "vlsseg8e8.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*1+rs2)), 'vector8');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*1 + (rs1 + j*rs2), '8');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10145,32 +9869,28 @@
           "name": "vlsseg8e16.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*2+rs2)), 'vector16');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*2 + (rs1 + j*rs2), '16');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10196,32 +9916,28 @@
           "name": "vlsseg8e32.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*4+rs2)), 'vector32');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*4 + (rs1 + j*rs2), '32');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10247,32 +9963,28 @@
           "name": "vlsseg8e64.v",
           "type": "co",
           "startbit": 6,
-          "stopbit": 0,
-          "valueField": "010"
+          "stopbit": 0
         },
         {
           "name": "vd",
           "type": "VEC-Reg",
           "startbit": 11,
-          "stopbit": 7,
-          "valueField": "010"
+          "stopbit": 7
         },
         {
           "name": "rs1",
-          "type": "VEC-Reg",
+          "type": "INT-Reg",
           "startbit": 19,
-          "stopbit": 15,
-          "valueField": "010"
+          "stopbit": 15
         },
         {
           "name": "rs2",
           "type": "INT-Reg",
           "startbit": 24,
-          "stopbit": 20,
-          "valueField": "010"
+          "stopbit": 20
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + (i*(checkVl()*8+rs2)), 'vector64');\nwriteRegister(mem, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);\nfor (let j = 0; j < checkVl(); ++j) {\nlet mem = capi_mem_read(i*8 + (rs1 + j*rs2), '64');\ncurr_reg[j] = mem;\n}\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,

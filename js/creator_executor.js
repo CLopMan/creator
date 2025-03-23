@@ -412,7 +412,7 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " + // TODO: manage exceptions of javascript
-           "   try {\n" +  // TODO: delete console.logs
+           "   try {\n" /*+ console.log(" >>> instruction", auxDef)*/ +  // TODO: delete console.logs
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +

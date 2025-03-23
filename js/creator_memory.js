@@ -275,23 +275,29 @@ function main_memory_read_bydatatype ( addr, type )
           case 'b':
           case 'bu':
           case 'byte':
+          case '8':
                ret = "0x" + main_memory_read_value(addr) ;
                ret = parseInt(ret, 16) ;
+               if (type == '8') ret = BigInt(ret);
                break;
 
           case 'h':
           case 'hu':
           case 'half':
           case 'half_word':
+          case '16':
                ret = "0x" + main_memory_read_nbytes(addr, word_size_bytes/2) ;
                ret = parseInt(ret, 16) ;
+               if (type == '16') ret = BigInt(ret);
                break;
 
           case 'w':
           case 'integer':
           case 'word':
+          case '32':
                ret = "0x" + main_memory_read_nbytes(addr, word_size_bytes) ;
                ret = parseInt(ret, 16) ;
+               if (type == '32') ret = BigInt(ret);
                break;
 
           case 'float':
@@ -304,6 +310,12 @@ function main_memory_read_bydatatype ( addr, type )
           case 'double_word':
                ret = "0x" + main_memory_read_nbytes(addr, word_size_bytes*2) ;
                ret = hex2double(ret) ;
+               break;
+
+          case '64':
+               ret = "0x" + main_memory_read_nbytes(addr, word_size_bytes) ;
+               ret = parseInt(ret, 16) ;
+               ret = BigInt(ret);
                break;
 
           case 'c':
@@ -512,6 +524,7 @@ function creator_memory_type2size ( type )
         switch (type)
         {
                 case 'b':
+                case '8':
                 case 'bu':
                 case 'byte':
                 case 'vector8':
@@ -523,6 +536,7 @@ function creator_memory_type2size ( type )
                 case 'half':
                 case 'half_word':
                 case 'vector16':
+                case '16':
                      size = word_size_bytes / 2 ;
                      break;
 
@@ -533,6 +547,7 @@ function creator_memory_type2size ( type )
                 case 'integer':
                 case 'instruction':
                 case 'vector32':
+                case '32':
                      size = word_size_bytes ;
                      break;
 
@@ -541,6 +556,7 @@ function creator_memory_type2size ( type )
                 case 'double':
                 case 'double_word':
                 case 'vector64':
+                case '64':
                       size = word_size_bytes * 2 ;
                       break;
         }
