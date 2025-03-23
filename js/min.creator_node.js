@@ -7238,7 +7238,7 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " + // TODO: manage exceptions of javascript
-           "   try {\n" + console.log(" >>> instruction", auxDef) +  // TODO: delete console.logs
+           "   try {\n" +  // TODO: delete console.logs
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
@@ -8141,11 +8141,11 @@ function applyMask(mask, ma, vd, backup, vl) {
 /**
  * Reads vector from memory
  * @param {*} addr 
- * @param {*} vl 
- * @param {*} sew 
+ * @param {*} vl  vector length
+ * @param {*} eew effective element width
  * @param {*} vlen 
  * @param {*} lmulExp 
- * @param {*} ESEW 
+ * @param {*} SEW  real selected-element-width
  * @returns 
  */
 function readVectorFromMemory(addr, vl, eew, vlen, lmulExp, SEW=checkSEW()) {
