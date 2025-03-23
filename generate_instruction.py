@@ -1,5 +1,5 @@
 import sys
-file_name = "vluxsegei"
+file_name = "vsseg"
 ext = "ins"
 
 nf = [_ for _ in range(1, 9, 1)]
@@ -15,8 +15,7 @@ field = """
       "name": "{}",
       "type": "{}",
       "startbit": {},
-      "stopbit": {},
-      "valueField": "010"
+      "stopbit": {}
     }}"""
 
 instruction = """
@@ -26,7 +25,7 @@ instruction = """
   "signature_definition": "{}",
   "signature": "{}",
   "signatureRaw": "{}",
-  "co": "0000111",
+  "co": "0100111",
   "cop": "000",
   "nwords": 1,
   "clk_cycles": 1,
@@ -77,47 +76,29 @@ def unify_lines(text):
 def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
-        {field.format("vd", "VEC-Reg", 11, 7)},
-        {field.format("rs1", "INT-Reg", 19, 15)},
-        {field.format("vs2", "VEC-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("vs3", "VEC-Reg", 11, 7)},
+        {field.format("rs1", "INT-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
 def add_code(nfi, eew, m):
     code_unmask = f"""
         let nf = {nfi};
-        let base_reg = crex_findReg(vd_name);
+        let base_reg = crex_findReg(vs3_name);
         let vector_length = checkVl();
         for (let i = 0; i < nf; ++i) {{
-            let mem = capi_mem_read(rs1 + i*(vector_length*{eew//8}), '{f'vector{eew}'}');
             let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);
-
-            for (let e=0; e < vector_length; ++e) {{
-                curr_reg[vs2[e]] = mem[e];
-            }}
-
-            writeRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);
+            capi_mem_write(rs1 + i*(vector_length*{eew//8}), curr_reg, '{f'vector{eew}'}', vs3_name);
         }}
     """
 
     code_masked = f"""
         let nf = {nfi};
-        let base_reg = crex_findReg(vd_name);
+        let base_reg = crex_findReg(vs3_name);
         let vector_length = checkVl();
-        console.log('>>> vecl', vector_length);
-        let mask = extractMaskFromV0(vector_length);
         for (let i = 0; i < nf; ++i) {{
-            let mem = capi_mem_read(rs1 + i*(vector_length*{eew//8}), '{f'vector{eew}'}');
             let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');
-            let backup = [...curr_reg];
-
-            for (let e=0; e < vector_length; ++e) {{
-                curr_reg[vs2[e]] = mem[e];
-            }}
-
-            curr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);
-
-            writeRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);
+            maskedMemoryOperation(vector_length, rs1 + i*(vector_length*{eew//8}), 'vector{eew}', vs3_name, 'store', curr_reg);
         }}
     """
 
@@ -129,7 +110,7 @@ def add_code(nfi, eew, m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vluxseg{}ei{}.v vd (rs1) vs2{}"
+structure = "vsseg{}e{}.v vs3 (rs1){}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:
@@ -144,7 +125,7 @@ with open(f"{file_name}.{ext}", "w") as fd:
                             name,
                             f"Memory Instruction{" Masked" if len(m) > 0 else ""}",
                             f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
-                            f"{name},VEC-Reg,(INT-Reg),VEC-Reg{',' if len(m) >0 else ''}{m[1:]}",
+                            f"{name},VEC-Reg,(INT-Reg){',' if len(m) >0 else ''}{m[1:]}",
                             f"{sigRaw}",
                             fields,
                             add_code(nfi, eewi, m)
