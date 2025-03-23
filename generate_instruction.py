@@ -1,7 +1,7 @@
 import sys
-file_name = "vlsseg"
+file_name = "vssseg"
 ext = "ins"
-opcode = "0000111"
+opcode = "0100111"
 
 nf = [_ for _ in range(1, 9, 1)]
 eew = [2**i for i in range(3, 7)]
@@ -77,7 +77,7 @@ def unify_lines(text):
 def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
-        {field.format("vd", "VEC-Reg", 11, 7)},
+        {field.format("vs3", "VEC-Reg", 11, 7)},
         {field.format("rs1", "INT-Reg", 19, 15)},
         {field.format("rs2", "INT-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
 
@@ -87,34 +87,37 @@ def add_fields(name, m):
 def add_code(nfi, eew, m):
     code_unmask = f"""
         let nf = {nfi};
-        let base_reg = crex_findReg(vd_name);
+        let base_reg = crex_findReg(vs3_name);
         for (let i = 0; i < nf; ++i) {{
             let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);
             for (let j = 0; j < checkVl(); ++j) {{
-                
-                let mem = capi_mem_read(i*{eew//8} + (rs1 + j*rs2), '{f'{eew}'}');
-                curr_reg[j] = mem;
+                let insert = i*{eew//8} + (rs1 + j*rs2);
+                main_memory_write_nbytes(insert, curr_reg[j], {eew//8});
             }}
-
-            writeRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);
         }}
     """
 
     code_masked = f"""
         let nf = {nfi};
-        let base_reg = crex_findReg(vd_name);
+        let base_reg = crex_findReg(vs3_name);
         let mask = extractMaskFromV0(checkVl());
         for (let i = 0; i < nf; ++i) {{
             let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);
-            let backup = [...curr_reg];
             for (let j = 0; j < checkVl(); ++j) {{
-                let mem = capi_mem_read(i*{eew//8} + (rs1 + j*rs2), '{f'{eew}'}');
-                curr_reg[j] = mem;
+                let insert = i*{eew//8} + (rs1 + j*rs2);
+                let value = curr_reg[j];
+                if (!mask[j]) {{
+                    if (checkMA()) {{
+                        value = -1n;
+                    }} else {{
+                        value = main_memory_read_nbytes(insert, {eew//8});
+                    }} 
+                }}
+                main_memory_write_nbytes(insert, value, {eew//8});
+
+
             }}
 
-            curr_reg = applyMask(mask, checkMA(), curr_reg, backup, checkVl());
-
-            writeRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);
         }}
     """ 
 
@@ -126,7 +129,7 @@ def add_code(nfi, eew, m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vlsseg{}e{}.v vd (rs1) rs2{}"
+structure = "vssseg{}e{}.v vs3 (rs1) rs2{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:
