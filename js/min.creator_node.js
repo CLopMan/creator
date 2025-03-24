@@ -8275,7 +8275,7 @@ function vectorIndexStore(vs3, vs2, rs1, eew, vl, mask=null, ma=checkMA()) {
     let addr = BigInt(rs1) + vs2[i];
     let value = vs3[i];
     if (mask[i] == 0) {
-      value = (ma == 0) ? main_memory_read_nbytes(addr, eew/8) : -1n;
+      value = (ma == 0) ? BigInt("0x" + main_memory_read_nbytes(addr, eew/8)) : -1n;
     }
     main_memory_write_nbytes(addr, vs3[i], eew/8);
   }
@@ -8288,7 +8288,7 @@ function vectorIndexLoad(vd, vs2, rs1, eew, vl, mask=null,ma=checkMA()) {
   vd_copy = [...vd];
   for (let i = 0; i < vl; ++i) {
     let addr = BigInt(rs1) + vs2[i];
-    let value = main_memory_read_nbytes(addr, eew/8);
+    let value = BigInt("0x" + main_memory_read_nbytes(addr, eew/8));
     if (mask[i] == 0) {
       value = (ma == 0) ? vd[i] : -1n;
     }

@@ -1,7 +1,7 @@
 import sys
-file_name = "vsseg"
+file_name = "vluxsegeg"
 ext = "ins"
-opcode = "0100111"
+opcode = "0000111"
 
 nf = [_ for _ in range(1, 9, 1)]
 eew = [2**i for i in range(3, 7)]
@@ -77,32 +77,34 @@ def unify_lines(text):
 def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
-        {field.format("vd", "VEC-Reg", 11, 7)},
-        {field.format("rs1", "INT-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("vs3", "VEC-Reg", 11, 7)},
+        {field.format("rs1", "INT-Reg", 19, 15)},
+        {field.format("vs2", "VEC-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
 
-    """#{field.format("vs2", "VEC-Reg", 24, 20)}
+    """
     return fields
 
 def add_code(nfi, eew, m):
     code_unmask = f"""
         let nf = {nfi};
-        let base_reg = crex_findReg(vd_name);
+        let base_reg = crex_findReg(vs3_name);
         for (let i = 0; i < nf; ++i) {{
-            let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');
-            curr_reg = vectorStridedStore(curr_reg, rs1 + i*{eew//8}, {nfi * eew//8}, {eew}, checkVl());
+            let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);
+            vectorIndexLoad(vs3, vs2, rs1 + i*{eew//8}, {eew}, vl);
         }}
     """
 
     code_masked = f"""
-        let nf = {nfi}
-        let base_reg = crex_findReg(vd_name);
+        let nf = {nfi};
+        let base_reg = crex_findReg(vs3_name);
         let mask = extractMaskFromV0(checkVl());
         for (let i = 0; i < nf; ++i) {{
-            let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');
-            curr_reg = vectorStridedStore(curr_reg, rs1 + i*{eew//8}, {nfi * eew//8}, {eew}, checkVl(), mask);
- 
+            let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i);
+            vectorIndexLoad(vs3, vs2, rs1 + i*{eew//8}, {eew}, vl, mask);
+
         }}
-    """    
+    """ 
+
     if len(m) > 0:
         return unify_lines(code_masked)
     else:
@@ -111,7 +113,7 @@ def add_code(nfi, eew, m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vsseg{}e{}.v vd (rs1){}"
+structure = "vluxseg{}ei{}.v vs3 (rs1) vs2{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:
@@ -126,7 +128,7 @@ with open(f"{file_name}.{ext}", "w") as fd:
                             name,
                             f"Memory Instruction{" Masked" if len(m) > 0 else ""}",
                             f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
-                            f"{name},VEC-Reg,(INT-Reg){',' if len(m) >0 else ''}{m[1:]}",
+                            f"{name},VEC-Reg,(INT-Reg),VEC-Reg{',' if len(m) >0 else ''}{m[1:]}",
                             f"{sigRaw}",
                             opcode,
                             fields,

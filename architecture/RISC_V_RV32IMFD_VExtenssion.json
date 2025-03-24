@@ -9818,7 +9818,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9876,7 +9876,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9934,7 +9934,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -9992,7 +9992,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10050,7 +10050,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10108,7 +10108,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10166,7 +10166,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10224,7 +10224,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10282,7 +10282,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10340,7 +10340,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10398,7 +10398,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10456,7 +10456,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10514,7 +10514,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10572,7 +10572,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10630,7 +10630,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10688,7 +10688,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10746,7 +10746,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10804,7 +10804,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10862,7 +10862,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10920,7 +10920,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -10978,7 +10978,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11036,7 +11036,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11094,7 +11094,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11152,7 +11152,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11210,7 +11210,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11268,7 +11268,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11326,7 +11326,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11384,7 +11384,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11442,7 +11442,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*1), 'vector8');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11500,7 +11500,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*2), 'vector16');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11558,7 +11558,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*4), 'vector32');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
@@ -11616,7 +11616,7 @@
           "valueField": "010"
         }
       ],
-      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nlet vector_length = checkVl();\nconsole.log('>>> vecl', vector_length);\nlet mask = extractMaskFromV0(vector_length);\nfor (let i = 0; i < nf; ++i) {\nlet mem = capi_mem_read(rs1 + i*(vector_length*8), 'vector64');\nlet curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');\nlet backup = [...curr_reg];\nfor (let e=0; e < vector_length; ++e) {\ncurr_reg[vs2[e]] = mem[e];\n}\ncurr_reg = applyMask(mask, checkMA(),curr_reg, backup, vector_length);\nwriteRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);\n}",
       "separated": [
         false,
         false,
