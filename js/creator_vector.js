@@ -494,9 +494,9 @@ function vectorStridedStore(vs3, rs1, rs2, eew, vl, mask=null,ma=checkMA()) {
     let addr = BigInt(rs1) + BigInt(i*rs2);
     let value = vs3[i]
     if (mask[i] == 0) {
-      value = (ma == 0) ? main_memory_read_nbytes(addr, eew/8) : -1n;
+      value = (ma == 0) ? BigInt("0x"+main_memory_read_nbytes(addr, eew/8)) : -1n;
     }
-    main_memory_write_nbytes(addr, vs3[i], eew/8);
+    main_memory_write_nbytes(addr, value, eew/8);
   }
 
   return 0;

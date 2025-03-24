@@ -1,7 +1,7 @@
 import sys
-file_name = "vlseg"
+file_name = "vsseg"
 ext = "ins"
-opcode = "0000111"
+opcode = "0100111"
 
 nf = [_ for _ in range(1, 9, 1)]
 eew = [2**i for i in range(3, 7)]
@@ -89,8 +89,7 @@ def add_code(nfi, eew, m):
         let base_reg = crex_findReg(vd_name);
         for (let i = 0; i < nf; ++i) {{
             let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');
-            curr_reg = vectorStridedLoad(curr_reg, rs1 + i*{eew//8}, {nfi * eew//8}, {eew}, checkVl());
-            writeRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);
+            curr_reg = vectorStridedStore(curr_reg, rs1 + i*{eew//8}, {nfi * eew//8}, {eew}, checkVl());
         }}
     """
 
@@ -100,8 +99,7 @@ def add_code(nfi, eew, m):
         let mask = extractMaskFromV0(checkVl());
         for (let i = 0; i < nf; ++i) {{
             let curr_reg = readRegister(base_reg.indexComp, base_reg.indexElem + i, 'VEC-Reg');
-            curr_reg = vectorStridedLoad(curr_reg, rs1 + i*{eew//8}, {nfi * eew//8}, {eew}, checkVl(), mask);
-            writeRegister(curr_reg, base_reg.indexComp, base_reg.indexElem + i);
+            curr_reg = vectorStridedStore(curr_reg, rs1 + i*{eew//8}, {nfi * eew//8}, {eew}, checkVl(), mask);
  
         }}
     """    
@@ -113,7 +111,7 @@ def add_code(nfi, eew, m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vlseg{}e{}.v vd (rs1){}"
+structure = "vsseg{}e{}.v vd (rs1){}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:
