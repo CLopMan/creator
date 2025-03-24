@@ -7254,7 +7254,7 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " + // TODO: manage exceptions of javascript
-           "   try {\n" + console.log(" >>> instruction", auxDef) +  // TODO: delete console.logs
+           "   try {\n" /*+ console.log(" >>> instruction", auxDef)*/ +  // TODO: delete console.logs
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
@@ -7845,20 +7845,20 @@ function updateVtype(vma, vta, sew, lmulexp) {
             break;
         default:
             vill = 1;
-            console.log("WARN! Not valid value for sew:", sew);
+            //console.log("WARN! Not valid value for sew:", sew);
     }
     let lmulValues = [-3, -2, -1, 0, 1, 2, 3];
     if (vma !== 0 && vma !== 1) {
         vill = 1;
-        console.log("WARN! Not valid value for vma:", vma)
+        //console.log("WARN! Not valid value for vma:", vma)
     }
     if (vta !== 0 && vta !== 1) {
         vill = 1;
-        console.log("WARN! Not valid value for vta:", vta)
+        //console.log("WARN! Not valid value for vta:", vta)
     }
     if (lmulValues.includes(lmulexp) !== true) {
         vill = 1;
-        console.log("WARN! Not valid value for lmulexp:", lmulexp);
+        //console.log("WARN! Not valid value for lmulexp:", lmulexp);
     }
     if (lmulexp < 0) {lmulexp = Math.pow(2, 3) + lmulexp;} // CA2 negative
     let vtype_obj = crex_findReg("vtype");
@@ -8229,7 +8229,7 @@ function maskedMemoryOperation (vl, addr, data_type, rd_name, op_type, value = n
       backup = readRegister(reg_obj.indexComp, reg_obj.indexElem);
       return applyMask(mask, ma, value, backup, vl);
     default:
-      console.log("ERROR: operation not recognised.Types available: {'store', 'load'}");
+      //console.log("ERROR: operation not recognised.Types available: {'store', 'load'}");
       break;
   }
   return 0;
@@ -8252,7 +8252,7 @@ function resolveSizeFromDataType (data_type) {
       return 64;
 
     default:
-      console.log("WARN!! data type", data_type, "not allowed!");
+      //console.log("WARN!! data type", data_type, "not allowed!");
       return -1;
   }
 
@@ -8317,16 +8317,17 @@ function vectorStridedStore(vs3, rs1, rs2, eew, vl, mask=null,ma=checkMA()) {
 function vectorStridedLoad(vd, rs1, rs2, eew, vl, mask=null, ma=checkMA()) {
   if (mask == null) mask = new Array(vl).fill(1n);
   vd_copy = [...vd];
+  //console.log("start >>>", vd, vl, mask);
   for (let i = 0; i < vl; ++i) {
     let addr = BigInt(rs1 + rs2*i);
-    let value = main_memory_read_nbytes(addr, eew/8);
+    let value = BigInt("0x" + main_memory_read_nbytes(addr, eew/8));
     if (mask[i] == 0) {
       value = (ma == 0) ? vd[i] : -1n;
     }
 
     vd_copy[i] = value;
   }
-
+  //console.log(">>>load vd:", vd_copy, mask);
   return vd_copy;
 
 }
