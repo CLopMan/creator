@@ -2370,7 +2370,7 @@ function main_memory_read_nbytes ( addr, n )
 {
         var value = "" ;
         for (var i = 0; i < n; i++) {
-             value = value + main_memory_read_value(addr+i) ;
+             value = value + main_memory_read_value(BigInt(addr)+BigInt(i)) ;
         }
 
         return value;
@@ -2392,7 +2392,7 @@ function main_memory_write_nbytes ( addr, value, n)
         //console.log(">>> value_str - chunks\n", value_str, " - ", chunks, "\n============");
 
         for (var i = 0; i < chunks.length; i++) {
-             main_memory_write_value(addr+i, chunks[i]) ;
+             main_memory_write_value(BigInt(addr)+BigInt(i), chunks[i]) ;
         }
 }
 
@@ -7254,7 +7254,7 @@ function execute_instruction ( )
 
       // preload instruction
       eval("instructions[" + execution_index + "].preload = function(elto) { " + // TODO: manage exceptions of javascript
-           "   try {\n" /*+ console.log(" >>> instruction", auxDef)*/ +  // TODO: delete console.logs
+           "   try {\n" + console.log(" >>> instruction", auxDef) +  // TODO: delete console.logs
                auxDef.replace(/this./g,"elto.") + "\n" +
            "   }\n" +
            "   catch(e){\n" +
@@ -8255,6 +8255,79 @@ function resolveSizeFromDataType (data_type) {
       console.log("WARN!! data type", data_type, "not allowed!");
       return -1;
   }
+
+}
+
+/**
+ * 
+ * @param {*} vs3 source values 
+ * @param {*} vs2  indexes
+ * @param {*} rs1 addr_base
+ * @param {*} eew efective width
+ * @param {*} vl vector lenght
+ * @param {*} mask masked 
+ * @returns 
+ */
+function vectorIndexStore(vs3, vs2, rs1, eew, vl, mask=null, ma=checkMA()) {
+  if (mask == null) mask = new Array(vl).fill(1n);
+
+  for (let i = 0; i < vl; ++i) {
+    let addr = BigInt(rs1) + vs2[i];
+    let value = vs3[i];
+    if (mask[i] == 0) {
+      value = (ma == 0) ? main_memory_read_nbytes(addr, eew/8) : -1n;
+    }
+    main_memory_write_nbytes(addr, vs3[i], eew/8);
+  }
+
+  return 0;
+}
+
+function vectorIndexLoad(vd, vs2, rs1, eew, vl, mask=null,ma=checkMA()) {
+  if (mask == null) mask = new Array(vl).fill(1n);
+  vd_copy = [...vd];
+  for (let i = 0; i < vl; ++i) {
+    let addr = BigInt(rs1) + vs2[i];
+    let value = main_memory_read_nbytes(addr, eew/8);
+    if (mask[i] == 0) {
+      value = (ma == 0) ? vd[i] : -1n;
+    }
+
+    vd_copy[i] = value;
+  }
+
+  return vd_copy;
+
+}
+
+function vectorStridedStore(vs3, rs1, rs2, eew, vl, mask=null,ma=checkMA()) {
+  if (mask == null) mask = new Array(vl).fill(1n);
+  for (let i = 0; i < vl; ++i) {
+    let addr = BigInt(rs1) + BigInt(i*rs2);
+    let value = vs3[i]
+    if (mask[i] == 0) {
+      value = (ma == 0) ? main_memory_read_nbytes(addr, eew/8) : -1n;
+    }
+    main_memory_write_nbytes(addr, vs3[i], eew/8);
+  }
+
+  return 0;
+}
+
+function vectorStridedLoad(vd, rs1, rs2, eew, vl, mask=null, ma=checkMA()) {
+  if (mask == null) mask = new Array(vl).fill(1n);
+  vd_copy = [...vd];
+  for (let i = 0; i < vl; ++i) {
+    let addr = BigInt(rs1 + rs2*i);
+    let value = main_memory_read_nbytes(addr, eew/8);
+    if (mask[i] == 0) {
+      value = (ma == 0) ? vd[i] : -1n;
+    }
+
+    vd_copy[i] = value;
+  }
+
+  return vd_copy;
 
 }
 

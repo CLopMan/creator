@@ -218,7 +218,7 @@ function main_memory_read_nbytes ( addr, n )
 {
         var value = "" ;
         for (var i = 0; i < n; i++) {
-             value = value + main_memory_read_value(addr+i) ;
+             value = value + main_memory_read_value(BigInt(addr)+BigInt(i)) ;
         }
 
         return value;
@@ -240,7 +240,7 @@ function main_memory_write_nbytes ( addr, value, n)
         //console.log(">>> value_str - chunks\n", value_str, " - ", chunks, "\n============");
 
         for (var i = 0; i < chunks.length; i++) {
-             main_memory_write_value(addr+i, chunks[i]) ;
+             main_memory_write_value(BigInt(addr)+BigInt(i), chunks[i]) ;
         }
 }
 
