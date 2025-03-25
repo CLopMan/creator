@@ -496,6 +496,7 @@ function vectorStridedStore(vs3, rs1, rs2, eew, vl, mask=null,ma=checkMA()) {
     if (mask[i] == 0) {
       value = (ma == 0) ? BigInt("0x"+main_memory_read_nbytes(addr, eew/8)) : -1n;
     }
+    //console.log("mem[", addr.toString(16), "] ->", value);
     main_memory_write_nbytes(addr, value, eew/8);
   }
 

@@ -2860,6 +2860,806 @@
       "help": ""
     },
     {
+      "name": "vlse8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlse8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
+      "signatureRaw": "vlse8.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlse8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask = extractMaskFromV0(checkVl());\nvd = vectorStridedLoad(vd, rs1, rs2, 8, vl, mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlse16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlse16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
+      "signatureRaw": "vlse16.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlse16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask = extractMaskFromV0(checkVl());\nvd = vectorStridedLoad(vd, rs1, rs2, 16, vl, mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlse32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlse32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
+      "signatureRaw": "vlse32.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlse32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask = extractMaskFromV0(checkVl());\nvd = vectorStridedLoad(vd, rs1, rs2, 32, vl, mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlse64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vlse64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
+      "signatureRaw": "vlse64.v vd (rs1) rs2 v0.t",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlse64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask = extractMaskFromV0(checkVl());\nvd = vectorStridedLoad(vd, rs1, rs2, 64, vl, mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlse8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlse8.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vlse8.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlse8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "vd = vectorStridedLoad(vd, rs1, rs2, 8, vl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlse16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlse16.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vlse16.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlse16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "vd = vectorStridedLoad(vd, rs1, rs2, 16, vl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlse32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlse32.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vlse32.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlse32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "vd = vectorStridedLoad(vd, rs1, rs2, 32, vl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vlse64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vlse64.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vlse64.v vd (rs1) rs2",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vlse64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "vd = vectorStridedLoad(vd, rs1, rs2, 64, vl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsse8.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vsse8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
+      "signatureRaw": "vsse8.v vs3 (rs1) rs2 v0.t",
+      "co": "0100111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsse8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask = extractMaskFromV0(checkVl());\nvectorStridedStore(vs3, rs1, rs2, 8, vl, mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsse16.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vsse16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
+      "signatureRaw": "vsse16.v vs3 (rs1) rs2 v0.t",
+      "co": "0100111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsse16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask = extractMaskFromV0(checkVl());\nvectorStridedStore(vs3, rs1, rs2, 16, vl, mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsse32.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vsse32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
+      "signatureRaw": "vsse32.v vs3 (rs1) rs2 v0.t",
+      "co": "0100111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsse32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask = extractMaskFromV0(checkVl());\nvectorStridedStore(vs3, rs1, rs2, 32, vl, mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsse64.v",
+      "type": "Memory Instruction Masked",
+      "signature_definition": "F0 F1 (F2) F3 v0.t",
+      "signature": "vsse64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
+      "signatureRaw": "vsse64.v vs3 (rs1) rs2 v0.t",
+      "co": "0100111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsse64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask = extractMaskFromV0(checkVl());\nvectorStridedStore(vs3, rs1, rs2, 64, vl, mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsse8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vsse8.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vsse8.v vs3 (rs1) rs2",
+      "co": "0100111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsse8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "vectorStridedStore(vs3, rs1, rs2, 8, vl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsse16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vsse16.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vsse16.v vs3 (rs1) rs2",
+      "co": "0100111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsse16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "vectorStridedStore(vs3, rs1, rs2, 16, vl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsse32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vsse32.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vsse32.v vs3 (rs1) rs2",
+      "co": "0100111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsse32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "vectorStridedStore(vs3, rs1, rs2, 32, vl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsse64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2) F3",
+      "signature": "vsse64.v,VEC-Reg,(INT-Reg),VEC-Reg",
+      "signatureRaw": "vsse64.v vs3 (rs1) rs2",
+      "co": "0100111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsse64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vs3",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "rs2",
+          "type": "INT-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "vectorStridedStore(vs3, rs1, rs2, 64, vl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "vloxei8.v",
       "type": "Memory access masked",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
