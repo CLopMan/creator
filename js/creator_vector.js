@@ -214,19 +214,17 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
   let vector;
   const vectorLenth = vlen/sew;
-  //console.log(">>> lmul:", lmul);
+  console.log(">>> vlen:", vectorLenth, vlen, sew);
   if (lmul >= 1) {
     vector = [];
     for (let i = 0; i < lmul; ++i) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
-      //console.log(">>> value reded:", value);
+      console.log(">>> value reded:", value);
       let aux = valueToArray(value, sew);
-      //aux = fillVector(aux, vlen, sew); 
-      //console.log(">>>", aux, "will be fixed");
+      aux = fillVector(aux, vlen, sew); 
+      console.log(">>>", aux, "will be fixed");
       aux = fixVectorLength(aux, vectorLenth);
-      //console.log(">>> fix 2", aux)
-      //console.log(">>> ", i, ":", aux);
-      //console.log(">>> ", i, ":", aux);
+      console.log(">>> ", i, ":", aux);
       vector = vector.concat(aux);
       //console.log(">>> here is the problem - 197");
     }
@@ -238,8 +236,8 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     // vector = fillVector(vector, );
     vector = fixVectorLength(vector, vectorLenth);
   }
-  //console.log(">>> Readed:", vector, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
-  return vector
+  console.log(">>> Readed:", vector, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
+  return vector;
 }
 
 /**
@@ -460,10 +458,10 @@ function vectorLoadWhole(indxComp, indxElem, addr, eew, vlen=checkVlen()) {
   architecture.components[indxComp].elements[indxElem].value = value;
 }
 function vectorStoreWhole(indxComp, indxElem, addr, vlen=checkVlen()) {
-  let vec = valueToArray(architecture.components[indxComp].elements[indxElem].value, 8);
-  for (let i = 0; i < vlen/8; ++i) {
-    main_memory_write_nbytes(addr + i, vec[i], 1);
-  }
+  console.log(">>>>>>", checkVlen())
+  let vec = readVector(indxComp, indxElem, 0, 8, vlen);
+  console.log("!", vec);
+  writeVectorToMemory(addr, 1, vec, vlen/8);
 }
 
 /**

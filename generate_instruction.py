@@ -1,10 +1,11 @@
 import sys
-file_name = "vlnfr.v"
+file_name = "vsnfr.v"
 ext = "ins"
 opcode = "0000111"
 
 nf = [_ for _ in range(1, 9, 1)]
 eew = [2**i for i in range(3, 7)]
+eew = [1,]
 
 enum_fields = {
     "nf" : nf,
@@ -88,7 +89,7 @@ def add_code(nfi, eew, m):
         let nf = {nfi};
         let base_reg = crex_findReg(vd_name);
         for (let i = 0; i < nf; ++i) {{
-            vectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, {eew});
+            vectorStoreWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8);
         }}
     """
 
@@ -110,7 +111,7 @@ def add_code(nfi, eew, m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vl{}re{}.v vd (rs1)"
+structure = "vs{}r.v vd (rs1)"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [""]:
