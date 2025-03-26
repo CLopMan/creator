@@ -1,7 +1,7 @@
 import sys
-file_name = "vsse"
+file_name = "vlnfr.v"
 ext = "ins"
-opcode = "0100111"
+opcode = "0000111"
 
 nf = [_ for _ in range(1, 9, 1)]
 eew = [2**i for i in range(3, 7)]
@@ -77,21 +77,29 @@ def unify_lines(text):
 def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
-        {field.format("vs3", "VEC-Reg", 11, 7)},
-        {field.format("rs1", "INT-Reg", 19, 15)},
-        {field.format("rs2", "INT-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("vd", "VEC-Reg", 11, 7)},
+        {field.format("rs1", "INT-Reg", 19, 15)}
 
     """
     return fields
 
-def add_code(eew, m):
+def add_code(nfi, eew, m):
     code_unmask = f"""
-    vectorStridedStore(vs3, rs1, rs2, {eew}, vl);
+        let nf = {nfi};
+        let base_reg = crex_findReg(vd_name);
+        for (let i = 0; i < nf; ++i) {{
+            vectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, {eew});
+        }}
     """
 
     code_masked = f"""
-    let mask = extractMaskFromV0(checkVl());
-    vectorStridedStore(vs3, rs1, rs2, {eew}, vl, mask);
+        let nf = {nfi};
+        let base_reg = crex_findReg(vs3_name);
+        let mask = extractMaskFromV0(checkVl());
+        for (let i = 0; i < nf; ++i) {{
+            vectorIndexLoad(vs3, vs2, rs1 + i*{eew//8}, {eew}, vl, mask);
+
+        }}
     """ 
 
     if len(m) > 0:
@@ -102,28 +110,29 @@ def add_code(eew, m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vsse{}.v vs3 (rs1) rs2{}"
+structure = "vl{}re{}.v vd (rs1)"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
-    for m in [" v0.t", ""]:
-        for eewi in eew:
-                sigRaw = structure.format(eewi, m) 
-                sig_list = sigRaw.split()
-                name = sig_list[0]
-                fields = add_fields(name, m)
-                fd.write(
-                    instruction.format(
-                        name,
-                        f"Memory Instruction{" Masked" if len(m) > 0 else ""}",
-                        f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
-                        f"{name},VEC-Reg,(INT-Reg),VEC-Reg{',' if len(m) >0 else ''}{m[1:]}",
-                        f"{sigRaw}",
-                        opcode,
-                        fields,
-                        add_code(eewi, m)
+    for m in [""]:
+        for nfi in nf:
+            for eewi in eew:
+                    sigRaw = structure.format(nfi, eewi, m) 
+                    sig_list = sigRaw.split()
+                    name = sig_list[0]
+                    fields = add_fields(name, m)
+                    fd.write(
+                        instruction.format(
+                            name,
+                            f"Memory Instruction{" Masked" if len(m) > 0 else ""}",
+                            f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
+                            f"{name},VEC-Reg,(INT-Reg){',' if len(m) >0 else ''}{m[1:]}",
+                            f"{sigRaw}",
+                            opcode,
+                            fields,
+                            add_code(nfi, eewi, m)
+                        )
                     )
-                )
-                ins_counter += 1
+                    ins_counter += 1
 #################### ##### ####################
 
 #################### INFO ##### ####################

@@ -447,6 +447,26 @@ function resolveSizeFromDataType (data_type) {
 }
 
 /**
+ *  loads vlen bits in register. Elements are treated (reversed) with k = eew /4
+ * @param {*} indxElem 
+ * @param {*} indxComp 
+ * @param {*} addr 
+ * @param {*} eew 
+ * @param {*} vlen 
+ */
+function vectorLoadWhole(indxComp, indxElem, addr, eew, vlen=checkVlen()) {
+  let value_str = main_memory_read_nbytes(addr, vlen/8)
+  let value = BigInt("0x" + reverseStringValues(value_str, eew/4));
+  architecture.components[indxComp].elements[indxElem].value = value;
+}
+function vectorStoreWhole(indxComp, indxElem, addr, vlen=checkVlen()) {
+  let vec = valueToArray(architecture.components[indxComp].elements[indxElem].value, 8);
+  for (let i = 0; i < vlen/8; ++i) {
+    main_memory_write_nbytes(addr + i, vec[i], 1);
+  }
+}
+
+/**
  * 
  * @param {*} vs3 source values 
  * @param {*} vs2  indexes
@@ -463,7 +483,7 @@ function vectorIndexStore(vs3, vs2, rs1, eew, vl, mask=null, ma=checkMA()) {
     let addr = BigInt(rs1) + vs2[i];
     let value = vs3[i];
     if (mask[i] == 0) {
-      value = (ma == 0) ? BigInt("0x" + main_memory_read_nbytes(addr, eew/8)) : -1n;
+      value = (ma == 0) ? BigInt("0x" + reverseStringValues(main_memory_read_nbytes(addr, eew/8), eew/4)) : -1n;
     }
     main_memory_write_nbytes(addr, value, eew/8);
   }
@@ -476,7 +496,7 @@ function vectorIndexLoad(vd, vs2, rs1, eew, vl, mask=null,ma=checkMA()) {
   vd_copy = [...vd];
   for (let i = 0; i < vl; ++i) {
     let addr = BigInt(rs1) + vs2[i];
-    let value = BigInt("0x" + main_memory_read_nbytes(addr, eew/8));
+    let value = BigInt("0x" + reverseStringValues(main_memory_read_nbytes(addr, eew/8), eew/4));
     if (mask[i] == 0) {
       value = (ma == 0) ? vd[i] : -1n;
     }
@@ -494,7 +514,7 @@ function vectorStridedStore(vs3, rs1, rs2, eew, vl, mask=null,ma=checkMA()) {
     let addr = BigInt(rs1) + BigInt(i*rs2);
     let value = vs3[i]
     if (mask[i] == 0) {
-      value = (ma == 0) ? BigInt("0x"+main_memory_read_nbytes(addr, eew/8)) : -1n;
+      value = (ma == 0) ? BigInt("0x"+reverseStringValues(main_memory_read_nbytes(addr, eew/8), eew/4)) : -1n;
     }
     //console.log("mem[", addr.toString(16), "] ->", value);
     main_memory_write_nbytes(addr, value, eew/8);
@@ -509,7 +529,7 @@ function vectorStridedLoad(vd, rs1, rs2, eew, vl, mask=null, ma=checkMA()) {
   //console.log("start >>>", vd, vl, mask);
   for (let i = 0; i < vl; ++i) {
     let addr = BigInt(rs1 + rs2*i);
-    let value = BigInt("0x" + main_memory_read_nbytes(addr, eew/8));
+    let value = BigInt("0x" + reverseStringValues(main_memory_read_nbytes(addr, eew/8), eew/4));
     if (mask[i] == 0) {
       value = (ma == 0) ? vd[i] : -1n;
     }

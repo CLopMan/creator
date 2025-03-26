@@ -47,5 +47,5 @@ main:
     vle16.v v12 0(a0)
     vle16.v v16 0(a1)
 
-    vse16.v v8 0(a1) v0.t
+    vse16.v v8 0(a1)
     vle16.v v17 0(a1)

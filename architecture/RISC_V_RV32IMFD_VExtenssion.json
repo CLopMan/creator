@@ -24490,6 +24490,1318 @@
       "help": ""
     },
     {
+      "name": "vl1re8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl1re8.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl1re8.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl1re8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 8);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl1re16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl1re16.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl1re16.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl1re16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 16);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl1re32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl1re32.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl1re32.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl1re32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 32);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl1re64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl1re64.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl1re64.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl1re64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 1;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 64);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl2re8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl2re8.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl2re8.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl2re8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 8);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl2re16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl2re16.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl2re16.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl2re16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 16);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl2re32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl2re32.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl2re32.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl2re32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 32);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl2re64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl2re64.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl2re64.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl2re64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 2;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 64);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl3re8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl3re8.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl3re8.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl3re8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 8);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl3re16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl3re16.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl3re16.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl3re16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 16);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl3re32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl3re32.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl3re32.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl3re32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 32);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl3re64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl3re64.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl3re64.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl3re64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 3;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 64);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl4re8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl4re8.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl4re8.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl4re8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 8);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl4re16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl4re16.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl4re16.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl4re16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 16);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl4re32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl4re32.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl4re32.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl4re32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 32);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl4re64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl4re64.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl4re64.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl4re64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 4;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 64);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl5re8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl5re8.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl5re8.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl5re8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 8);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl5re16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl5re16.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl5re16.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl5re16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 16);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl5re32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl5re32.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl5re32.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl5re32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 32);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl5re64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl5re64.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl5re64.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl5re64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 5;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 64);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl6re8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl6re8.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl6re8.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl6re8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 8);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl6re16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl6re16.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl6re16.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl6re16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 16);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl6re32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl6re32.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl6re32.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl6re32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 32);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl6re64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl6re64.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl6re64.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl6re64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 6;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 64);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl7re8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl7re8.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl7re8.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl7re8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 8);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl7re16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl7re16.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl7re16.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl7re16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 16);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl7re32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl7re32.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl7re32.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl7re32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 32);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl7re64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl7re64.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl7re64.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl7re64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 7;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 64);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl8re8.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl8re8.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl8re8.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl8re8.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 8);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl8re16.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl8re16.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl8re16.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl8re16.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 16);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl8re32.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl8re32.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl8re32.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl8re32.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 32);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vl8re64.v",
+      "type": "Memory Instruction",
+      "signature_definition": "F0 F1 (F2)",
+      "signature": "vl8re64.v,VEC-Reg,(INT-Reg)",
+      "signatureRaw": "vl8re64.v vd (rs1)",
+      "co": "0000111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vl8re64.v",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let nf = 8;\nlet base_reg = crex_findReg(vd_name);\nfor (let i = 0; i < nf; ++i) {\nvectorLoadWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8, 64);\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "fcvt.s.wu",
       "type": "Arithmetic floating point",
       "signature_definition": "F0 F4 F3",
