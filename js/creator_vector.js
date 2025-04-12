@@ -214,17 +214,17 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
   let lmul = Math.pow(2, lmulExp);
   let vector;
   const vectorLenth = vlen/sew;
-  console.log(">>> vlen:", vectorLenth, vlen, sew);
+  //console.log(">>> vlen:", vectorLenth, vlen, sew);
   if (lmul >= 1) {
     vector = [];
     for (let i = 0; i < lmul; ++i) {
       let value = BigInt(architecture.components[indexComp].elements[indexElem + i].value);
-      console.log(">>> value reded:", value);
+      //console.log(">>> value reded:", value);
       let aux = valueToArray(value, sew);
       aux = fillVector(aux, vlen, sew); 
-      console.log(">>>", aux, "will be fixed");
+      //console.log(">>>", aux, "will be fixed");
       aux = fixVectorLength(aux, vectorLenth);
-      console.log(">>> ", i, ":", aux);
+      //console.log(">>> ", i, ":", aux);
       vector = vector.concat(aux);
       //console.log(">>> here is the problem - 197");
     }
@@ -236,7 +236,7 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
     // vector = fillVector(vector, );
     vector = fixVectorLength(vector, vectorLenth);
   }
-  console.log(">>> Readed:", vector, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
+  //console.log(">>> Readed:", vector, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
   return vector;
 }
 
@@ -458,9 +458,9 @@ function vectorLoadWhole(indxComp, indxElem, addr, eew, vlen=checkVlen()) {
   architecture.components[indxComp].elements[indxElem].value = value;
 }
 function vectorStoreWhole(indxComp, indxElem, addr, vlen=checkVlen()) {
-  console.log(">>>>>>", checkVlen())
+  //console.log(">>>>>>", checkVlen())
   let vec = readVector(indxComp, indxElem, 0, 8, vlen);
-  console.log("!", vec);
+  //console.log("!", vec);
   writeVectorToMemory(addr, 1, vec, vlen/8);
 }
 
@@ -543,8 +543,9 @@ function vectorStridedLoad(vd, rs1, rs2, eew, vl, mask=null, ma=checkMA()) {
 
 //TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
 function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
-  return function (vd, vs1, vs2) {
-    return vecIntOperation(vd, vs1, vs2, operation, sew);
+  return function (vd, vs1, rs1) {
+    //console.log("wrapper", vd, vs1, rs1);
+    return vecIntOperation(vd, vs1, rs1, operation, sew);
   }
 }
 
@@ -555,6 +556,8 @@ function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
   //console.log(">>> rs1:", rs1_corrected);
   let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
   //console.log(">>> mask", mask);
+
+  //console.log(">>> checkpoint", rs1_corrected & mask);
   return operation (vd, vs1, rs1_corrected & mask);
   
 

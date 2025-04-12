@@ -1,7 +1,7 @@
 import sys
-file_name = "vsnfr.v"
+file_name = "vrsub.vi"
 ext = "ins"
-opcode = "0000111"
+opcode = "1010111"
 
 nf = [_ for _ in range(1, 9, 1)]
 eew = [2**i for i in range(3, 7)]
@@ -79,28 +79,31 @@ def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
-        {field.format("rs1", "INT-Reg", 19, 15)}
-
+        {field.format("vs2", "VEC-Reg", 24, 20)},
+        {field.format("inm", "inm-signed", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
-def add_code(nfi, eew, m):
+def add_code(m):
     code_unmask = f"""
-        let nf = {nfi};
-        let base_reg = crex_findReg(vd_name);
-        for (let i = 0; i < nf; ++i) {{
-            vectorStoreWhole(base_reg.indexComp, base_reg.indexElem + i, rs1 + i*checkVlen()/8);
+    function rsub(vd, vs2, rs1) {{
+        for (let i = 0; i < vl; ++i) {{
+            vd[i] = rs1 - vs2[i];
         }}
+        return vd;
+    }}
+
+    vd = vecIntOperation(vd, vs2, inm, rsub);
     """
 
     code_masked = f"""
-        let nf = {nfi};
-        let base_reg = crex_findReg(vs3_name);
-        let mask = extractMaskFromV0(checkVl());
-        for (let i = 0; i < nf; ++i) {{
-            vectorIndexLoad(vs3, vs2, rs1 + i*{eew//8}, {eew}, vl, mask);
-
+    function rsub(vd, vs2, rs1) {{
+        for (let i = 0; i < vl; ++i) {{
+            vd[i] = rs1 - vs2[i];
         }}
+        return vd;
+    }}
+    vd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(rsub));
     """ 
 
     if len(m) > 0:
@@ -111,29 +114,27 @@ def add_code(nfi, eew, m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vs{}r.v vd (rs1)"
+structure = "vrsub.vi vd vs2 inm{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
-    for m in [""]:
-        for nfi in nf:
-            for eewi in eew:
-                    sigRaw = structure.format(nfi, eewi, m) 
-                    sig_list = sigRaw.split()
-                    name = sig_list[0]
-                    fields = add_fields(name, m)
-                    fd.write(
-                        instruction.format(
-                            name,
-                            f"Memory Instruction{" Masked" if len(m) > 0 else ""}",
-                            f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
-                            f"{name},VEC-Reg,(INT-Reg){',' if len(m) >0 else ''}{m[1:]}",
-                            f"{sigRaw}",
-                            opcode,
-                            fields,
-                            add_code(nfi, eewi, m)
-                        )
-                    )
-                    ins_counter += 1
+    for m in [" v0.t", ""]:
+            sigRaw = structure.format(m) 
+            sig_list = sigRaw.split()
+            name = sig_list[0]
+            fields = add_fields(name, m)
+            fd.write(
+                instruction.format(
+                    name,
+                    f"Arithmetic Instruction{" Masked" if len(m) > 0 else ""}",
+                    f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
+                    f"{name},VEC-Reg,VEC-Reg,inm-signed{',' if len(m) >0 else ''}{m[1:]}",
+                    f"{sigRaw}",
+                    opcode,
+                    fields,
+                    add_code(m)
+                )
+            )
+            ins_counter += 1
 #################### ##### ####################
 
 #################### INFO ##### ####################
