@@ -75,7 +75,7 @@ def add_fields(name, m):
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
         {field.format("vs2", "VEC-Reg", 24, 20)},
-        {field.format("rs1", "INT-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("inm", "inm-signed", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
@@ -88,7 +88,7 @@ def add_code(m):
         return vd;
     }}
 
-    vd = vecIntOperation(vd, vs2, rs1, and);
+    vd = vecIntOperation(vd, vs2, inm, and);
     """
 
     code_masked = f"""
@@ -98,7 +98,7 @@ def add_code(m):
         }}
         return vd;
     }}
-    vd = maskedOperation(checkVl(), vs2, rs1, vd, vecIntOperationWrapperFactory(vand));
+    vd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(and));
     """ 
 
     if len(m) > 0:
@@ -113,7 +113,7 @@ def parse_fields(fields):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vand.vx vd vs2 rs1{}"
+structure = "vand.vi vd vs2 inm{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:

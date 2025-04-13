@@ -25844,6 +25844,106 @@
       "help": ""
     },
     {
+      "name": "vand.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vand.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
+      "signatureRaw": "vand.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vand.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function and(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = rs1 & vs2[i]\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(and));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vand.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vand.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vand.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vand.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function and(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = rs1 & vs2[i]\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, inm, and);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",
