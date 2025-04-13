@@ -1,5 +1,6 @@
-import sys
-file_name = "vsext.v"
+import json
+import re
+file_name = "vand.v"
 ext = "ins"
 opcode = "1010111"
 
@@ -73,36 +74,31 @@ def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
-        {field.format("vs2", "VEC-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("vs2", "VEC-Reg", 24, 20)},
+        {field.format("vs1", "VEC-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
-def add_code(m, fi):
+def add_code(m):
     code_unmask = f"""
-    function sext(vd, vs2, rs1) {{
+    function and(vd, vs2, vs1) {{
         for (let i = 0; i < vl; ++i) {{
-            let n = vs2[i] & ((1n << rs1) - 1n);
-            let sign = (n & (1n << (rs1 - 1n))); 
-            n = (n ^ sign) - sign;
-            vd[i] = n;
+            vd[i] = vs1[i] & vs2[i]
         }}
         return vd;
     }}
 
-    vd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/{fi}), sext);
+    vd = and(vd, vs2, vs1);
     """
 
     code_masked = f"""
-    function sext(vd, vs2, rs1) {{
+    function and(vd, vs2, vs1) {{
         for (let i = 0; i < vl; ++i) {{
-            let n = vs2[i] & ((1n << rs1) - 1n);
-            let sign = (n & (1n << (rs1 - 1n))); 
-            n = (n ^ sign) - sign;
-            vd[i] = n;
+            vd[i] = vs1[i] & vs2[i]
         }}
         return vd;
     }}
-    vd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/{fi}), vd, vecIntOperationWrapperFactory(sext));
+    vd = maskedOperation(checkVl(), vs2, vs1, vd, and);
     """ 
 
     if len(m) > 0:
@@ -110,28 +106,32 @@ def add_code(m, fi):
     else:
         return unify_lines(code_unmask)
 
+def parse_fields(fields):
+    field_list = json.loads(f"[{fields.strip()}]")
+    return field_list
+
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vsext.vf{} vd vs2{}"
+structure = "vand.vv vd vs2 vs1{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:
-        for fi in f:
-            sigRaw = structure.format(fi, m) 
+            sigRaw = structure.format(m) 
             sig_list = sigRaw.split()
             name = sig_list[0]
             fields = add_fields(name, m)
+            field_list = parse_fields(fields)
             fd.write(
                 instruction.format(
                     name,
                     f"Arithmetic Instruction{" Masked" if len(m) > 0 else ""}",
                     f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
-                    f"{name},VEC-Reg,VEC-Reg{',' if len(m) >0 else ''}{m[1:]}",
+                    f"{f",".join([field_list[_]['name'] if _ == 0 else (field_list[_]['type'] if field_list[_]['name'] != "vm" else "v0.t") for _ in range(len(field_list))])}",
                     f"{sigRaw}",
                     opcode,
                     fields,
-                    add_code(m, fi)
+                    add_code(m)
                 )
             )
             ins_counter += 1
@@ -140,11 +140,6 @@ with open(f"{file_name}.{ext}", "w") as fd:
 #################### INFO ##### ####################
 print(f"Generated {ins_counter} instructions")
 print(f"writed {count_lines_in_file(f"{file_name}.{ext}")} lines in {file_name}.{ext}")
-
-
-
-
-
 
 #args_str = """
 #    - xi : int register
