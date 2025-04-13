@@ -25380,6 +25380,270 @@
       "help": ""
     },
     {
+      "name": "vsext.vf2",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 v0.t",
+      "signature": "vsext.vf2,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vsext.vf2 vd vs2 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsext.vf2",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function sext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nlet sign = (n & (1n << (rs1 - 1n)));\nn = (n ^ sign) - sign;\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/2), vd, vecIntOperationWrapperFactory(sext));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsext.vf4",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 v0.t",
+      "signature": "vsext.vf4,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vsext.vf4 vd vs2 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsext.vf4",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function sext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nlet sign = (n & (1n << (rs1 - 1n)));\nn = (n ^ sign) - sign;\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/4), vd, vecIntOperationWrapperFactory(sext));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsext.vf8",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 v0.t",
+      "signature": "vsext.vf8,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vsext.vf8 vd vs2 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsext.vf8",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function sext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nlet sign = (n & (1n << (rs1 - 1n)));\nn = (n ^ sign) - sign;\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/8), vd, vecIntOperationWrapperFactory(sext));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsext.vf2",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2",
+      "signature": "vsext.vf2,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vsext.vf2 vd vs2",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsext.vf2",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "function sext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nlet sign = (n & (1n << (rs1 - 1n)));\nn = (n ^ sign) - sign;\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/2), sext);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsext.vf4",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2",
+      "signature": "vsext.vf4,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vsext.vf4 vd vs2",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsext.vf4",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "function sext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nlet sign = (n & (1n << (rs1 - 1n)));\nn = (n ^ sign) - sign;\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/4), sext);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsext.vf8",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2",
+      "signature": "vsext.vf8,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vsext.vf8 vd vs2",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsext.vf8",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "function sext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nlet sign = (n & (1n << (rs1 - 1n)));\nn = (n ^ sign) - sign;\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/8), sext);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",

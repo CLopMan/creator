@@ -16,6 +16,20 @@
  * 
  * @returns new vtype value
  */
+
+function rshift(value, shift) {
+  let bigvalue = BigInt(value); 
+  let bigshift = BigInt(shift);
+  return bigvalue >> bigshift;
+}
+
+function lshift(value, shift) {
+  let bigvalue = BigInt(value); 
+  let bigshift = BigInt(shift);
+  console.log("-->", bigvalue, bigshift)
+  return bigvalue << bigshift;
+}
+
 function updateVtype(vma, vta, sew, lmulexp) {
     let vill  = 0;
     switch (sew) {

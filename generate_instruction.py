@@ -1,5 +1,5 @@
 import sys
-file_name = "vzext.v"
+file_name = "vsext.v"
 ext = "ins"
 opcode = "1010111"
 
@@ -79,28 +79,30 @@ def add_fields(name, m):
 
 def add_code(m, fi):
     code_unmask = f"""
-    function zext(vd, vs2, rs1) {{
-        console.log('instruction ->', vd, vs2, rs1);
+    function sext(vd, vs2, rs1) {{
         for (let i = 0; i < vl; ++i) {{
             let n = vs2[i] & ((1n << rs1) - 1n);
+            let sign = (n & (1n << (rs1 - 1n))); 
+            n = (n ^ sign) - sign;
             vd[i] = n;
         }}
         return vd;
     }}
 
-    vd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/{fi}), zext);
+    vd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/{fi}), sext);
     """
 
     code_masked = f"""
-    function zext(vd, vs2, rs1) {{
-        console.log('instruction ->', vd, vs2, rs1);
+    function sext(vd, vs2, rs1) {{
         for (let i = 0; i < vl; ++i) {{
             let n = vs2[i] & ((1n << rs1) - 1n);
+            let sign = (n & (1n << (rs1 - 1n))); 
+            n = (n ^ sign) - sign;
             vd[i] = n;
         }}
         return vd;
     }}
-    vd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/{fi}), vd, vecIntOperationWrapperFactory(zext));
+    vd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/{fi}), vd, vecIntOperationWrapperFactory(sext));
     """ 
 
     if len(m) > 0:
@@ -111,7 +113,7 @@ def add_code(m, fi):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vzext.vf{} vd vs2{}"
+structure = "vsext.vf{} vd vs2{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:
