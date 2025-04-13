@@ -25116,6 +25116,270 @@
       "help": ""
     },
     {
+      "name": "vzext.vf2",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 v0.t",
+      "signature": "vzext.vf2,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vzext.vf2 vd vs2 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vzext.vf2",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/2), vd, vecIntOperationWrapperFactory(zext));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vzext.vf4",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 v0.t",
+      "signature": "vzext.vf4,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vzext.vf4 vd vs2 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vzext.vf4",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/4), vd, vecIntOperationWrapperFactory(zext));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vzext.vf8",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 v0.t",
+      "signature": "vzext.vf8,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vzext.vf8 vd vs2 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vzext.vf8",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/8), vd, vecIntOperationWrapperFactory(zext));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vzext.vf2",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2",
+      "signature": "vzext.vf2,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vzext.vf2 vd vs2",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vzext.vf2",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/2), zext);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vzext.vf4",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2",
+      "signature": "vzext.vf4,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vzext.vf4 vd vs2",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vzext.vf4",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/4), zext);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vzext.vf8",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2",
+      "signature": "vzext.vf8,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vzext.vf8 vd vs2",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vzext.vf8",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        }
+      ],
+      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/8), zext);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",

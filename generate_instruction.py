@@ -1,16 +1,10 @@
 import sys
-file_name = "vrsub.vi"
+file_name = "vzext.v"
 ext = "ins"
 opcode = "1010111"
 
-nf = [_ for _ in range(1, 9, 1)]
-eew = [2**i for i in range(3, 7)]
-eew = [1,]
 
-enum_fields = {
-    "nf" : nf,
-    "eew": eew
-}
+f = [2, 4, 8]
 
 field = """
     {{
@@ -79,31 +73,34 @@ def add_fields(name, m):
     fields = f"""
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
-        {field.format("vs2", "VEC-Reg", 24, 20)},
-        {field.format("inm", "inm-signed", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("vs2", "VEC-Reg", 24, 20)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
-def add_code(m):
+def add_code(m, fi):
     code_unmask = f"""
-    function rsub(vd, vs2, rs1) {{
+    function zext(vd, vs2, rs1) {{
+        console.log('instruction ->', vd, vs2, rs1);
         for (let i = 0; i < vl; ++i) {{
-            vd[i] = rs1 - vs2[i];
+            let n = vs2[i] & ((1n << rs1) - 1n);
+            vd[i] = n;
         }}
         return vd;
     }}
 
-    vd = vecIntOperation(vd, vs2, inm, rsub);
+    vd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/{fi}), zext);
     """
 
     code_masked = f"""
-    function rsub(vd, vs2, rs1) {{
+    function zext(vd, vs2, rs1) {{
+        console.log('instruction ->', vd, vs2, rs1);
         for (let i = 0; i < vl; ++i) {{
-            vd[i] = rs1 - vs2[i];
+            let n = vs2[i] & ((1n << rs1) - 1n);
+            vd[i] = n;
         }}
         return vd;
     }}
-    vd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(rsub));
+    vd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/{fi}), vd, vecIntOperationWrapperFactory(zext));
     """ 
 
     if len(m) > 0:
@@ -114,11 +111,12 @@ def add_code(m):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vrsub.vi vd vs2 inm{}"
+structure = "vzext.vf{} vd vs2{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:
-            sigRaw = structure.format(m) 
+        for fi in f:
+            sigRaw = structure.format(fi, m) 
             sig_list = sigRaw.split()
             name = sig_list[0]
             fields = add_fields(name, m)
@@ -127,11 +125,11 @@ with open(f"{file_name}.{ext}", "w") as fd:
                     name,
                     f"Arithmetic Instruction{" Masked" if len(m) > 0 else ""}",
                     f"{f" ".join([(f"F{i}" if sig_list[i][0] != '(' else f"(F{i})") for i in range(len(sig_list) - (1 if len(m) else 0))])}{m}",
-                    f"{name},VEC-Reg,VEC-Reg,inm-signed{',' if len(m) >0 else ''}{m[1:]}",
+                    f"{name},VEC-Reg,VEC-Reg{',' if len(m) >0 else ''}{m[1:]}",
                     f"{sigRaw}",
                     opcode,
                     fields,
-                    add_code(m)
+                    add_code(m, fi)
                 )
             )
             ins_counter += 1
