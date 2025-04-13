@@ -24,9 +24,8 @@ function rshift(value, shift) {
 }
 
 function lshift(value, shift) {
-  let bigvalue = BigInt(value); 
+  let bigvalue = BigInt(value);
   let bigshift = BigInt(shift);
-  console.log("-->", bigvalue, bigshift)
   return bigvalue << bigshift;
 }
 
@@ -66,7 +65,7 @@ function updateVtype(vma, vta, sew, lmulexp) {
     let vtype_obj = crex_findReg("vtype");
     let vtype = architecture.components[vtype_obj.indexComp].elements[vtype_obj.indexElem];
     let vlmul = lmulexp.toString(2).padStart(3, "0");
-    let vsew = sew.toString(2).padStart(3, "0");;
+    let vsew = sew.toString(2).padStart(3, "0");
     let vill_str= vill.toString(); // 1 o 0
     let vma_str = vma.toString(); // 1 o 0
     let vta_str = vta.toString(); // 1 o 0
