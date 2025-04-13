@@ -1,6 +1,6 @@
 import json
 import re
-file_name = "vand.v"
+file_name = "vand.vx"
 ext = "ins"
 opcode = "1010111"
 
@@ -75,30 +75,30 @@ def add_fields(name, m):
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
         {field.format("vs2", "VEC-Reg", 24, 20)},
-        {field.format("vs1", "VEC-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("rs1", "INT-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
 def add_code(m):
     code_unmask = f"""
-    function and(vd, vs2, vs1) {{
+    function and(vd, vs2, rs1) {{
         for (let i = 0; i < vl; ++i) {{
-            vd[i] = vs1[i] & vs2[i]
+            vd[i] = rs1 & vs2[i]
         }}
         return vd;
     }}
 
-    vd = and(vd, vs2, vs1);
+    vd = vecIntOperation(vd, vs2, rs1, and);
     """
 
     code_masked = f"""
-    function and(vd, vs2, vs1) {{
+    function and(vd, vs2, rs1) {{
         for (let i = 0; i < vl; ++i) {{
-            vd[i] = vs1[i] & vs2[i]
+            vd[i] = rs1 & vs2[i]
         }}
         return vd;
     }}
-    vd = maskedOperation(checkVl(), vs2, vs1, vd, and);
+    vd = maskedOperation(checkVl(), vs2, rs1, vd, vecIntOperationWrapperFactory(vand));
     """ 
 
     if len(m) > 0:
@@ -113,7 +113,7 @@ def parse_fields(fields):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vand.vv vd vs2 vs1{}"
+structure = "vand.vx vd vs2 rs1{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:

@@ -8,3 +8,5 @@ main:
 
     vand.vv v2 v1 v0
     vand.vv v3 v1 v0 v0.t
+    vand.vx v4 v1 t0
+    vand.vx v5 v1 t0 v0.t
