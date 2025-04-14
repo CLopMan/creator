@@ -81,24 +81,24 @@ def add_fields(name, m):
 
 def add_code(m):
     code_unmask = f"""
-    function sll(vd, vs2, rs1) {{
+    function sra(vd, vs2, vs1) {{
         for (let i = 0; i < vl; ++i) {{
-            vd[i] = vs2[i] << vs1[i];
+            vd[i] = capi_ArithRightShift(vs2[i], vs1[i]);
         }}
         return vd;
     }}
 
-    vd = vecIntOperation(vd, vs2, rs1, sll);
+    vd = vecIntOperation(vd, vs2, vs1, sra);
     """
 
     code_masked = f"""
-    function sll(vd, vs2, vs1) {{
+    function sra(vd, vs2, vs1) {{
         for (let i = 0; i < vl; ++i) {{
-            vd[i] = vs2[i] << vs1[i];
+            vd[i] = capi_ArithRightShift(vs2[i], vs1[i]);
         }}
         return vd;
     }}
-    vd = maskedOperation(checkVl(), vs2, vs1, vd, vecIntOperationWrapperFactory(sll));
+    vd = maskedOperation(checkVl(), vs2, vs1, vd, vecIntOperationWrapperFactory(sra));
     """ 
 
     if len(m) > 0:
@@ -113,7 +113,7 @@ def parse_fields(fields):
 #################### ############# ####################
 
 #################### PROGRAM ##### ####################
-structure = "vsll.vv vd vs2 vs1{}"
+structure = "vsra.vv vd vs2 vs1{}"
 ins_counter = 0
 with open(f"{file_name}.{ext}", "w") as fd:
     for m in [" v0.t", ""]:

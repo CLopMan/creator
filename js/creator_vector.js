@@ -16,6 +16,24 @@
  * 
  * @returns new vtype value
  */
+function capi_LogicalRightShift(x, shift) {
+  x = BigInt(x);
+  shift = BigInt(shift);
+  // x could be positive or negative
+  // 1n << checkSEW is always positive => transform x to positive
+  x = x & ((1n << BigInt(checkSEW())) - 1n);
+  return x >> shift;
+}
+
+function capi_ArithRightShift(x, shift) {
+  x = BigInt(x);
+  shift = BigInt(shift);
+  let divisor = 1n << shift;
+  let out = x/divisor;
+
+  if (x > 0) return out;
+  return out < 0 ? out : -1n;
+}
 
 function rshift(value, shift) {
   let bigvalue = BigInt(value); 

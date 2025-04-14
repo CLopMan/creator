@@ -26547,8 +26547,8 @@
       "name": "vsll.vi",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vsll.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
-      "signatureRaw": "vsll.vi vd vs2 inm v0.t",
+      "signature": "vsll.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
+      "signatureRaw": "vsll.vi vd vs2 uinm v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
@@ -26573,8 +26573,8 @@
           "stopbit": 20
         },
         {
-          "name": "inm",
-          "type": "inm-signed",
+          "name": "uinm",
+          "type": "inm-unsigned",
           "startbit": 19,
           "stopbit": 15
         },
@@ -26585,7 +26585,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function sll(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = vs2[i] << rs1;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, inm, vd, vecIntOperationWrapperFactory(sll));",
+      "definition": "function sll(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = vs2[i] << rs1;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, uinm, vd, vecIntOperationWrapperFactory(sll));",
       "separated": [
         false,
         false,
@@ -26600,8 +26600,8 @@
       "name": "vsll.vi",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vsll.vi,VEC-Reg,VEC-Reg,inm-signed",
-      "signatureRaw": "vsll.vi vd vs2 inm",
+      "signature": "vsll.vi,VEC-Reg,VEC-Reg,inm-unsigned",
+      "signatureRaw": "vsll.vi vd vs2 uinm",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
@@ -26626,13 +26626,13 @@
           "stopbit": 20
         },
         {
-          "name": "inm",
-          "type": "inm-signed",
+          "name": "uinm",
+          "type": "inm-unsigned",
           "startbit": 19,
           "stopbit": 15
         }
       ],
-      "definition": "function sll(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = vs2[i] << rs1;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, inm, sll);",
+      "definition": "function sll(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = vs2[i] << rs1;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, uinm, sll);",
       "separated": [
         false,
         false,
@@ -26833,6 +26833,606 @@
         }
       ],
       "definition": "function sll(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = vs2[i] << vs1[i];\n}\nreturn vd;\n}\nvd = sll(vd, vs2, vs1);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsrl.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsrl.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vsrl.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsrl.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function srl(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_LogicalRightShift(vs2[i], vs1[i]);\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, vs1, vd, srl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsrl.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsrl.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vsrl.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsrl.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function srl(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_LogicalRightShift(vs2[i], vs1[i]);\n}\nreturn vd;\n}\nvd = srl(vd, vs2, vs1);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsrl.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsrl.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vsrl.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsrl.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function srl(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_LogicalRightShift(vs2[i], rs1);\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, rs1, vd, vecIntOperationWrapperFactory(srl));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsrl.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsrl.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vsrl.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsrl.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function srl(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_LogicalRightShift(vs2[i], rs1);\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, rs1, srl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsrl.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsrl.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
+      "signatureRaw": "vsrl.vi vd vs2 uinm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsrl.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "uinm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function srl(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_LogicalRightShift(vs2[i], rs1);\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, uinm, vd, vecIntOperationWrapperFactory(srl));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsrl.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsrl.vi,VEC-Reg,VEC-Reg,inm-unsigned",
+      "signatureRaw": "vsrl.vi vd vs2 uinm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsrl.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "uinm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function srl(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_LogicalRightShift(vs2[i], rs1);\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, uinm, srl);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsra.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsra.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
+      "signatureRaw": "vsra.vi vd vs2 uinm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsra.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "uinm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function sra(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_ArithRightShift(vs2[i], rs1);\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, uinm, vd, vecIntOperationWrapperFactory(sra));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsra.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsra.vi,VEC-Reg,VEC-Reg,inm-unsigned",
+      "signatureRaw": "vsra.vi vd vs2 uinm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsra.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "uinm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function sra(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_ArithRightShift(vs2[i], rs1);\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, uinm, sra);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsra.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsra.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vsra.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsra.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function sra(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_ArithRightShift(vs2[i], rs1);\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, rs1, vd, vecIntOperationWrapperFactory(sra));",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsra.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsra.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vsra.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsra.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function sra(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_ArithRightShift(vs2[i], rs1);\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, rs1, sra);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsra.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsra.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vsra.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsra.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function sra(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_ArithRightShift(vs2[i], vs1[i]);\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, vs1, vd, sra);",
+      "separated": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsra.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsra.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vsra.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsra.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function sra(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = capi_ArithRightShift(vs2[i], vs1[i]);\n}\nreturn vd;\n}\nvd = sra(vd, vs2, vs1);",
       "separated": [
         false,
         false,

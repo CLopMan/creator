@@ -7827,6 +7827,24 @@ function get_number_binary (bin)
  * 
  * @returns new vtype value
  */
+function capi_LogicalRightShift(x, shift) {
+  x = BigInt(x);
+  shift = BigInt(shift);
+  // x could be positive or negative
+  // 1n << checkSEW is always positive => transform x to positive
+  x = x & ((1n << BigInt(checkSEW())) - 1n);
+  return x >> shift;
+}
+
+function capi_ArithRightShift(x, shift) {
+  x = BigInt(x);
+  shift = BigInt(shift);
+  let divisor = 1n << shift;
+  let out = x/divisor;
+
+  if (x > 0) return out;
+  return out < 0 ? out : -1n;
+}
 
 function rshift(value, shift) {
   let bigvalue = BigInt(value); 
@@ -7835,9 +7853,8 @@ function rshift(value, shift) {
 }
 
 function lshift(value, shift) {
-  let bigvalue = BigInt(value); 
+  let bigvalue = BigInt(value);
   let bigshift = BigInt(shift);
-  console.log("-->", bigvalue, bigshift)
   return bigvalue << bigshift;
 }
 
@@ -7877,7 +7894,7 @@ function updateVtype(vma, vta, sew, lmulexp) {
     let vtype_obj = crex_findReg("vtype");
     let vtype = architecture.components[vtype_obj.indexComp].elements[vtype_obj.indexElem];
     let vlmul = lmulexp.toString(2).padStart(3, "0");
-    let vsew = sew.toString(2).padStart(3, "0");;
+    let vsew = sew.toString(2).padStart(3, "0");
     let vill_str= vill.toString(); // 1 o 0
     let vma_str = vma.toString(); // 1 o 0
     let vta_str = vta.toString(); // 1 o 0
