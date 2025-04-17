@@ -25151,7 +25151,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/2), vd, vecIntOperationWrapperFactory(zext));",
+      "definition": "function zext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/2), vd, vecIntOperationWrapperFactory(zext));",
       "separated": [
         false,
         false,
@@ -25198,7 +25198,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/4), vd, vecIntOperationWrapperFactory(zext));",
+      "definition": "function zext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/4), vd, vecIntOperationWrapperFactory(zext));",
       "separated": [
         false,
         false,
@@ -25245,7 +25245,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/8), vd, vecIntOperationWrapperFactory(zext));",
+      "definition": "function zext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, Math.floor(checkSEW()/8), vd, vecIntOperationWrapperFactory(zext));",
       "separated": [
         false,
         false,
@@ -25286,7 +25286,7 @@
           "stopbit": 20
         }
       ],
-      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/2), zext);",
+      "definition": "function zext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/2), zext);",
       "separated": [
         false,
         false,
@@ -25327,7 +25327,7 @@
           "stopbit": 20
         }
       ],
-      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/4), zext);",
+      "definition": "function zext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/4), zext);",
       "separated": [
         false,
         false,
@@ -25368,7 +25368,7 @@
           "stopbit": 20
         }
       ],
-      "definition": "function zext(vd, vs2, rs1) {\nconsole.log('instruction ->', vd, vs2, rs1);\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/8), zext);",
+      "definition": "function zext(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nlet n = vs2[i] & ((1n << rs1) - 1n);\nvd[i] = n;\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, Math.floor(checkSEW()/8), zext);",
       "separated": [
         false,
         false,
@@ -27436,6 +27436,1926 @@
       "separated": [
         false,
         false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmseq.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmseq.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmseq.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmseq.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] == vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmseq.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmseq.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmseq.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmseq.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfor (let i = 0; i < vl; ++i) {\nmask_val[i] = (vs2[i] == vs1[i]) ? 1 : 0;\n}\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsne.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsne.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsne.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsne.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] != vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsne.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsne.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsne.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsne.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfor (let i = 0; i < vl; ++i) {\nmask_val[i] = (vs2[i] != vs1[i]) ? 1 : 0;\n}\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vslt.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vslt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vslt.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vslt.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] < vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vslt.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vslt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vslt.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vslt.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfor (let i = 0; i < vl; ++i) {\nmask_val[i] = (vs2[i] < vs1[i]) ? 1 : 0;\n}\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsle.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsle.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vsle.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsle.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] <= vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsle.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsle.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vsle.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsle.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfor (let i = 0; i < vl; ++i) {\nmask_val[i] = (vs2[i] <= vs1[i]) ? 1 : 0;\n}\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgt.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsgt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsgt.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgt.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] > vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgt.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsgt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsgt.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgt.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfor (let i = 0; i < vl; ++i) {\nmask_val[i] = (vs2[i] > vs1[i]) ? 1 : 0;\n}\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmseq.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmseq.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmseq.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmseq.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] == vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmseq.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmseq.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmseq.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmseq.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] == rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsne.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsne.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsne.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsne.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] != vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsne.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsne.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsne.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsne.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] != rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vslt.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vslt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vslt.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vslt.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] < vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vslt.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vslt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vslt.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vslt.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] < rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsle.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsle.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vsle.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsle.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] <= vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsle.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsle.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vsle.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsle.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] <= rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgt.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsgt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsgt.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgt.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] > vs1[i]) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgt.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsgt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsgt.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgt.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] > rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmseq.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmseq.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vmseq.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmseq.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] == rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmseq.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmseq.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmseq.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmseq.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] == rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsne.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsne.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vmsne.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsne.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] != rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsne.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsne.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmsne.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsne.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] != rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vslt.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vslt.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vslt.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vslt.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] < rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vslt.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vslt.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vslt.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vslt.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] < rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsle.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsle.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vsle.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsle.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] <= rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsle.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsle.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vsle.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsle.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] <= rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgt.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsgt.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vmsgt.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgt.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] > rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgt.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsgt.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmsgt.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgt.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] > rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmseq.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmseq.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
+      "signatureRaw": "vmseq.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmseq.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] == rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmseq.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmseq.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vmseq.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmseq.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] == rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsne.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsne.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
+      "signatureRaw": "vmsne.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsne.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] != rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsne.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsne.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vmsne.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsne.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] != rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vslt.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vslt.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
+      "signatureRaw": "vslt.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vslt.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] < rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vslt.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vslt.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vslt.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vslt.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] < rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsle.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vsle.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
+      "signatureRaw": "vsle.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsle.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] <= rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsle.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vsle.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vsle.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsle.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] <= rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgt.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsgt.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
+      "signatureRaw": "vmsgt.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgt.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] > rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgt.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsgt.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vmsgt.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgt.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] > rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
         false,
         false,
         false,

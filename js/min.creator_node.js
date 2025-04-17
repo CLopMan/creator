@@ -7827,6 +7827,8 @@ function get_number_binary (bin)
  * 
  * @returns new vtype value
  */
+
+// operation support to bigInt
 function capi_LogicalRightShift(x, shift) {
   x = BigInt(x);
   shift = BigInt(shift);
@@ -7968,13 +7970,17 @@ function transformVectorToHex( vec, sew, vlen, start, ta, vl=checkVl() ) {
  * @param {*} sew : selected element width
  * @returns array from value
  */
-function valueToArray (value, sew) {
+function valueToArray (value, sew, unsigned=false) {
     const bitMask = BigInt(Math.pow(2, sew)) - BigInt(1);
     //const vlen = architecture.vlen;
     result = [];
     //for (let i = 0; i < vlen/sew; ++i) {
     while(value > 0) {
-      result.push(readTo2C(BigInt(value & bitMask), sew));
+      if (unsigned)
+        result.push(BigInt(value & bitMask));
+      else
+        result.push(readTo2C(BigInt(value & bitMask), sew));
+
       value >>= BigInt(sew);
     }
     //console.log(">>> ", result);
@@ -8118,6 +8124,12 @@ function extractMaskFromV0(vl) {
   return extractMask(v0Reg.indexComp, v0Reg.indexElem, vl)
 }
 
+
+function extractMaskByName(name, vl=checkVl()) {
+  let v0Reg = crex_findReg(name);
+  return extractMask(v0Reg.indexComp, v0Reg.indexElem, vl)
+}
+
 /**
  * Extract the vl least significant bits as a mask 
  * @param {*} indexComp 
@@ -8129,7 +8141,7 @@ function extractMaskFromV0(vl) {
 function extractMask(indexComp, indexElem, vl) {
   let value = BigInt(architecture.components[indexComp].elements[indexElem].value);
   //console.log(">>> VALUE:", value.toString(2));
-  let filter = (BigInt(Math.pow(2, vl)) - BigInt(1));
+  let filter = (1n << BigInt(vl)) - 1n;
   //console.log(">>> filter", filter.toString(2));
   let maskValue = (value & filter);
   //console.log(">>> maskvalue", maskValue.toString(2));
@@ -8140,6 +8152,45 @@ function extractMask(indexComp, indexElem, vl) {
   return mask;
 }
 
+/**
+ * Transform a mask array into a value. Every tail Element is set to one.
+ * @param {*} mask 
+ * @param {*} vl 
+ * @returns mask int value as BigInt 
+ */
+function getMaskValue(mask, vl) {
+  for (let i = 0; i < mask.lenght; ++i) if (mask[i] != 0n && mask[i] != 1n) {
+    console.log("WARNING, NOT MASK VECTOR", i);
+    mask[i] = 1n;
+  }
+  let n_bytes = Math.ceil(vl/8);
+  mask = fixVectorLength(mask, n_bytes*8, 1n);
+  let mask_str = mask.join('');
+  mask_str = reverseStringValues(mask_str, 1);
+  return BigInt('0b' + mask_str);
+}
+
+/**
+ * Writes a mask array (binary array) into a VEC-Reg. Tail elements will be set
+ * to one independently of vta configuration. (std requirement)
+ * @param {int} indexComp 
+ * @param {int} indexElem 
+ * @param {array} mask 
+ * @param {int} vl 
+ * @returns void
+ */
+function writeMask(indexComp, indexElem, mask, vl) {
+  let result = getMaskValue(mask, vl);
+  architecture.components[indexComp].elements[indexElem].value = result;
+}
+
+function writeMaskByName(reg_name, mask) {
+  let reg_obj = crex_findReg(reg_name);
+  writeMask(reg_obj.indexComp, reg_obj.indexElem, mask, checkVl());
+}
+
+
+
 //TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
 /**
  * masked execution of operation. Operation must be a function with this header:
@@ -8148,7 +8199,6 @@ function extractMask(indexComp, indexElem, vl) {
  * @param {*} vs1 
  * @param {*} vs2 
  * @param {*} vd 
- * @param {*} opType arithmetic | store | load
  * @param {*} operation 
  * @param {*} ma 
  * @param {*} mask 
@@ -8156,7 +8206,6 @@ function extractMask(indexComp, indexElem, vl) {
  */
 function maskedOperation (vl, vs1, vs2, vd, operation = null, ma=checkMA(), mask=extractMaskFromV0(vl)) {
   let vecBackup = [...vd]; // copy array
-  //console.log(">>>MASK:", mask)
   if (operation !== null) {
     operation (vd, vs1, vs2)
   }
@@ -8170,7 +8219,7 @@ function applyMask(mask, ma, vd, backup, vl) {
   for (let i = 0; i < vl; ++i) {
     if (!mask[i]) {
       if (ma) {
-        copy[i] = -1n;
+        copy[i] = 0n;
       } else {
         copy[i] = backup[i];
       }
@@ -8448,12 +8497,12 @@ function expandVector(vector, length) {
  * @param {array} vector 
  * @param {*} lenght wanted length
  */
-function fixVectorLength(vector, length) {
+function fixVectorLength(vector, length, pad=0n) {
   //console.log(">>> fix vector length ", vector);
   if (vector.length >= length) { // truncates
     return vector.slice(0, length);
   } else {
-    return vector.concat(new Array(length - vector.length).fill(0n));
+    return vector.concat(new Array(length - vector.length).fill(pad));
   }
 }
 /*
