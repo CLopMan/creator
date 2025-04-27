@@ -27636,18 +27636,18 @@
       "help": ""
     },
     {
-      "name": "vslt.vv",
+      "name": "vmslt.vv",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vslt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
-      "signatureRaw": "vslt.vv vd vs2 vs1 v0.t",
+      "signature": "vmslt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmslt.vv vd vs2 vs1 v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vslt.vv",
+          "name": "vmslt.vv",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -27687,18 +27687,18 @@
       "help": ""
     },
     {
-      "name": "vslt.vv",
+      "name": "vmslt.vv",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vslt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
-      "signatureRaw": "vslt.vv vd vs2 vs1",
+      "signature": "vmslt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmslt.vv vd vs2 vs1",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vslt.vv",
+          "name": "vmslt.vv",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -27732,18 +27732,18 @@
       "help": ""
     },
     {
-      "name": "vsle.vv",
+      "name": "vmsle.vv",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vsle.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
-      "signatureRaw": "vsle.vv vd vs2 vs1 v0.t",
+      "signature": "vmsle.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsle.vv vd vs2 vs1 v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vsle.vv",
+          "name": "vmsle.vv",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -27783,18 +27783,18 @@
       "help": ""
     },
     {
-      "name": "vsle.vv",
+      "name": "vmsle.vv",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vsle.vv,VEC-Reg,VEC-Reg,VEC-Reg",
-      "signatureRaw": "vsle.vv vd vs2 vs1",
+      "signature": "vmsle.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsle.vv vd vs2 vs1",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vsle.vv",
+          "name": "vmsle.vv",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -28116,18 +28116,18 @@
       "help": ""
     },
     {
-      "name": "vslt.vv",
+      "name": "vmslt.vv",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vslt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
-      "signatureRaw": "vslt.vv vd vs2 vs1 v0.t",
+      "signature": "vmslt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmslt.vv vd vs2 vs1 v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vslt.vv",
+          "name": "vmslt.vv",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -28167,18 +28167,18 @@
       "help": ""
     },
     {
-      "name": "vslt.vv",
+      "name": "vmslt.vv",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vslt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
-      "signatureRaw": "vslt.vv vd vs2 vs1",
+      "signature": "vmslt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmslt.vv vd vs2 vs1",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vslt.vv",
+          "name": "vmslt.vv",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -28212,18 +28212,18 @@
       "help": ""
     },
     {
-      "name": "vsle.vv",
+      "name": "vmsle.vv",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vsle.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
-      "signatureRaw": "vsle.vv vd vs2 vs1 v0.t",
+      "signature": "vmsle.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsle.vv vd vs2 vs1 v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vsle.vv",
+          "name": "vmsle.vv",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -28263,18 +28263,18 @@
       "help": ""
     },
     {
-      "name": "vsle.vv",
+      "name": "vmsle.vv",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vsle.vv,VEC-Reg,VEC-Reg,VEC-Reg",
-      "signatureRaw": "vsle.vv vd vs2 vs1",
+      "signature": "vmsle.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsle.vv vd vs2 vs1",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vsle.vv",
+          "name": "vmsle.vv",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -28596,18 +28596,18 @@
       "help": ""
     },
     {
-      "name": "vslt.vx",
+      "name": "vmslt.vx",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vslt.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
-      "signatureRaw": "vslt.vx vd vs2 rs1 v0.t",
+      "signature": "vmslt.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vmslt.vx vd vs2 rs1 v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vslt.vx",
+          "name": "vmslt.vx",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -28647,18 +28647,18 @@
       "help": ""
     },
     {
-      "name": "vslt.vx",
+      "name": "vmslt.vx",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vslt.vx,VEC-Reg,VEC-Reg,INT-Reg",
-      "signatureRaw": "vslt.vx vd vs2 rs1",
+      "signature": "vmslt.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmslt.vx vd vs2 rs1",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vslt.vx",
+          "name": "vmslt.vx",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -28692,18 +28692,18 @@
       "help": ""
     },
     {
-      "name": "vsle.vx",
+      "name": "vmsle.vx",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vsle.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
-      "signatureRaw": "vsle.vx vd vs2 rs1 v0.t",
+      "signature": "vmsle.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vmsle.vx vd vs2 rs1 v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vsle.vx",
+          "name": "vmsle.vx",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -28743,18 +28743,18 @@
       "help": ""
     },
     {
-      "name": "vsle.vx",
+      "name": "vmsle.vx",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vsle.vx,VEC-Reg,VEC-Reg,INT-Reg",
-      "signatureRaw": "vsle.vx vd vs2 rs1",
+      "signature": "vmsle.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmsle.vx vd vs2 rs1",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vsle.vx",
+          "name": "vmsle.vx",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -29076,18 +29076,18 @@
       "help": ""
     },
     {
-      "name": "vslt.vi",
+      "name": "vmslt.vi",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vslt.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
-      "signatureRaw": "vslt.vi vd vs2 inm v0.t",
+      "signature": "vmslt.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
+      "signatureRaw": "vmslt.vi vd vs2 inm v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vslt.vi",
+          "name": "vmslt.vi",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -29127,18 +29127,18 @@
       "help": ""
     },
     {
-      "name": "vslt.vi",
+      "name": "vmslt.vi",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vslt.vi,VEC-Reg,VEC-Reg,inm-signed",
-      "signatureRaw": "vslt.vi vd vs2 inm",
+      "signature": "vmslt.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vmslt.vi vd vs2 inm",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vslt.vi",
+          "name": "vmslt.vi",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -29172,18 +29172,18 @@
       "help": ""
     },
     {
-      "name": "vsle.vi",
+      "name": "vmsle.vi",
       "type": "Arithmetic Instruction Masked",
       "signature_definition": "F0 F1 F2 F3 v0.t",
-      "signature": "vsle.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
-      "signatureRaw": "vsle.vi vd vs2 inm v0.t",
+      "signature": "vmsle.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
+      "signatureRaw": "vmsle.vi vd vs2 inm v0.t",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vsle.vi",
+          "name": "vmsle.vi",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -29223,18 +29223,18 @@
       "help": ""
     },
     {
-      "name": "vsle.vi",
+      "name": "vmsle.vi",
       "type": "Arithmetic Instruction",
       "signature_definition": "F0 F1 F2 F3",
-      "signature": "vsle.vi,VEC-Reg,VEC-Reg,inm-signed",
-      "signatureRaw": "vsle.vi vd vs2 inm",
+      "signature": "vmsle.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vmsle.vi vd vs2 inm",
       "co": "1010111",
       "cop": "000",
       "nwords": 1,
       "clk_cycles": 1,
       "fields": [
         {
-          "name": "vsle.vi",
+          "name": "vmsle.vi",
           "type": "co",
           "startbit": 6,
           "stopbit": 0
@@ -29355,6 +29355,870 @@
         }
       ],
       "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (vs2[i] > rs1) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsltu.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsltu.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsltu.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsltu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsltu.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsltu.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsltu.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsltu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsleu.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsleu.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsleu.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsleu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsleu.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsleu.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsleu.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsleu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgtu.vv",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsgtu.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vmsgtu.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgtu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgtu.vv",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsgtu.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsgtu.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgtu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsltu.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsltu.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vmsltu.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsltu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsltu.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsltu.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmsltu.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsltu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsleu.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsleu.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vmsleu.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsleu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsleu.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsleu.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmsleu.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsleu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgtu.vx",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsgtu.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vmsgtu.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgtu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgtu.vx",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsgtu.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmsgtu.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgtu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsltu.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsltu.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
+      "signatureRaw": "vmsltu.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsltu.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsltu.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsltu.vi,VEC-Reg,VEC-Reg,inm-unsigned",
+      "signatureRaw": "vmsltu.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsltu.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsleu.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsleu.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
+      "signatureRaw": "vmsleu.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsleu.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsleu.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsleu.vi,VEC-Reg,VEC-Reg,inm-unsigned",
+      "signatureRaw": "vmsleu.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsleu.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgtu.vi",
+      "type": "Arithmetic Instruction Masked",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vmsgtu.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
+      "signatureRaw": "vmsgtu.vi vd vs2 inm v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgtu.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsgtu.vi",
+      "type": "Arithmetic Instruction",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmsgtu.vi,VEC-Reg,VEC-Reg,inm-unsigned",
+      "signatureRaw": "vmsgtu.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsgtu.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-unsigned",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,

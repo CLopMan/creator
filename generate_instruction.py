@@ -5,11 +5,9 @@ ext = "ins"
 opcode = "1010111"
 
 operations = {
-    "vmseq" : "==",
-    "vmsne" : "!=",
-    "vslt"  : "<",
-    "vsle"  : "<=",
-    "vmsgt"  : ">"
+    "vmsltu"  : "<",
+    "vmsleu"  : "<=",
+    "vmsgtu"  : ">"
 }
 
 
@@ -83,32 +81,32 @@ def add_fields(name, m):
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
         {field.format("vs2", "VEC-Reg", 24, 20)},
-        {field.format("inm", "inm-signed", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("vs1", "VEC-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
 def add_code(m, op):
     code_unmask = f"""
     let mask_val = extractMaskByName(vd_name);
-    function comparison(vd, vs2, rs1) {{
+    function comparison(vd, vs2, vs1) {{
         for (let i = 0; i < vl; ++i) {{
-            vd[i] = (vs2[i] {op} rs1) ? 1 : 0;
+            vd[i] = (capi_LogicalRightShift(vs2[i], 0) {op} capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;
         }}
         return vd;
     }}
-    mask_val = vecIntOperation(mask_val, vs2, inm, comparison);
+    mask_val = comparison(vd, vs2, vs1);
     writeMaskByName(vd_name, mask_val);
     """
 
     code_masked = f"""
     let mask_val = extractMaskByName(vd_name);
-    function comparison(vd, vs2, rs1) {{
+    function comparison(vd, vs2, vs1) {{
         for (let i = 0; i < vl; ++i) {{
-            vd[i] = (vs2[i] {op} rs1) ? 1 : 0;
+            vd[i] = (capi_LogicalRightShift(vs2[i], 0) {op} capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;
         }}
         return vd;
     }}
-    mask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));
+    mask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);
     writeMaskByName(vd_name, mask_val);
     """ 
 
@@ -128,7 +126,7 @@ def parse_fields(fields):
 with open(f"{file_name}.{ext}", "w") as fd:
     ins_counter = 0
     for ins in operations.keys():
-        structure = "{}.vi vd vs2 inm{}"
+        structure = "{}.vv vd vs2 vs1{}"
         for m in [" v0.t", ""]:
                 sigRaw = structure.format(ins, m) 
                 sig_list = sigRaw.split()
