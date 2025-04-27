@@ -34,6 +34,7 @@
                     register_file_types:    [
                                               { text: 'Integer',        value: 'int_registers'  },
                                               { text: 'Floating point', value: 'fp_registers'   },
+                                              //{ text: 'Vector',         value: 'vec_registers'   },
                                               { text: 'Control',        value: 'ctrl_registers' }
                                             ],
 

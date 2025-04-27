@@ -45,6 +45,7 @@
   methods:    {
                 change_data_view(e)
                 {
+                  console.log("creator_data_view:", e)
                   app._data.data_mode = e; //TODO: vue bidirectional updates
 
                   if(e == "int_registers")
@@ -59,6 +60,7 @@
                   {
                     this.current_reg_type = "vec_registers"
                   }
+                  console.log("uielto_data_view (updated value):", app._data.data_mode);
 
                   /* Google Analytics */
                   creator_ga('send', 'event', 'data', 'data.view', 'data.view.' + app._data.data_mode);

@@ -50,8 +50,9 @@
                             if ((((register.value).toString(2)).padStart(register.nbits, '0')).charAt(0) == 0){
                               ret = (register.value).toString(10);
                             }
-                          }
-                          else {
+                          } else if(architecture.components[this._props.component.index].type == "vec_registers") {
+                              ret = fixVectorLength(valueToArray(register.value, checkSEW()), register.nbits/checkSEW());
+                          } else {
                             // ret = parseInt(register.value.toString(), 10) >> 0;
                             if (architecture.components[this._props.component.index].double_precision === false) {
                               ret = float2int_v2 (bi_BigIntTofloat(register.value));
@@ -65,6 +66,8 @@
                         case "unsigned":
                           if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
                             ret = parseInt(register.value.toString(10)) >>> 0;
+                          } else if(architecture.components[this._props.component.index].type == "vec_registers") {
+                              ret = fixVectorLength(valueToArray(register.value, checkSEW(), true), register.nbits/checkSEW());
                           }
                           else {
                             //ret = parseInt(register.value.toString(), 10) >>> 0;
@@ -96,7 +99,7 @@
                           break;
 
                         case "hex":
-                          if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {
+                          if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers" || architecture.components[this._props.component.index].type == "vec_registers") {
                             ret = (((register.value).toString(16)).padStart(register.nbits/4, "0")).toUpperCase();
                           }
                           else {
@@ -126,7 +129,11 @@
                     show_value_truncate ( register ) {
                       var ret = this.show_value(register).toString();
                       if (ret.length > 8){
-                        ret = ret.slice(0,8) + "...";
+                        if (architecture.components[this._props.component.index].type == "vec_registers" && this.value_representation == "hex") {
+                          ret = "..." + ret.slice(ret.length - 8, ret.length);
+                        } else {
+                          ret = ret.slice(0,8) + "...";
+                        } 
                       }
                       return ret;
                     },

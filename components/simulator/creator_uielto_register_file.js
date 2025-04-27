@@ -45,6 +45,11 @@
                     { text: 'IEEE 754 (32 bits)', value: 'ieee32'},
                     { text: 'IEEE 754 (64 bits)', value: 'ieee64'},
                   ],
+                  reg_representation_vec: [
+                    { text: 'Signed',       value: 'signed' },
+                    { text: 'Unsigned',     value: 'unsigned' },
+                    { text: 'Hex',          value: 'hex' }
+                  ],
 
                   //Register name representation
                   reg_name_representation: "all",
@@ -57,30 +62,46 @@
               },
 
   methods:    {
+                wrapper_updateVtype() {
+                  updateVtype(checkMA(), checkTA(), checkSEW(), checkLMULEXP());
+                },
                 mk_reg_representation_options(){
-                  if (this._props.data_mode == 'int_registers' || this._props.data_mode == 'ctrl_registers'){
-                    if (this._props.data_mode != this.local_data_mode) {
+                  console.log("registerfile: mk_reg_representation:", this.data_mode);
+                  if (this.data_mode == 'int_registers' || this.data_mode == 'ctrl_registers'){
+                    if (this.data_mode != this.local_data_mode) {
                       this.reg_representation = "signed";
                       this.local_data_mode = this._props.data_mode;
                     }
                     return this.reg_representation_options_int;
                   }
-                  else if (this._props.data_mode = "fp_registers"){
-                    if (this._props.data_mode != this.local_data_mode) {
+                  else if (this.data_mode == "fp_registers"){
+                    if (this.data_mode != this.local_data_mode) {
                       this.reg_representation = "ieee32";
                       this.local_data_mode = this._props.data_mode;
                     }
                     return this.reg_representation_options_fp;
                   }
-                  else { // vec registers represented in hex
-                    if (this._props.data_mode != this.local_data_mode) {
+                  else if (this.data_mode == "vec_registers") { // vec registers represented in hex
+                    console.log("register_file: representation vector")
+                    if (this.data_mode != this.local_data_mode) {
                       this.reg_representation = "hex";
                       this.local_data_mode = this._props.data_mode;
                     }
+                    return this.reg_representation_vec;
 
                   }
                 },
               },
+  watch:{
+    data_mode(newVal, oldVal) {
+      console.log("data updated", oldVal, "to", newVal); 
+      
+    }
+  },
+
+  mounted() {
+    this.wrapper_updateVtype();
+  },
 
   template:   ' <div>' +
               '   <b-container fluid align-h="between" class="mx-0 my-3 px-2">' +
