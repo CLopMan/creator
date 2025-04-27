@@ -130,7 +130,7 @@
                       var ret = this.show_value(register).toString();
                       if (ret.length > 8){
                         if (architecture.components[this._props.component.index].type == "vec_registers" && this.value_representation == "hex") {
-                          ret = "..." + ret.slice(ret.length - 8, ret.length);
+                          ret = "..." + ret.slice(ret.length - 8, ret.length); // vec extension stores the first values in the least significant bits. So the least significant bies are showed when hex representation.
                         } else {
                           ret = ret.slice(0,8) + "...";
                         } 
