@@ -29,7 +29,8 @@
                       component:              { type: Object, required: true },
                       register:               { type: Object, required: true },
                       name_representation:    { type: String, required: true },
-                      value_representation:   { type: String, required: true }
+                      value_representation:   { type: String, required: true },
+                      value_array:            { type: Array , required: false}
                     },
 
         methods:    {
@@ -40,7 +41,11 @@
 
                     show_value (register){
                       var ret = 0;
-
+                      if(architecture.components[this._props.component.index].type == "vec_registers") {
+                        register.value_array = fixVectorLength(valueToArray(register.value, checkSEW()), register.nbits/checkSEW()); 
+                      } else {
+                        register.value_array = [];
+                      }
                       switch(this.value_representation){
                         case "signed":
                           if (architecture.components[this._props.component.index].type == "ctrl_registers" || architecture.components[this._props.component.index].type == "int_registers") {

@@ -34,18 +34,47 @@
                 return {
                   /*Register form*/
                   newValue: '',
+                  selectedFormat: 'signed',
                   precision: "true"
                 }
               },
+  computed: {
+    isVecRegister() {
+      return architecture.components[this.component.index].type === "vec_registers";
+    }
+  },
 
   methods:    {
                 closePopover(){
                   this.$root.$emit('bv::hide::popover')
                 },
-
+                checkSEW_wrapper() {
+                  return checkSEW();
+                },
+                checkVL_wrapper() {
+                  return checkVl();
+                },
                 //Write the register value in the specified format
-                show_value (register, view){
+                show_value (register, view, index=null){
                   var ret = 0;
+                  if (architecture.components[this._props.component.index].type == "vec_registers") { 
+                    let value = register
+                    let value_unsigned = value & ((1n << BigInt(this.checkSEW_wrapper())) - 1n);
+                    switch (view){
+                      case "hex":
+                        return "0x" + value_unsigned.toString(16).padStart(this.checkSEW_wrapper()/4, "0").toUpperCase();
+                      
+                      case "signed":
+                        return value;
+
+                      case "unsigned":
+                        return value_unsigned;
+
+                      case "bin":
+                        return value_unsigned.toString(2).padStart(this.checkSEW_wrapper(), "0");
+                    }
+
+                  }
 
                   switch(view){
                     case "hex":
@@ -217,7 +246,7 @@
 
 template:     '<b-popover :target="target" ' +
               '           triggers="click blur" ' +
-              '           class="popover">' +
+              '           class="popover custom-popover">' +
               '  <template v-slot:title>' +
               '    <b-button @click="closePopover" class="close" aria-label="Close">' +
               '      <span class="d-inline-block" aria-hidden="true">&times;</span>' +
@@ -225,6 +254,7 @@ template:     '<b-popover :target="target" ' +
               '    {{register.name.join(\' | \')}}' +
               '  </template>' +
               '' +
+              '  <template v-if="!isVecRegister">' +
               '  <table class="table table-bordered table-sm popoverText">' +
               '    <tbody>' +
               '      <tr>' +
@@ -317,6 +347,45 @@ template:     '<b-popover :target="target" ' +
               ' ' +
               '     </b-row>' +
               '   </b-container>' +
+              ' </template>' +
+              ' <template v-else>' +
+              '  <div class="popoverText">' +
+              '      <div class="d-flex justify-content-between align-items-center mb-2">' +
+              '        <b-row class="mb-2">' +
+              '          <b-col mr-2 style="white-space: nowrap; overflow:hidden">' +
+              '          <strong>SEW:</strong> {{ checkSEW_wrapper() }}' +
+              '          </b-col>' +
+              '          <b-col class="ml-2">' +
+              '          <strong>VL:</strong> {{ checkVL_wrapper() }}' +
+              '          </b-col>' +
+              '        </b-row>' +
+              '      </div>' +
+              '      <div style="max-height: 200px; min-width: 200px; overflow-y: auto;">' +
+              '        <table class="table table-sm table-bordered mb-0">' +
+              '          <thead>' +
+              '            <tr>' +
+              '              <th>#</th>' +
+              '              <th>Value</th>' +
+              '            </tr>' +
+              '          </thead>' +
+              '          <tbody>' +
+              '            <tr v-for="(value, index) in register.value_array" :key="index" :class="{\'inactive-row\' : index >= checkVL_wrapper()}">' +
+              '              <td>{{ index }}</td>' +
+              '              <td>{{ show_value(value, selectedFormat) }}</td>' +
+              '            </tr>' +
+              '          </tbody>' +
+              '        </table>' +
+              '      </div>' +
+              '       <b-container fluid class="mt-2">' +
+              '         <b-button-group size="sm">' +
+              '           <b-button class="btn btn-online-secondary btn-sm" :variant="selectedFormat === \'signed\' ?   \'primary\' : \'secondary\'" @click="selectedFormat = \'signed\'">Signed</b-button>' +
+              '           <b-button class="btn btn-online-secondary btn-sm" :variant="selectedFormat === \'unsigned\' ? \'primary\' : \'secondary\'" @click="selectedFormat = \'unsigned\'">Unsigned</b-button>' +
+              '           <b-button class="btn btn-online-secondary btn-sm" :variant="selectedFormat === \'hex\' ?      \'primary\' : \'secondary\'" @click="selectedFormat = \'hex\'">Hex</b-button>' +
+              '           <b-button class="btn btn-online-secondary btn-sm" :variant="selectedFormat === \'bin\' ?      \'primary\' : \'secondary\'" @click="selectedFormat = \'bin\'">Bin</b-button>' +
+              '         </b-button-group>' +
+              '       </b-container>' +
+              '    </div> ' +
+              ' </template>' +
               '</b-popover>'
 
   }

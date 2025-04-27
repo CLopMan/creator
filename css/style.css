@@ -500,3 +500,10 @@ h2 {
     top: -3.2vw;
   }
 }
+.custom-popover {
+  min-width: 0.12vw;
+}
+
+.inactive-row {
+  background-color: #c4c4c4;
+}
