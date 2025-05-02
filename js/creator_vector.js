@@ -50,6 +50,8 @@ function lshift(value, shift) {
 }
 
 function updateVtype(vma, vta, sew, lmulexp) {
+    let vtype_obj = crex_findReg("vtype");
+    if (vtype_obj.match == 0) return;
     let vill  = 0;
     switch (sew) {
         case 8:
@@ -82,7 +84,6 @@ function updateVtype(vma, vta, sew, lmulexp) {
         //console.log("WARN! Not valid value for lmulexp:", lmulexp);
     }
     if (lmulexp < 0) {lmulexp = Math.pow(2, 3) + lmulexp;} // CA2 negative
-    let vtype_obj = crex_findReg("vtype");
     let vtype = architecture.components[vtype_obj.indexComp].elements[vtype_obj.indexElem];
     let vlmul = lmulexp.toString(2).padStart(3, "0");
     let vsew = sew.toString(2).padStart(3, "0");
@@ -631,13 +632,10 @@ function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
 
 //TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
 function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
-  //console.log(">>> vec int", vd, vs1, rs1, sew);
+  console.log(">>> vec int", vd, vs1, rs1, sew);
   let rs1_corrected = BigInt(rs1); // allows sew = 64
-  //console.log(">>> rs1:", rs1_corrected);
-  let mask = BigInt(Math.pow(2, sew)) - BigInt(1);
-  //console.log(">>> mask", mask);
+  let mask = (1n << BigInt(sew)) - BigInt(1);
 
-  //console.log(">>> checkpoint", rs1_corrected & mask);
   return operation (vd, vs1, rs1_corrected & mask);
   
 
@@ -693,4 +691,8 @@ function fixVectorLength(vector, length, pad=0n) {
   } else {
     return vector.concat(new Array(length - vector.length).fill(pad));
   }
+}
+
+BigInt.prototype.toJSON = function() {
+  return this.toString();
 }

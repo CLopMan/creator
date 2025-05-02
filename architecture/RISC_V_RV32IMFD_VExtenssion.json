@@ -36,7 +36,7 @@
   "vlen": 128,
   "lmulExp": 0,
   "elen": 64,
-  "sew": 8,
+  "sew": 64,
   "ma": 0,
   "ta": 1,
   "components": [
@@ -119,10 +119,10 @@
           ],
           "nbits": "32",
           "value": 2,
-          "default_value": 8,
+          "default_value": 2,
           "properties": [
             "read",
-            "ignore_write"
+            "write"
           ]
         },
         {
@@ -154,14 +154,14 @@
     {
       "name": "VEC registers",
       "type": "vec_registers",
-      "double_precission": false,
+      "double_precision": false,
       "elements": [
         {
           "name": [
             "v0"
           ],
           "nbits": 128,
-          "value": 4035,
+          "value": 0,
           "default_value": 0,
           "properties": [
             "write",
@@ -1908,7 +1908,7 @@
           "stopbit": 20
         }
       ],
-      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {\n vd[i] = vs2[i] + inm;}\n return vd;}\nvecIntOperation(vd, vs2, inm, vaddVI);",
+      "definition": "function vaddVI(vd, vs2, inm) {for (let i = 0; i < checkVl(); ++i) {\n console.log(i, vs2[i], inm, checkVl());\nvd[i] = vs2[i] + inm;}\n return vd;}\nvd = vecIntOperation(vd, vs2, inm, vaddVI);",
       "separated": [
         false,
         false,
