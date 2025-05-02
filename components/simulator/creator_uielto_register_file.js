@@ -66,7 +66,7 @@
                   updateVtype(checkMA(), checkTA(), checkSEW(), checkLMULEXP());
                 },
                 mk_reg_representation_options(){
-                  console.log("registerfile: mk_reg_representation:", this.data_mode);
+                  //console.log("registerfile: mk_reg_representation:", this.data_mode);
                   if (this.data_mode == 'int_registers' || this.data_mode == 'ctrl_registers'){
                     if (this.data_mode != this.local_data_mode) {
                       this.reg_representation = "signed";
@@ -82,7 +82,7 @@
                     return this.reg_representation_options_fp;
                   }
                   else if (this.data_mode == "vec_registers") { // vec registers represented in hex
-                    console.log("register_file: representation vector")
+                    //console.log("register_file: representation vector")
                     if (this.data_mode != this.local_data_mode) {
                       this.reg_representation = "hex";
                       this.local_data_mode = this._props.data_mode;
@@ -92,12 +92,6 @@
                   }
                 },
               },
-  watch:{
-    data_mode(newVal, oldVal) {
-      console.log("data updated", oldVal, "to", newVal); 
-      
-    }
-  },
 
   mounted() {
     this.wrapper_updateVtype();

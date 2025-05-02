@@ -632,7 +632,7 @@ function vecIntOperationWrapperFactory(operation, sew=checkSEW()) {
 
 //TODO: CHANGE NAME TO ALIGN WITH API DEFINITION (CAPI.MD)
 function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
-  console.log(">>> vec int", vd, vs1, rs1, sew);
+  //console.log(">>> vec int", vd, vs1, rs1, sew);
   let rs1_corrected = BigInt(rs1); // allows sew = 64
   let mask = (1n << BigInt(sew)) - BigInt(1);
 
