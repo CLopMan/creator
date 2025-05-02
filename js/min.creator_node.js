@@ -7553,6 +7553,7 @@ var stats = [
               { type: 'Syscall', number_instructions: 0, percentage: 0},
               { type: 'Transfer between registers', number_instructions: 0, percentage: 0},
               { type: 'Unconditional bifurcation', number_instructions: 0, percentage: 0},
+              { type: 'Vector arithmetic', number_instructions: 0, percentage: 0},
             ];
 
 
@@ -7618,6 +7619,7 @@ var clk_cycles =  [
                     { type: 'Syscall', clk_cycles: 0, percentage: 0},
                     { type: 'Transfer between registers', clk_cycles: 0, percentage: 0},
                     { type: 'Unconditional bifurcation', clk_cycles: 0, percentage: 0},
+                    { type: 'Vector arithmetic', clk_cycles: 0, percentage: 0},
                   ];
 
 function clk_cycles_update ( type )

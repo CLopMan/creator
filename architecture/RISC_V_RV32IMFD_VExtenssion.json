@@ -1421,7 +1421,7 @@
   "instructions": [
     {
       "name": "vadd.vv",
-      "type": "Vector arithmetic masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1 v0.t",
       "signature": "vadd.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vadd.vv vd vs2 vs1 v0.t",
@@ -1521,7 +1521,7 @@
     },
     {
       "name": "vsub.vv",
-      "type": "Vector arithmetic masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1 v0.t",
       "signature": "vsub.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vsub.vv vd vs2 vs1 v0.t",
@@ -1621,7 +1621,7 @@
     },
     {
       "name": "vadd.vx",
-      "type": "Vector arithmetic masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1 v0.t",
       "signature": "vadd.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vadd.vx vd vs2 rs1 v0.t",
@@ -1721,7 +1721,7 @@
     },
     {
       "name": "vsub.vx",
-      "type": "Vector arithmetic masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1 v0.t",
       "signature": "vsub.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vsub.vx vd vs2 rs1 v0.t",
@@ -1821,7 +1821,7 @@
     },
     {
       "name": "vadd.vi",
-      "type": "Vector arithmetic masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1 v0.t",
       "signature": "vadd.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vadd.vi vd vs2 inm v0.t",
@@ -1921,7 +1921,7 @@
     },
     {
       "name": "vsub.vi",
-      "type": "Vector arithmetic masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F3 F2 F1 v0.t",
       "signature": "vsub.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vsub.vi vd vs2 inm v0.t",
@@ -2021,7 +2021,7 @@
     },
     {
       "name": "vse8.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F2 F1 (F3) v0.t",
       "signature": "vse8.v,VEC-Reg,inm-unsigned,(INT-Reg) v0.t",
       "signatureRaw": "vse8.v vd inm (rs1) v0.t",
@@ -2073,7 +2073,7 @@
     },
     {
       "name": "vrsub.vx",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vrsub.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vrsub.vx vd vs2 rs1 v0.t",
@@ -2126,7 +2126,7 @@
     },
     {
       "name": "vrsub.vx",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vrsub.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vrsub.vx vd vs2 rs1",
@@ -2219,7 +2219,7 @@
     },
     {
       "name": "vse16.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F2 F1 (F3) v0.t",
       "signature": "vse16.v,VEC-Reg,inm-unsigned,(INT-Reg) v0.t",
       "signatureRaw": "vse16.v vd inm (rs1) v0.t",
@@ -2317,7 +2317,7 @@
     },
     {
       "name": "vse32.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F2 F1 (F3) v0.t",
       "signature": "vse32.v,VEC-Reg,inm-unsigned,(INT-Reg) v0.t",
       "signatureRaw": "vse32.v vd inm (rs1) v0.t",
@@ -2415,7 +2415,7 @@
     },
     {
       "name": "vse64.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F2 F1 (F3) v0.t",
       "signature": "vse64.v,VEC-Reg,inm-unsigned,(INT-Reg) v0.t",
       "signatureRaw": "vse64.v vd inm (rs1) v0.t",
@@ -2513,7 +2513,7 @@
     },
     {
       "name": "vle8.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 F1 (F2) v0.t",
       "signature": "vle8.v,VEC-Reg,inm-unsigned,(INT-Reg),v0.t",
       "signatureRaw": "vle8.v rd inm (rs1) v0.t",
@@ -2625,7 +2625,7 @@
     },
     {
       "name": "vle16.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 F1 (F2) v0.t",
       "signature": "vle16.v,VEC-Reg,inm-unsigned,(INT-Reg),v0.t",
       "signatureRaw": "vle16.v rd inm (rs1) v0.t",
@@ -2737,7 +2737,7 @@
     },
     {
       "name": "vle32.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 F1 (F2) v0.t",
       "signature": "vle32.v,VEC-Reg,inm-unsigned,(INT-Reg),v0.t",
       "signatureRaw": "vle32.v rd inm (rs1) v0.t",
@@ -2849,7 +2849,7 @@
     },
     {
       "name": "vle64.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 F1 (F2) v0.t",
       "signature": "vle64.v,VEC-Reg,inm-unsigned,(INT-Reg),v0.t",
       "signatureRaw": "vle64.v rd inm (rs1) v0.t",
@@ -2961,7 +2961,7 @@
     },
     {
       "name": "vlse8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlse8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vlse8.v vd (rs1) rs2 v0.t",
@@ -3014,7 +3014,7 @@
     },
     {
       "name": "vlse16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlse16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vlse16.v vd (rs1) rs2 v0.t",
@@ -3067,7 +3067,7 @@
     },
     {
       "name": "vlse32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlse32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vlse32.v vd (rs1) rs2 v0.t",
@@ -3120,7 +3120,7 @@
     },
     {
       "name": "vlse64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlse64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vlse64.v vd (rs1) rs2 v0.t",
@@ -3173,7 +3173,7 @@
     },
     {
       "name": "vlse8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlse8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vlse8.v vd (rs1) rs2",
@@ -3220,7 +3220,7 @@
     },
     {
       "name": "vlse16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlse16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vlse16.v vd (rs1) rs2",
@@ -3267,7 +3267,7 @@
     },
     {
       "name": "vlse32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlse32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vlse32.v vd (rs1) rs2",
@@ -3314,7 +3314,7 @@
     },
     {
       "name": "vlse64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlse64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vlse64.v vd (rs1) rs2",
@@ -3361,7 +3361,7 @@
     },
     {
       "name": "vsse8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsse8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsse8.v vs3 (rs1) rs2 v0.t",
@@ -3414,7 +3414,7 @@
     },
     {
       "name": "vsse16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsse16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsse16.v vs3 (rs1) rs2 v0.t",
@@ -3467,7 +3467,7 @@
     },
     {
       "name": "vsse32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsse32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsse32.v vs3 (rs1) rs2 v0.t",
@@ -3520,7 +3520,7 @@
     },
     {
       "name": "vsse64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsse64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsse64.v vs3 (rs1) rs2 v0.t",
@@ -3573,7 +3573,7 @@
     },
     {
       "name": "vsse8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsse8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsse8.v vs3 (rs1) rs2",
@@ -3620,7 +3620,7 @@
     },
     {
       "name": "vsse16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsse16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsse16.v vs3 (rs1) rs2",
@@ -3667,7 +3667,7 @@
     },
     {
       "name": "vsse32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsse32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsse32.v vs3 (rs1) rs2",
@@ -3714,7 +3714,7 @@
     },
     {
       "name": "vsse64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsse64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsse64.v vs3 (rs1) rs2",
@@ -3761,7 +3761,7 @@
     },
     {
       "name": "vloxei8.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
       "signature": "vloxei8.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
       "signatureRaw": "vloxei8.v vd (rs1) vs2 v0.t",
@@ -3820,7 +3820,7 @@
     },
     {
       "name": "vloxei16.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
       "signature": "vloxei16.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
       "signatureRaw": "vloxei16.v vd (rs1) vs2 v0.t",
@@ -3879,7 +3879,7 @@
     },
     {
       "name": "vloxei32.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
       "signature": "vloxei32.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
       "signatureRaw": "vloxei32.v vd (rs1) vs2 v0.t",
@@ -3938,7 +3938,7 @@
     },
     {
       "name": "vloxei64.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
       "signature": "vloxei64.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
       "signatureRaw": "vloxei64.v vd (rs1) vs2 v0.t",
@@ -4209,7 +4209,7 @@
     },
     {
       "name": "vsoxei8.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
       "signature": "vsoxei8.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
       "signatureRaw": "vsoxei8.v vd (rs1) vs2 v0.t",
@@ -4268,7 +4268,7 @@
     },
     {
       "name": "vsoxei16.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
       "signature": "vsoxei16.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
       "signatureRaw": "vsoxei16.v vd (rs1) vs2 v0.t",
@@ -4327,7 +4327,7 @@
     },
     {
       "name": "vsoxei32.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
       "signature": "vsoxei32.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
       "signatureRaw": "vsoxei32.v vd (rs1) vs2 v0.t",
@@ -4386,7 +4386,7 @@
     },
     {
       "name": "vsoxei64.v",
-      "type": "Memory access masked",
+      "type": "Memory access",
       "signature_definition": "F0 F3 (F2) F1 v0.t",
       "signature": "vsoxei64.v,VEC-Reg,(INT-Reg),VEC-Reg v0.t",
       "signatureRaw": "vsoxei64.v vd (rs1) vs2 v0.t",
@@ -4657,7 +4657,7 @@
     },
     {
       "name": "vlseg1e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg1e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg1e8.v vd (rs1) v0.t",
@@ -4704,7 +4704,7 @@
     },
     {
       "name": "vlseg1e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg1e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg1e16.v vd (rs1) v0.t",
@@ -4751,7 +4751,7 @@
     },
     {
       "name": "vlseg1e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg1e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg1e32.v vd (rs1) v0.t",
@@ -4798,7 +4798,7 @@
     },
     {
       "name": "vlseg1e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg1e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg1e64.v vd (rs1) v0.t",
@@ -4845,7 +4845,7 @@
     },
     {
       "name": "vlseg2e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg2e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg2e8.v vd (rs1) v0.t",
@@ -4892,7 +4892,7 @@
     },
     {
       "name": "vlseg2e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg2e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg2e16.v vd (rs1) v0.t",
@@ -4939,7 +4939,7 @@
     },
     {
       "name": "vlseg2e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg2e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg2e32.v vd (rs1) v0.t",
@@ -4986,7 +4986,7 @@
     },
     {
       "name": "vlseg2e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg2e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg2e64.v vd (rs1) v0.t",
@@ -5033,7 +5033,7 @@
     },
     {
       "name": "vlseg3e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg3e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg3e8.v vd (rs1) v0.t",
@@ -5080,7 +5080,7 @@
     },
     {
       "name": "vlseg3e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg3e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg3e16.v vd (rs1) v0.t",
@@ -5127,7 +5127,7 @@
     },
     {
       "name": "vlseg3e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg3e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg3e32.v vd (rs1) v0.t",
@@ -5174,7 +5174,7 @@
     },
     {
       "name": "vlseg3e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg3e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg3e64.v vd (rs1) v0.t",
@@ -5221,7 +5221,7 @@
     },
     {
       "name": "vlseg4e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg4e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg4e8.v vd (rs1) v0.t",
@@ -5268,7 +5268,7 @@
     },
     {
       "name": "vlseg4e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg4e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg4e16.v vd (rs1) v0.t",
@@ -5315,7 +5315,7 @@
     },
     {
       "name": "vlseg4e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg4e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg4e32.v vd (rs1) v0.t",
@@ -5362,7 +5362,7 @@
     },
     {
       "name": "vlseg4e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg4e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg4e64.v vd (rs1) v0.t",
@@ -5409,7 +5409,7 @@
     },
     {
       "name": "vlseg5e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg5e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg5e8.v vd (rs1) v0.t",
@@ -5456,7 +5456,7 @@
     },
     {
       "name": "vlseg5e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg5e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg5e16.v vd (rs1) v0.t",
@@ -5503,7 +5503,7 @@
     },
     {
       "name": "vlseg5e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg5e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg5e32.v vd (rs1) v0.t",
@@ -5550,7 +5550,7 @@
     },
     {
       "name": "vlseg5e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg5e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg5e64.v vd (rs1) v0.t",
@@ -5597,7 +5597,7 @@
     },
     {
       "name": "vlseg6e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg6e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg6e8.v vd (rs1) v0.t",
@@ -5644,7 +5644,7 @@
     },
     {
       "name": "vlseg6e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg6e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg6e16.v vd (rs1) v0.t",
@@ -5691,7 +5691,7 @@
     },
     {
       "name": "vlseg6e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg6e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg6e32.v vd (rs1) v0.t",
@@ -5738,7 +5738,7 @@
     },
     {
       "name": "vlseg6e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg6e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg6e64.v vd (rs1) v0.t",
@@ -5785,7 +5785,7 @@
     },
     {
       "name": "vlseg7e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg7e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg7e8.v vd (rs1) v0.t",
@@ -5832,7 +5832,7 @@
     },
     {
       "name": "vlseg7e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg7e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg7e16.v vd (rs1) v0.t",
@@ -5879,7 +5879,7 @@
     },
     {
       "name": "vlseg7e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg7e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg7e32.v vd (rs1) v0.t",
@@ -5926,7 +5926,7 @@
     },
     {
       "name": "vlseg7e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg7e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg7e64.v vd (rs1) v0.t",
@@ -5973,7 +5973,7 @@
     },
     {
       "name": "vlseg8e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg8e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg8e8.v vd (rs1) v0.t",
@@ -6020,7 +6020,7 @@
     },
     {
       "name": "vlseg8e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg8e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg8e16.v vd (rs1) v0.t",
@@ -6067,7 +6067,7 @@
     },
     {
       "name": "vlseg8e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg8e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg8e32.v vd (rs1) v0.t",
@@ -6114,7 +6114,7 @@
     },
     {
       "name": "vlseg8e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vlseg8e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vlseg8e64.v vd (rs1) v0.t",
@@ -6161,7 +6161,7 @@
     },
     {
       "name": "vlseg1e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg1e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg1e8.v vd (rs1)",
@@ -6202,7 +6202,7 @@
     },
     {
       "name": "vlseg1e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg1e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg1e16.v vd (rs1)",
@@ -6243,7 +6243,7 @@
     },
     {
       "name": "vlseg1e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg1e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg1e32.v vd (rs1)",
@@ -6284,7 +6284,7 @@
     },
     {
       "name": "vlseg1e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg1e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg1e64.v vd (rs1)",
@@ -6325,7 +6325,7 @@
     },
     {
       "name": "vlseg2e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg2e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg2e8.v vd (rs1)",
@@ -6366,7 +6366,7 @@
     },
     {
       "name": "vlseg2e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg2e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg2e16.v vd (rs1)",
@@ -6407,7 +6407,7 @@
     },
     {
       "name": "vlseg2e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg2e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg2e32.v vd (rs1)",
@@ -6448,7 +6448,7 @@
     },
     {
       "name": "vlseg2e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg2e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg2e64.v vd (rs1)",
@@ -6489,7 +6489,7 @@
     },
     {
       "name": "vlseg3e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg3e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg3e8.v vd (rs1)",
@@ -6530,7 +6530,7 @@
     },
     {
       "name": "vlseg3e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg3e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg3e16.v vd (rs1)",
@@ -6571,7 +6571,7 @@
     },
     {
       "name": "vlseg3e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg3e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg3e32.v vd (rs1)",
@@ -6612,7 +6612,7 @@
     },
     {
       "name": "vlseg3e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg3e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg3e64.v vd (rs1)",
@@ -6653,7 +6653,7 @@
     },
     {
       "name": "vlseg4e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg4e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg4e8.v vd (rs1)",
@@ -6694,7 +6694,7 @@
     },
     {
       "name": "vlseg4e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg4e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg4e16.v vd (rs1)",
@@ -6735,7 +6735,7 @@
     },
     {
       "name": "vlseg4e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg4e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg4e32.v vd (rs1)",
@@ -6776,7 +6776,7 @@
     },
     {
       "name": "vlseg4e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg4e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg4e64.v vd (rs1)",
@@ -6817,7 +6817,7 @@
     },
     {
       "name": "vlseg5e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg5e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg5e8.v vd (rs1)",
@@ -6858,7 +6858,7 @@
     },
     {
       "name": "vlseg5e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg5e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg5e16.v vd (rs1)",
@@ -6899,7 +6899,7 @@
     },
     {
       "name": "vlseg5e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg5e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg5e32.v vd (rs1)",
@@ -6940,7 +6940,7 @@
     },
     {
       "name": "vlseg5e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg5e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg5e64.v vd (rs1)",
@@ -6981,7 +6981,7 @@
     },
     {
       "name": "vlseg6e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg6e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg6e8.v vd (rs1)",
@@ -7022,7 +7022,7 @@
     },
     {
       "name": "vlseg6e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg6e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg6e16.v vd (rs1)",
@@ -7063,7 +7063,7 @@
     },
     {
       "name": "vlseg6e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg6e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg6e32.v vd (rs1)",
@@ -7104,7 +7104,7 @@
     },
     {
       "name": "vlseg6e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg6e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg6e64.v vd (rs1)",
@@ -7145,7 +7145,7 @@
     },
     {
       "name": "vlseg7e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg7e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg7e8.v vd (rs1)",
@@ -7186,7 +7186,7 @@
     },
     {
       "name": "vlseg7e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg7e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg7e16.v vd (rs1)",
@@ -7227,7 +7227,7 @@
     },
     {
       "name": "vlseg7e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg7e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg7e32.v vd (rs1)",
@@ -7268,7 +7268,7 @@
     },
     {
       "name": "vlseg7e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg7e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg7e64.v vd (rs1)",
@@ -7309,7 +7309,7 @@
     },
     {
       "name": "vlseg8e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg8e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg8e8.v vd (rs1)",
@@ -7350,7 +7350,7 @@
     },
     {
       "name": "vlseg8e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg8e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg8e16.v vd (rs1)",
@@ -7391,7 +7391,7 @@
     },
     {
       "name": "vlseg8e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg8e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg8e32.v vd (rs1)",
@@ -7432,7 +7432,7 @@
     },
     {
       "name": "vlseg8e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vlseg8e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vlseg8e64.v vd (rs1)",
@@ -7473,7 +7473,7 @@
     },
     {
       "name": "vlsseg1e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg1e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg1e8.v vd (rs1) rs2 v0.t",
@@ -7526,7 +7526,7 @@
     },
     {
       "name": "vlsseg1e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg1e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg1e16.v vd (rs1) rs2 v0.t",
@@ -7579,7 +7579,7 @@
     },
     {
       "name": "vlsseg1e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg1e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg1e32.v vd (rs1) rs2 v0.t",
@@ -7632,7 +7632,7 @@
     },
     {
       "name": "vlsseg1e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg1e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg1e64.v vd (rs1) rs2 v0.t",
@@ -7685,7 +7685,7 @@
     },
     {
       "name": "vlsseg2e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg2e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg2e8.v vd (rs1) rs2 v0.t",
@@ -7738,7 +7738,7 @@
     },
     {
       "name": "vlsseg2e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg2e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg2e16.v vd (rs1) rs2 v0.t",
@@ -7791,7 +7791,7 @@
     },
     {
       "name": "vlsseg2e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg2e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg2e32.v vd (rs1) rs2 v0.t",
@@ -7844,7 +7844,7 @@
     },
     {
       "name": "vlsseg2e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg2e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg2e64.v vd (rs1) rs2 v0.t",
@@ -7897,7 +7897,7 @@
     },
     {
       "name": "vlsseg3e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg3e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg3e8.v vd (rs1) rs2 v0.t",
@@ -7950,7 +7950,7 @@
     },
     {
       "name": "vlsseg3e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg3e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg3e16.v vd (rs1) rs2 v0.t",
@@ -8003,7 +8003,7 @@
     },
     {
       "name": "vlsseg3e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg3e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg3e32.v vd (rs1) rs2 v0.t",
@@ -8056,7 +8056,7 @@
     },
     {
       "name": "vlsseg3e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg3e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg3e64.v vd (rs1) rs2 v0.t",
@@ -8109,7 +8109,7 @@
     },
     {
       "name": "vlsseg4e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg4e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg4e8.v vd (rs1) rs2 v0.t",
@@ -8162,7 +8162,7 @@
     },
     {
       "name": "vlsseg4e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg4e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg4e16.v vd (rs1) rs2 v0.t",
@@ -8215,7 +8215,7 @@
     },
     {
       "name": "vlsseg4e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg4e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg4e32.v vd (rs1) rs2 v0.t",
@@ -8268,7 +8268,7 @@
     },
     {
       "name": "vlsseg4e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg4e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg4e64.v vd (rs1) rs2 v0.t",
@@ -8321,7 +8321,7 @@
     },
     {
       "name": "vlsseg5e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg5e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg5e8.v vd (rs1) rs2 v0.t",
@@ -8374,7 +8374,7 @@
     },
     {
       "name": "vlsseg5e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg5e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg5e16.v vd (rs1) rs2 v0.t",
@@ -8427,7 +8427,7 @@
     },
     {
       "name": "vlsseg5e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg5e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg5e32.v vd (rs1) rs2 v0.t",
@@ -8480,7 +8480,7 @@
     },
     {
       "name": "vlsseg5e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg5e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg5e64.v vd (rs1) rs2 v0.t",
@@ -8533,7 +8533,7 @@
     },
     {
       "name": "vlsseg6e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg6e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg6e8.v vd (rs1) rs2 v0.t",
@@ -8586,7 +8586,7 @@
     },
     {
       "name": "vlsseg6e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg6e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg6e16.v vd (rs1) rs2 v0.t",
@@ -8639,7 +8639,7 @@
     },
     {
       "name": "vlsseg6e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg6e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg6e32.v vd (rs1) rs2 v0.t",
@@ -8692,7 +8692,7 @@
     },
     {
       "name": "vlsseg6e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg6e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg6e64.v vd (rs1) rs2 v0.t",
@@ -8745,7 +8745,7 @@
     },
     {
       "name": "vlsseg7e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg7e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg7e8.v vd (rs1) rs2 v0.t",
@@ -8798,7 +8798,7 @@
     },
     {
       "name": "vlsseg7e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg7e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg7e16.v vd (rs1) rs2 v0.t",
@@ -8851,7 +8851,7 @@
     },
     {
       "name": "vlsseg7e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg7e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg7e32.v vd (rs1) rs2 v0.t",
@@ -8904,7 +8904,7 @@
     },
     {
       "name": "vlsseg7e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg7e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg7e64.v vd (rs1) rs2 v0.t",
@@ -8957,7 +8957,7 @@
     },
     {
       "name": "vlsseg8e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg8e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg8e8.v vd (rs1) rs2 v0.t",
@@ -9010,7 +9010,7 @@
     },
     {
       "name": "vlsseg8e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg8e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg8e16.v vd (rs1) rs2 v0.t",
@@ -9063,7 +9063,7 @@
     },
     {
       "name": "vlsseg8e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg8e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg8e32.v vd (rs1) rs2 v0.t",
@@ -9116,7 +9116,7 @@
     },
     {
       "name": "vlsseg8e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vlsseg8e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vlsseg8e64.v vd (rs1) rs2 v0.t",
@@ -9169,7 +9169,7 @@
     },
     {
       "name": "vlsseg1e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg1e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg1e8.v vd (rs1) rs2",
@@ -9216,7 +9216,7 @@
     },
     {
       "name": "vlsseg1e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg1e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg1e16.v vd (rs1) rs2",
@@ -9263,7 +9263,7 @@
     },
     {
       "name": "vlsseg1e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg1e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg1e32.v vd (rs1) rs2",
@@ -9310,7 +9310,7 @@
     },
     {
       "name": "vlsseg1e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg1e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg1e64.v vd (rs1) rs2",
@@ -9357,7 +9357,7 @@
     },
     {
       "name": "vlsseg2e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg2e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg2e8.v vd (rs1) rs2",
@@ -9404,7 +9404,7 @@
     },
     {
       "name": "vlsseg2e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg2e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg2e16.v vd (rs1) rs2",
@@ -9451,7 +9451,7 @@
     },
     {
       "name": "vlsseg2e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg2e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg2e32.v vd (rs1) rs2",
@@ -9498,7 +9498,7 @@
     },
     {
       "name": "vlsseg2e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg2e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg2e64.v vd (rs1) rs2",
@@ -9545,7 +9545,7 @@
     },
     {
       "name": "vlsseg3e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg3e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg3e8.v vd (rs1) rs2",
@@ -9592,7 +9592,7 @@
     },
     {
       "name": "vlsseg3e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg3e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg3e16.v vd (rs1) rs2",
@@ -9639,7 +9639,7 @@
     },
     {
       "name": "vlsseg3e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg3e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg3e32.v vd (rs1) rs2",
@@ -9686,7 +9686,7 @@
     },
     {
       "name": "vlsseg3e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg3e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg3e64.v vd (rs1) rs2",
@@ -9733,7 +9733,7 @@
     },
     {
       "name": "vlsseg4e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg4e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg4e8.v vd (rs1) rs2",
@@ -9780,7 +9780,7 @@
     },
     {
       "name": "vlsseg4e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg4e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg4e16.v vd (rs1) rs2",
@@ -9827,7 +9827,7 @@
     },
     {
       "name": "vlsseg4e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg4e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg4e32.v vd (rs1) rs2",
@@ -9874,7 +9874,7 @@
     },
     {
       "name": "vlsseg4e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg4e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg4e64.v vd (rs1) rs2",
@@ -9921,7 +9921,7 @@
     },
     {
       "name": "vlsseg5e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg5e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg5e8.v vd (rs1) rs2",
@@ -9968,7 +9968,7 @@
     },
     {
       "name": "vlsseg5e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg5e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg5e16.v vd (rs1) rs2",
@@ -10015,7 +10015,7 @@
     },
     {
       "name": "vlsseg5e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg5e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg5e32.v vd (rs1) rs2",
@@ -10062,7 +10062,7 @@
     },
     {
       "name": "vlsseg5e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg5e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg5e64.v vd (rs1) rs2",
@@ -10109,7 +10109,7 @@
     },
     {
       "name": "vlsseg6e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg6e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg6e8.v vd (rs1) rs2",
@@ -10156,7 +10156,7 @@
     },
     {
       "name": "vlsseg6e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg6e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg6e16.v vd (rs1) rs2",
@@ -10203,7 +10203,7 @@
     },
     {
       "name": "vlsseg6e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg6e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg6e32.v vd (rs1) rs2",
@@ -10250,7 +10250,7 @@
     },
     {
       "name": "vlsseg6e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg6e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg6e64.v vd (rs1) rs2",
@@ -10297,7 +10297,7 @@
     },
     {
       "name": "vlsseg7e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg7e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg7e8.v vd (rs1) rs2",
@@ -10344,7 +10344,7 @@
     },
     {
       "name": "vlsseg7e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg7e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg7e16.v vd (rs1) rs2",
@@ -10391,7 +10391,7 @@
     },
     {
       "name": "vlsseg7e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg7e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg7e32.v vd (rs1) rs2",
@@ -10438,7 +10438,7 @@
     },
     {
       "name": "vlsseg7e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg7e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg7e64.v vd (rs1) rs2",
@@ -10485,7 +10485,7 @@
     },
     {
       "name": "vlsseg8e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg8e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg8e8.v vd (rs1) rs2",
@@ -10532,7 +10532,7 @@
     },
     {
       "name": "vlsseg8e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg8e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg8e16.v vd (rs1) rs2",
@@ -10579,7 +10579,7 @@
     },
     {
       "name": "vlsseg8e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg8e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg8e32.v vd (rs1) rs2",
@@ -10626,7 +10626,7 @@
     },
     {
       "name": "vlsseg8e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vlsseg8e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vlsseg8e64.v vd (rs1) rs2",
@@ -10673,7 +10673,7 @@
     },
     {
       "name": "vluxseg1ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg1ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg1ei8.v vd (rs1) vs2 v0.t",
@@ -10731,7 +10731,7 @@
     },
     {
       "name": "vluxseg1ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg1ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg1ei16.v vd (rs1) vs2 v0.t",
@@ -10789,7 +10789,7 @@
     },
     {
       "name": "vluxseg1ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg1ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg1ei32.v vd (rs1) vs2 v0.t",
@@ -10847,7 +10847,7 @@
     },
     {
       "name": "vluxseg1ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg1ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg1ei64.v vd (rs1) vs2 v0.t",
@@ -10905,7 +10905,7 @@
     },
     {
       "name": "vluxseg2ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg2ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg2ei8.v vd (rs1) vs2 v0.t",
@@ -10963,7 +10963,7 @@
     },
     {
       "name": "vluxseg2ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg2ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg2ei16.v vd (rs1) vs2 v0.t",
@@ -11021,7 +11021,7 @@
     },
     {
       "name": "vluxseg2ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg2ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg2ei32.v vd (rs1) vs2 v0.t",
@@ -11079,7 +11079,7 @@
     },
     {
       "name": "vluxseg2ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg2ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg2ei64.v vd (rs1) vs2 v0.t",
@@ -11137,7 +11137,7 @@
     },
     {
       "name": "vluxseg3ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg3ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg3ei8.v vd (rs1) vs2 v0.t",
@@ -11195,7 +11195,7 @@
     },
     {
       "name": "vluxseg3ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg3ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg3ei16.v vd (rs1) vs2 v0.t",
@@ -11253,7 +11253,7 @@
     },
     {
       "name": "vluxseg3ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg3ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg3ei32.v vd (rs1) vs2 v0.t",
@@ -11311,7 +11311,7 @@
     },
     {
       "name": "vluxseg3ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg3ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg3ei64.v vd (rs1) vs2 v0.t",
@@ -11369,7 +11369,7 @@
     },
     {
       "name": "vluxseg4ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg4ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg4ei8.v vd (rs1) vs2 v0.t",
@@ -11427,7 +11427,7 @@
     },
     {
       "name": "vluxseg4ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg4ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg4ei16.v vd (rs1) vs2 v0.t",
@@ -11485,7 +11485,7 @@
     },
     {
       "name": "vluxseg4ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg4ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg4ei32.v vd (rs1) vs2 v0.t",
@@ -11543,7 +11543,7 @@
     },
     {
       "name": "vluxseg4ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg4ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg4ei64.v vd (rs1) vs2 v0.t",
@@ -11601,7 +11601,7 @@
     },
     {
       "name": "vluxseg5ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg5ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg5ei8.v vd (rs1) vs2 v0.t",
@@ -11659,7 +11659,7 @@
     },
     {
       "name": "vluxseg5ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg5ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg5ei16.v vd (rs1) vs2 v0.t",
@@ -11717,7 +11717,7 @@
     },
     {
       "name": "vluxseg5ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg5ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg5ei32.v vd (rs1) vs2 v0.t",
@@ -11775,7 +11775,7 @@
     },
     {
       "name": "vluxseg5ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg5ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg5ei64.v vd (rs1) vs2 v0.t",
@@ -11833,7 +11833,7 @@
     },
     {
       "name": "vluxseg6ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg6ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg6ei8.v vd (rs1) vs2 v0.t",
@@ -11891,7 +11891,7 @@
     },
     {
       "name": "vluxseg6ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg6ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg6ei16.v vd (rs1) vs2 v0.t",
@@ -11949,7 +11949,7 @@
     },
     {
       "name": "vluxseg6ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg6ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg6ei32.v vd (rs1) vs2 v0.t",
@@ -12007,7 +12007,7 @@
     },
     {
       "name": "vluxseg6ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg6ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg6ei64.v vd (rs1) vs2 v0.t",
@@ -12065,7 +12065,7 @@
     },
     {
       "name": "vluxseg7ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg7ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg7ei8.v vd (rs1) vs2 v0.t",
@@ -12123,7 +12123,7 @@
     },
     {
       "name": "vluxseg7ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg7ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg7ei16.v vd (rs1) vs2 v0.t",
@@ -12181,7 +12181,7 @@
     },
     {
       "name": "vluxseg7ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg7ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg7ei32.v vd (rs1) vs2 v0.t",
@@ -12239,7 +12239,7 @@
     },
     {
       "name": "vluxseg7ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg7ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg7ei64.v vd (rs1) vs2 v0.t",
@@ -12297,7 +12297,7 @@
     },
     {
       "name": "vluxseg8ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg8ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg8ei8.v vd (rs1) vs2 v0.t",
@@ -12355,7 +12355,7 @@
     },
     {
       "name": "vluxseg8ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg8ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg8ei16.v vd (rs1) vs2 v0.t",
@@ -12413,7 +12413,7 @@
     },
     {
       "name": "vluxseg8ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg8ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg8ei32.v vd (rs1) vs2 v0.t",
@@ -12471,7 +12471,7 @@
     },
     {
       "name": "vluxseg8ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vluxseg8ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vluxseg8ei64.v vd (rs1) vs2 v0.t",
@@ -12529,7 +12529,7 @@
     },
     {
       "name": "vluxseg1ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg1ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg1ei8.v vd (rs1) vs2",
@@ -12580,7 +12580,7 @@
     },
     {
       "name": "vluxseg1ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg1ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg1ei16.v vd (rs1) vs2",
@@ -12631,7 +12631,7 @@
     },
     {
       "name": "vluxseg1ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg1ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg1ei32.v vd (rs1) vs2",
@@ -12682,7 +12682,7 @@
     },
     {
       "name": "vluxseg1ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg1ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg1ei64.v vd (rs1) vs2",
@@ -12733,7 +12733,7 @@
     },
     {
       "name": "vluxseg2ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg2ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg2ei8.v vd (rs1) vs2",
@@ -12784,7 +12784,7 @@
     },
     {
       "name": "vluxseg2ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg2ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg2ei16.v vd (rs1) vs2",
@@ -12835,7 +12835,7 @@
     },
     {
       "name": "vluxseg2ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg2ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg2ei32.v vd (rs1) vs2",
@@ -12886,7 +12886,7 @@
     },
     {
       "name": "vluxseg2ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg2ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg2ei64.v vd (rs1) vs2",
@@ -12937,7 +12937,7 @@
     },
     {
       "name": "vluxseg3ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg3ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg3ei8.v vd (rs1) vs2",
@@ -12988,7 +12988,7 @@
     },
     {
       "name": "vluxseg3ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg3ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg3ei16.v vd (rs1) vs2",
@@ -13039,7 +13039,7 @@
     },
     {
       "name": "vluxseg3ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg3ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg3ei32.v vd (rs1) vs2",
@@ -13090,7 +13090,7 @@
     },
     {
       "name": "vluxseg3ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg3ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg3ei64.v vd (rs1) vs2",
@@ -13141,7 +13141,7 @@
     },
     {
       "name": "vluxseg4ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg4ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg4ei8.v vd (rs1) vs2",
@@ -13192,7 +13192,7 @@
     },
     {
       "name": "vluxseg4ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg4ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg4ei16.v vd (rs1) vs2",
@@ -13243,7 +13243,7 @@
     },
     {
       "name": "vluxseg4ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg4ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg4ei32.v vd (rs1) vs2",
@@ -13294,7 +13294,7 @@
     },
     {
       "name": "vluxseg4ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg4ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg4ei64.v vd (rs1) vs2",
@@ -13345,7 +13345,7 @@
     },
     {
       "name": "vluxseg5ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg5ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg5ei8.v vd (rs1) vs2",
@@ -13396,7 +13396,7 @@
     },
     {
       "name": "vluxseg5ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg5ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg5ei16.v vd (rs1) vs2",
@@ -13447,7 +13447,7 @@
     },
     {
       "name": "vluxseg5ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg5ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg5ei32.v vd (rs1) vs2",
@@ -13498,7 +13498,7 @@
     },
     {
       "name": "vluxseg5ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg5ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg5ei64.v vd (rs1) vs2",
@@ -13549,7 +13549,7 @@
     },
     {
       "name": "vluxseg6ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg6ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg6ei8.v vd (rs1) vs2",
@@ -13600,7 +13600,7 @@
     },
     {
       "name": "vluxseg6ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg6ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg6ei16.v vd (rs1) vs2",
@@ -13651,7 +13651,7 @@
     },
     {
       "name": "vluxseg6ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg6ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg6ei32.v vd (rs1) vs2",
@@ -13702,7 +13702,7 @@
     },
     {
       "name": "vluxseg6ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg6ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg6ei64.v vd (rs1) vs2",
@@ -13753,7 +13753,7 @@
     },
     {
       "name": "vluxseg7ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg7ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg7ei8.v vd (rs1) vs2",
@@ -13804,7 +13804,7 @@
     },
     {
       "name": "vluxseg7ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg7ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg7ei16.v vd (rs1) vs2",
@@ -13855,7 +13855,7 @@
     },
     {
       "name": "vluxseg7ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg7ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg7ei32.v vd (rs1) vs2",
@@ -13906,7 +13906,7 @@
     },
     {
       "name": "vluxseg7ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg7ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg7ei64.v vd (rs1) vs2",
@@ -13957,7 +13957,7 @@
     },
     {
       "name": "vluxseg8ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg8ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg8ei8.v vd (rs1) vs2",
@@ -14008,7 +14008,7 @@
     },
     {
       "name": "vluxseg8ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg8ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg8ei16.v vd (rs1) vs2",
@@ -14059,7 +14059,7 @@
     },
     {
       "name": "vluxseg8ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg8ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg8ei32.v vd (rs1) vs2",
@@ -14110,7 +14110,7 @@
     },
     {
       "name": "vluxseg8ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vluxseg8ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vluxseg8ei64.v vd (rs1) vs2",
@@ -14161,7 +14161,7 @@
     },
     {
       "name": "vsseg1e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg1e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg1e8.v vd (rs1) v0.t",
@@ -14208,7 +14208,7 @@
     },
     {
       "name": "vsseg1e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg1e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg1e16.v vd (rs1) v0.t",
@@ -14255,7 +14255,7 @@
     },
     {
       "name": "vsseg1e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg1e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg1e32.v vd (rs1) v0.t",
@@ -14302,7 +14302,7 @@
     },
     {
       "name": "vsseg1e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg1e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg1e64.v vd (rs1) v0.t",
@@ -14349,7 +14349,7 @@
     },
     {
       "name": "vsseg2e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg2e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg2e8.v vd (rs1) v0.t",
@@ -14396,7 +14396,7 @@
     },
     {
       "name": "vsseg2e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg2e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg2e16.v vd (rs1) v0.t",
@@ -14443,7 +14443,7 @@
     },
     {
       "name": "vsseg2e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg2e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg2e32.v vd (rs1) v0.t",
@@ -14490,7 +14490,7 @@
     },
     {
       "name": "vsseg2e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg2e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg2e64.v vd (rs1) v0.t",
@@ -14537,7 +14537,7 @@
     },
     {
       "name": "vsseg3e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg3e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg3e8.v vd (rs1) v0.t",
@@ -14584,7 +14584,7 @@
     },
     {
       "name": "vsseg3e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg3e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg3e16.v vd (rs1) v0.t",
@@ -14631,7 +14631,7 @@
     },
     {
       "name": "vsseg3e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg3e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg3e32.v vd (rs1) v0.t",
@@ -14678,7 +14678,7 @@
     },
     {
       "name": "vsseg3e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg3e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg3e64.v vd (rs1) v0.t",
@@ -14725,7 +14725,7 @@
     },
     {
       "name": "vsseg4e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg4e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg4e8.v vd (rs1) v0.t",
@@ -14772,7 +14772,7 @@
     },
     {
       "name": "vsseg4e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg4e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg4e16.v vd (rs1) v0.t",
@@ -14819,7 +14819,7 @@
     },
     {
       "name": "vsseg4e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg4e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg4e32.v vd (rs1) v0.t",
@@ -14866,7 +14866,7 @@
     },
     {
       "name": "vsseg4e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg4e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg4e64.v vd (rs1) v0.t",
@@ -14913,7 +14913,7 @@
     },
     {
       "name": "vsseg5e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg5e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg5e8.v vd (rs1) v0.t",
@@ -14960,7 +14960,7 @@
     },
     {
       "name": "vsseg5e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg5e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg5e16.v vd (rs1) v0.t",
@@ -15007,7 +15007,7 @@
     },
     {
       "name": "vsseg5e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg5e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg5e32.v vd (rs1) v0.t",
@@ -15054,7 +15054,7 @@
     },
     {
       "name": "vsseg5e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg5e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg5e64.v vd (rs1) v0.t",
@@ -15101,7 +15101,7 @@
     },
     {
       "name": "vsseg6e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg6e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg6e8.v vd (rs1) v0.t",
@@ -15148,7 +15148,7 @@
     },
     {
       "name": "vsseg6e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg6e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg6e16.v vd (rs1) v0.t",
@@ -15195,7 +15195,7 @@
     },
     {
       "name": "vsseg6e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg6e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg6e32.v vd (rs1) v0.t",
@@ -15242,7 +15242,7 @@
     },
     {
       "name": "vsseg6e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg6e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg6e64.v vd (rs1) v0.t",
@@ -15289,7 +15289,7 @@
     },
     {
       "name": "vsseg7e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg7e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg7e8.v vd (rs1) v0.t",
@@ -15336,7 +15336,7 @@
     },
     {
       "name": "vsseg7e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg7e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg7e16.v vd (rs1) v0.t",
@@ -15383,7 +15383,7 @@
     },
     {
       "name": "vsseg7e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg7e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg7e32.v vd (rs1) v0.t",
@@ -15430,7 +15430,7 @@
     },
     {
       "name": "vsseg7e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg7e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg7e64.v vd (rs1) v0.t",
@@ -15477,7 +15477,7 @@
     },
     {
       "name": "vsseg8e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg8e8.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg8e8.v vd (rs1) v0.t",
@@ -15524,7 +15524,7 @@
     },
     {
       "name": "vsseg8e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg8e16.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg8e16.v vd (rs1) v0.t",
@@ -15571,7 +15571,7 @@
     },
     {
       "name": "vsseg8e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg8e32.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg8e32.v vd (rs1) v0.t",
@@ -15618,7 +15618,7 @@
     },
     {
       "name": "vsseg8e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) v0.t",
       "signature": "vsseg8e64.v,VEC-Reg,(INT-Reg),v0.t",
       "signatureRaw": "vsseg8e64.v vd (rs1) v0.t",
@@ -15665,7 +15665,7 @@
     },
     {
       "name": "vsseg1e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg1e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg1e8.v vd (rs1)",
@@ -15706,7 +15706,7 @@
     },
     {
       "name": "vsseg1e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg1e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg1e16.v vd (rs1)",
@@ -15747,7 +15747,7 @@
     },
     {
       "name": "vsseg1e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg1e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg1e32.v vd (rs1)",
@@ -15788,7 +15788,7 @@
     },
     {
       "name": "vsseg1e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg1e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg1e64.v vd (rs1)",
@@ -15829,7 +15829,7 @@
     },
     {
       "name": "vsseg2e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg2e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg2e8.v vd (rs1)",
@@ -15870,7 +15870,7 @@
     },
     {
       "name": "vsseg2e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg2e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg2e16.v vd (rs1)",
@@ -15911,7 +15911,7 @@
     },
     {
       "name": "vsseg2e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg2e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg2e32.v vd (rs1)",
@@ -15952,7 +15952,7 @@
     },
     {
       "name": "vsseg2e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg2e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg2e64.v vd (rs1)",
@@ -15993,7 +15993,7 @@
     },
     {
       "name": "vsseg3e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg3e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg3e8.v vd (rs1)",
@@ -16034,7 +16034,7 @@
     },
     {
       "name": "vsseg3e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg3e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg3e16.v vd (rs1)",
@@ -16075,7 +16075,7 @@
     },
     {
       "name": "vsseg3e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg3e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg3e32.v vd (rs1)",
@@ -16116,7 +16116,7 @@
     },
     {
       "name": "vsseg3e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg3e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg3e64.v vd (rs1)",
@@ -16157,7 +16157,7 @@
     },
     {
       "name": "vsseg4e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg4e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg4e8.v vd (rs1)",
@@ -16198,7 +16198,7 @@
     },
     {
       "name": "vsseg4e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg4e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg4e16.v vd (rs1)",
@@ -16239,7 +16239,7 @@
     },
     {
       "name": "vsseg4e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg4e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg4e32.v vd (rs1)",
@@ -16280,7 +16280,7 @@
     },
     {
       "name": "vsseg4e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg4e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg4e64.v vd (rs1)",
@@ -16321,7 +16321,7 @@
     },
     {
       "name": "vsseg5e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg5e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg5e8.v vd (rs1)",
@@ -16362,7 +16362,7 @@
     },
     {
       "name": "vsseg5e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg5e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg5e16.v vd (rs1)",
@@ -16403,7 +16403,7 @@
     },
     {
       "name": "vsseg5e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg5e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg5e32.v vd (rs1)",
@@ -16444,7 +16444,7 @@
     },
     {
       "name": "vsseg5e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg5e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg5e64.v vd (rs1)",
@@ -16485,7 +16485,7 @@
     },
     {
       "name": "vsseg6e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg6e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg6e8.v vd (rs1)",
@@ -16526,7 +16526,7 @@
     },
     {
       "name": "vsseg6e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg6e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg6e16.v vd (rs1)",
@@ -16567,7 +16567,7 @@
     },
     {
       "name": "vsseg6e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg6e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg6e32.v vd (rs1)",
@@ -16608,7 +16608,7 @@
     },
     {
       "name": "vsseg6e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg6e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg6e64.v vd (rs1)",
@@ -16649,7 +16649,7 @@
     },
     {
       "name": "vsseg7e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg7e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg7e8.v vd (rs1)",
@@ -16690,7 +16690,7 @@
     },
     {
       "name": "vsseg7e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg7e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg7e16.v vd (rs1)",
@@ -16731,7 +16731,7 @@
     },
     {
       "name": "vsseg7e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg7e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg7e32.v vd (rs1)",
@@ -16772,7 +16772,7 @@
     },
     {
       "name": "vsseg7e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg7e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg7e64.v vd (rs1)",
@@ -16813,7 +16813,7 @@
     },
     {
       "name": "vsseg8e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg8e8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg8e8.v vd (rs1)",
@@ -16854,7 +16854,7 @@
     },
     {
       "name": "vsseg8e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg8e16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg8e16.v vd (rs1)",
@@ -16895,7 +16895,7 @@
     },
     {
       "name": "vsseg8e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg8e32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg8e32.v vd (rs1)",
@@ -16936,7 +16936,7 @@
     },
     {
       "name": "vsseg8e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vsseg8e64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vsseg8e64.v vd (rs1)",
@@ -16977,7 +16977,7 @@
     },
     {
       "name": "vssseg1e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg1e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg1e8.v vs3 (rs1) rs2 v0.t",
@@ -17030,7 +17030,7 @@
     },
     {
       "name": "vssseg1e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg1e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg1e16.v vs3 (rs1) rs2 v0.t",
@@ -17083,7 +17083,7 @@
     },
     {
       "name": "vssseg1e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg1e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg1e32.v vs3 (rs1) rs2 v0.t",
@@ -17136,7 +17136,7 @@
     },
     {
       "name": "vssseg1e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg1e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg1e64.v vs3 (rs1) rs2 v0.t",
@@ -17189,7 +17189,7 @@
     },
     {
       "name": "vssseg2e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg2e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg2e8.v vs3 (rs1) rs2 v0.t",
@@ -17242,7 +17242,7 @@
     },
     {
       "name": "vssseg2e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg2e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg2e16.v vs3 (rs1) rs2 v0.t",
@@ -17295,7 +17295,7 @@
     },
     {
       "name": "vssseg2e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg2e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg2e32.v vs3 (rs1) rs2 v0.t",
@@ -17348,7 +17348,7 @@
     },
     {
       "name": "vssseg2e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg2e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg2e64.v vs3 (rs1) rs2 v0.t",
@@ -17401,7 +17401,7 @@
     },
     {
       "name": "vssseg3e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg3e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg3e8.v vs3 (rs1) rs2 v0.t",
@@ -17454,7 +17454,7 @@
     },
     {
       "name": "vssseg3e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg3e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg3e16.v vs3 (rs1) rs2 v0.t",
@@ -17507,7 +17507,7 @@
     },
     {
       "name": "vssseg3e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg3e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg3e32.v vs3 (rs1) rs2 v0.t",
@@ -17560,7 +17560,7 @@
     },
     {
       "name": "vssseg3e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg3e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg3e64.v vs3 (rs1) rs2 v0.t",
@@ -17613,7 +17613,7 @@
     },
     {
       "name": "vssseg4e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg4e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg4e8.v vs3 (rs1) rs2 v0.t",
@@ -17666,7 +17666,7 @@
     },
     {
       "name": "vssseg4e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg4e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg4e16.v vs3 (rs1) rs2 v0.t",
@@ -17719,7 +17719,7 @@
     },
     {
       "name": "vssseg4e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg4e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg4e32.v vs3 (rs1) rs2 v0.t",
@@ -17772,7 +17772,7 @@
     },
     {
       "name": "vssseg4e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg4e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg4e64.v vs3 (rs1) rs2 v0.t",
@@ -17825,7 +17825,7 @@
     },
     {
       "name": "vssseg5e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg5e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg5e8.v vs3 (rs1) rs2 v0.t",
@@ -17878,7 +17878,7 @@
     },
     {
       "name": "vssseg5e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg5e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg5e16.v vs3 (rs1) rs2 v0.t",
@@ -17931,7 +17931,7 @@
     },
     {
       "name": "vssseg5e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg5e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg5e32.v vs3 (rs1) rs2 v0.t",
@@ -17984,7 +17984,7 @@
     },
     {
       "name": "vssseg5e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg5e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg5e64.v vs3 (rs1) rs2 v0.t",
@@ -18037,7 +18037,7 @@
     },
     {
       "name": "vssseg6e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg6e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg6e8.v vs3 (rs1) rs2 v0.t",
@@ -18090,7 +18090,7 @@
     },
     {
       "name": "vssseg6e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg6e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg6e16.v vs3 (rs1) rs2 v0.t",
@@ -18143,7 +18143,7 @@
     },
     {
       "name": "vssseg6e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg6e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg6e32.v vs3 (rs1) rs2 v0.t",
@@ -18196,7 +18196,7 @@
     },
     {
       "name": "vssseg6e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg6e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg6e64.v vs3 (rs1) rs2 v0.t",
@@ -18249,7 +18249,7 @@
     },
     {
       "name": "vssseg7e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg7e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg7e8.v vs3 (rs1) rs2 v0.t",
@@ -18302,7 +18302,7 @@
     },
     {
       "name": "vssseg7e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg7e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg7e16.v vs3 (rs1) rs2 v0.t",
@@ -18355,7 +18355,7 @@
     },
     {
       "name": "vssseg7e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg7e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg7e32.v vs3 (rs1) rs2 v0.t",
@@ -18408,7 +18408,7 @@
     },
     {
       "name": "vssseg7e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg7e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg7e64.v vs3 (rs1) rs2 v0.t",
@@ -18461,7 +18461,7 @@
     },
     {
       "name": "vssseg8e8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg8e8.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg8e8.v vs3 (rs1) rs2 v0.t",
@@ -18514,7 +18514,7 @@
     },
     {
       "name": "vssseg8e16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg8e16.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg8e16.v vs3 (rs1) rs2 v0.t",
@@ -18567,7 +18567,7 @@
     },
     {
       "name": "vssseg8e32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg8e32.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg8e32.v vs3 (rs1) rs2 v0.t",
@@ -18620,7 +18620,7 @@
     },
     {
       "name": "vssseg8e64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vssseg8e64.v,VEC-Reg,(INT-Reg),INT-Reg,v0.t",
       "signatureRaw": "vssseg8e64.v vs3 (rs1) rs2 v0.t",
@@ -18673,7 +18673,7 @@
     },
     {
       "name": "vssseg1e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg1e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg1e8.v vs3 (rs1) rs2",
@@ -18720,7 +18720,7 @@
     },
     {
       "name": "vssseg1e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg1e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg1e16.v vs3 (rs1) rs2",
@@ -18767,7 +18767,7 @@
     },
     {
       "name": "vssseg1e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg1e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg1e32.v vs3 (rs1) rs2",
@@ -18814,7 +18814,7 @@
     },
     {
       "name": "vssseg1e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg1e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg1e64.v vs3 (rs1) rs2",
@@ -18861,7 +18861,7 @@
     },
     {
       "name": "vssseg2e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg2e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg2e8.v vs3 (rs1) rs2",
@@ -18908,7 +18908,7 @@
     },
     {
       "name": "vssseg2e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg2e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg2e16.v vs3 (rs1) rs2",
@@ -18955,7 +18955,7 @@
     },
     {
       "name": "vssseg2e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg2e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg2e32.v vs3 (rs1) rs2",
@@ -19002,7 +19002,7 @@
     },
     {
       "name": "vssseg2e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg2e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg2e64.v vs3 (rs1) rs2",
@@ -19049,7 +19049,7 @@
     },
     {
       "name": "vssseg3e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg3e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg3e8.v vs3 (rs1) rs2",
@@ -19096,7 +19096,7 @@
     },
     {
       "name": "vssseg3e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg3e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg3e16.v vs3 (rs1) rs2",
@@ -19143,7 +19143,7 @@
     },
     {
       "name": "vssseg3e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg3e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg3e32.v vs3 (rs1) rs2",
@@ -19190,7 +19190,7 @@
     },
     {
       "name": "vssseg3e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg3e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg3e64.v vs3 (rs1) rs2",
@@ -19237,7 +19237,7 @@
     },
     {
       "name": "vssseg4e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg4e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg4e8.v vs3 (rs1) rs2",
@@ -19284,7 +19284,7 @@
     },
     {
       "name": "vssseg4e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg4e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg4e16.v vs3 (rs1) rs2",
@@ -19331,7 +19331,7 @@
     },
     {
       "name": "vssseg4e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg4e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg4e32.v vs3 (rs1) rs2",
@@ -19378,7 +19378,7 @@
     },
     {
       "name": "vssseg4e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg4e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg4e64.v vs3 (rs1) rs2",
@@ -19425,7 +19425,7 @@
     },
     {
       "name": "vssseg5e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg5e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg5e8.v vs3 (rs1) rs2",
@@ -19472,7 +19472,7 @@
     },
     {
       "name": "vssseg5e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg5e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg5e16.v vs3 (rs1) rs2",
@@ -19519,7 +19519,7 @@
     },
     {
       "name": "vssseg5e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg5e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg5e32.v vs3 (rs1) rs2",
@@ -19566,7 +19566,7 @@
     },
     {
       "name": "vssseg5e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg5e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg5e64.v vs3 (rs1) rs2",
@@ -19613,7 +19613,7 @@
     },
     {
       "name": "vssseg6e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg6e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg6e8.v vs3 (rs1) rs2",
@@ -19660,7 +19660,7 @@
     },
     {
       "name": "vssseg6e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg6e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg6e16.v vs3 (rs1) rs2",
@@ -19707,7 +19707,7 @@
     },
     {
       "name": "vssseg6e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg6e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg6e32.v vs3 (rs1) rs2",
@@ -19754,7 +19754,7 @@
     },
     {
       "name": "vssseg6e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg6e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg6e64.v vs3 (rs1) rs2",
@@ -19801,7 +19801,7 @@
     },
     {
       "name": "vssseg7e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg7e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg7e8.v vs3 (rs1) rs2",
@@ -19848,7 +19848,7 @@
     },
     {
       "name": "vssseg7e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg7e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg7e16.v vs3 (rs1) rs2",
@@ -19895,7 +19895,7 @@
     },
     {
       "name": "vssseg7e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg7e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg7e32.v vs3 (rs1) rs2",
@@ -19942,7 +19942,7 @@
     },
     {
       "name": "vssseg7e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg7e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg7e64.v vs3 (rs1) rs2",
@@ -19989,7 +19989,7 @@
     },
     {
       "name": "vssseg8e8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg8e8.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg8e8.v vs3 (rs1) rs2",
@@ -20036,7 +20036,7 @@
     },
     {
       "name": "vssseg8e16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg8e16.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg8e16.v vs3 (rs1) rs2",
@@ -20083,7 +20083,7 @@
     },
     {
       "name": "vssseg8e32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg8e32.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg8e32.v vs3 (rs1) rs2",
@@ -20130,7 +20130,7 @@
     },
     {
       "name": "vssseg8e64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vssseg8e64.v,VEC-Reg,(INT-Reg),INT-Reg",
       "signatureRaw": "vssseg8e64.v vs3 (rs1) rs2",
@@ -20177,7 +20177,7 @@
     },
     {
       "name": "vsuxseg1ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg1ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg1ei8.v vs3 (rs1) vs2 v0.t",
@@ -20230,7 +20230,7 @@
     },
     {
       "name": "vsuxseg1ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg1ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg1ei16.v vs3 (rs1) vs2 v0.t",
@@ -20283,7 +20283,7 @@
     },
     {
       "name": "vsuxseg1ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg1ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg1ei32.v vs3 (rs1) vs2 v0.t",
@@ -20336,7 +20336,7 @@
     },
     {
       "name": "vsuxseg1ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg1ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg1ei64.v vs3 (rs1) vs2 v0.t",
@@ -20389,7 +20389,7 @@
     },
     {
       "name": "vsuxseg2ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg2ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg2ei8.v vs3 (rs1) vs2 v0.t",
@@ -20442,7 +20442,7 @@
     },
     {
       "name": "vsuxseg2ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg2ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg2ei16.v vs3 (rs1) vs2 v0.t",
@@ -20495,7 +20495,7 @@
     },
     {
       "name": "vsuxseg2ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg2ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg2ei32.v vs3 (rs1) vs2 v0.t",
@@ -20548,7 +20548,7 @@
     },
     {
       "name": "vsuxseg2ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg2ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg2ei64.v vs3 (rs1) vs2 v0.t",
@@ -20601,7 +20601,7 @@
     },
     {
       "name": "vsuxseg3ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg3ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg3ei8.v vs3 (rs1) vs2 v0.t",
@@ -20654,7 +20654,7 @@
     },
     {
       "name": "vsuxseg3ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg3ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg3ei16.v vs3 (rs1) vs2 v0.t",
@@ -20707,7 +20707,7 @@
     },
     {
       "name": "vsuxseg3ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg3ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg3ei32.v vs3 (rs1) vs2 v0.t",
@@ -20760,7 +20760,7 @@
     },
     {
       "name": "vsuxseg3ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg3ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg3ei64.v vs3 (rs1) vs2 v0.t",
@@ -20813,7 +20813,7 @@
     },
     {
       "name": "vsuxseg4ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg4ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg4ei8.v vs3 (rs1) vs2 v0.t",
@@ -20866,7 +20866,7 @@
     },
     {
       "name": "vsuxseg4ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg4ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg4ei16.v vs3 (rs1) vs2 v0.t",
@@ -20919,7 +20919,7 @@
     },
     {
       "name": "vsuxseg4ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg4ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg4ei32.v vs3 (rs1) vs2 v0.t",
@@ -20972,7 +20972,7 @@
     },
     {
       "name": "vsuxseg4ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg4ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg4ei64.v vs3 (rs1) vs2 v0.t",
@@ -21025,7 +21025,7 @@
     },
     {
       "name": "vsuxseg5ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg5ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg5ei8.v vs3 (rs1) vs2 v0.t",
@@ -21078,7 +21078,7 @@
     },
     {
       "name": "vsuxseg5ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg5ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg5ei16.v vs3 (rs1) vs2 v0.t",
@@ -21131,7 +21131,7 @@
     },
     {
       "name": "vsuxseg5ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg5ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg5ei32.v vs3 (rs1) vs2 v0.t",
@@ -21184,7 +21184,7 @@
     },
     {
       "name": "vsuxseg5ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg5ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg5ei64.v vs3 (rs1) vs2 v0.t",
@@ -21237,7 +21237,7 @@
     },
     {
       "name": "vsuxseg6ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg6ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg6ei8.v vs3 (rs1) vs2 v0.t",
@@ -21290,7 +21290,7 @@
     },
     {
       "name": "vsuxseg6ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg6ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg6ei16.v vs3 (rs1) vs2 v0.t",
@@ -21343,7 +21343,7 @@
     },
     {
       "name": "vsuxseg6ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg6ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg6ei32.v vs3 (rs1) vs2 v0.t",
@@ -21396,7 +21396,7 @@
     },
     {
       "name": "vsuxseg6ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg6ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg6ei64.v vs3 (rs1) vs2 v0.t",
@@ -21449,7 +21449,7 @@
     },
     {
       "name": "vsuxseg7ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg7ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg7ei8.v vs3 (rs1) vs2 v0.t",
@@ -21502,7 +21502,7 @@
     },
     {
       "name": "vsuxseg7ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg7ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg7ei16.v vs3 (rs1) vs2 v0.t",
@@ -21555,7 +21555,7 @@
     },
     {
       "name": "vsuxseg7ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg7ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg7ei32.v vs3 (rs1) vs2 v0.t",
@@ -21608,7 +21608,7 @@
     },
     {
       "name": "vsuxseg7ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg7ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg7ei64.v vs3 (rs1) vs2 v0.t",
@@ -21661,7 +21661,7 @@
     },
     {
       "name": "vsuxseg8ei8.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg8ei8.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg8ei8.v vs3 (rs1) vs2 v0.t",
@@ -21714,7 +21714,7 @@
     },
     {
       "name": "vsuxseg8ei16.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg8ei16.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg8ei16.v vs3 (rs1) vs2 v0.t",
@@ -21767,7 +21767,7 @@
     },
     {
       "name": "vsuxseg8ei32.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg8ei32.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg8ei32.v vs3 (rs1) vs2 v0.t",
@@ -21820,7 +21820,7 @@
     },
     {
       "name": "vsuxseg8ei64.v",
-      "type": "Memory Instruction Masked",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3 v0.t",
       "signature": "vsuxseg8ei64.v,VEC-Reg,(INT-Reg),VEC-Reg,v0.t",
       "signatureRaw": "vsuxseg8ei64.v vs3 (rs1) vs2 v0.t",
@@ -21873,7 +21873,7 @@
     },
     {
       "name": "vsuxseg1ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg1ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg1ei8.v vs3 (rs1) vs2",
@@ -21920,7 +21920,7 @@
     },
     {
       "name": "vsuxseg1ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg1ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg1ei16.v vs3 (rs1) vs2",
@@ -21967,7 +21967,7 @@
     },
     {
       "name": "vsuxseg1ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg1ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg1ei32.v vs3 (rs1) vs2",
@@ -22014,7 +22014,7 @@
     },
     {
       "name": "vsuxseg1ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg1ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg1ei64.v vs3 (rs1) vs2",
@@ -22061,7 +22061,7 @@
     },
     {
       "name": "vsuxseg2ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg2ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg2ei8.v vs3 (rs1) vs2",
@@ -22108,7 +22108,7 @@
     },
     {
       "name": "vsuxseg2ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg2ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg2ei16.v vs3 (rs1) vs2",
@@ -22155,7 +22155,7 @@
     },
     {
       "name": "vsuxseg2ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg2ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg2ei32.v vs3 (rs1) vs2",
@@ -22202,7 +22202,7 @@
     },
     {
       "name": "vsuxseg2ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg2ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg2ei64.v vs3 (rs1) vs2",
@@ -22249,7 +22249,7 @@
     },
     {
       "name": "vsuxseg3ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg3ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg3ei8.v vs3 (rs1) vs2",
@@ -22296,7 +22296,7 @@
     },
     {
       "name": "vsuxseg3ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg3ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg3ei16.v vs3 (rs1) vs2",
@@ -22343,7 +22343,7 @@
     },
     {
       "name": "vsuxseg3ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg3ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg3ei32.v vs3 (rs1) vs2",
@@ -22390,7 +22390,7 @@
     },
     {
       "name": "vsuxseg3ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg3ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg3ei64.v vs3 (rs1) vs2",
@@ -22437,7 +22437,7 @@
     },
     {
       "name": "vsuxseg4ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg4ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg4ei8.v vs3 (rs1) vs2",
@@ -22484,7 +22484,7 @@
     },
     {
       "name": "vsuxseg4ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg4ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg4ei16.v vs3 (rs1) vs2",
@@ -22531,7 +22531,7 @@
     },
     {
       "name": "vsuxseg4ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg4ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg4ei32.v vs3 (rs1) vs2",
@@ -22578,7 +22578,7 @@
     },
     {
       "name": "vsuxseg4ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg4ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg4ei64.v vs3 (rs1) vs2",
@@ -22625,7 +22625,7 @@
     },
     {
       "name": "vsuxseg5ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg5ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg5ei8.v vs3 (rs1) vs2",
@@ -22672,7 +22672,7 @@
     },
     {
       "name": "vsuxseg5ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg5ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg5ei16.v vs3 (rs1) vs2",
@@ -22719,7 +22719,7 @@
     },
     {
       "name": "vsuxseg5ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg5ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg5ei32.v vs3 (rs1) vs2",
@@ -22766,7 +22766,7 @@
     },
     {
       "name": "vsuxseg5ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg5ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg5ei64.v vs3 (rs1) vs2",
@@ -22813,7 +22813,7 @@
     },
     {
       "name": "vsuxseg6ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg6ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg6ei8.v vs3 (rs1) vs2",
@@ -22860,7 +22860,7 @@
     },
     {
       "name": "vsuxseg6ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg6ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg6ei16.v vs3 (rs1) vs2",
@@ -22907,7 +22907,7 @@
     },
     {
       "name": "vsuxseg6ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg6ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg6ei32.v vs3 (rs1) vs2",
@@ -22954,7 +22954,7 @@
     },
     {
       "name": "vsuxseg6ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg6ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg6ei64.v vs3 (rs1) vs2",
@@ -23001,7 +23001,7 @@
     },
     {
       "name": "vsuxseg7ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg7ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg7ei8.v vs3 (rs1) vs2",
@@ -23048,7 +23048,7 @@
     },
     {
       "name": "vsuxseg7ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg7ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg7ei16.v vs3 (rs1) vs2",
@@ -23095,7 +23095,7 @@
     },
     {
       "name": "vsuxseg7ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg7ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg7ei32.v vs3 (rs1) vs2",
@@ -23142,7 +23142,7 @@
     },
     {
       "name": "vsuxseg7ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg7ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg7ei64.v vs3 (rs1) vs2",
@@ -23189,7 +23189,7 @@
     },
     {
       "name": "vsuxseg8ei8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg8ei8.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg8ei8.v vs3 (rs1) vs2",
@@ -23236,7 +23236,7 @@
     },
     {
       "name": "vsuxseg8ei16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg8ei16.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg8ei16.v vs3 (rs1) vs2",
@@ -23283,7 +23283,7 @@
     },
     {
       "name": "vsuxseg8ei32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg8ei32.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg8ei32.v vs3 (rs1) vs2",
@@ -23330,7 +23330,7 @@
     },
     {
       "name": "vsuxseg8ei64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2) F3",
       "signature": "vsuxseg8ei64.v,VEC-Reg,(INT-Reg),VEC-Reg",
       "signatureRaw": "vsuxseg8ei64.v vs3 (rs1) vs2",
@@ -23377,7 +23377,7 @@
     },
     {
       "name": "vl1re8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl1re8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl1re8.v vd (rs1)",
@@ -23418,7 +23418,7 @@
     },
     {
       "name": "vl1re16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl1re16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl1re16.v vd (rs1)",
@@ -23459,7 +23459,7 @@
     },
     {
       "name": "vl1re32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl1re32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl1re32.v vd (rs1)",
@@ -23500,7 +23500,7 @@
     },
     {
       "name": "vl1re64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl1re64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl1re64.v vd (rs1)",
@@ -23541,7 +23541,7 @@
     },
     {
       "name": "vl2re8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl2re8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl2re8.v vd (rs1)",
@@ -23582,7 +23582,7 @@
     },
     {
       "name": "vl2re16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl2re16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl2re16.v vd (rs1)",
@@ -23623,7 +23623,7 @@
     },
     {
       "name": "vl2re32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl2re32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl2re32.v vd (rs1)",
@@ -23664,7 +23664,7 @@
     },
     {
       "name": "vl2re64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl2re64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl2re64.v vd (rs1)",
@@ -23705,7 +23705,7 @@
     },
     {
       "name": "vl3re8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl3re8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl3re8.v vd (rs1)",
@@ -23746,7 +23746,7 @@
     },
     {
       "name": "vl3re16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl3re16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl3re16.v vd (rs1)",
@@ -23787,7 +23787,7 @@
     },
     {
       "name": "vl3re32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl3re32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl3re32.v vd (rs1)",
@@ -23828,7 +23828,7 @@
     },
     {
       "name": "vl3re64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl3re64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl3re64.v vd (rs1)",
@@ -23869,7 +23869,7 @@
     },
     {
       "name": "vl4re8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl4re8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl4re8.v vd (rs1)",
@@ -23910,7 +23910,7 @@
     },
     {
       "name": "vl4re16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl4re16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl4re16.v vd (rs1)",
@@ -23951,7 +23951,7 @@
     },
     {
       "name": "vl4re32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl4re32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl4re32.v vd (rs1)",
@@ -23992,7 +23992,7 @@
     },
     {
       "name": "vl4re64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl4re64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl4re64.v vd (rs1)",
@@ -24033,7 +24033,7 @@
     },
     {
       "name": "vl5re8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl5re8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl5re8.v vd (rs1)",
@@ -24074,7 +24074,7 @@
     },
     {
       "name": "vl5re16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl5re16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl5re16.v vd (rs1)",
@@ -24115,7 +24115,7 @@
     },
     {
       "name": "vl5re32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl5re32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl5re32.v vd (rs1)",
@@ -24156,7 +24156,7 @@
     },
     {
       "name": "vl5re64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl5re64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl5re64.v vd (rs1)",
@@ -24197,7 +24197,7 @@
     },
     {
       "name": "vl6re8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl6re8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl6re8.v vd (rs1)",
@@ -24238,7 +24238,7 @@
     },
     {
       "name": "vl6re16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl6re16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl6re16.v vd (rs1)",
@@ -24279,7 +24279,7 @@
     },
     {
       "name": "vl6re32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl6re32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl6re32.v vd (rs1)",
@@ -24320,7 +24320,7 @@
     },
     {
       "name": "vl6re64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl6re64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl6re64.v vd (rs1)",
@@ -24361,7 +24361,7 @@
     },
     {
       "name": "vl7re8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl7re8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl7re8.v vd (rs1)",
@@ -24402,7 +24402,7 @@
     },
     {
       "name": "vl7re16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl7re16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl7re16.v vd (rs1)",
@@ -24443,7 +24443,7 @@
     },
     {
       "name": "vl7re32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl7re32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl7re32.v vd (rs1)",
@@ -24484,7 +24484,7 @@
     },
     {
       "name": "vl7re64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl7re64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl7re64.v vd (rs1)",
@@ -24525,7 +24525,7 @@
     },
     {
       "name": "vl8re8.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl8re8.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl8re8.v vd (rs1)",
@@ -24566,7 +24566,7 @@
     },
     {
       "name": "vl8re16.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl8re16.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl8re16.v vd (rs1)",
@@ -24607,7 +24607,7 @@
     },
     {
       "name": "vl8re32.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl8re32.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl8re32.v vd (rs1)",
@@ -24648,7 +24648,7 @@
     },
     {
       "name": "vl8re64.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vl8re64.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vl8re64.v vd (rs1)",
@@ -24689,7 +24689,7 @@
     },
     {
       "name": "vs1r.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vs1r.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vs1r.v vd (rs1)",
@@ -24730,7 +24730,7 @@
     },
     {
       "name": "vs2r.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vs2r.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vs2r.v vd (rs1)",
@@ -24771,7 +24771,7 @@
     },
     {
       "name": "vs3r.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vs3r.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vs3r.v vd (rs1)",
@@ -24812,7 +24812,7 @@
     },
     {
       "name": "vs4r.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vs4r.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vs4r.v vd (rs1)",
@@ -24853,7 +24853,7 @@
     },
     {
       "name": "vs5r.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vs5r.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vs5r.v vd (rs1)",
@@ -24894,7 +24894,7 @@
     },
     {
       "name": "vs6r.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vs6r.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vs6r.v vd (rs1)",
@@ -24935,7 +24935,7 @@
     },
     {
       "name": "vs7r.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vs7r.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vs7r.v vd (rs1)",
@@ -24976,7 +24976,7 @@
     },
     {
       "name": "vs8r.v",
-      "type": "Memory Instruction",
+      "type": "Memory access",
       "signature_definition": "F0 F1 (F2)",
       "signature": "vs8r.v,VEC-Reg,(INT-Reg)",
       "signatureRaw": "vs8r.v vd (rs1)",
@@ -25017,7 +25017,7 @@
     },
     {
       "name": "vrsub.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vrsub.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vrsub.vi vd vs2 inm v0.t",
@@ -25070,7 +25070,7 @@
     },
     {
       "name": "vrsub.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vrsub.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vrsub.vi vd vs2 inm",
@@ -25117,7 +25117,7 @@
     },
     {
       "name": "vzext.vf2",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 v0.t",
       "signature": "vzext.vf2,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vzext.vf2 vd vs2 v0.t",
@@ -25164,7 +25164,7 @@
     },
     {
       "name": "vzext.vf4",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 v0.t",
       "signature": "vzext.vf4,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vzext.vf4 vd vs2 v0.t",
@@ -25211,7 +25211,7 @@
     },
     {
       "name": "vzext.vf8",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 v0.t",
       "signature": "vzext.vf8,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vzext.vf8 vd vs2 v0.t",
@@ -25258,7 +25258,7 @@
     },
     {
       "name": "vzext.vf2",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2",
       "signature": "vzext.vf2,VEC-Reg,VEC-Reg",
       "signatureRaw": "vzext.vf2 vd vs2",
@@ -25299,7 +25299,7 @@
     },
     {
       "name": "vzext.vf4",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2",
       "signature": "vzext.vf4,VEC-Reg,VEC-Reg",
       "signatureRaw": "vzext.vf4 vd vs2",
@@ -25340,7 +25340,7 @@
     },
     {
       "name": "vzext.vf8",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2",
       "signature": "vzext.vf8,VEC-Reg,VEC-Reg",
       "signatureRaw": "vzext.vf8 vd vs2",
@@ -25381,7 +25381,7 @@
     },
     {
       "name": "vsext.vf2",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 v0.t",
       "signature": "vsext.vf2,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vsext.vf2 vd vs2 v0.t",
@@ -25428,7 +25428,7 @@
     },
     {
       "name": "vsext.vf4",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 v0.t",
       "signature": "vsext.vf4,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vsext.vf4 vd vs2 v0.t",
@@ -25475,7 +25475,7 @@
     },
     {
       "name": "vsext.vf8",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 v0.t",
       "signature": "vsext.vf8,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vsext.vf8 vd vs2 v0.t",
@@ -25522,7 +25522,7 @@
     },
     {
       "name": "vsext.vf2",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2",
       "signature": "vsext.vf2,VEC-Reg,VEC-Reg",
       "signatureRaw": "vsext.vf2 vd vs2",
@@ -25563,7 +25563,7 @@
     },
     {
       "name": "vsext.vf4",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2",
       "signature": "vsext.vf4,VEC-Reg,VEC-Reg",
       "signatureRaw": "vsext.vf4 vd vs2",
@@ -25604,7 +25604,7 @@
     },
     {
       "name": "vsext.vf8",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2",
       "signature": "vsext.vf8,VEC-Reg,VEC-Reg",
       "signatureRaw": "vsext.vf8 vd vs2",
@@ -25645,7 +25645,7 @@
     },
     {
       "name": "vand.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vand.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vand.vv vd vs2 vs1 v0.t",
@@ -25698,7 +25698,7 @@
     },
     {
       "name": "vand.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vand.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vand.vv vd vs2 vs1",
@@ -25745,7 +25745,7 @@
     },
     {
       "name": "vand.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vand.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vand.vx vd vs2 rs1 v0.t",
@@ -25798,7 +25798,7 @@
     },
     {
       "name": "vand.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vand.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vand.vx vd vs2 rs1",
@@ -25845,7 +25845,7 @@
     },
     {
       "name": "vand.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vand.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vand.vi vd vs2 inm v0.t",
@@ -25898,7 +25898,7 @@
     },
     {
       "name": "vand.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vand.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vand.vi vd vs2 inm",
@@ -25945,7 +25945,7 @@
     },
     {
       "name": "vor.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vor.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vor.vi vd vs2 inm v0.t",
@@ -25998,7 +25998,7 @@
     },
     {
       "name": "vor.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vor.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vor.vi vd vs2 inm",
@@ -26045,7 +26045,7 @@
     },
     {
       "name": "vor.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vor.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vor.vx vd vs2 rs1 v0.t",
@@ -26098,7 +26098,7 @@
     },
     {
       "name": "vor.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vor.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vor.vx vd vs2 rs1",
@@ -26145,7 +26145,7 @@
     },
     {
       "name": "vor.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vor.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vor.vv vd vs2 vs1 v0.t",
@@ -26198,7 +26198,7 @@
     },
     {
       "name": "vor.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vor.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vor.vv vd vs2 vs1",
@@ -26245,7 +26245,7 @@
     },
     {
       "name": "vxor.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vxor.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vxor.vv vd vs2 vs1 v0.t",
@@ -26298,7 +26298,7 @@
     },
     {
       "name": "vxor.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vxor.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vxor.vv vd vs2 vs1",
@@ -26345,7 +26345,7 @@
     },
     {
       "name": "vxor.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vxor.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vxor.vx vd vs2 rs1 v0.t",
@@ -26398,7 +26398,7 @@
     },
     {
       "name": "vxor.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vxor.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vxor.vx vd vs2 rs1",
@@ -26445,7 +26445,7 @@
     },
     {
       "name": "vxor.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vxor.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vxor.vi vd vs2 inm v0.t",
@@ -26498,7 +26498,7 @@
     },
     {
       "name": "vxor.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vxor.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vxor.vi vd vs2 inm",
@@ -26545,7 +26545,7 @@
     },
     {
       "name": "vsll.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsll.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
       "signatureRaw": "vsll.vi vd vs2 uinm v0.t",
@@ -26598,7 +26598,7 @@
     },
     {
       "name": "vsll.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsll.vi,VEC-Reg,VEC-Reg,inm-unsigned",
       "signatureRaw": "vsll.vi vd vs2 uinm",
@@ -26645,7 +26645,7 @@
     },
     {
       "name": "vsll.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsll.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vsll.vx vd vs2 rs1 v0.t",
@@ -26698,7 +26698,7 @@
     },
     {
       "name": "vsll.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsll.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vsll.vx vd vs2 rs1",
@@ -26745,7 +26745,7 @@
     },
     {
       "name": "vsll.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsll.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vsll.vv vd vs2 vs1 v0.t",
@@ -26798,7 +26798,7 @@
     },
     {
       "name": "vsll.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsll.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vsll.vv vd vs2 vs1",
@@ -26845,7 +26845,7 @@
     },
     {
       "name": "vsrl.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsrl.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vsrl.vv vd vs2 vs1 v0.t",
@@ -26898,7 +26898,7 @@
     },
     {
       "name": "vsrl.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsrl.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vsrl.vv vd vs2 vs1",
@@ -26945,7 +26945,7 @@
     },
     {
       "name": "vsrl.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsrl.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vsrl.vx vd vs2 rs1 v0.t",
@@ -26998,7 +26998,7 @@
     },
     {
       "name": "vsrl.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsrl.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vsrl.vx vd vs2 rs1",
@@ -27045,7 +27045,7 @@
     },
     {
       "name": "vsrl.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsrl.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
       "signatureRaw": "vsrl.vi vd vs2 uinm v0.t",
@@ -27098,7 +27098,7 @@
     },
     {
       "name": "vsrl.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsrl.vi,VEC-Reg,VEC-Reg,inm-unsigned",
       "signatureRaw": "vsrl.vi vd vs2 uinm",
@@ -27145,7 +27145,7 @@
     },
     {
       "name": "vsra.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsra.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
       "signatureRaw": "vsra.vi vd vs2 uinm v0.t",
@@ -27198,7 +27198,7 @@
     },
     {
       "name": "vsra.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsra.vi,VEC-Reg,VEC-Reg,inm-unsigned",
       "signatureRaw": "vsra.vi vd vs2 uinm",
@@ -27245,7 +27245,7 @@
     },
     {
       "name": "vsra.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsra.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vsra.vx vd vs2 rs1 v0.t",
@@ -27298,7 +27298,7 @@
     },
     {
       "name": "vsra.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsra.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vsra.vx vd vs2 rs1",
@@ -27345,7 +27345,7 @@
     },
     {
       "name": "vsra.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vsra.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vsra.vv vd vs2 vs1 v0.t",
@@ -27398,7 +27398,7 @@
     },
     {
       "name": "vsra.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vsra.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vsra.vv vd vs2 vs1",
@@ -27445,7 +27445,7 @@
     },
     {
       "name": "vmseq.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmseq.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmseq.vv vd vs2 vs1 v0.t",
@@ -27496,7 +27496,7 @@
     },
     {
       "name": "vmseq.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmseq.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmseq.vv vd vs2 vs1",
@@ -27541,7 +27541,7 @@
     },
     {
       "name": "vmsne.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsne.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsne.vv vd vs2 vs1 v0.t",
@@ -27592,7 +27592,7 @@
     },
     {
       "name": "vmsne.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsne.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsne.vv vd vs2 vs1",
@@ -27637,7 +27637,7 @@
     },
     {
       "name": "vmslt.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmslt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmslt.vv vd vs2 vs1 v0.t",
@@ -27688,7 +27688,7 @@
     },
     {
       "name": "vmslt.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmslt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmslt.vv vd vs2 vs1",
@@ -27733,7 +27733,7 @@
     },
     {
       "name": "vmsle.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsle.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsle.vv vd vs2 vs1 v0.t",
@@ -27784,7 +27784,7 @@
     },
     {
       "name": "vmsle.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsle.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsle.vv vd vs2 vs1",
@@ -27829,7 +27829,7 @@
     },
     {
       "name": "vmsgt.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsgt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsgt.vv vd vs2 vs1 v0.t",
@@ -27880,7 +27880,7 @@
     },
     {
       "name": "vmsgt.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsgt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsgt.vv vd vs2 vs1",
@@ -27925,7 +27925,7 @@
     },
     {
       "name": "vmseq.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmseq.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmseq.vv vd vs2 vs1 v0.t",
@@ -27976,7 +27976,7 @@
     },
     {
       "name": "vmseq.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmseq.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmseq.vv vd vs2 vs1",
@@ -28021,7 +28021,7 @@
     },
     {
       "name": "vmsne.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsne.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsne.vv vd vs2 vs1 v0.t",
@@ -28072,7 +28072,7 @@
     },
     {
       "name": "vmsne.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsne.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsne.vv vd vs2 vs1",
@@ -28117,7 +28117,7 @@
     },
     {
       "name": "vmslt.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmslt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmslt.vv vd vs2 vs1 v0.t",
@@ -28168,7 +28168,7 @@
     },
     {
       "name": "vmslt.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmslt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmslt.vv vd vs2 vs1",
@@ -28213,7 +28213,7 @@
     },
     {
       "name": "vmsle.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsle.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsle.vv vd vs2 vs1 v0.t",
@@ -28264,7 +28264,7 @@
     },
     {
       "name": "vmsle.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsle.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsle.vv vd vs2 vs1",
@@ -28309,7 +28309,7 @@
     },
     {
       "name": "vmsgt.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsgt.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsgt.vv vd vs2 vs1 v0.t",
@@ -28360,7 +28360,7 @@
     },
     {
       "name": "vmsgt.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsgt.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsgt.vv vd vs2 vs1",
@@ -28405,7 +28405,7 @@
     },
     {
       "name": "vmseq.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmseq.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vmseq.vx vd vs2 rs1 v0.t",
@@ -28456,7 +28456,7 @@
     },
     {
       "name": "vmseq.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmseq.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vmseq.vx vd vs2 rs1",
@@ -28501,7 +28501,7 @@
     },
     {
       "name": "vmsne.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsne.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vmsne.vx vd vs2 rs1 v0.t",
@@ -28552,7 +28552,7 @@
     },
     {
       "name": "vmsne.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsne.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vmsne.vx vd vs2 rs1",
@@ -28597,7 +28597,7 @@
     },
     {
       "name": "vmslt.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmslt.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vmslt.vx vd vs2 rs1 v0.t",
@@ -28648,7 +28648,7 @@
     },
     {
       "name": "vmslt.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmslt.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vmslt.vx vd vs2 rs1",
@@ -28693,7 +28693,7 @@
     },
     {
       "name": "vmsle.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsle.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vmsle.vx vd vs2 rs1 v0.t",
@@ -28744,7 +28744,7 @@
     },
     {
       "name": "vmsle.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsle.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vmsle.vx vd vs2 rs1",
@@ -28789,7 +28789,7 @@
     },
     {
       "name": "vmsgt.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsgt.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vmsgt.vx vd vs2 rs1 v0.t",
@@ -28840,7 +28840,7 @@
     },
     {
       "name": "vmsgt.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsgt.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vmsgt.vx vd vs2 rs1",
@@ -28885,7 +28885,7 @@
     },
     {
       "name": "vmseq.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmseq.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vmseq.vi vd vs2 inm v0.t",
@@ -28936,7 +28936,7 @@
     },
     {
       "name": "vmseq.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmseq.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vmseq.vi vd vs2 inm",
@@ -28981,7 +28981,7 @@
     },
     {
       "name": "vmsne.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsne.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vmsne.vi vd vs2 inm v0.t",
@@ -29032,7 +29032,7 @@
     },
     {
       "name": "vmsne.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsne.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vmsne.vi vd vs2 inm",
@@ -29077,7 +29077,7 @@
     },
     {
       "name": "vmslt.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmslt.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vmslt.vi vd vs2 inm v0.t",
@@ -29128,7 +29128,7 @@
     },
     {
       "name": "vmslt.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmslt.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vmslt.vi vd vs2 inm",
@@ -29173,7 +29173,7 @@
     },
     {
       "name": "vmsle.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsle.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vmsle.vi vd vs2 inm v0.t",
@@ -29224,7 +29224,7 @@
     },
     {
       "name": "vmsle.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsle.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vmsle.vi vd vs2 inm",
@@ -29269,7 +29269,7 @@
     },
     {
       "name": "vmsgt.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsgt.vi,VEC-Reg,VEC-Reg,inm-signed,v0.t",
       "signatureRaw": "vmsgt.vi vd vs2 inm v0.t",
@@ -29320,7 +29320,7 @@
     },
     {
       "name": "vmsgt.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsgt.vi,VEC-Reg,VEC-Reg,inm-signed",
       "signatureRaw": "vmsgt.vi vd vs2 inm",
@@ -29365,7 +29365,7 @@
     },
     {
       "name": "vmsltu.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsltu.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsltu.vv vd vs2 vs1 v0.t",
@@ -29416,7 +29416,7 @@
     },
     {
       "name": "vmsltu.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsltu.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsltu.vv vd vs2 vs1",
@@ -29461,7 +29461,7 @@
     },
     {
       "name": "vmsleu.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsleu.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsleu.vv vd vs2 vs1 v0.t",
@@ -29512,7 +29512,7 @@
     },
     {
       "name": "vmsleu.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsleu.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsleu.vv vd vs2 vs1",
@@ -29557,7 +29557,7 @@
     },
     {
       "name": "vmsgtu.vv",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsgtu.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
       "signatureRaw": "vmsgtu.vv vd vs2 vs1 v0.t",
@@ -29608,7 +29608,7 @@
     },
     {
       "name": "vmsgtu.vv",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsgtu.vv,VEC-Reg,VEC-Reg,VEC-Reg",
       "signatureRaw": "vmsgtu.vv vd vs2 vs1",
@@ -29653,7 +29653,7 @@
     },
     {
       "name": "vmsltu.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsltu.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vmsltu.vx vd vs2 rs1 v0.t",
@@ -29704,7 +29704,7 @@
     },
     {
       "name": "vmsltu.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsltu.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vmsltu.vx vd vs2 rs1",
@@ -29749,7 +29749,7 @@
     },
     {
       "name": "vmsleu.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsleu.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vmsleu.vx vd vs2 rs1 v0.t",
@@ -29800,7 +29800,7 @@
     },
     {
       "name": "vmsleu.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsleu.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vmsleu.vx vd vs2 rs1",
@@ -29845,7 +29845,7 @@
     },
     {
       "name": "vmsgtu.vx",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsgtu.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
       "signatureRaw": "vmsgtu.vx vd vs2 rs1 v0.t",
@@ -29896,7 +29896,7 @@
     },
     {
       "name": "vmsgtu.vx",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsgtu.vx,VEC-Reg,VEC-Reg,INT-Reg",
       "signatureRaw": "vmsgtu.vx vd vs2 rs1",
@@ -29941,7 +29941,7 @@
     },
     {
       "name": "vmsltu.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsltu.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
       "signatureRaw": "vmsltu.vi vd vs2 inm v0.t",
@@ -29992,7 +29992,7 @@
     },
     {
       "name": "vmsltu.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsltu.vi,VEC-Reg,VEC-Reg,inm-unsigned",
       "signatureRaw": "vmsltu.vi vd vs2 inm",
@@ -30037,7 +30037,7 @@
     },
     {
       "name": "vmsleu.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsleu.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
       "signatureRaw": "vmsleu.vi vd vs2 inm v0.t",
@@ -30088,7 +30088,7 @@
     },
     {
       "name": "vmsleu.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsleu.vi,VEC-Reg,VEC-Reg,inm-unsigned",
       "signatureRaw": "vmsleu.vi vd vs2 inm",
@@ -30133,7 +30133,7 @@
     },
     {
       "name": "vmsgtu.vi",
-      "type": "Arithmetic Instruction Masked",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3 v0.t",
       "signature": "vmsgtu.vi,VEC-Reg,VEC-Reg,inm-unsigned,v0.t",
       "signatureRaw": "vmsgtu.vi vd vs2 inm v0.t",
@@ -30184,7 +30184,7 @@
     },
     {
       "name": "vmsgtu.vi",
-      "type": "Arithmetic Instruction",
+      "type": "Vector arithmetic",
       "signature_definition": "F0 F1 F2 F3",
       "signature": "vmsgtu.vi,VEC-Reg,VEC-Reg,inm-unsigned",
       "signatureRaw": "vmsgtu.vi vd vs2 inm",

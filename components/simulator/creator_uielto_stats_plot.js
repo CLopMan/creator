@@ -43,7 +43,7 @@
                       id: 'stat_plot',
                       type: 'donut',
                     },
-                    labels: ["Arithmetic floating point", "Arithmetic integer", "Comparison", "Conditional bifurcation", "Control", "Function call", "I/O", "Logic", "Memory access", "Other", "Syscall", "Transfer between registers", "Unconditional bifurcation"],
+                    labels: ["Arithmetic floating point", "Arithmetic integer", "Comparison", "Conditional bifurcation", "Control", "Function call", "I/O", "Logic", "Memory access", "Other", "Syscall", "Transfer between registers", "Unconditional bifurcation", "Vector arithmetic"],
                     dataLabels: {
                       enabled: true
                     },
@@ -70,7 +70,7 @@
                         stops: [0, 50, 100],
                         colorStops: []
                       },
-                      colors: ['red', 'blue', 'yellow', 'purple', 'green', 'orange', 'gray', 'pink', 'teal', 'black', 'lime', 'indigo', 'cyan'],
+                      colors: ['red', 'blue', 'yellow', 'purple', 'green', 'orange', 'gray', 'pink', 'teal', 'black', 'lime', 'indigo', 'cyan', 'brown'],
                     },
                     legend: {
                       formatter: function(val, opts) {

@@ -41,7 +41,7 @@
                       id: 'clk_plot',
                       type: 'bar'
                     },
-                    labels: ["Arithmetic floating point", "Arithmetic integer", "Comparison", "Conditional bifurcation", "Control", "Function call", "I/O", "Logic", "Memory access", "Other", "Syscall", "Transfer between registers", "Unconditional bifurcation"],
+                    labels: ["Arithmetic floating point", "Arithmetic integer", "Comparison", "Conditional bifurcation", "Control", "Function call", "I/O", "Logic", "Memory access", "Other", "Syscall", "Transfer between registers", "Unconditional bifurcation", "Vector arithmetic"],
                     dataLabels: {
                       enabled: true
                     },
@@ -65,7 +65,7 @@
                       colors: ['transparent']
                     },
                     xaxis: {
-                      categories: ["Arithmetic floating point", "Arithmetic integer", "Comparison", "Conditional bifurcation", "Control", "Function call", "I/O", "Logic", "Memory access", "Other", "Syscall", "Transfer between registers", "Unconditional bifurcation"],
+                      categories: ["Arithmetic floating point", "Arithmetic integer", "Comparison", "Conditional bifurcation", "Control", "Function call", "I/O", "Logic", "Memory access", "Other", "Syscall", "Transfer between registers", "Unconditional bifurcation", "Vector arithmetic"],
                     },
                     yaxis: {
                       title: {
