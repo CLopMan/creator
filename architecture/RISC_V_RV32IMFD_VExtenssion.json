@@ -30228,6 +30228,774 @@
       "help": ""
     },
     {
+      "name": "vwaddu.wv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwaddu.wv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vwaddu.wv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwaddu.wv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwaddu.wv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwaddu.wv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vwaddu.wv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwaddu.wv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwaddu.wx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwaddu.wx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vwaddu.wx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwaddu.wx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwaddu.wx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwaddu.wx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vwaddu.wx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwaddu.wx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwaddu.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwaddu.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vwaddu.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwaddu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwaddu.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwaddu.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vwaddu.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwaddu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwaddu.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwaddu.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vwaddu.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwaddu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwaddu.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwaddu.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vwaddu.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwaddu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsubu.wv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwsubu.wv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vwsubu.wv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsubu.wv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsubu.wv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwsubu.wv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vwsubu.wv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsubu.wv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsubu.wx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwsubu.wx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vwsubu.wx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsubu.wx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsubu.wx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwsubu.wx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vwsubu.wx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsubu.wx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsubu.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwsubu.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vwsubu.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsubu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsubu.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwsubu.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vwsubu.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsubu.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsubu.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwsubu.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vwsubu.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsubu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsubu.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwsubu.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vwsubu.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsubu.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",

@@ -291,12 +291,10 @@ function readVector(indexComp, indexElem, lmulExp, sew, vlen) {
 function writeVector(indexComp, indexElem, value, lmulExp, sew, vlen, ta) {
   //console.log(">>> trying to write (value, indexComp, indexElem):", value, indexComp, indexElem, architecture.components[indexComp].elements[indexElem].name);
   let lmul = Math.pow(2, lmulExp);
-  //console.log(">>> lmul = ", lmul);
   let hexValue;
   for (let i = 0; i < lmul; ++i) {
     hexValue = transformVectorToHex(value, sew, vlen, i, ta);
     architecture.components[indexComp].elements[indexElem + i].value = BigInt(hexValue);
-    //////console.log(">>>", hexValue, " - ", i);
   }
   return hexValue;
 
@@ -415,7 +413,6 @@ function applyMask(mask, ma, vd, backup, vl) {
       }
     }
   }
-  // TODO: add tail agnostic behaivour
   return copy;
 }
 
@@ -639,6 +636,55 @@ function vecIntOperation(vd, vs1, rs1, operation, sew=checkSEW()) {
   return operation (vd, vs1, rs1_corrected & mask);
   
 
+}
+
+/* ==== WIDE/NARROW INSTRUCTIONS == */
+
+function widening_operation(vd_name, lhs_name, rhs_name, operation, w, masked=false, lmulExp=checkLMULEXP(), sew=checkSEW()) {
+  let vd  = crex_findReg(vd_name );
+  let lhs = crex_findReg(lhs_name);
+  let rhs = crex_findReg(rhs_name);
+
+  vd_value = readVector(vd.indexComp, vd.indexElem, 1+lmulExp, 2*sew, checkVlen());
+  if (w == 'w') {
+    lhs_value = readVector(lhs.indexComp, lhs.indexElem, 1+lmulExp, 2*sew, checkVlen());
+  } else {
+    lhs_value = readVector(lhs.indexComp, lhs.indexElem, lmulExp, sew, checkVlen());
+  }
+
+  rhs_value = readRegister(rhs.indexComp, rhs.indexElem);
+
+  if (typeof rhs_value == 'number') {
+    rhs_value = BigInt(rhs_value);
+  }
+
+  if (masked) {
+    vd_value = maskedOperation(checkVl(), lhs_value, rhs_value, vd_value, operation);
+  } else { 
+    vd_value = operation(vd_value, lhs_value, rhs_value);
+  }
+  writeVector(vd.indexComp, vd.indexElem, vd_value, lmulExp+1, 2*sew, checkVlen(), checkTA());
+}
+
+function narrowing_operation(vd_name, lhs_name, rhs_name, operation, masked=false, lmulExp=checkLMULEXP(), sew=checkSEW()) {
+  let vd  = crex_findReg(vd_name );
+  let lhs = crex_findReg(lhs_name);
+  let rhs = crex_findReg(rhs_name);
+
+  vd_value = readVector(vd.indexComp, vd.indexElem, lmulExp, sew, checkVlen());
+  lhs_value = readVector(lhs.indexComp, lhs.indexElem, 1+lmulExp, 2*sew, checkVlen());
+  rhs_value = readRegister(rhs.indexComp, rhs.indexElem);
+
+  if (typeof rhs_value == 'number') {
+    rhs_value = BigInt(rhs_value);
+  }
+
+  if (masked) {
+    vd_value = maskedOperation(checkVl(), lhs_value, rhs_value, vd_value, operation);
+  } else { 
+    vd_value = operation(vd_value, lhs_value, rhs_value);
+  }
+  writeVector(vd.indexComp, vd.indexElem, vd_value, lmulExp, sew, checkVlen(), checkTA());
 }
 
 /* Miscellaneous */
