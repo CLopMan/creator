@@ -16,3 +16,5 @@ main:
     vwsubu.wx v26 v2 t1
 
     vwaddu.vv v24 v2 v4 v0.t
+
+    vwadd.wx v28 v2 t1

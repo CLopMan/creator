@@ -4,8 +4,8 @@ ext = "ins"
 opcode = "1010111"
 
 instructions = {
-    "vwaddu" : '+',
-    "vwsubu" : '-',
+    "vwadd" : '+',
+    "vwsub" : '-',
 }
 rhs = ['v' , 'x']
 lhs = ['w' , 'v']
@@ -87,7 +87,7 @@ def add_code(m, v_or_x, op, lhs):
         "v" : f"""
     function operation(vd, lhs, rhs) {{
         for (let i=0; i<checkVl(); ++i) {{
-           vd[i] = capi_LogicalRightShift(lhs[i], 0) {op} capi_LogicalRightShift(rhs[i], 0);
+           vd[i] = lhs[i] {op} rhs[i];
         }}
         return vd;
     }}
@@ -96,7 +96,7 @@ def add_code(m, v_or_x, op, lhs):
     "x" : f"""
     function operation(vd, lhs, rhs) {{
         for (let i=0; i<checkVl(); ++i) {{
-           vd[i] = capi_LogicalRightShift(lhs[i], 0) {op} capi_LogicalRightShift(rhs, 0);
+           vd[i] = lhs[i] {op} rhs;
         }}
         return vd;
     }}
@@ -108,7 +108,7 @@ def add_code(m, v_or_x, op, lhs):
         "v" : f"""
     function operation(vd, lhs, rhs) {{
         for (let i=0; i<checkVl(); ++i) {{
-           vd[i] = capi_LogicalRightShift(lhs[i], 0) {op} capi_LogicalRightShift(rhs[i], 0);
+           vd[i] = lhs[i] {op} rhs[i];
         }}
         return vd;
     }}
@@ -117,7 +117,7 @@ def add_code(m, v_or_x, op, lhs):
     "x" : f"""
     function operation(vd, lhs, rhs) {{
         for (let i=0; i<checkVl(); ++i) {{
-           vd[i] = capi_LogicalRightShift(lhs[i], 0) {op} capi_LogicalRightShift(rhs, 0);
+           vd[i] = lhs[i] {op} rhs;
         }}
         return vd;
     }}

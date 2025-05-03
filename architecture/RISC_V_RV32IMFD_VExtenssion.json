@@ -30996,6 +30996,774 @@
       "help": ""
     },
     {
+      "name": "vwadd.wv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwadd.wv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vwadd.wv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwadd.wv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] + rhs[i];\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwadd.wv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwadd.wv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vwadd.wv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwadd.wv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] + rhs[i];\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwadd.wx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwadd.wx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vwadd.wx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwadd.wx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] + rhs;\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwadd.wx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwadd.wx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vwadd.wx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwadd.wx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] + rhs;\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwadd.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwadd.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vwadd.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwadd.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] + rhs[i];\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwadd.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwadd.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vwadd.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwadd.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] + rhs[i];\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwadd.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwadd.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vwadd.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwadd.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] + rhs;\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwadd.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwadd.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vwadd.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwadd.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] + rhs;\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsub.wv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwsub.wv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vwsub.wv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsub.wv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] - rhs[i];\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsub.wv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwsub.wv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vwsub.wv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsub.wv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] - rhs[i];\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsub.wx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwsub.wx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vwsub.wx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsub.wx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] - rhs;\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsub.wx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwsub.wx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vwsub.wx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsub.wx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] - rhs;\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsub.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwsub.vv,VEC-Reg,VEC-Reg,VEC-Reg,v0.t",
+      "signatureRaw": "vwsub.vv vd vs2 vs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsub.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] - rhs[i];\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsub.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwsub.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vwsub.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsub.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] - rhs[i];\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsub.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 v0.t",
+      "signature": "vwsub.vx,VEC-Reg,VEC-Reg,INT-Reg,v0.t",
+      "signatureRaw": "vwsub.vx vd vs2 rs1 v0.t",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsub.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "vm",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] - rhs;\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v', true);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vwsub.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vwsub.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vwsub.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vwsub.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = lhs[i] - rhs;\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v');",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",
