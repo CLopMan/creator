@@ -7818,6 +7818,7 @@ function get_number_binary (bin)
  */
 
 
+
 // Control registers
 
 /**
@@ -7834,10 +7835,21 @@ function get_number_binary (bin)
 function capi_LogicalRightShift(x, shift) {
   x = BigInt(x);
   shift = BigInt(shift);
+  let lg2 = x.to2CString().length;
   // x could be positive or negative
   // 1n << checkSEW is always positive => transform x to positive
-  x = x & ((1n << BigInt(checkSEW())) - 1n);
+  x = x & ((1n << BigInt(lg2)) - 1n);
   return x >> shift;
+}
+
+function unsigned(n, eew=checkSEW()) {
+  n = BigInt(n);
+  let out = [];
+  for (let i = 0; i < eew; ++i) {
+    out.unshift((n & 1n).toString());
+    n = n >> 1n;
+  }
+  return BigInt("0b"+out.join(''));
 }
 
 function capi_ArithRightShift(x, shift) {
@@ -8533,7 +8545,7 @@ function fillVector(vector, vlen, sew) {
 
 function expandVector(vector, length) {
   if (length > vector.length) {
-    vector = vector.concat(new Array(length - vector.length).fill(0n))
+    vector = vector.concat(new Array(length - vector.length).fill(0n));
   }
   return vector;
 }
@@ -8552,9 +8564,32 @@ function fixVectorLength(vector, length, pad=0n) {
   }
 }
 
+function to2CString(a) {
+  a = BigInt(a);
+  if (a >= 0) {
+    return a.toString(2);
+  } else {
+      let a_pos = -a;
+      let bits = 1n;
+      while((1n << (bits - 1n)) <= a_pos) {
+        ++bits;
+      }
+
+      let max = 1n << bits;
+      let result = max + a;
+
+    return result.toString(2) 
+  }
+}
+
 BigInt.prototype.toJSON = function() {
   return this.toString();
 }
+
+BigInt.prototype.to2CString = function () {
+  return to2CString(this);
+}
+
 /*
  *  Copyright 2018-2024 Felix Garcia Carballeira, Diego Camarmas Alonso, Alejandro Calderon Mateos
  *

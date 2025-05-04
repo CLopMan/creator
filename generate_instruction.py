@@ -4,7 +4,7 @@ ext = "ins"
 opcode = "1010111"
 
 instructions = {
-    "vadc" : '+',
+    "vmadc" : '+',
     #"vwsub" : '-',
 }
 rhs = ['v' , 'x', 'i'] # u for inm-unsigned
@@ -93,29 +93,38 @@ def add_code(m, v_or_x, op, lhs):
     code_unmask = {
         "v" : f"""
         v0_mask = extractMaskFromV0(vl);
+        vd_mask = extractMaskByName(vd_name);
         for (let i=0; i<checkVl(); ++i) {{
-           vd[i] = vs2[i] {op} vs1[i] {op} v0_mask[i];
+           let aux = unsigned(vs2[i]) {op} unsigned(vs1[i]) {op} v0_mask[i];
+           vd_mask[i] = capi_LogicalRightShift(aux, checkSEW());
         }}
+        writeMaskByName(vd_name, vd_mask);
     """,
     "x" : f"""
         v0_mask = extractMaskFromV0(vl);
-        function adc(vd, vs2, rs1) {{
+        vd_mask = extractMaskBuName(vd_name);
+        function madc(vd, vs2, rs1) {{
             for (let i=0; i<checkVl(); ++i) {{
-               vd[i] = vs2[i] {op} rs1 {op} v0_mask[i];
+               let aux = (unsigned(vs2[i]) {op} unsigned(rs1) {op} v0_mask[i]);
+               vd[i] = capi_LogicalRightShift(aux, checkSEW());
             }}
             return vd;
         }}
-        vd = vecIntOperation(vd, vs2, rs1, adc);
+        vd_mask = vecIntOperation(vd_mask, vs2, rs1, madc);
+        writeMaskByName(vd_name, vd_mask);
     """,
     'i': f"""
         v0_mask = extractMaskFromV0(vl);
-        function adc(vd, vs2, rs1) {{
+        vd_mask = extractMaskBuName(vd_name);
+        function madc(vd, vs2, rs1) {{
             for (let i=0; i<checkVl(); ++i) {{
-               vd[i] = vs2[i] {op} rs1 {op} v0_mask[i];
+               let aux = (unsigned(vs2[i]) {op} unsigned(rs1) {op} v0_mask[i]);
+               vd[i] = capi_LogicalRightShift(aux, checkSEW());
             }}
             return vd;
         }}
-        vd = vecIntOperation(vd, vs2, inm, adc);
+        vd_mask = vecIntOperation(vd_mask, vs2, inm, adc);
+        writeMaskByName(vd_name, vd_mask);
     """
     }
 

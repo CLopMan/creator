@@ -31805,7 +31805,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "v0_mask = extractMaskFromV0(vl);\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = vs2[i] + vs1[i] + v0_mask[i];\n}",
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(vs2[i]) + unsigned(vs1[i]) + v0_mask[i];\n}",
       "separated": [
         false,
         false,
@@ -31856,7 +31856,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "v0_mask = extractMaskFromV0(vl);\nfunction adc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = vs2[i] + rs1 + v0_mask[i];\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, rs1, adc);",
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfunction adc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(vs2[i]) + unsigned(rs1) + v0_mask[i];\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, rs1, adc);",
       "separated": [
         false,
         false,
@@ -31907,7 +31907,160 @@
           "stopbit": 25
         }
       ],
-      "definition": "v0_mask = extractMaskFromV0(vl);\nfunction adc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = vs2[i] + rs1 + v0_mask[i];\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, inm, adc);",
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfunction adc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(vs2[i]) + unsigned(rs1) + v0_mask[i];\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, inm, adc);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmadc.vvm",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vmadc.vvm,VEC-Reg,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmadc.vvm vd vs2 vs1 v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmadc.vvm",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nvd_mask = extractMaskByName(vd_name);\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = unsigned(vs2[i]) + unsigned(vs1[i]) + v0_mask[i];\nvd_mask[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nwriteMaskByName(vd_name, vd_mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmadc.vxm",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vmadc.vxm,VEC-Reg,VEC-Reg,INT-Reg,VEC-Reg",
+      "signatureRaw": "vmadc.vxm vd vs2 rs1 v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmadc.vxm",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nvd_mask = extractMaskByName(vd_name);\nfunction madc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = (unsigned(vs2[i]) + unsigned(rs1) + v0_mask[i]);\nvd[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nreturn vd;\n}\nvd_mask = vecIntOperation(vd_mask, vs2, rs1, madc);\nwriteMaskByName(vd_name, vd_mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmadc.vim",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vmadc.vim,VEC-Reg,VEC-Reg,inm-signed,VEC-Reg",
+      "signatureRaw": "vmadc.vim vd vs2 inm v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmadc.vim",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nvd_mask = extractMaskByName(vd_name);\nfunction madc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = (unsigned(vs2[i]) + unsigned(rs1) + v0_mask[i]);\nvd[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nreturn vd;\n}\nvd_mask = vecIntOperation(vd_mask, vs2, inm, madc);\nwriteMaskByName(vd_name, vd_mask);",
       "separated": [
         false,
         false,
