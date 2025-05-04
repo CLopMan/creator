@@ -4,11 +4,14 @@ ext = "ins"
 opcode = "1010111"
 
 instructions = {
-    "vwadd" : '+',
-    "vwsub" : '-',
+    "vadc" : '+',
+    #"vwsub" : '-',
 }
-rhs = ['v' , 'x']
-lhs = ['w' , 'v']
+rhs = ['v' , 'x', 'i'] # u for inm-unsigned
+lhs = ['v' ,] #'w']
+#mask = [' v0.t', '']
+mask = ['',]
+structure = "{}.{}{}m vd vs2 {} v0{}"
 
 field = """
     {{
@@ -78,29 +81,41 @@ def add_fields(name, m, v_or_ex):
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
         {field.format("vs2", "VEC-Reg", 24, 20)},
-        {field.format("vs1", "VEC-Reg", 19, 15) if v_or_ex == 'v' else field.format("rs1", "INT-Reg", 19, 15)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("vs1", "VEC-Reg", 19, 15) if v_or_ex == 'v' else field.format("rs1", "INT-Reg", 19, 15) if v_or_ex=='x' else field.format("inm", "inm-signed", 19, 15) if v_or_ex == 'i' else field.format("inm", "inm-unsigned", 19, 15)},
+        {field.format("v0" , "VEC-Reg", 25, 25)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
 def add_code(m, v_or_x, op, lhs):
+    if v_or_x == 'u':
+        v_or_x = 'i'
+
     code_unmask = {
         "v" : f"""
-    function operation(vd, lhs, rhs) {{
+        v0_mask = extractMaskFromV0(vl);
         for (let i=0; i<checkVl(); ++i) {{
-           vd[i] = lhs[i] {op} rhs[i];
+           vd[i] = vs2[i] {op} vs1[i] {op} v0_mask[i];
         }}
-        return vd;
-    }}
-    widening_operation(vd_name, vs2_name, {"r" if v_or_x == 'x' else v_or_x}s1_name, operation, '{lhs}');
     """,
     "x" : f"""
-    function operation(vd, lhs, rhs) {{
-        for (let i=0; i<checkVl(); ++i) {{
-           vd[i] = lhs[i] {op} rhs;
+        v0_mask = extractMaskFromV0(vl);
+        function adc(vd, vs2, rs1) {{
+            for (let i=0; i<checkVl(); ++i) {{
+               vd[i] = vs2[i] {op} rs1 {op} v0_mask[i];
+            }}
+            return vd;
         }}
-        return vd;
-    }}
-    widening_operation(vd_name, vs2_name, {"r" if v_or_x == 'x' else v_or_x}s1_name, operation, '{lhs}');
+        vd = vecIntOperation(vd, vs2, rs1, adc);
+    """,
+    'i': f"""
+        v0_mask = extractMaskFromV0(vl);
+        function adc(vd, vs2, rs1) {{
+            for (let i=0; i<checkVl(); ++i) {{
+               vd[i] = vs2[i] {op} rs1 {op} v0_mask[i];
+            }}
+            return vd;
+        }}
+        vd = vecIntOperation(vd, vs2, inm, adc);
     """
     }
 
@@ -122,6 +137,8 @@ def add_code(m, v_or_x, op, lhs):
         return vd;
     }}
     widening_operation(vd_name, vs2_name, {"r" if v_or_x == 'x' else v_or_x}s1_name, operation, '{lhs}', true);
+    """,
+    'i': f"""
     """
     }
 
@@ -143,9 +160,8 @@ with open(f"{file_name}.{ext}", "w") as fd:
     for ins in instructions.keys():
         for l in lhs:
             for v_or_x in rhs:
-                structure = "{}.{}{} vd vs2 {}s1{}"
-                for m in [" v0.t", ""]:
-                        sigRaw = structure.format(ins, l, v_or_x, "r" if v_or_x == 'x' else v_or_x, m) 
+                for m in mask:
+                        sigRaw = structure.format(ins, l, v_or_x if v_or_x != 'u' else 'i', "rs1" if v_or_x == 'x' else 'inm' if (v_or_x == 'u' or v_or_x == 'i') else v_or_x + "s1", m) 
                         sig_list = sigRaw.split()
                         name = sig_list[0]
                         fields = add_fields(name, m, v_or_x)

@@ -31764,6 +31764,159 @@
       "help": ""
     },
     {
+      "name": "vadc.vvm",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vadc.vvm,VEC-Reg,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vadc.vvm vd vs2 vs1 v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vadc.vvm",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = vs2[i] + vs1[i] + v0_mask[i];\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vadc.vxm",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vadc.vxm,VEC-Reg,VEC-Reg,INT-Reg,VEC-Reg",
+      "signatureRaw": "vadc.vxm vd vs2 rs1 v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vadc.vxm",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfunction adc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = vs2[i] + rs1 + v0_mask[i];\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, rs1, adc);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vadc.vim",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vadc.vim,VEC-Reg,VEC-Reg,inm-signed,VEC-Reg",
+      "signatureRaw": "vadc.vim vd vs2 inm v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vadc.vim",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfunction adc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = vs2[i] + rs1 + v0_mask[i];\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, inm, adc);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",

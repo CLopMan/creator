@@ -720,7 +720,7 @@ function fillVector(vector, vlen, sew) {
 
 function expandVector(vector, length) {
   if (length > vector.length) {
-    vector = vector.concat(new Array(length - vector.length).fill(0n))
+    vector = vector.concat(new Array(length - vector.length).fill(0n));
   }
   return vector;
 }
