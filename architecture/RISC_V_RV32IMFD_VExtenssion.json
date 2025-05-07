@@ -1661,7 +1661,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function vaddVX(vd, vs2, rs1) {\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + rs1;\n}\return vd;\n}\nvd = maskedOperation(checkVl(), vs2, rs1, vd, vecIntOperationWrapperFactory(vaddVX));",
+      "definition": "function vaddVX(vd, vs2, rs1) {\nfor (let i = 0; i < checkVl(); ++i) {\nvd[i] = vs2[i] + rs1;\n}\nreturn vd;\n}\nvd = maskedOperation(checkVl(), vs2, rs1, vd, vecIntOperationWrapperFactory(vaddVX));",
       "separated": [
         false,
         false,
@@ -29405,7 +29405,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) < capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29450,7 +29450,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) < capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29501,7 +29501,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) <= capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29546,7 +29546,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) <= capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29597,7 +29597,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) > capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, vs1, mask_val, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29642,7 +29642,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, vs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) > capi_LogicalRightShift(vs1[i], 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = comparison(vd, vs2, vs1);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29693,7 +29693,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) < unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29738,7 +29738,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) < unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29789,7 +29789,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) <= unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29834,7 +29834,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) <= unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29885,7 +29885,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) > unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, rs1, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29930,7 +29930,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) > unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, rs1, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -29981,7 +29981,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) < unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -30026,7 +30026,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) < capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) < unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -30077,7 +30077,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) <= unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -30122,7 +30122,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) <= capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) <= unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -30173,7 +30173,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) > unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = maskedOperation(vl, vs2, inm, mask_val, vecIntOperationWrapperFactory(comparison));\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -30218,7 +30218,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (capi_LogicalRightShift(vs2[i], 0) > capi_LogicalRightShift(rs1, 0)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
+      "definition": "let mask_val = extractMaskByName(vd_name);\nfunction comparison(vd, vs2, rs1) {\nfor (let i = 0; i < vl; ++i) {\nvd[i] = (unsigned(vs2[i]) > unsigned(rs1)) ? 1 : 0;\n}\nreturn vd;\n}\nmask_val = vecIntOperation(mask_val, vs2, inm, comparison);\nwriteMaskByName(vd_name, mask_val);",
       "separated": [
         false,
         false,
@@ -30269,7 +30269,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w', true);",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w', true);",
       "separated": [
         false,
         false,
@@ -30314,7 +30314,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w');",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w');",
       "separated": [
         false,
         false,
@@ -30365,7 +30365,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w', true);",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) + unsigned(rhs);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w', true);",
       "separated": [
         false,
         false,
@@ -30410,7 +30410,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w');",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) + unsigned(rhs);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w');",
       "separated": [
         false,
         false,
@@ -30461,7 +30461,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v', true);",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v', true);",
       "separated": [
         false,
         false,
@@ -30506,7 +30506,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v');",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) + capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v');",
       "separated": [
         false,
         false,
@@ -30557,7 +30557,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v', true);",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) + unsigned(rhs);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v', true);",
       "separated": [
         false,
         false,
@@ -30602,7 +30602,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) + capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v');",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) + unsigned(rhs);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v');",
       "separated": [
         false,
         false,
@@ -30653,7 +30653,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w', true);",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w', true);",
       "separated": [
         false,
         false,
@@ -30698,7 +30698,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w');",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'w');",
       "separated": [
         false,
         false,
@@ -30749,7 +30749,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w', true);",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) - unsigned(rhs);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w', true);",
       "separated": [
         false,
         false,
@@ -30794,7 +30794,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w');",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) - unsigned(rhs);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'w');",
       "separated": [
         false,
         false,
@@ -30845,7 +30845,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v', true);",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v', true);",
       "separated": [
         false,
         false,
@@ -30890,7 +30890,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v');",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) - capi_LogicalRightShift(rhs[i], 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, vs1_name, operation, 'v');",
       "separated": [
         false,
         false,
@@ -30941,7 +30941,7 @@
           "stopbit": 25
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v', true);",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) - unsigned(rhs);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v', true);",
       "separated": [
         false,
         false,
@@ -30986,7 +30986,7 @@
           "stopbit": 15
         }
       ],
-      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = capi_LogicalRightShift(lhs[i], 0) - capi_LogicalRightShift(rhs, 0);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v');",
+      "definition": "function operation(vd, lhs, rhs) {\nfor (let i=0; i<checkVl(); ++i) {\nvd[i] = unsigned(lhs[i]) - unsigned(rhs);\n}\nreturn vd;\n}\nwidening_operation(vd_name, vs2_name, rs1_name, operation, 'v');",
       "separated": [
         false,
         false,
