@@ -338,14 +338,14 @@ de código ensamblador.
 Actualmente, CREATOR cuenta con diferentes funcionalidades que lo convierten en
 una gran herramienta para la enseñanza: visualización de memoria y registros,
 integración con hardware, ejecución paso a paso, soporte para puntos de ruptura
-y carga de ficheros; entre otras. Además, CREATOR permite dos modos de
+y carga de ficheros, entre otras. Además, CREATOR permite dos modos de
 operación: a través de la interfaz web (Figura~\ref{fig:creator.jpg}) o a
 través de la línea de comandos (Código~\ref{lst:creator-cli}).
 
 \rasterfigure[0.85]{creator.jpg}{Interfaz gráfica de CREATOR}
 \vfill
 \vspace{0.5cm}
-\begin{lstlisting}[caption=Interfaz por línea de comandos de CREATORa, label={lst:creator-cli}, language=bash]
+\begin{lstlisting}[caption=Interfaz por línea de comandos de CREATOR, label={lst:creator-cli}, language=bash]
 creator> ./creator.sh -a architecture/RISC_V_RV32IMFD.json -s test/riscv/correct/examples/test_riscv_example_001.s
 
 CREATOR
@@ -375,10 +375,10 @@ el primero en la lista de simuladores y emuladores de la arquitectura.
 
 Con todo lo anterior es evidente que CREATOR y su integración con RISC-V
 ofrecen un entorno didáctico y ampliable con numerosas ventajas para el
-aprendizaje. Su simpleza, amigable interfaz y sus funcionalidades aportan un
+aprendizaje. Su sencillez, amigable interfaz y sus funcionalidades aportan un
 gran valor a la experiencia de los alumnos de asignaturas como
 \textit{Estructura de Computadores} y \textit{Arquitectura de Computadores}.
-Sin embargo, este está limitado al set básico de instrucciones de RISC-V, lo
+Sin embargo, está limitado al set básico de instrucciones de RISC-V, lo
 que le aleja de alternativas más punteras y especializadas como SAIL o SPIKE\@.
 Añadir soporte para instrucciones vectoriales, dado el contexto tecnológico
 actual en el que múltiples disciplinas como la Ciencia de Datos, la Inteligencia Artificial o la Criptografía
@@ -433,7 +433,7 @@ Este lenguaje ha tenido varias versiones a lo largo del tiempo, recogidas en dif
 
 CSS (\textit{Cascade Style Sheets}) es un lenguaje para hojas de estilo usado para describir la forma de presentar el contenido definido en un archivo HTML o XML~\cite{css}\@. Este lenguaje complementa a HTML5, permitiendo separar el contenido de la página web de su presentación. De la misma forma que en el caso de HTML5, la especificación y desarrollo de este lenguaje se lleva a cabo por la institución W3C.
 
-El lenguaje CSS permite definir y comunicar al navegador diferentes características relativas a la presentación del contenido como familias de fuentes, colores, estilos o tamaños. Además permite la distinción de presentaciones en base a características como el tamaño de la pantalla, lo que permite crear páginas atractivas y \textit{responsive}. 
+El lenguaje CSS permite definir y comunicar al navegador diferentes características relativas a la presentación del contenido como familias de fuentes, colores, estilos o tamaños. Además permite la distinción de presentaciones en base a características como el tamaño de la pantalla, lo que permite crear páginas atractivas y adaptadas a cualquier dispositivo (\textit{responsive}). 
 
 De esta forma, el lenguaje permite crear páginas web con una mejor estructura. La separación entre presentación y contenido presenta claras ventajas como la reutilización de estilos para distintos componentes de la página web o la simplificación de archivos HTML\@.
 
@@ -442,7 +442,7 @@ De esta forma, el lenguaje permite crear páginas web con una mejor estructura. 
 
 Este lenguaje adopta una sintaxis parecida a la de C o C++, para reducir el esfuerzo en su aprendizaje, y está fuertemente ligado a la programación orientada a objetos. Además, se trata de un lenguaje de \textit{scripting}, lo que significa que el código puede insertarse dentro de código HTML o en un archivo externo. El navegador web ejecutará el código {\js} en el lado cliente, sin hacer uso de un servidor.
 
-{\js} está estandarizado en el EMACScript Language Specification~\cite{EMACScript}, el estándar utilizado por los navegadores web modernos. Es por esto que {\js} es ampliamente usado para el desarrollo de aplicaciones web.
+{\js} está estandarizado en el EMAScript Language Specification~\cite{EMACScript}, el estándar utilizado por los navegadores web modernos. Es por esto que {\js} es ampliamente usado para el desarrollo de aplicaciones web.
 
 De forma complementaria, ha surgido una nueva aproximación a la funcionalidad web de la mano con otros lenguajes de programación como C++ o Rust, \wa. {\wa} es un tipo de código que permite la ejecución de código escrito en C, C++, Rust o C\# en navegadores web. Su diseño se ha orientado como un complemento a \js, no como un sustituto. Sin embargo, \wa permite solventar algunos problemas que presenta {\js}, destacando una mejora en el rendimiento. Más adelante se realizará una comparativa más profunda acerca de estas dos alternativas para dotar de funcionalidad a las páginas web (Sección \ref{subsec:programming-languages}).
 
