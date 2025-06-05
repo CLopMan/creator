@@ -17,14 +17,14 @@ Tal y cómo establece el requisito RU-RE-01, el sistema debe usar la misma defin
 
 Esta definición debe mantener el formato y estructura debido al requisito antes mencionado. No obstante debe ser modificada para incluir los parámetros de arquitectura mencionados en el requisito RS-FN-02.
 
-Con todo lo anterior se ha optado por incluir nuevos campos en la arquitectura contenida en el archivo \texttt{RISC\_V\_RV32IMFD.json}. Estos campos se han añadido en el mayor nivel de jerarquía. Además se ha incluído un nuevo banco de registros y se ha ampliado la lista de instrucciones. De esta forma, los nuevos parámetros de arquitectura no influyen en el código anteriormente desarrollado y se amplia la arquitectura manteniendo la retrocompatibilidad.
+Con todo lo anterior se ha optado por incluir nuevos campos en la arquitectura contenida en el archivo \texttt{RISC\_V\_RV32IMFD.json}. Estos campos se han añadido en el mayor nivel de jerarquía. Además se ha incluido un nuevo banco de registros y se ha ampliado la lista de instrucciones. De esta forma, los nuevos parámetros de arquitectura no influyen en el código anteriormente desarrollado y se amplia la arquitectura manteniendo la retrocompatibilidad.
 
 \subsection{Definición de las instrucciones}\label{subsec:defi-ins}
 
 Siguiendo los requisitos RU-CA-03, RS-FN-02, RS-FN-03 y RS-FN-04, se debe permitir operar con instrucciones que empleen máscaras, enteros o vectores; y permitir operaciones enmascaradas. Esto supone que se deben contemplar varias casuísticas:
 
 \begin{itemize}
-\item Argumentos intercalados en el nombre de la instrucción: el indicativo del tipo de operando \texttt{v*} o el campo \texttt{emul}.
+\item Argumentos intercalados en el nombre de la instrucción: el indicativo del tipo de operando \texttt{v*} o el campo \texttt{emul}, entre otros.
 \item Argumentos opcionales: el campo \texttt{vm}.
 \item Operatividad con distinta precisión: especialmente operando con valores enteros, se debe tener en cuenta la distinta precisión entre los registros enteros (32 bits), los elementos de un vector (entre 8 y 64 bits) y valores inmediatos (5-20 bits).
 \end{itemize}
@@ -47,8 +47,8 @@ La comunicación entre el código escrito en \js (JS) y \wa (WASM) requiere de a
 Debido a que el rendimiento no es un objetivo principal del sistema y que la mejora no presenta un gran beneficio frente a la complejidad que añade se descarta la alternativa.
 
 \subsubsection{Continuación con \js}
-{\js} (JS) es un lenguaje de programación interpretado empelado
-ampliamente en tecnologías web. Aunque también es usado en otros entornos como
+{\js} (JS) es un lenguaje de programación interpretado muy extendido
+en el ámbito de las tecnologías web. Aunque también se usa en otros entornos como
 Node.js, Apache CouchDB o Adobe Acrobat~\cite{javascript}. Además, es el
 principal lenguaje de programación en el que se ha desarrollado CREATOR\@.
 
@@ -56,7 +56,7 @@ La continuidad con JS facilita la integración y el desarrollo de la propuesta.
 Adicionalmente, se soporta de forma nativa en los entornos de ejecución de
 CREATOR: el navegador y \textit{Node.js}\@.
 
-No existe una desventaja clara a la continuación con este lenguaje. La fácil integración está en sintonía junto con los objetivos de la propuesta. Además, la capacidad nativa de {\js} para el manejo de \textit{arrays} y la inclusión del tipo de dato \textit{BigInt} permite dar soporte fácilmente a los requisitos de software empleando herramientas ampliamente estandarizadas en las tecnologías web.
+No existe una desventaja clara a la continuación con este lenguaje. La fácil integración está en sintonía con los objetivos de la propuesta. Además, la capacidad nativa de {\js} para el manejo de \textit{arrays} y la inclusión del tipo de dato \textit{BigInt} permite dar soporte fácilmente a los requisitos de software empleando herramientas ampliamente estandarizadas en las tecnologías web.
 
 Con todo lo anterior, esta ha sido la alternativa seleccionada para el desarrollo de la aplicación.
 
@@ -130,7 +130,7 @@ anterioridad, cuenta con varios campos de gran importancia para el
 funcionamiento de la aplicación. Esta estructura almacena los bancos de
 registros, instrucciones y parámetros de la arquitectura simulada.
 
-Los bancos de registros son un elemento de la lista \textit{components}. Cuenta con varios campos qeu determinan sus propiedades. Los más relevantes son:
+Los bancos de registros son un elemento de la lista \textit{components}. Cuenta con varios campos que determinan sus propiedades. Los más relevantes son:
 \begin{itemize}
 \item \textbf{name}: nombre del banco de registros.
 \item \textbf{type}: tipo de registro.
@@ -293,7 +293,7 @@ Aplica la máscara a un vector en base al parámetro ma.
 {vd, vs1, rs1, operation, sew}
 {array}
 {FN-motor-int}
-Gestionna la diferencia de precisión entre el entero y cada uno de los elementos del vector.
+Gestiona la diferencia de precisión entre el entero y cada uno de los elementos del vector.
 \end{component}
 
 
@@ -320,7 +320,7 @@ Gestiona una operación de estrechamiento, manejando los valores de distinta pre
 
 La ampliación de la arquitectura simplemente constará con una nueva vista donde
 se podrán visualizar todos los registros relativos a la extensión vectorial.
-Estos son los registros de control y los registros \textit{vi}. Esta vista será
+Estos son los registros de control y los registros v\{i\}. Esta vista será
 similar a la vista de los registros enteros, con la excepción de que, para cada
 registro, se mostrará el valor almacenado en cada uno de sus elementos y el
 conjunto de parámetros de arquitectura.
@@ -351,14 +351,14 @@ Muestra los datos de un único registro vectorial.
 {architecture}
 {void}
 {FN-GUI-stats}
-Muestra el porcentaje de isntrucciones vectoriales aritméticas ejecutadas en la categoría ``Vector Arithtmetics''
+Muestra el porcentaje de instrucciones vectoriales aritméticas ejecutadas en la categoría ``Vector Arithmetics''
 \end{component}
 
 \FloatBarrier
 
 \subsection{Trazabilidad}
 
-Con el fin de cercionar que los requisitos funcionales se cubren con los componentes anteriormente descritos, se incluye una matriz de trazabilidad que relaciona dichos requisitos con los componentes.
+Con el fin de asegurar que los requisitos funcionales se cubren con los componentes anteriormente descritos, se incluye una matriz de trazabilidad que relaciona dichos requisitos con los componentes.
 
 \begin{table}[H]
     {\traceabilityCompFN}
