@@ -1,0 +1,164 @@
+\documentclass[es]{uc3mthesisIEEE}
+
+\usepackage[utf8]{inputenc}
+\usepackage{import}
+\usepackage{enumitem}  % control item separation -> \begin{itemize}[nosep]
+\usepackage{textcomp} 
+\usepackage{lipsum}  % dummy text
+\usepackage{placeins}  % \FloatBarrier -> prevents figures and tables from passing that point
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{circuitikz}
+\usepackage[es,enableTraceability,enableCaptions]{srs}
+\usepackage{tcolorbox}
+\usepackage{dirtree}
+\usepackage{floatrow}
+\usepackage{pdflscape}
+\usepackage{pgfgantt}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+\usepackage{environ}
+\makeatletter
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+\usepackage{mymacros}  % report-specific macros
+
+
+% silence ht warnings
+\usepackage{silence}
+\WarningFilter{latex}{`h' float specifier changed to `ht'}
+
+
+\graphicspath{{img/}}  % Images folder
+
+
+% REFERENCES
+\addbibresource{references.bib}  % bibliography file
+%\import{}{glossary.tex}  % glossary file
+
+
+\newcommand{\js}{JavaScript~}
+\newcommand{\wa}{WebAssembly~}
+
+%	DOCUMENT
+
+% setup
+\degree{Grado en Ingeniería Informática}
+\title{Desarrollo de instrucciones vectoriales\\ \vspace{0.3cm} RISC-V para el simulador CREATOR}
+\shorttitle{Extensión vectorial para CREATOR}
+\author{César López Mantecón}
+\advisors{Felix García Caballeira}
+\place{Leganés, Madrid, España}
+\date{Junio 2025}
+
+\definecolor{mygreen}{rgb}{0.45, 0.85, 0.0}
+
+
+\lstset{
+    literate={á}{{\'a}}1
+        {ã}{{\~a}}1
+        {é}{{\'e}}1
+        {ó}{{\'o}}1
+        {í}{{\'i}}1
+        {ñ}{{\~n}}1
+        {¡}{{!`}}1
+        {¿}{{?`}}1
+        {ú}{{\'u}}1
+        {Í}{{\'I}}1
+        {Ó}{{\'O}}1
+}
+
+\begin{document}
+
+  % COVER
+  \makecover
+
+
+  % EPIGRAPH
+  \makeepigraph
+    {El trabajo de uno reluce por sí mismo}  % quote
+    {Beatriz Mantecón García}  % author
+    {}  % source
+
+
+  % ACKNOWLEDGEMENTS
+  \begin{acknowledgements}
+      Este trabajo no habría sido posible sin el apoyo de familiares, amigos y colegas que me han acompañado durante años. Especialmente, quiero hacer mención a mis padres: Beatriz Mantecón y José Manuel López. Personas capaces de aguantar contra viento y marea con tal de ver a cualquiera de los tres hermanos triunfar. Durante toda mi educación me han arropado y apoyado, velando por mi bienestar y mi educación. Quiero mencionar adicionalmente a mi abuela, Mercedes García, una de las mujeres más importantes de mi vida y que no tengo palabras para destacar lo mucho que la quiero. Por último, no puedo cerrar este párrafo sin mentar a Paula y Jaime, mis hermanos; a mis primos Miguel y Laura; y a mis tíos Patricia y Juan Andrés. Su ayuda, apoyo y cariño es algo que siempre tendré en mente.
+
+      Otro fuerte pilar durante mi educación han sido mis amigos. Creo que estoy rodeado de grandes personas que se merecen reconocimiento. El grupo ``Pan con Pan'' hemos compartido disgustos y alegrías durante cuatro años, y he recibido mucho apoyo por su parte. Especialmente hablando de Adrián Fernández, creo que su sencillez, honestidad y valores le hacen una gran persona y harán de él un gran profesional.
+
+      Por último, me gustaría hacer una mención especial para Jontxu y Carlitos. Estas dos personas me llevan acompañando casi desde que tengo memoria. Estos nombres representan, para mí, el verdadero significado de la palabra amigo.
+
+  \end{acknowledgements}
+
+
+  % ABSTRACT
+  \begin{abstract}
+      El presente Trabajo Fin de Grado tiene como objetivo principal la ampliación del simulador educativo CREATOR mediante la incorporación de soporte para instrucciones vectoriales de la arquitectura RISC-V. Este desarrollo se enmarca en un contexto tecnológico en el que las arquitecturas vectoriales han adquirido gran relevancia debido al auge de disciplinas como la inteligencia artificial y la ciencia de datos, que requieren una elevada capacidad de procesamiento paralelo y operaciones eficientes sobre grandes volúmenes de datos.
+
+La motivación del proyecto surge de la necesidad de contar con herramientas didácticas accesibles, intuitivas y potentes que permitan a los estudiantes explorar conceptos fundamentales de arquitectura de computadores y programación a bajo nivel. CREATOR, desarrollado por el grupo de investigación ARCOS de la Universidad Carlos III de Madrid, ya se utiliza ampliamente en la enseñanza de ensamblador sobre arquitecturas como MIPS y RISC-V. Sin embargo, hasta la fecha, carecía de soporte para la extensión vectorial (extensión V) de RISC-V, lo que limitaba su potencial pedagógico en áreas más avanzadas.
+
+El trabajo se divide en varias fases, comenzando por un análisis detallado del estado del arte, donde se examinan otras arquitecturas vectoriales como AVX (x86), NEON (ARM) y la propia extensión V de RISC-V. También se comparan diferentes simuladores disponibles, como SPIKE y SAIL, destacando la ventaja de CREATOR por su accesibilidad web y enfoque educativo.
+
+Posteriormente, se define la arquitectura vectorial a implementar, incluyendo parámetros como VLEN, SEW y LMUL, así como los registros de control específicos como VTYPE y VL. Se diseñó un motor de ejecución específico para las operaciones vectoriales, capaz de interpretar y ejecutar instrucciones como carga, almacenamiento, operaciones aritmético-lógicas y de configuración. Además, se ampliaron las funcionalidades de la interfaz gráfica de CREATOR, permitiendo visualizar el estado de los registros vectoriales y estadísticas de ejecución de forma clara y didáctica.
+
+La implementación se llevó a cabo utilizando tecnologías web como JavaScript y Vue.js, asegurando la portabilidad y compatibilidad con la plataforma existente. A lo largo del proyecto, se realizaron exhaustivas pruebas de verificación y validación para garantizar la corrección funcional del sistema y su utilidad educativa. También se incluyó una planificación detallada y un estudio de costes, mostrando la viabilidad del proyecto desde una perspectiva técnico-económica.
+
+Finalmente, se concluye que la incorporación de instrucciones vectoriales a CREATOR no solo mejora la funcionalidad del simulador, sino que representa una contribución valiosa a la enseñanza de arquitectura de computadores. Además, se proponen futuras líneas de trabajo, como la incorporación de nuevos tipos de instrucciones o el soporte para operaciones en coma flotante, lo cual seguiría enriqueciendo la herramienta.
+    \keywords{RISC-V \sep CREATOR \sep Vector \sep Extension-V}
+  \end{abstract}
+
+
+  % TOC
+  \tableofcontents
+  \listoffigures
+  \listoftables
+
+
+  % THESIS
+  \begin{thesis}
+    \includefrom{parts/}{introduction.tex}
+    \includefrom{parts/}{state_of_the_art.tex}
+    \includefrom{parts/}{VectorExtenssionRiscV.tex}
+    \includefrom{parts/}{analysis.tex}
+    \includefrom{parts/}{design.tex}
+    \includefrom{parts/}{implementation.tex}
+    \includefrom{parts/}{validation.tex}
+    \includefrom{parts/}{planning.tex}
+    \includefrom{parts/}{regulation.tex}
+    \includefrom{parts/}{conclusions.tex}
+    \newpage
+    %\import{parts/}{example.tex}
+  \end{thesis}
+
+
+  % BIBLIOGRAPHY
+  \cleardoublepage
+  \label{bibliography}
+  \printbibliography[heading=bibintoc]
+
+
+  % GLOSSARY
+  %\cleardoublepage
+  %\label{glossary}
+  %\printglossaries
+  % \printnoidxglossaries[type=\acronymtype]  % slower, but no need to do $ makeglossaries report
+
+
+  % APPENDICES
+  % \begin{appendices}
+  %   \chapter{My stuff}
+  %   \lipsum
+  % \end{appendices}
+
+
+\end{document}

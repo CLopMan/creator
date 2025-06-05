@@ -1,0 +1,457 @@
+\chapter{Estado del arte}\label{chap:state-of-the-art}
+
+Este capítulo presenta el conjunto de tecnologías actuales relacionadas con el
+proyecto. Primero, se hace una breve introducción a las instrucciones vectoriales, sus
+usos y las razones detrás de su auge; así como las principales arquitecturas
+que las implementan. Después, se describen los principales simuladores de la
+arquitectura RISC-V. Por último, se incluye una comparativa entre otros softwares de simulación y la
+propuesta. Adicionalmente se incluye una breve descripción de las principales tecnologías WEB que influyen sobre este proyecto.
+
+\section{Instrucciones vectoriales}\label{vector-instructions}
+
+Las arquitecturas vectoriales operan con múltiples datos a través del uso de
+grandes registros secuenciales. Una única instrucción es capaz de operar sobre
+vectores de datos, lo que equivale a múltiples operaciones entre registros de
+forma independiente. Esto presenta grandes ventajas, siendo capaces de superar
+la latencia de la memoria al reducir las operaciones de carga y almacenamiento
+de información, operando con grandes volúmenes de datos en el
+procesador~\cite{hennessy2011computer}.
+
+Tal y como ya se exponía en 1966 por Michael J. Flynn ~\cite{1447203}, muchos
+problemas científicos de importancia requieren de un gran tiempo de
+computación. Para abordarlo, propone una clasificación de los computadores que, según la naturaleza del problema, podrían presentar ventajas en la reducción del
+tiempo de resolución:
+
+\begin{itemize}
+    \item \textit{Single instruction Stream-Single Data Stream (SISD)}
+    \item \textit{Single instruction Stream-Multiple Data Stream (SIMD)}
+    \item \textit{Multiple instruction Stream-Single Data Stream (MISD)}
+    \item \textit{Multiple instruction Stream-Multiple Data Stream (MIMD)}
+\end{itemize}
+
+Las arquitecturas que dan soporte a instrucciones vectoriales son la
+materialización de las unidades de procesamiento de tipo SIMD, pudiendo
+realizar una operación sobre un conjunto de datos numeroso. Distintas
+disciplinas con altas demandas computacionales y necesidad de operar con
+grandes volúmenes de datos se ven beneficiadas por esta capacidad. Dos grandes
+ejemplos son la Ciencia de Datos y el \textit{Machine Learning}, dos áreas en
+auge debido a la creciente cantidad de datos en la era actual y el interés en
+la inteligencia artificial. A continuación, se exponen las principales
+alternativas de arquitecturas vectoriales existentes en la actualidad: AVX en
+x86, ARM v8 y v9 y RISCV-V.
+
+\subsection{Arquitectura x86}
+La arquitectura \textit{x86} es la más adoptada en el mundo de los ordenadores
+de sobremesa, cuya cuota de mercado se reparte casi en su totalidad por los
+fabricantes \href{https://www.intel.com}{Intel} y
+\href{https://www.amd.com}{AMD}~\cite{tiwari2022amd}. Esta nace en 1979 con el
+lanzamiento del procesador \textit{Intel 8086}~\cite{kogatambirth} como una
+arquitectura CISC (\textit{Complex Instruction Set Computer}) de propiedad de
+Intel.
+
+El desarrollo de las instrucciones vectoriales de esta arquitectura incluye el
+lanzamiento y extensión de diferentes conjuntos de instrucciones como MMX, SSE,
+SSE2, SSE3 y AVX~\cite{vector_research}. Donde AVX-512 es la versión más
+reciente de la arquitectura.
+
+AVX-512 es un conjunto de instrucciones capaz de acelerar el rendimiento del
+procesamiento de vectores de datos~\cite{intel-avx512}. Estas instrucciones,
+entre otras cosas, doblan el ancho de registro de su predecesor (ahora de 512
+bits). Esta tendencia a doblar el ancho de registro manteniendo el número de
+unidades de procesamiento parece presentar una mayor eficiencia energética de
+acuerdo con autores como~\cite{hennessy2011computer}.
+
+Cabe destacar que AVX-512 no es un único ISA, sino una familia de arquitecturas
+que incluyen mejoras tanto el el hardware como en el set de instrucciones,
+donde AVX-512F es el conjunto básico (también llamado AVX-512
+\textit{Foundation}). Esta familia de arquitecturas tienen como objetivo la
+aceleración de los procesadores para trabajar con grandes volúmenes de datos,
+teniendo su foco principal en aplicaciones de simulación científica, Ciencia de
+Datos o \textit{Machine Learning}, tal y como se aprecia en los casos de
+estudio expuestos a continuación.
+
+En~\cite{avx-ibm} se describe cómo el uso de AVX-512 ha permitido acelerar las
+consultas del sistema \textit{watson.data}, una parte de \textit{IBM's Enterprise AI
+solutions}, por un factor de 2,7 usando los procesadores Intel Xeon de quinta
+generación. También se logra un factor de aceleración de 2,17 usando los Intel
+Xeon de cuarta generación. Esto muestra el potencial que tienen esta clase de
+arquitecturas para el tratamiento de grandes volúmenes de datos, especialmente
+en el campo de la Inteligencia Artificial.
+
+En~\cite{avx-cmcc} se expone cómo la compañía CMCC empleó esta clase de
+arquitectura para construir un nuevo supercomputador para la simulación de
+modelos de cambio climático. Para ello usó los procesadores Intel Xeon CPU Max
+9480, logrando un factor de mejora de 3,47. Este supercomputador, apodado
+Cassandra, no sólo mejoró el rendimiento de su predecesor (Zeus), sino que
+también logró reducir el consumo eléctrico.
+
+Además de un mayor ancho de registro, estos conjuntos de instrucciones ofrecen
+una gran variabilidad de capacidades de acuerdo con~\cite{vector_research} y~\cite{intel-avx512-2}:
+
+\begin{itemize}
+    \item En la arquitectura base (AVX-512F): 
+    \begin{itemize}
+        \item Soporte de la funcionalidad anterior para un mayor tamaño de vector (512 bits).
+        \item 32 registros vectoriales de 512 bits de ancho, 8 registros de máscara dedicados.
+        \item Operaciones de 512 bits de elementos en coma flotante o enteros.
+        \item Retrocompatibilidad con otras versiones de AVX sin penalización.
+    \end{itemize}
+    \item A través de extensiones:
+    \begin{itemize}
+        \item AVX-512VL\@: Capacidad de operar con vectores de longitudes menores (128 y 256 bits).
+        \item AVX-512\_VNNI\@: Instrucciones especificas para la aceleración de redes neuronales convolucionales.
+        \item VAES y GFNI\@: Aceleración por hardware para el algoritmo AES y operaciones en campos de Galois.
+    \end{itemize}
+\end{itemize}
+
+Sin embargo, este conjunto de arquitecturas presentan los problemas comunes de
+cualquier ISA CISC\@. El alto número de instrucciones hace complicada la
+labor de los compiladores. Además, la escasez de licencias para su desarrollo
+la hace poco adaptable a otra clase de sistemas fuera de las líneas de negocio
+de compañías como Intel y AMD\@.
+
+En resumen, las arquitecturas AVX-512 presentan fuertes ventajas en el campo de
+la aceleración de aplicaciones de cálculo intensivo, especialmente en los
+campos de la simulación, Ciencia de Datos e Inteligencia Artificial. No
+obstante, su naturaleza privativa hace de su desarrollo algo limitado a unas
+pocas compañías, lo que limita su adaptabilidad y uso en componentes más variados
+o con otra clase de necesidades.
+
+\subsection{ARM}
+
+ARM (Advanced RISC Machine) es una familia de ISA's basada en la filosofía de
+los conjuntos de instrucciones reducidas (RISC) y desarrollado por la compañía
+ARM Holding. Este diseño permite a los procesadores contar con menor cantidad
+de transitores que arquitecturas CISC como x86, lo que se traduce en un menor
+coste, menores temperaturas y menor consumo de potencia~\cite{kaushikcase}.
+Esto le ha llevado a ser líder en sectores como el IoT o los dispositivos
+móviles.
+
+En cuanto a su nacimiento, esta arquitectura surge en 1986 con el lanzamiento
+del ARM1, un procesador de 32 bits enfocado en la simplicidad y eficiencia
+energética~\cite{arm-history}. Sin embargo, no es hasta 1990 que se funda la
+compañía ARM Holdings. Desde entonces, ARM Holdings ha desarrollado la
+arquitectura, ofreciendo actualizaciones sobre el set de instrucciones y
+unidades lógicas como \textit{IP-cores}~\cite{arm-history2}.
+
+Durante sus múltiples actualizaciones se ha dando soporte a mayor cantidad
+de instrucciones vectoriales, destacando las últimas versiones ARM v8 y ARM v9.
+El groso de las instrucciones vectoriales de ARM son las instrucciones NEON\@.
+NEON provee de instrucciones para el procesado de datos y la carga y
+almacenamiento de los mismos. Estas instrucciones ofrecen una gran variedad de
+operaciones aritmético-lógicas para enteros y control de flujo de datos entre
+registro y memoria~\cite{arm-neon}\cite{arm-instructionsNEON}\@. Adicionalmente, la
+arquitectura cuenta con el conjunto de instrucciones VFP, que añaden
+operatividad para números en coma flotante~\cite{arm-vfp}.
+
+Como ejemplo de lo que se puede lograr empleando esta arquitectura tenemos la
+propuesta de Silvan Streit y Fabrizio De Santis~\cite{armv8-keyExchange}. En
+este artículo se propone una implementación basada en ARM v8 con NEON para el
+intercambio de claves a través de los protocolos NEWOHOPE y NEWHOPE-SIMPLE,
+protocolos resistentes a la computación cuántica. Esta implementación logra una
+mejora de rendimiento significativa, reduciendo el tiempo de ejecución con
+respecto a la implementación en C de referencia en un factor de 8,3.
+Adicionalmente, el tiempo invertido en el intercambio de clave se reduce
+significativamente.
+
+Con todo lo anterior, la arquitectura ARM ofrece instrucciones más genéricas y
+en menor cantidad, facilitando la compilación el desarrollo para estas
+plataformas. Adicionalmente, sus características de consumo y adaptabilidad la
+hacen la opción predilecta para plataformas como móviles o dispositivos IOT,
+dos tecnologías ámpliamente usadas. El uso de instrucciones vectoriales y su
+aplicación en seguridad y multimedia aporta un gran valor a esta arquitectura.
+No obstante, su desarrollo vuelve a quedar sujeto a una única compañía que
+limita el diseño de nuevos bloques lógicos basados en esta arquitectura.
+
+\subsection{RISC-V V extension}
+
+RISC-V es un conjunto reducido de instrucciones abierto y libre de
+regalías~\cite{riscV-org}. Esta arquitectura nace en 2010 de la mano de los
+profesores Krste Asanović y David Patterson y sus alumnos Yunsup Lee y Andrew
+Waterman, cuando publican el primer volumen describiendo el conjunto de
+instrucciones~\cite{riscv-2011}. El desarrollo de esta arquitectura tiene como
+pilar las bases del código abierto, manteniendo un fuerte compromiso hasta la
+actualidad con la libertad de diseño, elección y flexibilidad. Tanto el
+conjunto de instrucciones básico como cualquier extesión o diseño lógico  a los
+que se dan soporte desde RISC-V International (organización sin ánimo de lucro
+que alberga el estándar) está publicados bajo licencias abiertas aceptadas
+globalmente~\cite{riscV-org}~\cite{asanovic2014instruction}.
+
+RISC-V da soporte a instrucciones vectoriales a través de la extensión V de la
+ISA, ratificada noviembre de 2021 e incluida por primera vez en la versión
+20240411~\cite{riscv-isa2024} de la especificación de la
+arquitectura~\cite{riscv-ratificationEspects}. Estas
+instrucciones se caracterizan por ser ámpliamente genéricas, dotando al
+programador de mucha flexibilidad a la hora de desarrollar código en ensamblador.
+
+Analizando brevemente la especificación~\cite{riscv-isa2024}, la arquitectura
+para dar soporte a las instrucciones vectoriales añade 39 registros al conjunto
+básico de instrucciones, 7 registros de control y 32 registros vectoriales. Los
+registros vectoriales se identifican como $v{i}$ donde $i$ es una numeración
+del 0 al 31. Los registros de control tienen nombres propios que se especifican
+a continuación:
+
+\begin{itemize}
+    \item vstart: posición de inicio de un vector.
+    \item vxsat: \textit{saturate flag} para aritmética de punto fijo.
+    \item vxrm: modo de redondeo para la aritmética de punto fijo.
+    \item vcsr: control y estado para registros vectoriales.
+    \item vl: número de elementos de un vector.
+    \item vtype: valores \texttt{vill}, \texttt{SEW}, \texttt{vmul},
+    \texttt{vta} y  \texttt{vma}. Estos valores son parámetros de la
+    arquitectura que representan la presencia de una configuración no
+    permitida, el ancho de un elemento en bits, el factor de agrupamiento de
+    los registros vectoriales y el comportamiento de los elementos de cola y
+    enmascarados, respectivamente.
+    \item vlenb: longitud del vector en \textit{bytes}.
+\end{itemize}
+
+En cuanto a las instrucciones, la extensión ofrece 4 grupos de instrucciones para operar con vectores de datos:
+\begin{itemize}
+    \item Instrucciones LOAD\@: dan soporte al vuelco en registros vectoriales de valores almacenados en memoria.
+    \item Instrucciones STORE\@: dan soporte al vuelco en memoria de valores en los registros vectoriales.
+    \item Instrucciones Aritméticas: dan soporte a operaciones
+    arimético-lógicas entre vectores, entre vectores y escalares inmediatos y
+    entre vectores y escalares en registro. Estas operaciones tienen sus
+    variantes para enteros, punto fijo y coma flotante.
+    \item Instrucciones de configuración: permiten cambiar los parámetros de
+    vtype y algunos registros, como vl, en tiempo de ejecución.
+\end{itemize}
+
+Como ejemplo de lo que esta arquitectura es capaz, en el campo de las
+comunicaciones existe una gran capacidad de paralelización a nivel de datos.
+Tal y como se muestra en~\cite{riscv-studyCase}, el uso de vectorización en el
+campo de las telecomunicaciones a través de RISC-V tiene un gran potencial para
+la optimización de estos procesos. En la propuesta logran mejorar la
+implementación basada en aritmética escalar en un factor de 60.
+
+Con todo lo anterior RISC-V, pese a su relativa juventud, ofrece una
+arquitectura sencilla y accesible que permite una flexibilidad para el
+desarrollo de soluciones específicas. La ausencia de licencias y regalías hace
+del diseño de arquitecturas algo accesible a cualquier particular o compañía,
+destacando en campos como la investigación y la didáctica.
+
+\section{Simuladores RISC-V}
+
+A continuación se hace un breve repaso por algunos simuladores de la
+arquitectura RISC-V tanto en el ámbito de desarrollo como educativo.
+
+\subsection{SPIKE}
+
+Spike~\cite{spike} es un simulador de arquitectura RISC-V desarrollado en \texttt{C++}
+por \textit{Risc-V international}. Se trata del simulador de
+referencia para la arquitectura RISC-V. Este da soporte a numerosas extensiones,
+entre ellas la extensión de instrucciones vectoriales.  Adicionalmente, tiene
+integración con GDB para poder depurar código compilado con máquinas RISC-V
+como objetivo.
+
+En cuanto a su uso, se trata de una herramienta que se ha de ejecutar en local
+a través de una interfaz de comandos. Al tener un enfoque en el desarrollo y
+ampliación de la arquitectura se necesita un conocimiento especializado para su
+uso.
+
+\begin{lstlisting}
+# ejecución con spike
+root@3407d21fb28b:/opt/riscv/test# spike pk hello
+Hello   world!
+
+# ejecución con spike en modo debug
+root@3407d21fb28b:/opt/riscv/test# spike -d pk hello
+[...]
+core   0: 0x0000000080003464 (0xbe07b783) ld      a5, -1056(a5)
+core   0: 0x0000000080003468 (0xfe078ce3) beqz    a5, pc - 8
+core   0: 0x0000000080003460 (0x0000b797) auipc   a5, 0xb
+core   0: 0x0000000080003464 (0xbe07b783) ld      a5, -1056(a5)
+\end{lstlisting}
+
+\subsection{SAIL}
+
+SAIL es un lenguaje de descripción de ISA's caracterizado por 7 objetivos~\cite{sail}: 
+\begin{itemize}
+    \item Dar soporte a la semántica necesaria para la descripción de instrucciones.
+    \item Ser accesible para el personal especializado, con la intención de
+    parecerse a otros pseudocódigos en el mercado.
+    \item Combinar una descripción de ISA secuencial con un modelo de memoria relajado propio.
+    \item Desarrollar un sistema capaz de realizar verificaciones estáticas
+    sobre el \textit{bitvector}\footnote{Un bit vector es \textit{array} de
+    bits que representa una instrucción en memoria}, detectar de errores y
+    generar de código, e inferir el tipo de dato.
+    \item Dar soporte a emulación completa de la arquitectura basada en la definición de la instrucción.
+    \item Soportar la generación automática de definiciones de provadores de
+    teoremas con el fin de facilitar el razonamiento mecánico sobre la
+    especificación de la ISA\@.
+    \item Tratar de ser lo más minimalista posible.
+\end{itemize}
+
+Además, Risc-V ha adoptado este lenguaje para la descripción de su
+ISA~\cite{sail-riscv}.
+
+Este lenguaje cuenta con dos motores de ejecución oficiales, uno escrito en
+\texttt{C} y otro escrito en \texttt{OCaml}. Ambas son herramientas basadas en
+interfaz de comandos. Dada la naturaleza del lenguaje, su objetivo principal es
+ayudar a desarrolladores y experimentados en el campo de la ciencia de
+computación para facilitar la tarea de definición de conjuntos de
+instrucciones, por lo que se trata de una herramienta poco accesible para gente
+con menos experiencia o alumnos en los primeros años de su carrera académica.
+
+\begin{lstlisting}[caption=Ejecución por línea de comandos de un programa en el simulador sail-riscv, label={lstl:sail}]
+build/c_emulator/riscv_sim_rv64d test/riscv-tests/rv64mi-p-access.elf
+Running file test/riscv-tests/rv64mi-p-access.elf.
+ELF Entry @ 0x80000000
+tohost located at 0x80001000
+begin_signature: 0x80002000
+end_signature: 0x80002000
+CSR mstatus <- 0x0000000A00000000 (input: 0x0000000000000000)
+mem[X,0x0000000000001000] -> 0x0297
+mem[X,0x0000000000001002] -> 0x0000
+[0] [M]: 0x0000000000001000 (0x00000297) auipc t0, 0x0
+x5 <- 0x0000000000001000
+mem[X,0x0000000000001004] -> 0x8593
+mem[X,0x0000000000001006] -> 0x0202
+[1] [M]: 0x0000000000001004 (0x02028593) addi a1, t0, 0x20
+x11 <- 0x0000000000001020
+mem[X,0x0000000000001008] -> 0x2573
+mem[X,0x000000000000100A] -> 0xF140
+[2] [M]: 0x0000000000001008 (0xF1402573) csrrs a0, mhartid, zero
+CSR mhartid -> 0x0000000000000000
+[...]
+mem[X,0x0000000080000046] -> 0xFC3F
+[115] [M]: 0x0000000080000044 (0xFC3F2023) sw gp, -0x40(t5)
+htif[0x0000000080001000] <- 0x00000001
+htif-syscall-proxy cmd: 0x000000000001
+SUCCESS
+\end{lstlisting}
+
+\subsection{CREATOR}
+
+CREATOR (\textit{didaCtic and geneRic assEmbly progrAmming simulaTOR}) es una
+plataforma web educativa e interactiva para la programación en
+esamblador desarrollada por el grupo de investigación \textit{ARCOS} de la
+Universidad Carlos III de Madrid~\cite{camarmas2024creator}. Inicialmente
+CREATOR nace como un
+simulador para la enseñanza de lenguaje ensamblador, dando soporte únicamente
+para la ISA MIPS32. No obstante, a día de hoy integra también RISC-V y permite
+la definición y modificación de arquitecturas por los usuarios. Adicionalmente,
+CREATOR cuenta con integración con dispositivos de hardware real, haciendo de
+la herramienta un entorno de desarrollo educativo e intuitivo para la enseñanza
+de código ensamblador.
+
+Actualmente, CREATOR cuenta con diferentes funcionalidades que lo convierten en
+una gran herramienta didáctica: visualización de memoria y registros,
+integración con hardware, ejecución paso a paso, soporte para puntos de ruptura
+y carga de ficheros; entre otras. Además, CREATOR permite dos modos de
+operación: a través de la interfaz web (figura~\ref{fig:creator.jpg}) o a
+través de la línea de comandos (código~\ref{lst:creator-cli}).
+
+\rasterfigure[0.85]{creator.jpg}{Interfaz gráfica de CREATOR}
+\vfill
+\vspace{0.5cm}
+\begin{lstlisting}[caption=Interfaz por línea de comandos de CREATORa, label={lst:creator-cli}, language=bash]
+creator> ./creator.sh -a architecture/RISC_V_RV32IMFD.json -s test/riscv/correct/examples/test_riscv_example_001.s
+
+CREATOR
+-------
+version: 4.1
+website: https://creatorsim.github.io/
+
+[test/riscv/correct/examples/test_riscv_example_001.s]
+12
+34
+[Architecture] Architecture 'architecture/RISC_V_RV32IMFD.json' loaded successfully.
+[Library] Without library
+[Compile] Code 'test/riscv/correct/examples/test_riscv_example_001.s' compiled successfully.
+[Execute] Executed successfully.
+[FinalState] cr[PC]:0xfffffffe; ir[x10,a0]:0x22; ir[x17,a7]:0x1; keyboard[0x0]:''; display[0x0]:'1234';
+\end{lstlisting}
+
+Además, su tecnología web lo hace portable y accesible desde cualquier
+dispositivo sin necesidad de descargar o compilar algún elmento. Estas
+características hacen de CREATOR una herramienta que ha resultado
+verdaderamente útil en entornos educativos. Prueba de esto es su reconocimiento
+por la \textit{RISC-V Foundation}~\cite{creator-riscvFoundation}, apareciendo
+el primero en la lista de simuladores y emuladores de la arquitectura.
+
+
+\section{Comparativa}
+
+Con todo lo anterior es evidente que CREATOR y su integración con RISC-V
+ofrecen un entorno didáctico y ampliable que ofrece numerosas ventajas para el
+aprendizaje. Su simpleza, amigable interfaz y sus funcionalidades aportan un
+gran valor a la experiencia de los alumnos de asignaturas como
+\textit{Estructura de Computadores} y \textit{Arquitectura de Computadores}.
+Sin embargo, este está limitado al set básico de instrucciones de RISC-V, lo
+que le aleja de alternativas más punteras y especializadas como SAIL o SPIKE\@.
+Añadir soporte para instrucciones vectoriales dado el contexto tecnológico
+actual, donde disciplinas como la Ciencia de Datos o la Inteligencia Artificial
+están en auge, permitiría a los ingenieros en formación conocer alternativas
+como el procesamiento en paralelo y la aceleración de tareas mediante
+extensiones de propósito específico. Esto no solo enriquecería su aprendizaje,
+sino que también los prepararía mejor para enfrentar desafíos actuales en áreas
+como el procesamiento masivo de datos, aprendizaje profundo y simulaciones
+científicas. Además, implementar este soporte en CREATOR fomentaría la adopción
+de RISC-V en ámbitos académicos y de investigación, consolidándolo como una
+plataforma versátil y relevante en el desarrollo de aplicaciones modernas.
+
+A continuación se muestra una tabla comparativa de los diferentes simuladores presentados anteriormente:
+
+\begin{table}[H]
+\begin{tabular}{@{}ccccc@{}}
+    \toprule
+                  & Spike        & SAIL                        & CREATOR & Propuesta    \\
+    \midrule
+    Lenguaje      & \texttt{C++} & \texttt{C} / \texttt{OCaml} & \texttt{\js}        & \texttt{\js} \\
+    V Extension  & $\checkmark$ &       $\checkmark$          &                     & $\checkmark$        \\
+    GUI           &              &                             &    $\checkmark$     & $\checkmark$        \\
+    CLI           & $\checkmark$ &       $\checkmark$          &    $\checkmark$     & $\checkmark$        \\
+    IDE integrado &              &                             &    $\checkmark$     & $\checkmark$        \\
+    En navegador  &              &                             &    $\checkmark$     & $\checkmark$        \\
+    Interactivo   &              &                             &    $\checkmark$     & $\checkmark$        \\
+    \bottomrule
+\end{tabular}
+\caption{Comparativa entre simuladores}\label{table:comparativa}
+\end{table}
+
+Como se puede ver, la propuesta pretende ampliar CREATOR, haciéndolo un
+simulador más completo y poniéndolo a la altura de otros simuladores de la
+arquitectura RISC-V.
+
+\section{Tecnologías WEB}
+
+Las tecnologías web permiten una mayor accesibilidad de forma independiente a
+las características de cada dispositivo. Estas tecnologías permiten ofrecer
+recursos digitales para que puedan ser utilizados por una gran variedad de
+dispositivos.
+
+En el ámbito de desarrollo de la propuesta, al tratarse de una extensión sobre
+CREATOR, se trabaja con distintas tecnologías que se describen a continuación.
+
+\subsection{HTML5}
+HTML5 (\textit{Hyper Text Markup Language} 5)~\cite{html5-standard} es la última versión del lenguaje HTML, ámpliamente utilizado para estructurar el contenido de las páginas web. Este lenguaje utiliza etiquetas y atributos para indicar al navegador el contenido que debe mostrar. Es decir, una página web desarrollada en HTML sólo contendrá texto y referencias externas. 
+
+Este lenguaje ha tenido varias versiones a lo largo del tiempo, recogidas en diferentes estándares. El desarrollo de estos documentos es llevado a cabo por la institución \textit{World Wide Web Consortium} (W3C)~\cite{www-consortium}\@. La versión 5 incluye más de 100 etiquetas y, frente a su versión anterior, da soporte a diferentes archivos multimedia (audio y vídeo)~\cite{htm4vshtml5}\@.
+
+\subsection{CSS}
+
+CSS (\textit{Cascade Style Sheets}) es un lenguaje para hojas de estilo usado para describir la forma de presentar el contenido definido en un archivo HTML o XML~\cite{css}\@. Este lenguaje complementa a HTML5, permitiéndo separar el contenido de la página web de su presentación. De la misma forma que en el caso de HTML5, la especificación y desarrollo de este lenguaje se lleva a cabo por la institución W3C.
+
+El lenguaje CSS permite definir y comunicar al navegador diferentes características relativas a la presentación del contenido como familias de fuentes, colores, estilos o tamaños. Además permite la distinción de presentaciones en base a características como el tamaño de la pantalla, lo que permite crear páginas atractivas y \textit{responsive}. 
+
+De esta forma, el lenguaje permite crear páginas web con una mejor estructura. La separación entre presentación y contenido presenta claras ventajas como la reutilización de estilos para distintos componentes de la página web o la simplificación de archivos HTML\@.
+
+\subsection{\js}
+{\js} es un lenguaje de programación interpretado y ligero. Se trata del lenguaje más utilizado en el ámbito del desarrollo web ya que es soportado nativamente en la mayoría de navegadores~\cite{javascript}\@. Este trabaja conjuntamente con CSS y HTML5, aportando la funcionalidad a la página web.
+
+Este lenguaje adopta una sintaxis parecida a la de C o C++, para reducir el esfuerzo en su aprendizaje, y está fuertemente ligado a la programación orientada a objetos. Además, se trata de un lenguaje de \textit{scripting}, lo que significa que el código puede insertarse dentro de código HTML o en un archivo externo. El navegador web ejecutará el código {\js} en el lado cliente, sin hacer uso de un servidor.
+
+{\js} está estandarizado en el EMACScript Language Specification~\cite{EMACScript}, el estándar utilizado por los navegadores web modernos. Es por esto que {\js} es ampliamente usado para el desarrollo de aplicaciones web.
+
+De forma complementaria, ha surgido una nueva aproximación a la funcionalidad web de la mano con otros lenguajes de programación como C++ o Rust. {\wa} es un tipo de código que permite la ejecución de código escrito en C, C++, Rust o C\# en navegadores web. Este tipo de código ha sido diseñado como un complemento a {\js}, y no como un sustituto. Sin embargo, permite solventar algunos problemas que presenta {\js}. Principalmente, mejora el rendimiento. Más adelante se realizará una comparativa más profunda acerca de estas dos alternativas para dotar de funcionalidad a las páginas web (Sección \ref{subsec:programming-languages}).
+
+\subsection{Vue.js}
+Vue.js es un \textit{framework} de {\js} de código abierto para el desarrollo de interfaces de usuario en aplicaciones web. Este se basa en HTML, CSS y {\js} y provee un modelo de programación basado en componentes~\cite{vuejs}. CREATOR adopta este \textit{framework} para la definición y desarrollo de su interfaz gráfica.
+
+Vue.js se caracteriza por la capacidad de crear componentes y combinarlos para la creación de páginas web complejas. Estos componentes, más simples, son reutilizables e independientes. De esta forma, se permite el desarrollo de apliacaciones web de cualquier complejidad, separando las funcionalidades por componentes.
+
+\section{Resumen}
+
+Con todo lo anterior, se ha hecho un resumen de las principales tecnologías y áreas de desarrollo en el ámbito de la propuesta, dando una visión global del estado del arte relativo a las arquitecturas vectoriales y los principales simuladores RISC-V. Adicionalmente, se han detallado las principales tecnologías web que relacionadas con la propuesta: HTML5, CSS, {\js} y Vue.js\@.

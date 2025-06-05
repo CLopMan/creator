@@ -1,0 +1,39 @@
+\chapter{Introducción}\label{chap:introduction}
+En el primer capítulo se presenta el proyecto desarrollado. Primero, se expone la motivación; después, los objetivos que se aspiran a conseguir y; por último,la estructura del documento.
+\section{Motivación}\label{sec:motivation}
+
+En los últimos años, las arquitecturas vectoriales han ganado importancia gracias al auge de disciplinas como la Inteligencia Artificial o la Ciencia de Datos. Estas dos tecnologías se benefician en gran medida de la aceleración por hardware, a través de instrucciones vectoriales, debido al alto grado de paralelismo a nivel de datos que presentan.
+
+Por otro lado, el conocimiento de la arquitectura de un computador y sus capacidades es fundamental para la Ingeniería Informática. Y la enseñanza práctica aporta un gran valor a la educación de los alumnos. Es por esto que la realización de ejercicios prácticos no debería estar limitada por herramientas toscas o privativas que pongan trabas al estudio y la adquisición de conocimiento. 
+
+Lo anterior expuesto muestra un contexto en el que la importancia de las arquitecturas vectoriales no hace más que destacar. Siguiendo la búsqueda de la excelencia que deben abanderar nuestras instituciones, la herramienta desarrollada pretende facilitar la realización de ejercicios prácticos en este ámbito que permitan a los alumnos experimentar con conceptos como la aceleración por hardware, el paralelismo a nivel de datos, el manejo de estructuras de datos o las diferentes arquitecturas de un computador.
+
+CREATOR~\cite{camarmas2024creator} es un simulador que se alinea con las motivaciones aquí expuestas. Además, se utiliza actualmente en la Universidad Carlos III de Madrid (UC3M) para la realización de prácticas en la asignatura de Estructura de Computadores. Ampliar esta herramienta, que aporta un gran valor a la educación de los estudiantes, permite concentrar en un sistema ya en uso los múltiples beneficios anteriormente expuestos.
+
+    En conclusión, se propone desarrollar una extensión a CREATOR, un sistema ya en uso en la UC3M y otras universidades, que permita una comprensión más profunda de las arquitecturas vectoriales y el paralelismo a nivel de datos. Además, al tratarse de un sistema ya en uso, se facilita su adopción en el programa de asignaturas como Estructura de Computadores o Arquitectura de Computadores.
+
+\section{Objetivos}\label{sec:objectives}
+En este proyecto, el principal objetivo es el desarrollo de una extensión al sistema CREATOR~\cite{camarmas2024creator} para dar soporte a conjuntos de instrucciones vectoriales. En concreto, se pretende implementar un motor de ejecución que permita la operatividad con registros vectoriales y extender la arquitectura RISC-V incluida en el simulador con un subconjunto de instrucciones de la extensión V~\cite{vec-riscv} de dicha arquitectura.
+
+La propuesta desarrollada debe cumplir los siguientes objetivos:
+\begin{itemize}
+    \item Definición de una nueva arquitectura que incluya el subconjunto de instrucciones seleccionado.
+    \item Creación de un motor de ejecución para dar soporte a operaciones entre registros vectoriales.
+    \item Ampliación de la interfaz gráfica para la correcta visualización de los registros vectoriales.
+    \item Creación de ejemplos para facilitar el entendimiento de dichas instrucciones.
+\end{itemize}
+
+\section{Estructura del documento}\label{sec:structure}
+El documento contiene los siguientes capítulos:
+\begin{itemize}
+  \item \chapterref{introduction}, en este capítulo se presentan la motivación y objetivos de la propuesta, así como la estructura del documento.
+  \item \chapterref{state-of-the-art}, en este capítulo se describen las principales arquitecturas vectoriales y se comparan diferentes simuladores de la arquitectura RISC-V.
+  \item \chapterref{v-extenssion}, en este capítulo se resume la especificación de la extensión V de RISC-V con el fin de que cualquier lector pueda comprender los conceptos fundamentales y la funcionalidad básica a la que da soporte.
+  \item \chapterref{analysis}, en este capítulo se detalla el proyecto y se extraen los requisitos de usuario, de software y los casos de uso del sistema.
+  \item \chapterref{design}, en este capítulo se exponen las principales decisiones de diseño y se describe la arquitectura y componentes del sistema.
+  \item \chapterref{implementation}, en este capítulo se detalla la estructura de directorios del proyecto y se describen las principales decisiones de implementación. También se enumeran los pasos a seguir para desplegar el sistema.
+  \item \chapterref{validation}, en este capítulo se exponen las pruebas de verificación y validación que ha atravesado el sistema durante su desarrollo.
+  \item \chapterref{planning}, en este capítulo se describe la planificación del proyecto, la división de tareas y el tiempo de desarrollo. También se expone el coste del proyecto y se desarrolla una oferta teniendo en cuenta todo lo anterior.
+  \item \chapterref{regulation}, en este capítulo se describe la normativa y licencias aplicables al proyecto. También se realiza un análisis sobre el entorno-socioeconómico.
+  \item \chapterref{conclusions}, en este capítulo se exponen las conclusiones a las que se llega tras el desarrollo de este proyecto. También se detallan los trabajos futuros.
+\end{itemize}

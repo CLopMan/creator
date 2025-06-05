@@ -1,0 +1,39 @@
+\chapter{Marco regulatorio y entorno socio-económico}\label{chap:regulation}
+En este capítulo se detalla el márco regulatorio que afecta a la propuesta. Así como se discute el entorno socio-económico.
+
+\section{Marco Regulatorio}\label{sec:regulatory-framework}
+El marco regulatorio que afecta a la propuesta se divide en tres flancos: la legislación aplicable al producto desarrollado, los estándares técnicos que se emplean, y las licencias de software que empleadas durante el desarrollo.
+
+\subsection{Legislación aplicable}
+La práctica más extendida en las aplicaciones web es la obligatoriedad de registrarse para poder utilizar el servicio. Estos datos, de caracter confidencial, se deben tratar de aceurdo con la legislación española vigente. Las principales leyes que regulan esta situación son dos: el Reglamento General de Protección de Datos (RGPD)~\cite{rgpd} y la Ley Orgánica de Protección de Datos Personales y Garantía de Derechos Digitales (LOPDGDD)~\cite{ley-de-datos}.
+
+Sin embargo, CREATOR es un sistema que permite la ejecución en local de programas en ensamblador, sin necesidad de registrarse. Es por esto que, al no recoger datos de caracter personal ni enviar o recibir información a través de la red, esta legislación no es aplicable.
+
+\subsection{Licencias}
+La propuesta, al tratarse de una extensión sobre CREATOR~\cite{camarmas2024creator} y no añadir ningún framework o tecnología adicional, emplea las mismas licencias que su predecesor.
+
+\begin{itemize}
+    \item Bootstrap + Vue.js: licencia MIT~\cite{MIT-license}.
+    \item JQUERY: licencia MIT~\cite{MIT-license} y Licencia Pública General de GNU (GPL)~\cite{gnu-license}.
+\end{itemize}
+
+En cuanto a CREATOR, también se distribuye bajo la licencia GPL~\cite{gnu-license}, lo que permite la modificación y redistribución del software de manera libre siempre y cuando se distribuya bajo la misma licencia.
+
+El código desarrollado se encuentra bajo la licencia GPL, al igual que CREATOR. Además, el proyecto es público y accesible a través de la siguiente url: \url{https://github.com/CLopMan/creator}.
+
+\section{Entorno socio-económico}\label{sec:socio-economico}
+
+El producto desarrollado tiene varios beneficios en la enseñanza de las asignaturas de Estructura de Computadores y Arquitectura de Computadores. Continuando los objetivos de CREATOR, reduce el esfuerzo de docentes y alumnos en la enseñanza, haciendo la programación en ensamblador, especialmente en arquitecturas vectoriales, más accesible.
+
+Tal y cómo se expone en el capítulo~\ref{chap:state-of-the-art}, existe una carencia en el mundo didáctico de simuladores de esta clase de arquitecturas. La simplicidad de la propuesta, junto con su capacidad para soportar diferentes arquitecturas presenta un claro beneficio para los estudiantes de Ingeniería Informática o relacionados.
+
+A continuación se muestran distintos motivos por los que la extensión desarrollada presenta beneficios:
+\begin{itemize}
+    \item \textbf{Disponibilidad amplia}: al ser una aplicación web accesible a través de internet, está disponible para cualquier usuario con conexión, sin coste monetario.
+    \item \textbf{Capacidad para simular diferentes arquitecturas}: pese a que sólo se ha desarrollado la extensión V de RISC-V, se ha implementado un motor de ejecución genérico que permite dar soporte a otras arquitecturas vectoriales. Esto permite adaptar el sistema al contexto individual de cada institución o asignatura.
+    \item\textbf{Código abierto}: el código desarrollado, tal y como se expuso anteriormente, es público y de libre uso y distribución bajo la licencia GPL. Esto permite a cualquier usuario u organización adaptar, mejorar o auditar el sistema sin límite.
+    \item\textbf{Idioma}: el sistema está escrito completamente en inglés para facilitar la difusión, uso y comprensión lo máximo posible.
+\end{itemize}
+
+\section{Resumen}
+En este capítulo se han descrito los aspectos legales que afectan a la propuesta, incluyendo la legislación aplicable y licencias empleadas. También se ha hecho un análisis sobre el impacto socio-económico del producto, destacando sus beneficios.

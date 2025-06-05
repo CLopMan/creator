@@ -1,0 +1,369 @@
+\chapter{Diseño}\label{chap:design}
+
+Este capítulo presenta una descripción completa de la propuesta. Esto incluye
+un estudio de alternativas (sección \ref{alternativas}) y la especificación de
+la arquitectura del sistema (sección \ref{sec:arch-design}).
+
+\section{Estudio de alternativas}\label{alternativas}
+Tras la elicitación de requisitos del sistema, es necesario discutir el conjunto de alternativas para su diseño. A continuación se describen diferentes alternativas para la implementación del motor de ejecución y la interfaz gráfica, principales componentes del sistema.
+
+\subsection{Definición de la arquitectura}\label{subsec:defi-arch}
+Tal y cómo establece el requisito RU-RE-01, el sistema debe usar la misma definición de la arquitectura que se utiliza actualmente. Este diseño se propone en el trabajo original que desarrolla este sistema, encontrado en~\cite{camarmasCREATOR}. Los campos más relevantes para la propuesta de esta estructura de datos son los siguientes. 
+
+\begin{itemize}
+\item \textbf{Components}: se trata de una lista donde se incluyen los distintos bancos de registros, instrucciones y pseudo instrucciones de la arquitectura.
+\item \textbf{Elements}: se trata de un campo dentro de cada elemento de \textit{Components}. Contiene una lista de cada uno de los elementos del componente (instrucción, registro o pseudoinstrucción). Cada uno de estos componentes tiene diferentes campos.
+\end{itemize}
+
+Esta definición debe mantener el formato y estructura debido al requisito antes mencionado. No obstante debe ser modificada para incluir los parámetros de arquitectura mencionados en el requisito RS-FN-02.
+
+Con todo lo anterior se ha optado por incluir nuevos campos en la arquitectura contenida en el archivo \texttt{RISC\_V\_RV32IMFD.json}. Estos campos se han añadido en el mayor nivel de jerarquía. Además se ha incluído un nuevo banco de registros y se ha ampliado la lista de instrucciones. De esta forma, los nuevos parámetros de arquitectura no influyen en el código anteriormente desarrollado y se amplia la arquitectura manteniendo la retrocompatibilidad.
+
+\subsection{Definición de las instrucciones}\label{subsec:defi-ins}
+
+Siguiendo los requisitos RU-CA-03, RS-FN-02, RS-FN-03 y RS-FN-04, se debe permitir operar con instrucciones que empleen máscaras, enteros o vectores; y permitir operaciones enmascaradas. Esto supone que se deben contemplar varias casuísticas:
+
+\begin{itemize}
+\item Argumentos intercalados en el nombre de la instrucción: el indicativo del tipo de operando \texttt{v*} o el campo \texttt{emul}.
+\item Argumentos opcionales: el campo \texttt{vm}.
+\item Operatividad con distinta precisión: especialmente operando con valores enteros, se debe tener en cuenta la distinta precisión entre los registros enteros (32 bits), los elementos de un vector (entre 8 y 64 bits) y valores inmediatos (5-20 bits).
+\end{itemize}
+
+Lo anterior se puede abordar desde el código de la aplicación o desde la definición de la arquitectura. No obstante, la primera opción entraría en conflicto con los requisitos RU-RE-02 y RS-NF-01. Estudiando el código desarrollado con anterioridad, se pueden incluir varias entradas por instrucción contemplando el uso de diferentes campos opcionales o campos intercalados en el nombre de la instrucción. En cuanto a la operatividad de la máscara y entre valores con distinta precisión, se abordará en el desarrollo del motor de ejecución (sección \ref{sec:motor}).
+
+\subsection{Lenguajes de programación}{\label{subsec:programming-languages}}
+La elección de un lenguaje de programación está guiada por el desarrollo previo
+del sistema. CREATOR es una aplicación desarrollada enteramente en
+\js, lo que la dota de una gran capacidad de
+compatibilidad. Dado que su entorno de ejecución es el navegador, se proponen
+dos alternativas.
+
+\subsubsection{Uso de web-assembly}
+
+\textit{Web assembly} es un tipo de código capaz de correr en navegadores modernos. Este permite la compilación de código en C, C++, Rust y C\# en binarios capaces de ejecutar en el mismo entorno~\cite{webassembly}. No obstante, el uso de esta tecnología también añade mayor complejidad a la aplicación.
+
+La comunicación entre el código escrito en \js (JS) y \wa (WASM) requiere de añadir procesos extra como serialización o gestión de memoria. Esto sumado al mayor tamaño que tienden a ocupar los archivos compilados para WASM frente al código JS, y la mayor dificultad de depuración; hacen que la única ventaja de esta tecnología sea una mejora de rendimiento. Además, añadir estas tecnologías podría complicar la integración de la extensión con la aplicación, lo que entra en conflicto con el requisito RU-RE-02.
+
+Debido a que el rendimiento no es un objetivo principal del sistema y que la mejora no presenta un gran beneficio frente a la complejidad que añade se descarta la alternativa.
+
+\subsubsection{Continuación con \js}
+{\js} (JS) es un lenguaje de programación interpretado empelado
+ampliamente en tecnologías web. Aunque también es usado en otros entornos como
+Node.js, Apache CouchDB o Adobe Acrobat~\cite{javascript}. Además, es el
+principal lenguaje de programación en el que se ha desarrollado CREATOR\@.
+
+La continuidad con JS facilita la integración y el desarrollo de la propuesta.
+Adicionalmente, se soporta de forma nativa en los entornos de ejecución de
+CREATOR: el navegador y \textit{Node.js}\@.
+
+No existe una desventaja clara a la continuación con este lenguaje. La fácil integración está en sintonía junto con los objetivos de la propuesta. Además, la capacidad nativa de {\js} para el manejo de \textit{arrays} y la inclusión del tipo de dato \textit{BigInt} permite dar soporte fácilmente a los requisitos de software empleando herramientas ampliamente estandarizadas en las tecnologías web.
+
+Con todo lo anterior, esta ha sido la alternativa seleccionada para el desarrollo de la aplicación.
+
+\section{Arquitectura del sistema}\label{sec:arch-design}
+
+La propuesta se compone de dos nuevos componentes que amplían la anterior arquitectura de CREATOR\@: una ampliación a la interfaz de usuario y una ampliación al kernel de simulación.
+
+De esta forma, el diseño propuesto requiere  ampliar la arquitectura original presentada por Diego Camarmas en~\cite{camarmasCREATOR}. A continuación se muestra el diagrama original modificado para hacer explícita la adición de estos componentes:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  box/.style={
+    draw, thick, minimum width=3.2cm, minimum height=3.2cm,
+    align=center, font=\sffamily, text centered
+  },
+  arrow/.style={
+    thick, -{Latex}
+  }
+]
+
+% Nodes in a + layout
+\node[box, fill=yellow!20] (ui) {Interfaz de\\usuario\\};
+\node[box, fill=green!20, above=of ui, yshift=4cm] (compiler) {Compilador};
+\node[box, fill=red!20, left=of ui, yshift=4cm] (editor) {Editor de\\arquitectura};
+\node[box, fill=blue!20, right=of ui, yshift=4cm] (kernel) {Kernel de\\simulación\\};
+
+\draw[black, fill=blue!40] (2.8, 2.5) rectangle (5.7, 3.5);
+\node[draw=none, text=black,align=center] at (4.3, 3) (motor) {\footnotesize{Motor de ejecución}\\\footnotesize{vectorial}};
+
+\draw[black, fill=yellow!40] (-1.4, -1.3) rectangle (1.4, -0.3);
+
+\node[draw=none, text=black,align=center] at (0, -0.8) (motor) {\footnotesize{Ampliación de}\\\footnotesize{interfaz}};
+
+% Arrows
+\draw[arrow] (compiler) -- ++(-4.25cm, 0) -- (editor);
+\draw[arrow] (kernel) -- ++(0, 4.25cm) -- (compiler);
+\draw[arrow] (kernel) -- ++(0, -4cm) -- (ui);
+\draw[arrow] (editor) -- ++(0, -4cm) -- (ui);
+
+\draw[arrow] (-1, 1.6) -- (-1, 6.65);
+\draw[arrow] (1, 6.65) -- (1, 1.6);
+
+\draw[arrow] (2.62, 4) -- (-2.62, 4);
+
+\draw[arrow] (-1.6, 1) -- (-3.5, 1) -- (-3.5, 2.4);
+\draw[arrow] (1.6, 1) -- (3.5, 1) -- (3.5, 2.4);
+
+\end{tikzpicture}
+\caption{Arquitectura de la aplicación}
+\end{figure}
+
+\subsection{Motor de ejecución para instrucciones vectoriales}\label{sec:motor}
+
+El motor de ejecución para instrucciones debe cumplir varias características de acuerdo con los requisitos:
+
+\begin{enumerate}
+\item Capacidad de operar con registros vectoriales.
+\item Capacidad de ejecutar operaciones con registros vectoriales y valores enteros como operandos.
+\item Capacidad de operar valores con diferente precisión.
+\item Capacidad de simular el comportamiento de las operaciones enmascaradas y elementos de cola.
+\item Capacidad de comunicarse con el kernel de ejecución manteniendo las estructuras y funcionalidad previa.
+\end{enumerate}
+
+Con todo lo anterior, la estructura de datos \textit{architecture} en la que se apoya CREATOR será de gran importancia para las decisiones que se tomen de aquí en adelante. Es por esto que primero se hará una pequeña introducción a esta estructura de datos.
+
+\subsubsection{Utilización de la estructura de datos \textit{architecture}}
+
+La estructura de datos \textit{architecture}, tal y cómo se expuso con
+anterioridad, cuenta con varios campos de gran importancia para el
+funcionamiento de la aplicación. Esta estructura almacena los bancos de
+registros, instrucciones y parámetros de la arquitectura simulada.
+
+Los bancos de registros son un elemento de la lista \textit{components}. Cuenta con varios campos qeu determinan sus propiedades. Los más relevantes son:
+\begin{itemize}
+\item \textbf{name}: nombre del banco de registros.
+\item \textbf{type}: tipo de registro.
+\item \textbf{elements}: lista de registros.
+\end{itemize}
+
+Los registros también cuentan con algunos campos como \textit{name} (lista de nombres), \textit{nbits} (número de bits), \textit{value} (valor) o \textit{properties} (propiedades del registro como lectura o escritura). Es importante destacar que el campo \textit{value} es un valor entero de tamaño arbitrario (\textit{BigInt}).
+
+\subsubsection{Representación interna de un vector}
+
+Un vector se corresponde con uno o varios registros vectoriales dentro de un
+banco de registros en \textit{architecture}. Esto se traduce en que un registro
+vectorial se identifica con dos valores: el índice en la lista
+\textit{components} y el índice en la lista \textit{elements}; a partir de
+ahora referidos como \textit{indexComp} e \textit{indexElem}, respectivamente.
+Además, el valor almacenado en la estructura \textit{architecture} debe ser un
+valor de tipo \textit{BigInt} para conservar la funcionalidad previa.
+
+Con todo lo anterior, la representación de un vector en el sistema será un
+valor entero, producto de la concatenación en hexadecimal de cada uno de los
+elementos, tal y como se muestra en la figura
+\ref{fig:representacion-vector}. Este valor podrá recuperarse a través de los
+índices \textit{indexComp} e \textit{indexElem} del elemento.
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\node[draw=none, align=center] (dummy) at (2, 0.5) {v0};
+\node[draw=none] (first)  at (0, 0) {-1};
+\node[draw=none] (second) at (1, 0) {12};
+\node[draw=none] (third)  at (2, 0) {170};
+\node[draw=none] (forth)  at (3, 0) {19};
+\node[draw=none] (fith)   at (4, 0) {103};
+
+\node[draw=none, below=of first, xshift=-2cm, yshift=0.75cm] (tag-1) {\texttt{transform to hex}};
+
+\foreach \i in {0,...,4} {
+    \draw[thick] (\i - 0.5, -0.25) rectangle (\i + 0.5, 0.25);
+}
+\draw[-Latex, thick] (0, -0.25) -- (0, -0.75) -- (0.75, -0.75) -- (0.75, -1.3);
+\draw[-Latex, thick] (1, -0.25) -- (1, -0.5) -- (1+0.35, -0.5) -- (1+0.35, -1.3);
+\draw[-Latex, thick] (2, -0.25) -- (2, -1.3);
+\draw[-Latex, thick] (3, -0.25) -- (3, -0.5) -- (3-0.35, -0.5) -- (3-0.35, -1.3);
+\draw[-Latex, thick] (4, -0.25) -- (4, -0.75) -- (4 - 0.75, -0.75) -- (4 - 0.75, -1.3);
+
+\node[draw=none, below=of third] (hex) {FF 0C AA 13 67};
+\node[draw=none, left=of hex, xshift=+1.25cm] (ox) {0x};
+\node[draw=none, below=of hex, xshift=-3cm, yshift=0.75cm] (tag-2) {\texttt{reverse}};
+
+\draw[-Latex, thick] (hex) -- ++(0, -1.3);
+\node[draw=none, below=of hex] (hex-reverse) {67 12 AA 0C FF};
+\node[draw=none, left=of hex-reverse, xshift=+1.25cm] (ox) {0x};
+
+\draw[-Latex, thick] (hex-reverse) -- ++(0, -1.3);
+\node[draw=none, below=of hex-reverse] (big-int) {442694765823n};
+\node[draw=none, below=of tag-2, xshift=0.2cm] (tag-3) {\texttt{BigInt}};
+
+\end{tikzpicture}
+\caption{Representación de un vector en BigInt para SEW=8b}
+\label{fig:representacion-vector}
+\end{figure}
+
+\subsection{Componentes del motor de ejecución}\label{subsec:components}
+
+A continuación se presentan los componentes que serán necesarias para dar
+soporte a la operatividad descrita en los requisitos. 
+
+\begin{component}{Read Vector} % no
+{Interfaz con el compilador para la lectura de registros de tipo vectorial.}
+{Value to Array, Fix length}
+{indexComp, indexElem, lmulExp, sew, vlen}
+{array}
+{FN-motor, FN-motor-2, FN-motor-int}
+Debe transformar los datos de la forma adecuada para mantener la operatividad del compilador y kernel de simulación, a la vez que hace accesibles los valores de los registros vectoriales.
+\end{component}
+
+\begin{component}{Fix Length} % si
+{Modifica la longitud de un vector.}
+{\NA}
+{vector, length, pad}
+{array}
+{FN-motor, FN-motor-2}
+Trunca o expande un vector hasta una longitud \textit{length}. En caso de expandir, las nuevas posiciones tendrán el valor \textit{pad}.
+\end{component}
+
+\begin{component}{Value to Array} % si
+{Obtención de un array a partir de un valor almacenado en \textit{architecture}.}
+{Read to 2c}
+{value, sew, unsigned}
+{array}
+{FN-motor, FN-motor-2}
+Extrae los elementos del vector a partir de un valor \textit{BigInt} almacenado en \textit{architecture}. Permite tratar los elementos como números con signo o sin signo.
+\end{component}
+
+\begin{component}{Read to two`s complement} % no
+{Lectura de valores de un vector con signo.}
+{\NA}
+{number, bitsize}
+{BigInt}
+{FN-motor, FN-motor-2, FN-motor-int, FN-motor-vec}
+Lectura de un número en complemento a 2 para un número arbitrario de bits.
+\end{component}
+
+\begin{component}{Write Vector} % si
+{Interfaz con el compilador para la escritura de registros de tipo vectorial.}
+{Transform to Hex}
+{indexComp, indexElem, value, lmulExp, sew, vlen, ta}
+{void}
+{FN-motor, FN-motor-2}
+Debe transformar los datos de la forma adecuada para mantener la operatividad del compilador y kernel de simulación, a la vez que permite almacenar el valor del registro en la estructura de datos adecuada.
+\end{component}
+
+\begin{component}{Transform to Hex} % si
+{Transforma un array en un valor hexadecimal.}
+{Tail Agnostic}
+{vector, sew, vlen, start, ta, vl}
+{string}
+{FN-motor, NF-motor-3}
+Aplica la transformación descrita en la figura \ref{fig:representacion-vector}.
+\end{component}
+
+\begin{component}{Tail Agnostic} % si
+{Aplica el comportamiento de los elementos de cola descrito en la especificación~\cite{riscv-isa2024}}
+{\NA}
+{vector, sew, vlen, start, ta, vl}
+{string}
+{FN-motor, FN-motor-2, FN-ta}
+Aplica el comportamiento de máscara según el parámetro ta.
+\end{component}
+
+\begin{component}{Extract Mask} % si
+{Extrae el valor de un vector con el formato de máscara.}
+{\NA}
+{indexComp, indexElem, vl}
+{array}
+{FN-motor-mask}
+Extrae el valor de una máscara binaria a partir del valor de un registro vectorial.
+\end{component}
+
+\begin{component}{Masked Operation} % si
+{Realiza una operación aplicando una máscara.}
+{Apply Mask}
+{vl, vs1, vs2, vd, operation, mask}
+{array}
+{FN-motor-mask}
+Aplica una operación con máscara que se recibe por parámetro.
+\end{component}
+
+\begin{component}{Apply Mask} % SI
+{Aplicar una máscara a un vector.}
+{\NA}
+{mask, ma, vd, backup, vl}
+{array}
+{FN-motor-mask}
+Aplica la máscara a un vector en base al parámetro ma.
+\end{component}
+
+\begin{component}{Vec Int Operation} %SI
+{Realiza una operación entre un vector y un entero}
+{\NA}
+{vd, vs1, rs1, operation, sew}
+{array}
+{FN-motor-int}
+Gestionna la diferencia de precisión entre el entero y cada uno de los elementos del vector.
+\end{component}
+
+
+\begin{component}{Widening Operation} %SI
+{Realiza una operación widening}
+{Masked Operation, Vec Int Operation}
+{vd, lhs, rhs, operation, sew}
+{array}
+{FN-wide-narrow}
+Gestiona una operación de ensanchamiento, manejando los valores de distinta precisión.
+\end{component}
+
+\begin{component}{Narrowing Operation} %SI
+{Realiza una operación \textit{narrowing}}
+{Masked Operation, Vec Int Operation}
+{vd, lhs, rhs, operation, sew}
+{array}
+{FN-wide-narrow}
+Gestiona una operación de estrechamiento, manejando los valores de distinta precisión.
+\end{component}
+\FloatBarrier
+
+\subsection{Ampliación de la interfaz gráfica}
+
+La ampliación de la arquitectura simplemente constará con una nueva vista donde
+se podrán visualizar todos los registros relativos a la extensión vectorial.
+Estos son los registros de control y los registros \textit{vi}. Esta vista será
+similar a la vista de los registros enteros, con la excepción de que, para cada
+registro, se mostrará el valor almacenado en cada uno de sus elementos y el
+conjunto de parámetros de arquitectura.
+
+La interfaz gráfica tendrá 3 componentes.
+
+\begin{component}{Vec Register Bank} % SI
+{Visualización de los registros de control y vectoriales de la extensión V}
+{\NA}
+{architecture}
+{void}
+{FN-GUI}
+Muestra los datos de todos los registros vectoriales.
+\end{component}
+
+\begin{component}{Vec Pop-up} % SI
+{Visualización de la información de un registro}
+{\NA}
+{architecture}
+{void}
+{FN-GUI}
+Muestra los datos de un único registro vectorial.
+\end{component}
+
+\begin{component}{Vec Stadistics} % SI
+{Visualización de las estadísticas del programa ejecutado}
+{\NA}
+{architecture}
+{void}
+{FN-GUI-stats}
+Muestra el porcentaje de isntrucciones vectoriales aritméticas ejecutadas en la categoría ``Vector Arithtmetics''
+\end{component}
+
+\FloatBarrier
+
+\subsection{Trazabilidad}
+
+Con el fin de cercionar que los requisitos funcionales se cubren con los componentes anteriormente descritos, se incluye una matriz de trazabilidad que relaciona dichos requisitos con los componentes.
+
+\begin{table}[H]
+    {\traceabilityCompFN}
+    \caption{Trazabilidad entre componentes y requisitos funcionales}\label{traz-3:compFN}
+\end{table}
+
+\section{Resumen}
+En este capítulo se ha detallado el diseño de la propuesta. Se han estudiado diferentes alternativas para su implementación,  estableciendo la forma en la que se definirán las instrucciones y arquitectura simulable, seleccionando finalmente {\js} como lenguaje de programación y detallando los componentes y arquitectura de la herramienta de forma que se garantice la funcionalidad completa descrita en los requisitos. 

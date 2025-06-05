@@ -1,0 +1,341 @@
+\chapter{Análisis}\label{chap:analysis}
+En este capítulo se describe la proppuesta del trabajo. Primero, se hace una
+breve recapitulación del mismo. Después, se especifican los requisitos del
+sistema. Por último, se inluye una matriz de trazabilidad que verifica que
+todos los requisitos de usuario se han contemplado en los requisitos de
+software.
+
+\section{Recapitulación de la propuesta}
+
+El objetivo de la propuesta es igualar CREATOR a otros simuladores de la
+arquitectura RISC-V dando soporte a la especificación de intstrucciones
+vectoriales. Esto debe ocurrir sin poner en compromiso la simplicidad y
+capacidad didáctica características del sistema. Esto permitirá a los
+estudiantes de asignaturas como \textit{Arquitectura de Computadores} o
+\textit{Estructura de Computadores} familiarizarse con las nuevas tendencias
+tecnológicas y las arquitecturas basadas en el paralelismo a nivel de dato.
+
+Tal y cómo se expone en el estado del arte (Capítulo \ref{chap:state-of-the-art}), las
+principales plataformas que dan soporte a estas arquitecturas no cuentan con un
+fin didáctico que permita una aproximación amigable a las arquitecturas
+vectoriales. La simplicidad de CREATOR junto con su objetivo didáctico dan a la
+propuesta un valor único que permitirá a los estudiátes aprender sobre el uso
+de instrucciones vectoriales y código esamblador abstrayéndose de detalles
+específicos como arquitecturas complejas, lenguajes especializados de
+descripción de instrucciones o interfaces complicadas.
+
+Recuperando lo espuesto en el capítulo \ref{chap:v-extenssion}, la extensión cubre
+un amplio abanico de funcionalidades que CREATOR no es capaz de soportar. Con
+el fin de reducir el alcance de este trabajo, se ha decidido limitar la
+propuesta a las instrucciones de memoria y aritmética entera. Esto es porque el
+soporte a otro tipo de instrucciones obligaría a rediseñar casi en su totalidad
+la aplicación existente, dada la multitud de funcionalidades que esta extensión
+describe. No obstante, se considera que el conjunto de instrucciones
+implementado permite la creación una gran variedad de programas y la
+adquisición de los conocimientos fundamentales acerca de las arquitecturas
+vectoriales, lo que se alinea con el principal objetivo didáctico de la propuesta.
+
+\section{Especificación de requisitos}\label{sec:requirements}
+
+Esta sección describe detalladamente el conjunto de requisitos del sistema. Para ello se ha usado como referencia la \textit{Guía de requisitos de software} del Instituto de Ingenieros Eléctricos y Electrónicos (IEEE)~\cite{requirements}.
+
+La guía citada establece que una especificación de requisitos debe tener las siguientes características:
+\begin{itemize}
+\item \textbf{No ambiguo}: un requisito debe tener una única interpretación.
+\item \textbf{Completo}: se deben contener todos los requisitos del sistema.
+\item \textbf{Verificable}: todo requisito debe contar con una forma de verificarse de manera objetiva.
+\item \textbf{Consistente}: los requisitos no deben entrar en conflicto entre ellos.
+\item \textbf{Modificable}: la especificación debe permitir la modificación de un requisito de forma consistente y correcta.
+\item \textbf{Rastreable}: el origen de todo requisito es fácil de localizar y fácilmente referenciable en futuros estados.
+\item \textbf{Usable durante la fase de mantenimiento}: se deben contemplar las necesidades de la fase de mantenimiento.
+\end{itemize}
+
+A continuación se exponen los distintos requisitos de usuario y requisitos de sistema.
+
+\subsection{Requisitos de usuario}\label{subsec:user-req}
+
+Esta sección describe el conjunto de requisitos de usuario para la propuesta.
+Estos requisitos exponen el conjunto de funcionalidades y restricciones que
+afectan directamnete al usuario. Para la especificación de requisitos, se usará
+la plantilla propuesta en~\cite{luisda}. Los requisitos están dividos en dos
+categorías:
+
+\begin{itemize}
+\item \textbf{Capacidades} (CA): Representan la funcionalidad que el usuario espera del sistema.
+\item \textbf{Restricciones} (RE): Representan limitaciones impuestas por el usuario o entorno.
+\end{itemize}
+
+\printureqtemplate{}
+
+\begin{userReq}{CA}{ejecucion}
+    {pc=h,pd=h,s=c,v=m}
+    El sistema debe permitir la ejecución de programas que contengan instrucciones vectoriales.
+\end{userReq}
+
+\begin{userReq}{CA}{escribir-codigo}
+    {pc=m,pd=h,s=c,v=m}
+    El sistema debe permitir el uso de todas las instrucciones vectoriales de aritmética entera y manejo de memoria.
+\end{userReq}
+
+\begin{userReq}{CA}{visualizacion}
+    {pc=h,pd=l,s=c,v=m}
+    El sistema debe mostrar la información sobre parámetros de arquitectura y contenido de los registros vectoriales en una nueva pestaña.
+\end{userReq}
+
+\begin{userReq}{CA}{escribir-codigo-param}
+    {pc=l,pd=m,s=c,v=m}
+    El sistema debe permitir la modificación de los parámetros de arquitectura descritos en el capítulo \ref{chap:v-extenssion}.
+\end{userReq}
+
+\begin{userReq}{RE}{simulate}
+    {pc=h,pd=h,s=c,v=m}
+    El sistema debe simular el comportamiento de las instrucciones vectoriales descrito en la especificación~\cite{riscv-isa2024}. 
+\end{userReq}
+
+\begin{userReq}{RE}{herencia}
+    {pc=m,pd=h,s=c,v=m}
+    % pc: Client priority
+      %  - h: high, m: medium, l: low
+      % pd: Developer priority
+      %  - h: high, m: medium, l: low
+      % s: Stability
+      %  - c: constant, i: inconstant, vu: very unstable
+      % v: Verifiability
+      %  - h: high, m: medium, l: low
+    % description
+    El sistema debe usar la misma estructura en la definición de arquitectura e instrucciones que se usa a fecha de inicio del proyecto.
+\end{userReq}
+
+\begin{userReq}{RE}{merge}
+    {pc=l,pd=h,s=c,v=m}
+    El sistema debe poder integrarse con la aplicación sin comprometer la funcionalidad previa.
+\end{userReq}
+
+\FloatBarrier
+
+\subsection{Requisitos de software}
+
+Esta sección recoge los requisitos de software derivados de los requisitos de usuario.
+
+Estos requisitos se clasifican en dos tipos:
+\begin{itemize}
+    \item \textbf{Funcionales}: Representan funcionalidades que el sistema debe proporcionar.
+    \item \textbf{No funcionales}: Representan restricciones y limitaciones impuestas por el sistema.
+\end{itemize}
+
+\printsreqtemplate{}
+
+\begin{softwareReq}{FN}{motor}
+    {pc=h,pd=h,s=c,v=h}
+    {CA-ejecucion, CA-escribir-codigo}
+    El sistema debe implementar un motor de ejecución para dar soporte al uso de vectores como tipo de registro y operandos de las instrucciones vectoriales.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{wide-narrow}
+    {pc=h,pd=h,s=c,v=h}
+    {CA-ejecucion, CA-escribir-codigo}
+    El sistema debe dar soporte a operaciones \textit{widening} y \textit{narrowing}.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{motor-2}
+    {pc=m,pd=m,s=c,v=h}
+    {CA-escribir-codigo-param}
+    El motor de ejecucción debe dar soporte a todos los tamaños de elementos (SEW), longitudes de vectores (VL), factores de multiplicación (LMUL) y comportamiento de máscara y elementos de cola (VMA y VTA) recogidos en la arquitectura.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{ta}
+    {pc=h,pd=h,s=c,v=h}
+    {CA-ejecucion}
+    El motor de ejecución debe replicar el comportamiento de los elementos de cola descrito en~\cite{riscv-isa2024}.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{motor-mask}
+    {pc=h,pd=h,s=c,v=h}
+    {CA-ejecucion}
+    El motor de ejecución debe dar soporte a realizar operaciones con máscara cuyo funcionamiento se describe en~\cite{riscv-isa2024}.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{motor-int}
+    {pc=h,pd=h,s=c,v=h}
+    {CA-ejecucion}
+    El motor de ejecución debe dar soporte a las operaciones entre vectores y enteros descritas en la especificación~\cite{riscv-isa2024}.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{motor-vec}
+    {pc=h,pd=h,s=c,v=h}
+    {CA-ejecucion}
+    El motor de ejecución debe dar soporte a las operaciones entre vectores descritas en la especificación~\cite{riscv-isa2024}.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{GUI}
+    {pc=h,pd=m,s=c,v=h}
+    {CA-visualizacion}
+    Se debe desarrollar una nueva pestaña en la interfaz gráfica para mostrar la información de arquitectura y registros vectoriales.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{GUI-stats}
+    {pc=h,pd=m,s=c,v=h}
+    {CA-visualizacion}
+    Se deben incluir las instrucciones vectoriales aritméticas en una nueva categoría en la pestaña ``Stats'' en el simulador llamada ``Vector Arithmetic''.
+\end{softwareReq}
+
+\begin{softwareReq}{NF}{architecture}
+    {pc=h,pd=h,s=c,v=h}
+    {RE-simulate}
+    Se debe ampliar la arquitectura \texttt{RISC\_V\_RV32IMFD.json} para incluir la definición de las instrucciones vectoriales y registros necesarios.
+\end{softwareReq}
+
+\begin{softwareReq}{NF}{motor-3}
+    {pc=m,pd=h,s=c,v=h}
+    {RE-herencia}
+    El motor de ejecución debe apoyarse de las estructuras de datos y funcionalidades presentes en el sistema a fecha de inicio del proyecto. Siendo estas principalmente el compilador y ejecutor.
+\end{softwareReq}
+
+\begin{softwareReq}{NF}{mantenimiento}
+    {pc=l,pd=h,s=c,v=h}
+    {RE-merge}
+    El conjunto de funcionalidades implementadas en el motor deben ser contenidas en funciones.
+\end{softwareReq}
+
+
+\FloatBarrier
+
+\subsection{Trazabilidad}
+
+Esta sección contiene una matriz de trazabilidad para verificar que todos los requisitos de usuario son contenidos en los requisitos de software. Se aprecia que los requisitos funcionales cubren la totalidad de los requisitos de capacidad (Tabla \ref{traz-1}); mientras que los requisitos no funcionales cubren los requisitos de restricción (Tabla \ref{traz-2}).
+
+\begin{table}[H]
+    \traceabilityFNCA
+    \caption{Trazabilidad entre requisitos funcionales y requisitos de capacidad}
+    \label{traz-1}
+\end{table}
+
+\begin{table}[H]
+    \traceabilityNFRE
+    \caption{Trazabilidad entre requisitos no funcionales y de restricción}
+    \label{traz-2}
+\end{table}
+
+\subsection{Modelo de casos de uso}
+
+El diagrama (Figura \ref{casos-uso}) representa el uso típico de la propuesta, facilitando la visualización de las difernetes interacciones entre un usuario y el sistema. 
+
+\printuctemplate{}
+
+A continuación se muestra un diagrama de casos de uso para la propuesta:
+
+\begin{figure}[H]
+    \begin{tikzpicture}
+        % USER
+        \draw[thick] (0, 0) circle (0.5);
+        \draw[thick] (0, -0.5) rectangle (0, -1.5);
+        \draw[thick] (-0.5, -0.75) rectangle (0.5, -0.75);
+        \draw[thick] (0, -1.5) node[yshift=-0.75cm]{user} -- (-0.5, -2);
+        \draw[thick] (0, -1.5) -- (0.5, -2);
+
+        \draw[thick] (0.75, -0.75) -- (4, 4.25);
+        \draw[thick, xshift=1.5cm] (4, 4.25) ellipse (1.5 and 1);
+        \node[draw=none, align=center] at (5.5, 4.25) (caso-1) {Cargar\\Arquitectura}; % cargar arquitectura
+
+        \draw[thick] (0.75, -0.75) -- (8, -1.75);
+        \draw[thick, xshift=1.5cm] (8, -1.75) ellipse (1.5 and 1);
+        \node[draw=none, align=center] at (9.5, -1.75) (caso-2) {Ejecutar\\código}; % Escribir un programa con instrucciones vectoriales
+        \draw[-Straight Barb, thick, dashed] (7.5, 0.75) -- (9, -0.80) node[midway, fill=white] {<<extend>>};
+
+        \draw[thick] (0.75, -0.75) -- (4, -3);
+        \draw[thick, xshift=1.5cm] (4, -3) ellipse (1.5 and 1);
+        \node[draw=none, align=center] at (5.5, -3) (caso-3) {Escribir\\código vectorial};
+
+        \draw[thick] (0.75, -0.75) -- (4, -5.75);
+        \draw[thick, xshift=1.5cm] (4, -5.75) ellipse (1.5 and 1);
+        \node[draw=none, align=center] at (5.5, -5.75) (caso-3) {Compilar\\código vectorial};
+
+        \draw[thick] (0.75, -0.75) -- (6, 1.75);
+        \draw[thick, xshift=1.5cm] (6, 1.75) ellipse (1.5 and 1);
+        \node[draw=none, align=center] at (7.5, 1.75) (caso-3) {Visualizar\\registros}; 
+
+        \draw[thick, xshift=1.5cm] (10.5, 1.75) ellipse (1.5 and 1);
+        \node[draw=none, align=center] at (12, 1.75) (caso-4) {Visualizar\\un registro};
+
+        \draw[-Straight Barb, thick, dashed] (10.5, 1.75) -- (9, 1.75) node[midway,fill=white, rotate=60] {<<extend>>};
+
+    \end{tikzpicture}
+    \caption{Diagrama de casos de uso}
+    \label{casos-uso}
+\end{figure}
+
+\begin{useCase}{cargar-arquitectura}
+  {Cargar arquitectura}
+  {Usuario}
+  {Cargar una arquitectura con registros de tipo vectorial}
+  {\NA}
+  {La arquitectura ha sido cargada en el sistema}
+  \begin{enumerate}
+    \item El usuario selecciona el botón "cargar arquitectura".
+    \item El usuario selecciona la ruta al archivo de arquitectura.
+  \end{enumerate}
+\end{useCase}
+
+\begin{useCase}{visualizar-regs}
+  {Visualizar registros}
+  {Usuario}
+  {Visualizar registros}
+  {La arquitectura se ha cargado}
+  {La interfaz muestra el banco de registros vectoriales}
+  \begin{enumerate}
+    \item El usuario selecciona la pestaña de registros vectoriales.
+  \end{enumerate}
+\end{useCase}
+
+\begin{useCase}{visualizar-un-reg}
+  {Visualizar un registro}
+  {Usuario}
+  {Visualizar el contenido de un registro}
+  {La arquitectura se ha cargado}
+  {La interfaz muestra el contenido e información de un registro}
+  \begin{enumerate}
+    \item El usuario selecciona la pestaña de registros vectoriales.
+    \item El usuario hace click  sobre el registro que quiere visualizar.
+  \end{enumerate}
+\end{useCase}
+
+\begin{useCase}{ejecutar-codigo}
+  {Ejecutar código}
+  {Usuario}
+  {Ejecutar código con instrucciones vectoriales}
+  {La arquitectura se ha cargado}
+  {El código se ejecuta}
+  \begin{enumerate}
+    \item El usuario hace click sobre el botón ``Simulator''.
+    \item El usuario pulsa sobre el botón ``Run''.
+  \end{enumerate}
+\end{useCase}
+
+\begin{useCase}{escribir-codigo}
+  {Escribir código vectorial}
+  {Usuario}
+  {Escribir código con instrucciones vectoriales}
+  {La arquitectura se ha cargado}
+  {Se muestran las modificaciones sobre el editor de texto}
+  \begin{enumerate}
+    \item El usuario hace click sobre el botón ``Assembly''.
+    \item El usuario escribe el código que desee.
+  \end{enumerate}
+\end{useCase}
+
+\begin{useCase}{compilar-codigo}
+  {Compilar código vectorial}
+  {Usuario}
+  {Compilar código con instrucciones vectoriales}
+  {La arquitectura se ha cargado y se ha escrito un programa en el editor de texto}
+  {Se muestra un mensaje indicando que el código se ha compilado}
+  \begin{enumerate}
+    \item El usuario hace click sobre el botón ``Compile''.
+    \item El código se carga para la ejecución.
+  \end{enumerate}
+\end{useCase}
+\FloatBarrier
+
+\section{Resumen}
+
+En este capítulo se ha detallado en mayor profundidad la propuesta, especificando los requisitos de usuario y de software. Además, se han descrito los principales casos de uso de la herramienta, permitiendo crear una imagen completa de la interacción entre el usuario y el sistema.
