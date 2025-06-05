@@ -1,14 +1,14 @@
 \chapter{Análisis}\label{chap:analysis}
-En este capítulo se describe la proppuesta del trabajo. Primero, se hace una
+En este capítulo se describe la propuesta del trabajo. Primero, se hace una
 breve recapitulación del mismo. Después, se especifican los requisitos del
-sistema. Por último, se inluye una matriz de trazabilidad que verifica que
+sistema. Por último, se incluye una matriz de trazabilidad que verifica que
 todos los requisitos de usuario se han contemplado en los requisitos de
 software.
 
 \section{Recapitulación de la propuesta}
 
 El objetivo de la propuesta es igualar CREATOR a otros simuladores de la
-arquitectura RISC-V dando soporte a la especificación de intstrucciones
+arquitectura RISC-V dando soporte a la especificación de instrucciones
 vectoriales. Esto debe ocurrir sin poner en compromiso la simplicidad y
 capacidad didáctica características del sistema. Esto permitirá a los
 estudiantes de asignaturas como \textit{Arquitectura de Computadores} o
@@ -18,13 +18,13 @@ tecnológicas y las arquitecturas basadas en el paralelismo a nivel de dato.
 Tal y cómo se expone en el estado del arte (Capítulo \ref{chap:state-of-the-art}), las
 principales plataformas que dan soporte a estas arquitecturas no cuentan con un
 fin didáctico que permita una aproximación amigable a las arquitecturas
-vectoriales. La simplicidad de CREATOR junto con su objetivo didáctico dan a la
-propuesta un valor único que permitirá a los estudiátes aprender sobre el uso
-de instrucciones vectoriales y código esamblador abstrayéndose de detalles
+vectoriales. La simplicidad de CREATOR junto con su orientación hacia la enseñanza dan a la
+propuesta un valor único que permitirá a los estudiantes aprender sobre el uso
+de instrucciones vectoriales y código ensamblador abstrayéndose de detalles
 específicos como arquitecturas complejas, lenguajes especializados de
 descripción de instrucciones o interfaces complicadas.
 
-Recuperando lo espuesto en el capítulo \ref{chap:v-extenssion}, la extensión cubre
+Recuperando lo expuesto en el capítulo \ref{chap:v-extenssion}, la extensión cubre
 un amplio abanico de funcionalidades que CREATOR no es capaz de soportar. Con
 el fin de reducir el alcance de este trabajo, se ha decidido limitar la
 propuesta a las instrucciones de memoria y aritmética entera. Esto es porque el
@@ -56,8 +56,8 @@ A continuación se exponen los distintos requisitos de usuario y requisitos de s
 
 Esta sección describe el conjunto de requisitos de usuario para la propuesta.
 Estos requisitos exponen el conjunto de funcionalidades y restricciones que
-afectan directamnete al usuario. Para la especificación de requisitos, se usará
-la plantilla propuesta en~\cite{luisda}. Los requisitos están dividos en dos
+afectan directamente al usuario. Para la especificación de requisitos, se usará
+la plantilla propuesta en~\cite{luisda}. Los requisitos están divididos en dos
 categorías:
 
 \begin{itemize}
@@ -140,7 +140,7 @@ Estos requisitos se clasifican en dos tipos:
 \begin{softwareReq}{FN}{motor-2}
     {pc=m,pd=m,s=c,v=h}
     {CA-escribir-codigo-param}
-    El motor de ejecucción debe dar soporte a todos los tamaños de elementos (SEW), longitudes de vectores (VL), factores de multiplicación (LMUL) y comportamiento de máscara y elementos de cola (VMA y VTA) recogidos en la arquitectura.
+    El motor de ejecución debe dar soporte a todos los tamaños de elementos (SEW), longitudes de vectores (VL), factores de multiplicación (LMUL) y comportamiento de máscara y elementos de cola (VMA y VTA) recogidos en la arquitectura.
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{ta}
@@ -218,7 +218,7 @@ Esta sección contiene una matriz de trazabilidad para verificar que todos los r
 
 \subsection{Modelo de casos de uso}
 
-El diagrama (Figura \ref{casos-uso}) representa el uso típico de la propuesta, facilitando la visualización de las difernetes interacciones entre un usuario y el sistema. 
+El diagrama (Figura \ref{casos-uso}) representa el uso típico de la propuesta, facilitando la visualización de las diferentes interacciones entre un usuario y el sistema. 
 
 \printuctemplate{}
 
@@ -271,7 +271,7 @@ A continuación se muestra un diagrama de casos de uso para la propuesta:
   {\NA}
   {La arquitectura ha sido cargada en el sistema}
   \begin{enumerate}
-    \item El usuario selecciona el botón "cargar arquitectura".
+    \item El usuario selecciona el botón ``cargar arquitectura''.
     \item El usuario selecciona la ruta al archivo de arquitectura.
   \end{enumerate}
 \end{useCase}
