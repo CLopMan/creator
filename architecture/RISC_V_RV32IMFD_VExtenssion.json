@@ -36,7 +36,7 @@
   "vlen": 128,
   "lmulExp": 0,
   "elen": 64,
-  "sew": 64,
+  "sew": 32,
   "ma": 0,
   "ta": 1,
   "components": [
@@ -118,8 +118,8 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 2,
-          "default_value": 2,
+          "value": 3,
+          "default_value": 3,
           "properties": [
             "read",
             "write"
