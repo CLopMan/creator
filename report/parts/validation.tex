@@ -4,7 +4,7 @@ Este capítulo se presenta la validación y verificación del sistema desarrolla
 
 Siguiendo el estándar para validación y  verificación del IEEE~\cite{6204026}, la verificación tiene como objetivo enfrentar el software desarrollado contra los requisitos de software, asegurando que se cumplen y que el producto ha sido correctamente desarrollado; la {validación} tiene como objetivo evaluar el producto final contra las necesidades del cliente, validando que el producto satisface el problema que se pretende resolver.
 
-De la mano con lo anterior expuesto, se han desarrollado dos clases de pruebas: pruebas de verificación (sección~\ref{sec:verification}) y pruebas de validación (sección~\ref{sec:validation}).
+De la mano con lo anterior expuesto, se han desarrollado dos clases de pruebas: pruebas de verificación (Sección~\ref{sec:verification}) y pruebas de validación (Sección~\ref{sec:validation}).
 
 {\printtesttemplate}
 
@@ -14,7 +14,7 @@ De la mano con lo anterior expuesto, se han desarrollado dos clases de pruebas: 
 
 Con el fin de verificar que el sistema cumple con los requisitos expuestos durante el análisis (capítulo~\ref{chap:analysis}) se han desarrollado una serie de pruebas que realizar durante el desarrollo de la propuesta. Estas pruebas se dividen en dos tipos. 
 
-El primer tipo de pruebas está orientado a evaluar el comportamiento del motor de ejecución. Para ello se han construido scripts en ensamblador (código~\ref{example-assembly}) que contienen pequeños conjuntos de instrucciones implementadas que compartan características comunes. Estos scripts se ejecutan de forma automática con diferentes 4 configuraciones diferentes de parámetros de arquitectura (código~\ref{arquitecturas-test}) a través un script de \texttt{Python} llamado \texttt{run\_test.py}, conformando un macrotest que evalúa el conjunto de instrucciones implementado al completo. Un test será considerado exitoso si el la ejecución no contiene errores y el valor almacenado en los registros o memoria coincide con el valor esperado.
+El primer tipo de pruebas está orientado a evaluar el comportamiento del motor de ejecución. Para ello se han construido scripts en ensamblador (código~\ref{example-assembly}) que contienen pequeños conjuntos de instrucciones implementadas que compartan características comunes. Estos scripts se ejecutan de forma automática con 4 configuraciones diferentes de parámetros de arquitectura (Código~\ref{arquitecturas-test}) a través un script de \texttt{Python} llamado \texttt{run\_test.py}, conformando un macro-test que evalúa el conjunto de instrucciones implementado al completo. Un test será considerado exitoso si el la ejecución no contiene errores y el valor almacenado en los registros o memoria coincide con el valor esperado.
 
 Finalmente, se incluye una matriz de trazabilidad (Figura~\ref{fig:traz-matrix-vet}) para asegurar que todos los requisitos funcionales han sido contemplados en la verificación.
 
@@ -133,7 +133,7 @@ main:
 \begin{testCase}{VET}{gui-registerpopup1}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {El pop up muestra la información de un registro correctamente en hexadecimal}
-    {Visualización del pop up asociado a un registro (hex} % description
+    {Visualización del pop up asociado a un registro (hex)} % description
     {OK} % evaluation
     {FN-GUI}
     \begin{enumerate}
@@ -233,7 +233,7 @@ main:
 {\FloatBarrier}
 \section{Pruebas de validación}\label{sec:validation}
 
-Las pruebas de validación tienen como objetivo verificar si se han cumplido las espectativas del usuario sobre la aplicación desarrollada. Para ello se enfrentan los requisitos de usuario expuestos en la sección~\ref{subsec:user-req}. Para lograr este fin, se han desarrollado una serie de pruebas inspiradas en los casos de uso. 
+Las pruebas de validación tienen como objetivo verificar el cumplimiento de las expectativas del usuario sobre la aplicación desarrollada. Para ello se enfrentan los requisitos de usuario expuestos en la sección~\ref{subsec:user-req} con la aplicación a través del siguiente conjunto de pruebas. Estas pruebas están inspiradas en los casos de uso (Sección~\ref{subsec:use-cases}).
 
 También se incluye una matriz de trazabilidad (Figura~\ref{fig:traz-matrix-vat}) que relaciona los requisitos de usuario con las pruebas de validación para garantizar que han sido contemplados en su totalidad en el plan de pruebas.
 
