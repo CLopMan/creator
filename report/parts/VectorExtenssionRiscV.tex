@@ -1,8 +1,8 @@
 \chapter{Extensión V en RISC-V}\label{chap:v-extenssion}
 
 En este capítulo se resume brevemente el conjunto de instrucciones vectoriales
-de RISC-V con el fin de permitirle al lector comprender la totalidad de la
-funcionalidad que esta soporta. Todo lo descrito en este capítulo se basa en el estándar~\cite{riscv-isa2024}.
+de RISC-V con el fin de permitirle al lector comprender la
+funcionalidad descrita en su especificación. Todo lo descrito en este capítulo se basa en~\cite{riscv-isa2024}.
 
 \section{Parámetros constantes de arquitectura}
 
@@ -18,7 +18,7 @@ $$VLEN \ge ELEN$$
 
 \section{Parámetros configurables}\label{conf-parameters}
 
-Además de \textit{VLEN} y \textit{ELEN}, existen otros parámetros de arquitectura. A diferencia de los dos anteriores, estos son configurables por el programador:
+Además de \textit{VLEN} y \textit{ELEN}, existen otros parámetros de arquitectura. A diferencia de los dos anteriores, estos son configurados por el programador:
 \begin{itemize}
     \item\textbf{VSTART}: define el primer índice de un registro vectorial.
     \item\textbf{VL}: \textit{Vector Length}. Longitud de un registro vectorial.
@@ -28,7 +28,7 @@ Además de \textit{VLEN} y \textit{ELEN}, existen otros parámetros de arquitect
     \item\textbf{VTA}: define el comportamiento de los elementos de cola. El comportamiento de los elementos de cola se tratará más adelante en la sección \ref{masked-and-tail-elements}.
 \end{itemize}
 
-Los parámetros VL y VSTART se almacenan en sus propios registros de control (Sección \ref{programmer-model}). Los parámetros SEW, LMUL, VMA y VTA se almacenan en un único registro de control VTYPE (Sección \ref{vtype-register}).
+Los parámetros VL y VSTART se almacenan en sus propios registros de control (Sección \ref{programmer-model}). Los parámetros SEW, LMUL, VMA y VTA se almacenan en un único registro de control, VTYPE (Sección \ref{vtype-register}).
 
 \subsubsection{VLMAX}\label{vlmax}
 A partir de algunos de estos parámetros se define \textbf{VLMAX}, un parámetro con gran impacto sobre las instrucciones de configuración (Sección \ref{conf-instructions}). VLMAX describe la \textbf{máxima longitud de un vector} (es decir, el máximo número de elementos con los que puede operar una instrucción vectorial) dada una configuración de arquitectura.
@@ -55,7 +55,7 @@ La extensión V añade al conjunto de instrucciones básico de RISC-V 7 nuevos r
         vcsr   & URW & vector control and state register\\
         vl     & URO\footnotemark[2] & vector length\\
         vtype  & URO & vector data type register\\
-        vlenb  & URO & vector lenght in bytes ($VLEN / 8$)\\
+        vlenb  & URO & vector length in bytes ($VLEN / 8$)\\
         \bottomrule 
     \end{tabular}
     \caption{Registros de control en RISC-V}
@@ -66,8 +66,8 @@ Los 32 nuevos registros vectoriales están numerados del 0 al 31. A cada uno de
 ellos se le denomina v\{i\}, donde \{i\} se corresponde con el índice de
 numeración. Estos registros tienen un ancho de VLEN bits.
 
-\footnotetext[1]{Unprivilege read and write.}
-\footnotetext[2]{Unprivilege read only.}
+\footnotetext[1]{Unprivileged read and write.}
+\footnotetext[2]{Unprivileged read only.}
 
 \subsection{El registro VTYPE}\label{vtype-register}
 
@@ -104,7 +104,7 @@ El registro VTYPE almacena el tipo de vector que se va a operar. Este viene dete
 \end{figure}
 
 \subsubsection{El campo vill}
-El campo vill contiene un único bit que indica si la configuración actual almacenada en VTYPE es válida o no. Este bit es consultado para cada acceso en VTYPE de forma que se lanza una excepción en caso de estar activo.
+El campo vill contiene un único bit que indica si la configuración actual almacenada en VTYPE es válida. Este bit es consultado para cada acceso en VTYPE de forma que se lanza una excepción en caso de estar activo.
 
 Esta forma de tratar el vector VTYPE permite el funcionamiento de programas con una configuración inconsistente de VTYPE, de forma que se levantará una excepción si y sólo si es necesario consultar alguno de los valores almacenados en este registro.
 
@@ -163,10 +163,11 @@ Destaca que vlmul se trata de un número codificado en complemento a 2 de forma 
 
 
 \subsection{Agrupamiento de registros vectoriales con LMUL}\label{mapping-registers-with-lmul}
+
 Los registros vectoriales v0-v31 se agrupan de diferente forma según el valor
-de LMUL. En caso de tener un valor fraccionario, parte de los registros queda
-inutilizable (elementos de cola), mientras que para un LMUL entero se agrupan
-los registros en grupos de LMUL integrantes de forma que se comportan como un
+de LMUL. En caso de tener un valor fraccionario, parte de los elementos con mayor índice de cada registro quedan
+inutilizables, formando parte de los elementos de cola. En cambio, para un valor entero
+los registros se agrupan en grupos de LMUL integrantes de forma que se comportan como un
 único registro vectorial. El grupo viene definido por el registro menor índice
 y sólo serán accesibles aquellos registros cuyo índice sea múltiplo del valor
 de LMUL\@.
@@ -258,8 +259,8 @@ v 4*n+3       F       E       D       C
 
 \subsection{Registro de máscara}{\label{mask-reg}}
 Las máscaras ocupan un único registro vectorial, independientemente de la
-configuración de SEW y LMUL. Esta se conformará de los primeros $\lceil
-VL/8\rceil$ bytes del registro de forma que la máscara para el elemento
+configuración de SEW y LMUL. Una máscara se conformará de los primeros $\lceil
+VL/8\rceil$ bytes del registro de forma que el elemento
 \textit{i} de un vector se corresponde con el bit \textit{i} del registro de
 máscara.
 
@@ -346,7 +347,7 @@ v0. Sin embargo, se pueden almacenar valores de máscara en otros registros
 \end{figure}
 
 \section{Instrucciones}
-La extensión V de RISC-V añade 5 tipos de instrucciones, diviendo por funcionalidad:
+La extensión V de RISC-V añade 5 tipos de instrucciones, dividiendo por funcionalidad:
 
 \begin{itemize}
     \item Instrucciones de configuración: permiten modificar el registro VTYPE y los parámetros configurables de la arquitectura.
@@ -368,7 +369,7 @@ Los parámetros EEW y EMUL tienen un significado similar a sus contrapartes SEW 
 Para muchas instrucciones, estos valores coincidirán su contraparte de la arquitectura. No obstante, en algunos casos serán distintos.
 
 \subsection{Instrucciones de configuración}\label{conf-instructions}
-Estas instrucciones permiten modificar los valores almacenados en VL y VTYPE.
+Estas instrucciones permiten modificar los valores almacenados en VL y VTYPE. Dependen de tres argumentos: \texttt{rd}, \texttt{AVL} y \texttt{vtypei}.
 
 \begin{lstlisting}
 vsetvli rd, rs1, vtypei   # rd=new vl,rs1=AVL,vtypei=new VTYPE
@@ -376,7 +377,7 @@ vsetivli rd, uimm, vtypei # rd=new vl,uimn=AVL,vtypei=new VTYPE
 vsetvl  rd, rs1, rs2      # rd=new vl,rs1=AVL,rs2=new VTYPE
 \end{lstlisting}
 
-Observando los argumentos individualmente:
+El significado de los diferentes argumentos de cada instrucción se detalla a continuación:
 \begin{itemize}
     \item rd: registro que almacenará el nuevo valor de VL.
     \item AVL: \textit{App Vector Length}. Propuesta de VL.
@@ -412,7 +413,7 @@ campo \texttt{vill} de VTYPE será establecido a 1, mientras que en el registro
 VL se escribirá un 0.
 
 \subsubsection{Restricciones sobre la actualización de VL}
-Para acutalizar VL se establece una propuesta (AVL) en un registro y la
+Para actualizar VL se establece una propuesta (AVL) en un registro. La
 arquitectura establecerá el nuevo valor de VL en base a una serie de
 restricciones. Estas restricciones se pueden resumir en una para casos
 genéricos donde $AVL \ge 0$.
@@ -426,7 +427,7 @@ Las instrucciones de memoria permiten la carga y lectura de vectores en memoria.
 
 \subsubsection{Load y Store Unit-Stride}
 Estas instrucciones permiten leer o escribir VL elementos contiguos con un
-ancho de elemento (EEW)  especificado en la instrucción.
+ancho de elemento (EEW) especificado en la instrucción.
 
 \begin{lstlisting}
 # formato
@@ -454,7 +455,7 @@ vsm.v vd, (rs1)
 \end{lstlisting}
 
 \subsubsection{Load y Store Strided}
-Permiten la carga y descarga de memoria no contiguos en memoria con un paso o
+Permiten la carga y descarga elementos no contiguos en memoria con un paso o
 \textit{stride} especificado en la propia instrucción. El paso debe
 especificarse en \textit{bytes}.
 
@@ -481,7 +482,7 @@ vlse8.v v0, (a1), 3 # En v0 queda almacenado el canal RED
 
 \end{lstlisting}
 
-De esta forma en v0 se almacena el canal correspondiente al rojo de forma que
+Tras la ejecución del código anterior se almacenará en v0 el canal correspondiente al rojo, de forma que
 se puede operar con ese canal por separado.
 
 \subsubsection{Operaciones Load y Store indexadas}
@@ -503,7 +504,7 @@ mientras que las segundas no.
 
 \subsubsection{Load y Stored segmentadas}
 Estas instrucciones son versiones de las anteriores que operan sobre múltiples
-registros a la vez. Estas ignoran LMUL y operan con un EMUL indicado como
+registros a la vez. Durante su ejecución, se ignora el parámetro LMUL y se opera con un EMUL indicado como
 argumento.
 
 \begin{lstlisting}
@@ -548,7 +549,7 @@ vsoxseg<emul>ei<eew>.v vd, (rs1), vs2, vm
 \end{lstlisting}
 
 Estas instrucciones permiten el manejo de estructuras de datos complejas,
-permitiendo separar en registros diferentes los campos del mismo tipo. Por
+permitiendo una mayor flexibilidad a la hora de cargar los diferentes campos en registros. Por
 ejemplo, el siguiente programa suma dos vectores de números complejos,
 separando su parte real e imaginaria.
 
@@ -571,6 +572,7 @@ vfadd.vv v6, v3, v2 # parte real
 
 
 \subsubsection{Load y Stored sobre registros completos}
+
 Estas instrucciones permiten cargar y restaurar registros vectoriales
 completos cuando no se conocen ni el valor de VTYPE ni el valor VL del
 contenido. Al igual que las instrucciones segmentadas, permiten la
@@ -599,7 +601,7 @@ operando cuya naturaleza puede variar entre otro vector (vs2), un valor
 inmediato (inm), o un escalar almacenado en otro registro (rs1). Además, las
 operaciones están separadas por aritmética entera, aritmética de punto fijo y
 aritmética en coma flotante. Las instrucciones indican el tipo de operandos que
-usan según la extensión de la instrucción.
+usan en el sufijo de la instrucción.
 
 \begin{lstlisting}
 # aritmética entera
@@ -695,7 +697,7 @@ vrem.v* vd, vs2, vs1[, vm]  # resto signed
 \end{lstlisting}
 
 Las operaciones de extensión te permiten extender el signo o extender con 0's
-hasta un ancho determinado por SEW asumiendo un vector origen con $EEE =
+hasta un ancho determinado por SEW asumiendo un vector origen con $EEW =
 SEW/N$, donde $N$ es un argumento de la instrucción.
 
 \begin{lstlisting}
@@ -821,15 +823,14 @@ vsmul.v* vd, vs2, vs1[, vm] # multiplicación
 \end{lstlisting}
 
 Además, se da soporte a otras dos instrucciones para el desplazamiento hacia la
-derecha (tanto aritmético como lógico).
+derecha, tanto aritmético como lógico.
 \begin{lstlisting}
 vssrl.v* vd, vs2, vs1[, vm] # desplazamiento lógico
 vssra.v* vd, vs2, vs1[, vm] # desplazamiento aritmético
 \end{lstlisting}
 
 También se da soporte a la reducción del número de bits usados por elemento.
-Estas instrucciones emplean el indicativo de tipo de operando para indicar cuál
-de los dos usa una mayor precisión:
+En estas instrucciones, el sufijo indica qué operando tiene una mayor precisión:
 \begin{itemize}
 \item \texttt{w}: operando vectorial de mayor precisión (\texttt{2*SEW}).
 \item \texttt{v}: operando de vectorial de menor precisión (\texttt{SEW}).
@@ -865,11 +866,11 @@ vfsqrt.v vd, vs2[, vm]   # vd[i] = sqrt(vs2[i])
 vfrsqrt7.v vd, vs2[, vm] # vd[i] = 1/sqrt(vs2[i])
 vfrec7.v vd, vs2[, vm]   # vd[i] = 1/vs2[i]
 
-vfsgnj.vv vd, vs2, vs1[, vm] # vd[i]=abs(vs2[i]) with sign of vs1[i]
+vfsgnj.vv vd, vs2, vs1[, vm] # vd[i]=abs(vs2[i]) con signo de vs1[i]
 vfsgnj.vv vd, vs2, vs1[, vm]
-vfsgnjn.vv vd, vs2, vs1[, vm] # vd[i]=abs(vs2[i]) with sign of not vs1[i]
+vfsgnjn.vv vd, vs2, vs1[, vm] # vd[i]=abs(vs2[i]) con signo de not vs1[i]
 vfsgnjn.vf vd, vs2, rs1[, vm]
-vfsgnjx.vf vd, vs2, rs1[, vm] # vd[i]=abs(vs2[i]) with sign of sign(vs2[i]) xor sign(vs1[i])
+vfsgnjx.vf vd, vs2, rs1[, vm] # vd[i]=abs(vs2[i]) con signo de sign(vs2[i]) xor sign(vs1[i])
 vfsgnjx.vf vd, vs2, rs1[, vm]
 
 # clasifica en las clases {NaN, -inf, positivo, negativo, -0, +0, inf}
@@ -881,7 +882,7 @@ vfcvt.x.f.v vd, vs2[, vm] # vd[i] = signed(float(vs2[i]))
 vfcvt.rtz.xu.f.v vd, vs2[, vm] # vd[i] = unsigned(float(vs2[i])) double width
 vfcvt.rtz.x.f.v vd, vs2[, vm] # vd[i] = signed(float(vs2[i])) double width
 
-vfcvt.f.xu.v vd, vs2[, vm] # vd[i] = float(unsigned(vs2[i])
+vfcvt.f.xu.v vd, vs2[, vm] # vd[i] = float(unsigned(vs2[i]))
 vfcvt.f.x.v vd, vs2[, vm] # vd[i] = float(signed(vs2[i]))
 \end{lstlisting}
 
@@ -911,7 +912,7 @@ resultado en un elemento del mismo ancho.
 
 \subsection{Instrucciones de máscara}{\label{sec:mask-operations}}
 Este conjunto de instrucciones son similares a las instrucciones de aritmética
-entera, con la excepción de que emplean un único registro vectorial
+entera, con la particularidad de que emplean un único registro vectorial
 independientemente de la configuración de \textit{LMUL}. Además, los registros
 vectoriales serán tratados como una máscara (Sección \ref{mask-reg}). Es decir,
 usarán una longitud $l = \lceil VL/8 \rceil$ y cada elemento tendrá un
@@ -986,12 +987,12 @@ Además, también permiten la copia de registros vectoriales completos.
 
 \begin{lstlisting}
 # registros de enteros
-vmv.x.s rd, vs2  # rd <= vs2[0]
-vmv.s.x vs2, rs1 # vs2[0] <= rs1
+vmv.x.s rd, vs2  # rd = vs2[0]
+vmv.s.x vs2, rs1 # vs2[0] = rs1
 
 # Registros de coma flotante
-vfmv.x.s rd, vs2  # rd <= vs2[0]
-vfmv.s.x vs2, rs1 # vs2[0] <= rs1
+vfmv.x.s rd, vs2  # rd = vs2[0]
+vfmv.s.x vs2, rs1 # vs2[0] = rs1
 
 # Registros vectoriales completos
 vmv<nr>r.v vd, vs2 # vd = vs2, vd+1 = vs2+1,..., vd+nr-1 = vs2+nr-1
@@ -1022,7 +1023,7 @@ v[f]slide1down.vx vd, vs2, rs1[, vm] # vd[i] = vs2[i + 1], vd[vl-1] = rs1
 Las instrucciones \textit{gather} permiten la copia de elementos arbitrarios de
 un vector a otro, donde los índices a trasladar estarán controlados por un
 segundo vector. En caso de que el índice esté fuera de rango ($index \ge
-VLMAX$), se escribirá un 0. Los elementos cuyo índice sean supererioes a
+VLMAX$), se escribirá un 0. Los elementos cuyo índice sean superiores a
 \texttt{VL} serán manejados siguiendo el comportamiento de los elementos de
 cola descritos en la sección~\ref{masked-and-tail-elements}.
 
