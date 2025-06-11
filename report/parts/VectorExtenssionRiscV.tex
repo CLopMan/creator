@@ -1,7 +1,7 @@
 \chapter{Extensión V en RISC-V}\label{chap:v-extenssion}
 
 En este capítulo se resume brevemente el conjunto de instrucciones vectoriales
-de RISC-V con el fin de permitirle al lector comprender la
+de RISC-V con el fin de permitir al lector comprender la
 funcionalidad descrita en su especificación. Todo lo descrito en este capítulo se basa en~\cite{riscv-isa2024}.
 
 \section{Parámetros constantes de arquitectura}
@@ -175,7 +175,7 @@ de LMUL\@.
 \begin{table}[H]
     \begin{tabular}{@{}cccc@{}}
     \toprule
-    LMUL & \# grupos & Registros agroupados & Registros accesibles\\
+    LMUL & \# grupos & Registros agrupados & Registros accesibles\\
     \midrule
     1/8 & 32 & vn & v0, v1, \dots, v31\\
     1/4 & 32 & vn & v0, v1, \dots, v31\\
@@ -208,7 +208,7 @@ los elementos de menor índice se correspondan con los bits menos significativos
 del registro.
 
 \subsubsection{Mapeo de elementos para LMUL = 1}
-Los elementos se almacenan en orden desde los bits menos significativo hacia
+Los elementos se almacenan en orden desde los bits menos significativos hacia
 los bits más significativos.
 
 A continuación se muestra cómo se almacenarían el máximo número de elementos
@@ -229,7 +229,7 @@ El número de elementos usables del vector se corresponde con los primeros VLMAX
 elementos. El resto de elementos serán tratados como elementos de cola
 (Sección \ref{masked-and-tail-elements}).
 
-A continuación se muestra como se almacenarían el máximo número de elementos
+A continuación se muestra cómo se almacenarían el máximo número de elementos
 para distintas configuraciones de SEW.
 \begin{lstlisting}
 Ejemplo con VLEN=128b, LMUL=1/4
@@ -380,7 +380,7 @@ vsetvl  rd, rs1, rs2      # rd=new vl,rs1=AVL,rs2=new VTYPE
 El significado de los diferentes argumentos de cada instrucción se detalla a continuación:
 \begin{itemize}
     \item rd: registro que almacenará el nuevo valor de VL.
-    \item AVL: \textit{App Vector Length}. Propuesta de VL.
+    \item AVL: \textit{Application Vector Length}. Propuesta de VL.
     \item vtypei: nuevo valor del registro VTYPE. Es un valor inmediato caracterizado por varios argumentos enumerados.
 \end{itemize}
 
@@ -446,7 +446,7 @@ vle<eew>ff.v vd, (rs1)[, vm] # vd[i] = mem[rsi + eew*i]
 \end{lstlisting}
 
 Adicionalmente, se añade una instrucción para la lectura y almacenamiento de
-máscaras. Esta se comporta igual que \texttt{vle8.v} y \texttt{vse8.v} con la
+máscaras. Esta se comporta igual que \texttt{vle8.v} y \texttt{vse8.v}, con la
 excepción de que tratará con $\lceil VL / 8\rceil$ elementos en lugar de VL.
 
 \begin{lstlisting}
@@ -455,7 +455,7 @@ vsm.v vd, (rs1)
 \end{lstlisting}
 
 \subsubsection{Load y Store Strided}
-Permiten la carga y descarga elementos no contiguos en memoria con un paso o
+Permiten la carga y descarga de elementos no contiguos en memoria con un paso o
 \textit{stride} especificado en la propia instrucción. El paso debe
 especificarse en \textit{bytes}.
 
@@ -485,7 +485,7 @@ vlse8.v v0, (a1), 3 # En v0 queda almacenado el canal RED
 Tras la ejecución del código anterior se almacenará en v0 el canal correspondiente al rojo, de forma que
 se puede operar con ese canal por separado.
 
-\subsubsection{Operaciones Load y Store indexadas}
+\subsubsection{Load y Store indexadas}
 Estas instrucciones permiten el almacenamiento en posiciones arbitrarias de un vector.
 
 \begin{lstlisting}
@@ -502,7 +502,7 @@ La diferencia entre las operaciones ordenadas y desordenadas es que las
 primeras garantizan el tratamiento de los elementos en orden de posición,
 mientras que las segundas no.
 
-\subsubsection{Load y Stored segmentadas}
+\subsubsection{Load y Store segmentadas}
 Estas instrucciones son versiones de las anteriores que operan sobre múltiples
 registros a la vez. Durante su ejecución, se ignora el parámetro LMUL y se opera con un EMUL indicado como
 argumento.
@@ -567,11 +567,11 @@ vlsseg2e32.v v2, (a1), t1
 vlsseg2e32.v v4, (a2), t1
 
 vfadd.vv v7, v3, v5 # parte imaginaria
-vfadd.vv v6, v3, v2 # parte real
+vfadd.vv v6, v4, v2 # parte real
 \end{lstlisting}
 
 
-\subsubsection{Load y Stored sobre registros completos}
+\subsubsection{Load y Store sobre registros completos}
 
 Estas instrucciones permiten cargar y restaurar registros vectoriales
 completos cuando no se conocen ni el valor de VTYPE ni el valor VL del
@@ -624,13 +624,13 @@ conjunto de aritmética entera.
 Estas instrucciones operan modificando la precisión de los operandos.
 
 Las instrucciones \textit{widening}, o de ensanchado, duplican la precisión del
-vector destinatario (vd) con respecto a los operandos de forma
+vector destinatario (vd) con respecto a los operandos, de forma
 que $EEW_{vd} = 2\times EEW_{vs*} = 2\times SEW$ y $EMUL_{vd} = 2\times
 EMUL_{vs*} = 2\times LMUL$. Además, se puede duplicar la precisión del primer
 operando de la misma forma indicándolo con el sufijo \texttt{w} ($EEW_{vs2} = 2\times SEW$).
 
 Las instrucciones de \textit{narrowing}, o estrechamiento, duplican la
-precisión uno de los operandos y mantienen la precisión del vector destino
+precisión de uno de los operandos y mantienen la precisión del vector destino
 de forma que $2\times EEW_{vd} = EEW_{vs2} = 2\times SEW$ y $2\times
 EMUL_{vd} = EMUL_{vs2} = 2*LMUL$. El operando de doble precisión se debe
 colocar el primero, y es indicado por el sufijo \texttt{w}. 
@@ -656,8 +656,8 @@ signo, multiplicación acumulativa, comparación, desplazamiento y operaciones d
 modificación de valores. Las operaciones y multiplicación acumulativa también
 cuentan con versiones \textit{widening} y \textit{narrowing}.
 
-Las operaciones a las que se dan soporte son la suma, resta, resta inversa,
-multiplicación y división. Siguiendo los formatos explicandos con anterioridad,
+Las operaciones a las que se da soporte son la suma, resta, resta inversa,
+multiplicación y división. Siguiendo los formatos explicados con anterioridad,
 se incluyen las operaciones convencionales y de ensanchado y estrechamiento.
 Adicionalmente, algunas cuentan con la capacidad de operar con números sin
 signo. Las operaciones de suma y resta cuentan con una variación para operar
@@ -666,7 +666,7 @@ desbordamiento, se almacenarán los bits más significativos o menos
 significativos; y la división cuenta con soporte para extraer el resto con
 signo o sin signo.
 
-Alugnos ejemplos del formato de estas instrucciones son:
+Algunos ejemplos del formato de estas instrucciones son:
 
 \begin{lstlisting}
 # suma y resta
@@ -696,7 +696,7 @@ vrem.v* vd, vs2, vs1[, vm]  # resto signed
 
 \end{lstlisting}
 
-Las operaciones de extensión te permiten extender el signo o extender con 0's
+Las operaciones de extensión permiten extender el signo o extender con 0's
 hasta un ancho determinado por SEW asumiendo un vector origen con $EEW =
 SEW/N$, donde $N$ es un argumento de la instrucción.
 
@@ -736,7 +736,7 @@ vmv.v.i vd, inm # vd[i] = inm
 \end{lstlisting}
 
 Las operaciones de comparación dan soporte a distintas operaciones del tipo
-\textit{set-if} donde se dará una signación de un valor binario (0 ó 1) si se
+\textit{set-if} donde se dará una asignación de un valor binario (0 ó 1) si se
 cumple una condición. A continuación se muestran algunos ejemplos de esta clase
 de instrucciones. El registro destino de esta operación será tratado como una
 máscara (Sección \ref{sec:mask-operations}).
@@ -786,7 +786,7 @@ vnsrl.vv vd, vs2, vs1[, vm] # narrowing shift
 \subsubsection{Operaciones lógicas}
 
 La especificación de instrucciones describe el comportamiento de 3 operaciones:
-\textit{and, or} y \textit{xor}. Las tres operaciones operan a nivel de bit y
+\textit{and, or} y \textit{xor}. Las tres operan a nivel de bit y
 permiten usar como segundo operando un vector, valor inmediato o un registro
 entero.
 
@@ -815,8 +815,8 @@ vaadd.v* vd, vs2, vs1[, vm] # add no saturado con signo
 vssubu.v* vd, vs2, vs1[, vm] # sub saturado sin signo
 vssub.v* vd, vs2, vs1[, vm] # sub saturado con signo
 
-vasubu.v* vd, vs2, vs1[, vm] # add no saturado sin signo
-vasub.v* vd, vs2, vs1[, vm] # add no saturado con signo
+vasubu.v* vd, vs2, vs1[, vm] # sub no saturado sin signo
+vasub.v* vd, vs2, vs1[, vm] # sub no saturado con signo
 
 vsmul.v* vd, vs2, vs1[, vm] # multiplicación
 
@@ -833,9 +833,9 @@ También se da soporte a la reducción del número de bits usados por elemento.
 En estas instrucciones, el sufijo indica qué operando tiene una mayor precisión:
 \begin{itemize}
 \item \texttt{w}: operando vectorial de mayor precisión (\texttt{2*SEW}).
-\item \texttt{v}: operando de vectorial de menor precisión (\texttt{SEW}).
-\item \texttt{x}: operando de entero (registro) de menor precisión (\texttt{SEW}).
-\item \texttt{i}: operando de entero (inmediato) de menor precisión (\texttt{SEW}).
+\item \texttt{v}: operando vectorial de menor precisión (\texttt{SEW}).
+\item \texttt{x}: operando entero (registro) de menor precisión (\texttt{SEW}).
+\item \texttt{i}: operando entero (inmediato) de menor precisión (\texttt{SEW}).
 \end{itemize}
 
 \begin{lstlisting}
@@ -887,7 +887,7 @@ vfcvt.f.x.v vd, vs2[, vm] # vd[i] = float(signed(vs2[i]))
 \end{lstlisting}
 
 \subsection{Operaciones de reducción}
-Las instrucciones de reducción aplican un operador binario a todos los elementos de un vector, guardando el resultado en la pimera posición. Estas pueden operar conn valores enteros o en coma flotante.
+Las instrucciones de reducción aplican un operador binario a todos los elementos de un vector, guardando el resultado en la pimera posición. Estas pueden operar con valores enteros o en coma flotante.
 
 \begin{lstlisting}
 # enteros
@@ -925,8 +925,8 @@ Se da soporte a diversas operaciones que emplean máscaras como operandos. Estas
 vmand.mm vd, vs2, vs1  # vd.mask[i] = vs2.mask[i] && vs1.mask[i] 
 vmnand.mm vd, vs2, vs1 # vd.mask[i] = !(vs2.mask[i] && vs1.mask[i])
 vmandn.mm vd, vs2, vs1 # vd.mask[i] = vs2.mask[i] && !vs1.mask[i]
-vmxor.mm vd, vs2, vs1  # vd.mask[i] = vs2.mask[i] ^^ !vs1.mask[i]
-vmor.mm vd, vs2, vs1   # vd.mask[i] = vs2.mask[i] || !vs1.mask[i]
+vmxor.mm vd, vs2, vs1  # vd.mask[i] = vs2.mask[i] ^^ vs1.mask[i]
+vmor.mm vd, vs2, vs1   # vd.mask[i] = vs2.mask[i] || vs1.mask[i]
 vmnor.mm vd, vs2, vs1  # vd.mask[i] = !(vs2.mask[i] || !vs1.mask[i])
 vmxnor.mm vd, vs2, vs1 # vd.mask[i] = !(vs2.mask[i] ^^ !vs1.mask[i])
 
@@ -975,7 +975,7 @@ loop:
 \end{lstlisting}
 
 \subsection{Permutaciones}
-Las instrucciones de permutación permiten mover elementos dentro de un mismo
+Las instrucciones de permutación mover elementos dentro de un mismo
 vector. Estas incluyen instrucciones \textit{move}, instrucciones
 \textit{slide}, instrucciones \textit{gather} e instrucciones
 \textit{compress}.
@@ -1004,7 +1004,7 @@ vmv4r.v v4, v8 # v4 = v8
 \end{lstlisting}
 
 Las instrucciones \textit{slide} mueven elementos de un vector. Estas instrucciones
-actúan como un desplazamiento dentro del vector. Existen variantes que además
+actúan como un desplazamiento dentro del vector. Existen variantes que, además,
 permiten insertar un elemento proveniente de un registro de enteros o en coma
 flotante.
 
@@ -1044,5 +1044,5 @@ vcompress.vm vd, vs2, vs1
 \end{lstlisting}
 
 \section{Resumen}
-Este capítulo ha presentado de forma breve la especificación de la extensión V de la arquitectura RISC-V, aprobada en 2021 y publicada en la especificación oficial de 2024. Esta especificación describe un conjunto de instrucciones vectoriales caracterizadas por un propósito genérico, un diseño escalable, la vectorización flexible, soporte para datos mixtos y anchos múltiples e integración con otras extensiones. Los principales tipos de instrucciones a los que se dan soporte son instrucciones de configuración, instrucciones de manejo de memoria, instrucciones aritmético-lógicas, instrucciones de máscara y permutaciones.  
+Este capítulo ha presentado de forma breve la especificación de la extensión V de la arquitectura RISC-V, aprobada en 2021 y publicada en la especificación oficial de 2024. Esta especificación describe un conjunto de instrucciones vectoriales caracterizadas por un propósito genérico, un diseño escalable, la vectorización flexible, soporte para datos mixtos y anchos múltiples e integración con otras extensiones. Los principales tipos de instrucciones a los que se da soporte son instrucciones de configuración, instrucciones de manejo de memoria, instrucciones aritmético-lógicas, instrucciones de máscara y permutaciones.  
 

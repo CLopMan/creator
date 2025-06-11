@@ -15,19 +15,17 @@ estudiantes de asignaturas como \textit{Arquitectura de Computadores} o
 \textit{Estructura de Computadores} familiarizarse con las nuevas tendencias
 tecnológicas y las arquitecturas basadas en el paralelismo a nivel de dato.
 
-Tal y cómo se expone en el estado del arte (Capítulo \ref{chap:state-of-the-art}), las
+Tal y como se expone en el estado del arte (Capítulo \ref{chap:state-of-the-art}), las
 principales plataformas que dan soporte a estas arquitecturas no cuentan con un
 fin didáctico que permita una aproximación amigable a las arquitecturas
-vectoriales. La simplicidad de CREATOR junto con su orientación hacia la enseñanza dan a la
+vectoriales. La simplicidad de CREATOR junto con su orientación hacia la enseñanza otorgan a la
 propuesta un valor único que permitirá a los estudiantes aprender sobre el uso
 de instrucciones vectoriales y código ensamblador abstrayéndose de detalles
 específicos como arquitecturas complejas, lenguajes especializados de
 descripción de instrucciones o interfaces complicadas.
 
 Recuperando lo expuesto en el capítulo \ref{chap:v-extenssion}, la extensión cubre
-un amplio abanico de funcionalidades que CREATOR no es capaz de soportar. Con
-el fin de reducir el alcance de este trabajo, se ha decidido limitar la
-propuesta a las instrucciones de memoria y aritmética entera. Esto es porque el
+un amplio abanico de funcionalidades que CREATOR no es capaz de soportar. De este modo, la propuesta se circunscribe a las instrucciones de memoria y aritmética entera. Esto es porque el
 soporte a otro tipo de instrucciones obligaría a rediseñar casi en su totalidad
 la aplicación existente, dada la multitud de funcionalidades que esta extensión
 describe. No obstante, se considera que el conjunto de instrucciones
@@ -42,8 +40,8 @@ Esta sección describe detalladamente el conjunto de requisitos del sistema. Par
 La guía citada establece que una especificación de requisitos debe tener las siguientes características:
 \begin{itemize}
 \item \textbf{No ambiguo}: un requisito debe tener una única interpretación.
-\item \textbf{Completo}: se deben contener todos los requisitos del sistema.
-\item \textbf{Verificable}: todo requisito debe contar con una forma de verificarse de manera objetiva.
+\item \textbf{Completo}: se debe contener todos los requisitos del sistema.
+\item \textbf{Verificable}: todo requisito debe poder verificarse de manera objetiva.
 \item \textbf{Consistente}: los requisitos no deben entrar en conflicto entre ellos.
 \item \textbf{Modificable}: la especificación debe permitir la modificación de un requisito de forma consistente y correcta.
 \item \textbf{Rastreable}: el origen de todo requisito es fácil de localizar y fácilmente referenciable en futuros estados.
@@ -68,22 +66,22 @@ categorías:
 \printureqtemplate{}
 
 \begin{userReq}{CA}{ejecucion}
-    {pc=h,pd=h,s=c,v=m}
+    {pc=h,pd=h,s=c,v=h}
     El sistema debe permitir la ejecución de programas que contengan instrucciones vectoriales.
 \end{userReq}
 
 \begin{userReq}{CA}{escribir-codigo}
-    {pc=m,pd=h,s=c,v=m}
+    {pc=m,pd=h,s=c,v=h}
     El sistema debe permitir el uso de todas las instrucciones vectoriales de aritmética entera y manejo de memoria.
 \end{userReq}
 
 \begin{userReq}{CA}{visualizacion}
-    {pc=h,pd=l,s=c,v=m}
+    {pc=h,pd=l,s=c,v=h}
     El sistema debe mostrar la información sobre parámetros de arquitectura y contenido de los registros vectoriales en una nueva pestaña.
 \end{userReq}
 
 \begin{userReq}{CA}{escribir-codigo-param}
-    {pc=l,pd=m,s=c,v=m}
+    {pc=l,pd=m,s=c,v=h}
     El sistema debe permitir la modificación de los parámetros de arquitectura descritos en el capítulo \ref{chap:v-extenssion}.
 \end{userReq}
 
@@ -186,7 +184,7 @@ Estos requisitos se clasifican en dos tipos:
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{motor-3}
-    {pc=m,pd=h,s=c,v=h}
+    {pc=m,pd=h,s=c,v=m}
     {RE-herencia}
     El motor de ejecución debe apoyarse de las estructuras de datos y funcionalidades presentes en el sistema a fecha de inicio del proyecto. Siendo estas principalmente el compilador y ejecutor.
 \end{softwareReq}
