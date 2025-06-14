@@ -1,13 +1,13 @@
 \chapter{Marco regulatorio y entorno socio-económico}\label{chap:regulation}
-En este capítulo se detalla el marco regulatorio que afecta a la propuesta. Así como se discute el entorno socio-económico.
+En este capítulo se detalla el marco regulatorio y el entorno socio-económico que afectan a la propuesta.
 
 \section{Marco Regulatorio}\label{sec:regulatory-framework}
-El marco regulatorio que afecta a la propuesta se divide en dos flancos: la legislación aplicable al producto desarrollado y las licencias de software que empleadas durante el desarrollo.
+El marco regulatorio que afecta a la propuesta se divide en dos vertientes: la legislación aplicable al producto desarrollado y las licencias de software empleadas durante el desarrollo.
 
 \subsection{Legislación aplicable}
-La práctica más extendida en las aplicaciones web es la obligatoriedad de registrarse para poder utilizar el servicio. Estos datos, de carácter confidencial, se deben tratar de acuerdo con la legislación española vigente. Las principales leyes que regulan esta situación son dos: el Reglamento General de Protección de Datos (RGPD)~\cite{rgpd} y la Ley Orgánica de Protección de Datos Personales y Garantía de Derechos Digitales (LOPDGDD)~\cite{ley-de-datos}.
+La práctica más extendida en las aplicaciones web es la obligatoriedad de registrarse para utilizar el servicio. Estos datos, de carácter confidencial, se deben tratar de acuerdo con la legislación española vigente. Las principales leyes que regulan esta situación son dos: el Reglamento General de Protección de Datos (RGPD)~\cite{rgpd} y la Ley Orgánica de Protección de Datos Personales y Garantía de Derechos Digitales (LOPDGDD)~\cite{ley-de-datos}.
 
-Sin embargo, CREATOR es un sistema que permite la ejecución en local de programas en ensamblador, sin necesidad de registrarse. Es por esto que, al no recoger datos de carácter personal ni enviar o recibir información a través de la red, esta legislación no es aplicable.
+Sin embargo, CREATOR es un sistema que permite la ejecución en local de programas en ensamblador sin necesidad de registrarse. Es por esto que, al no recoger datos de carácter personal ni enviar o recibir información a través de la red, esta legislación no es aplicable.
 
 \subsection{Licencias}
 La propuesta, al tratarse de una extensión sobre CREATOR~\cite{camarmas2024creator} y no añadir ningún framework o tecnología adicional, emplea las mismas licencias que su predecesor.
@@ -23,16 +23,17 @@ El código desarrollado se encuentra bajo la licencia GPL, al igual que CREATOR.
 
 \section{Entorno socio-económico}\label{sec:socio-economico}
 
-El producto desarrollado tiene varios beneficios en la enseñanza de las asignaturas de Estructura de Computadores y Arquitectura de Computadores. Continuando los objetivos de CREATOR, reduce el esfuerzo de docentes y alumnos en la enseñanza, haciendo la programación en ensamblador, especialmente en arquitecturas vectoriales, más accesible.
+El producto desarrollado aporta varios beneficios para la enseñanza de las asignaturas de Estructura de Computadores y Arquitectura de Computadores. De acuerdo a los objetivos de CREATOR, reduce el esfuerzo de docentes y alumnos en la enseñanza, haciendo más accesible la programación en ensamblador, especialmente en arquitecturas vectoriales.
 
-Tal y cómo se expone en el capítulo~\ref{chap:state-of-the-art}, existe una carencia en el mundo didáctico de simuladores de esta clase de arquitecturas. La simplicidad de la propuesta, junto con su capacidad para soportar diferentes arquitecturas presenta un claro beneficio para los estudiantes de Ingeniería Informática o de titulaciones relacionadas.
+Tal y cómo se expone en el capítulo~\ref{chap:state-of-the-art}, existe una carencia de simuladores enfocados hacia la enseñanza de esta clase de arquitecturas. La simplicidad de la propuesta, junto con su capacidad para soportar diferentes arquitecturas presenta un claro beneficio para los estudiantes de Ingeniería Informática y titulaciones relacionadas.
 
-A continuación se muestran distintos motivos por los que la extensión desarrollada presenta beneficios:
+A continuación se enumeran algunos de sus principales beneficios:
 \begin{itemize}
-    \item \textbf{Disponibilidad amplia}: al ser una aplicación web accesible a través de internet, está disponible para cualquier usuario con conexión, sin coste monetario.
-    \item \textbf{Capacidad para simular diferentes arquitecturas}: pese a que sólo se ha desarrollado la extensión V de RISC-V, se ha implementado un motor de ejecución genérico que permite dar soporte a otras arquitecturas vectoriales. Esto permite adaptar el sistema al contexto individual de cada institución o asignatura.
-    \item\textbf{Código abierto}: el código desarrollado, tal y como se expuso anteriormente, es público y de libre uso y distribución bajo la licencia GPL. Esto permite a cualquier usuario u organización adaptar, mejorar o auditar el sistema sin límite.
-    \item\textbf{Idioma}: el sistema está escrito completamente en inglés para facilitar la difusión, uso y comprensión lo máximo posible.
+    \item \textbf{Disponibilidad universal}: al ser una aplicación web accesible a través de internet, está disponible para cualquier usuario con conexión, sin coste monetario.
+    \item \textbf{Capacidad para simular diferentes arquitecturas}: comenzando por la extensión V de RISC-V, se ha implementado un motor de ejecución genérico que permite dar soporte a otras arquitecturas vectoriales. Esto permite adaptar el sistema al contexto individual de cada institución o asignatura.
+    \item\textbf{Código abierto}: el código desarrollado, tal y como se expuso anteriormente, es público y de libre uso y distribución bajo la licencia GPL. Esto permite a cualquier usuario u organización adaptar, mejorar o auditar el sistema.
+    \item\textbf{Idioma}: la interfaz del sistema se encuentra en inglés para facilitar al máximo su uso internacional.
+    \item\textbf{Inclusividad}: la propuesta reduce las barreras socio-económicas para el aprendizaje de materias que, de antemano, requerirían de medios que pueden no estar al alcance de todos los miembros de la sociedad.
 \end{itemize}
 
 \section{Resumen}

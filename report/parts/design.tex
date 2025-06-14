@@ -8,10 +8,10 @@ la arquitectura del sistema (sección \ref{sec:arch-design}).
 Tras la elicitación de requisitos del sistema, es necesario discutir el conjunto de alternativas para su diseño. A continuación se describen diferentes alternativas para la implementación del motor de ejecución y la interfaz gráfica, principales componentes del sistema.
 
 \subsection{Definición de la arquitectura}\label{subsec:defi-arch}
-Tal y cómo establece el requisito RU-RE-01, el sistema debe usar la misma definición de la arquitectura que se utiliza actualmente. Este diseño se propone en el trabajo original que desarrolla este sistema, encontrado en~\cite{camarmasCREATOR}. Los campos más relevantes para la propuesta de esta estructura de datos son los siguientes. 
+Tal y como establece el requisito RU-RE-02, el sistema debe usar la misma definición de la arquitectura que se utiliza actualmente. Este diseño se propone en el trabajo original que desarrolla este sistema, encontrado en~\cite{camarmasCREATOR}. Los campos más relevantes para la propuesta de esta estructura de datos (referida como \textit{architecture} en el código original) son los siguientes. 
 
 \begin{itemize}
-\item \textbf{Components}: se trata de una lista donde se incluyen los distintos bancos de registros, instrucciones y pseudo instrucciones de la arquitectura.
+\item \textbf{Components}: se trata de una lista donde se incluyen los distintos bancos de registros, instrucciones y pseudoinstrucciones de la arquitectura.
 \item \textbf{Elements}: se trata de un campo dentro de cada elemento de \textit{Components}. Contiene una lista de cada uno de los elementos del componente (instrucción, registro o pseudoinstrucción). Cada uno de estos componentes tiene diferentes campos.
 \end{itemize}
 
@@ -21,7 +21,7 @@ Con todo lo anterior se ha optado por incluir nuevos campos en la arquitectura c
 
 \subsection{Definición de las instrucciones}\label{subsec:defi-ins}
 
-Siguiendo los requisitos RU-CA-03, RS-FN-02, RS-FN-03 y RS-FN-04, se debe permitir operar con instrucciones que empleen máscaras, enteros o vectores; y permitir operaciones enmascaradas. Esto supone que se deben contemplar varias casuísticas:
+Siguiendo los requisitos RS-FN-02, RS-FN-03 y RS-FN-04, se debe permitir operar con instrucciones que empleen máscaras, enteros o vectores y permitir operaciones enmascaradas. Esto supone que se deben contemplar varias casuísticas:
 
 \begin{itemize}
 \item Argumentos intercalados en el nombre de la instrucción: el indicativo del tipo de operando \texttt{v*} o el campo \texttt{emul}, entre otros.
@@ -34,17 +34,17 @@ Lo anterior se puede abordar desde el código de la aplicación o desde la defin
 \subsection{Lenguajes de programación}{\label{subsec:programming-languages}}
 La elección de un lenguaje de programación está guiada por el desarrollo previo
 del sistema. CREATOR es una aplicación desarrollada enteramente en
-\js, lo que la dota de una gran capacidad de
+\js, lo que la dota de una gran
 compatibilidad. Dado que su entorno de ejecución es el navegador, se proponen
 dos alternativas.
 
-\subsubsection{Uso de web-assembly}
+\subsubsection{Uso de WebAssembly}
 
-\textit{Web assembly} es un tipo de código capaz de correr en navegadores modernos. Este permite la compilación de código en C, C++, Rust y C\# en binarios capaces de ejecutar en el mismo entorno~\cite{webassembly}. No obstante, el uso de esta tecnología también añade mayor complejidad a la aplicación.
+\textit{WebAssembly} es un tipo de código capaz de correr en navegadores modernos. Este permite la compilación de código en C, C++, Rust y C\# en binarios capaces de ejecutar en el mismo entorno~\cite{webassembly}. No obstante, el uso de esta tecnología también añade mayor complejidad a la aplicación.
 
-La comunicación entre el código escrito en \js (JS) y \wa (WASM) requiere de añadir procesos extra como serialización o gestión de memoria. Esto sumado al mayor tamaño que tienden a ocupar los archivos compilados para WASM frente al código JS, y la mayor dificultad de depuración; hacen que la única ventaja de esta tecnología sea una mejora de rendimiento. Además, añadir estas tecnologías podría complicar la integración de la extensión con la aplicación, lo que entra en conflicto con el requisito RU-RE-02.
+La comunicación entre el código escrito en \js (JS) y \wa (WASM) requiere de añadir procesos extra como serialización o gestión de memoria. Esto, sumado al mayor tamaño de los archivos compilados para WASM frente al código JS, y la mayor dificultad de depuración hacen que la única ventaja de esta tecnología sea una mejora de rendimiento. Además, añadir estas tecnologías podría complicar la integración de la extensión con la aplicación, lo que entra en conflicto con el requisito RU-RE-02.
 
-Debido a que el rendimiento no es un objetivo principal del sistema y que la mejora no presenta un gran beneficio frente a la complejidad que añade se descarta la alternativa.
+Debido a que el rendimiento no es un objetivo principal del sistema y que la mejora no presenta un gran beneficio frente a la complejidad que añade, se descarta la alternativa.
 
 \subsubsection{Continuación con \js}
 {\js} (JS) es un lenguaje de programación interpretado muy extendido
@@ -56,15 +56,15 @@ La continuidad con JS facilita la integración y el desarrollo de la propuesta.
 Adicionalmente, se soporta de forma nativa en los entornos de ejecución de
 CREATOR: el navegador y \textit{Node.js}\@.
 
-No existe una desventaja clara a la continuación con este lenguaje. La fácil integración está en sintonía con los objetivos de la propuesta. Además, la capacidad nativa de {\js} para el manejo de \textit{arrays} y la inclusión del tipo de dato \textit{BigInt} permite dar soporte fácilmente a los requisitos de software empleando herramientas ampliamente estandarizadas en las tecnologías web.
+Respecto a {\js}, su fácil integración está en sintonía con los objetivos de la propuesta. Además, la capacidad nativa de {\js} para el manejo de \textit{arrays} y la inclusión del tipo de dato \textit{BigInt} permite dar soporte fácilmente a los requisitos de software empleando herramientas ampliamente estandarizadas en las tecnologías web. 
 
 Con todo lo anterior, esta ha sido la alternativa seleccionada para el desarrollo de la aplicación.
 
 \section{Arquitectura del sistema}\label{sec:arch-design}
 
-La propuesta se compone de dos nuevos componentes que amplían la anterior arquitectura de CREATOR\@: una ampliación a la interfaz de usuario y una ampliación al kernel de simulación.
+La propuesta se compone de dos nuevos componentes que extienden la anterior arquitectura de CREATOR\@: una ampliación a la interfaz de usuario y otra al kernel de simulación.
 
-De esta forma, el diseño propuesto requiere  ampliar la arquitectura original presentada por Diego Camarmas en~\cite{camarmasCREATOR}. A continuación se muestra el diagrama original modificado para hacer explícita la adición de estos componentes:
+De esta forma, el diseño propuesto requiere ampliar la arquitectura original presentada por Diego Camarmas en~\cite{camarmasCREATOR}. A continuación se muestra el diagrama original modificado para hacer explícita la adición de estos componentes:
 
 \begin{figure}[H]
 \centering
@@ -116,9 +116,9 @@ El motor de ejecución para instrucciones debe cumplir varias características d
 \begin{enumerate}
 \item Capacidad de operar con registros vectoriales.
 \item Capacidad de ejecutar operaciones con registros vectoriales y valores enteros como operandos.
-\item Capacidad de operar valores con diferente precisión.
+\item Capacidad de operar sobre valores con diferente precisión.
 \item Capacidad de simular el comportamiento de las operaciones enmascaradas y elementos de cola.
-\item Capacidad de comunicarse con el kernel de ejecución manteniendo las estructuras y funcionalidad previa.
+\item Capacidad de comunicarse con el kernel de ejecución manteniendo las estructuras y funcionalidad previas.
 \end{enumerate}
 
 Con todo lo anterior, la estructura de datos \textit{architecture} en la que se apoya CREATOR será de gran importancia para las decisiones que se tomen de aquí en adelante. Es por esto que primero se hará una pequeña introducción a esta estructura de datos.
@@ -126,7 +126,7 @@ Con todo lo anterior, la estructura de datos \textit{architecture} en la que se 
 \subsubsection{Utilización de la estructura de datos \textit{architecture}}
 
 La estructura de datos \textit{architecture}, tal y cómo se expuso con
-anterioridad, cuenta con varios campos de gran importancia para el
+anterioridad en la sección~\ref{subsec:defi-arch}, cuenta con varios campos de gran importancia para el
 funcionamiento de la aplicación. Esta estructura almacena los bancos de
 registros, instrucciones y parámetros de la arquitectura simulada.
 
@@ -144,15 +144,14 @@ Los registros también cuentan con algunos campos como \textit{name} (lista de n
 Un vector se corresponde con uno o varios registros vectoriales dentro de un
 banco de registros en \textit{architecture}. Esto se traduce en que un registro
 vectorial se identifica con dos valores: el índice en la lista
-\textit{components} y el índice en la lista \textit{elements}; a partir de
+\textit{components} y el índice en la lista \textit{elements}, a partir de
 ahora referidos como \textit{indexComp} e \textit{indexElem}, respectivamente.
 Además, el valor almacenado en la estructura \textit{architecture} debe ser un
 valor de tipo \textit{BigInt} para conservar la funcionalidad previa.
 
 Con todo lo anterior, la representación de un vector en el sistema será un
-valor entero, producto de la concatenación en hexadecimal de cada uno de los
-elementos, tal y como se muestra en la figura
-\ref{fig:representacion-vector}. Este valor podrá recuperarse a través de los
+valor entero, producto de la concatenación en hexadecimal de cada uno de sus
+elementos, tal y como se muestra en la figura~\ref{fig:representacion-vector}. Este valor podrá recuperarse a través de los
 índices \textit{indexComp} e \textit{indexElem} del elemento.
 
 \begin{figure}[H]
@@ -180,11 +179,11 @@ elementos, tal y como se muestra en la figura
 \node[draw=none, below=of hex, xshift=-3cm, yshift=0.75cm] (tag-2) {\texttt{reverse}};
 
 \draw[-Latex, thick] (hex) -- ++(0, -1.3);
-\node[draw=none, below=of hex] (hex-reverse) {67 12 AA 0C FF};
+\node[draw=none, below=of hex] (hex-reverse) {67 13 AA 0C FF};
 \node[draw=none, left=of hex-reverse, xshift=+1.25cm] (ox) {0x};
 
 \draw[-Latex, thick] (hex-reverse) -- ++(0, -1.3);
-\node[draw=none, below=of hex-reverse] (big-int) {442694765823n};
+\node[draw=none, below=of hex-reverse] (big-int) {442711543039n};
 \node[draw=none, below=of tag-2, xshift=0.2cm] (tag-3) {\texttt{BigInt}};
 
 \end{tikzpicture}
@@ -194,7 +193,7 @@ elementos, tal y como se muestra en la figura
 
 \subsection{Componentes del motor de ejecución}\label{subsec:components}
 
-A continuación se presentan los componentes que serán necesarias para dar
+A continuación se presentan los componentes necesarias para dar
 soporte a la operatividad descrita en los requisitos. 
 
 \begin{component}{Read Vector} % no
@@ -248,7 +247,7 @@ Debe transformar los datos de la forma adecuada para mantener la operatividad de
 {vector, sew, vlen, start, ta, vl}
 {string}
 {FN-motor, NF-motor-3}
-Aplica la transformación descrita en la figura \ref{fig:representacion-vector}.
+Aplica la transformación descrita en la figura~\ref{fig:representacion-vector}.
 \end{component}
 
 \begin{component}{Tail Agnostic} % si
@@ -257,7 +256,7 @@ Aplica la transformación descrita en la figura \ref{fig:representacion-vector}.
 {vector, sew, vlen, start, ta, vl}
 {string}
 {FN-motor, FN-motor-2, FN-ta}
-Aplica el comportamiento de máscara según el parámetro ta.
+Aplica el comportamiento de máscara según el parámetro \textit{ta}.
 \end{component}
 
 \begin{component}{Extract Mask} % si
@@ -279,12 +278,12 @@ Aplica una operación con máscara que se recibe por parámetro.
 \end{component}
 
 \begin{component}{Apply Mask} % SI
-{Aplicar una máscara a un vector.}
+{Aplica una máscara a un vector.}
 {\NA}
 {mask, ma, vd, backup, vl}
 {array}
 {FN-motor-mask}
-Aplica la máscara a un vector en base al parámetro ma.
+Aplica la máscara a un vector en base al parámetro \textit{ma}.
 \end{component}
 
 \begin{component}{Vec Int Operation} %SI
@@ -318,12 +317,12 @@ Gestiona una operación de estrechamiento, manejando los valores de distinta pre
 
 \subsection{Ampliación de la interfaz gráfica}
 
-La ampliación de la arquitectura simplemente constará con una nueva vista donde
-se podrán visualizar todos los registros relativos a la extensión vectorial.
+La ampliación de la arquitectura constará con una nueva vista para 
+visualizar todos los registros relativos a la extensión vectorial.
 Estos son los registros de control y los registros v\{i\}. Esta vista será
 similar a la vista de los registros enteros, con la excepción de que, para cada
 registro, se mostrará el valor almacenado en cada uno de sus elementos y el
-conjunto de parámetros de arquitectura.
+conjunto de parámetros de arquitectura (i.e. SEW, VLEN, etc.).
 
 La interfaz gráfica tendrá 3 componentes.
 
@@ -345,7 +344,7 @@ Muestra los datos de todos los registros vectoriales.
 Muestra los datos de un único registro vectorial.
 \end{component}
 
-\begin{component}{Vec Stadistics} % SI
+\begin{component}{Vec Statistics} % SI
 {Visualización de las estadísticas del programa ejecutado}
 {\NA}
 {architecture}
@@ -356,9 +355,13 @@ Muestra el porcentaje de instrucciones vectoriales aritméticas ejecutadas en la
 
 \FloatBarrier
 
+\phantom{a}
+
+\pagebreak
+
 \subsection{Trazabilidad}
 
-Con el fin de asegurar que los requisitos funcionales se cubren con los componentes anteriormente descritos, se incluye una matriz de trazabilidad que relaciona dichos requisitos con los componentes.
+Con el fin de asegurar que los requisitos funcionales se cubren con los componentes anteriormente descritos, se incluye una matriz de trazabilidad que relaciona ambos conjuntos.
 
 \begin{table}[H]
     {\traceabilityCompFN}

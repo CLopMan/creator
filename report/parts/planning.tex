@@ -1,28 +1,28 @@
 \chapter{Planificación y presupuesto}\label{chap:planning}
-En este capítulo se presenta la planificación (Sección~\ref{sec:planning}) y presupuesto (Sección~\ref{sec:budget}) del proyecto. En la primera sección, se describe la distribución de tareas y cronograma. En la segunda sección, se detallan los costes del proyecto.
+En este capítulo se presenta la planificación (Sección~\ref{sec:planning}) y presupuesto (Sección~\ref{sec:budget}) del proyecto. En la primera sección se describe la distribución de tareas y cronograma. En la segunda sección se detallan los costes del proyecto.
 
 \section{Planificación}\label{sec:planning}
-En esta sección se incluye la planificación seguida durante el desarrollo de la propuesta. En primer lugar, se realiza un breve análisis de las distintas metodologías (Sección~\ref{subsec:metodology}) de desarrollo con el fin de seleccionar justificadamente una de ellas. Después, se exponen las distintas fases del desarrollo del proyecto mediante un diagrama de Gantt (Sección~\ref{subsec:Gantt-diagram}).
+En esta sección se incluye la planificación seguida durante el desarrollo de la propuesta. En primer lugar, se realiza un breve análisis de distintas metodologías (Sección~\ref{subsec:metodology}) de desarrollo con el fin de seleccionar justificadamente una de ellas. Después, se exponen las fases del proyecto mediante un diagrama de Gantt (Sección~\ref{subsec:Gantt-diagram}).
 
 \subsection{Análisis y selección de metodología}\label{subsec:metodology}
 Se han valorado dos metodologías para la realización de este proyecto. A continuación se hace una breve introducción a cada una de ellas.
 
 \begin{itemize}
-    \item \textbf{Modelo en cascada~\cite{cascade}:} Este modelo se basa en fases secuenciales. Es decir, una fase no comienza hasta que termine la anterior. Se suele emplear para proyectos sencillos y de corta duración ya que carece de flexibilidad para realizar cambios sobre fases anteriores.
-    \item \textbf{Modelo en espiral~\cite{spiral}:} Este modelo se basa en iteraciones con fases definidas, de forma que el desarrollo se lleva a cabo de forma incremental, permitiendo realizar cambios entre iteraciones. Este modelo es adecuado para proyectos grandes y complejos, donde se puede sacar ventaja de la flexibilidad durante un largo periodo de desarrollo.
+    \item \textbf{Modelo en cascada~\cite{cascade}:} Este modelo se basa en fases secuenciales. Es decir, una fase no comienza hasta que termina la anterior. Se suele emplear para proyectos sencillos y de corta duración ya que carece de flexibilidad para realizar cambios en fases anteriores.
+    \item \textbf{Modelo en espiral~\cite{spiral}:} Este modelo se basa en iteraciones con fases definidas, de forma que el desarrollo se lleva a cabo de forma incremental, permitiendo realizar cambios entre iteraciones. Este modelo es adecuado para proyectos grandes y complejos, donde se puede aprovechar su flexibilidad durante un largo periodo de desarrollo.
 \end{itemize}
 
-Finalmente, dadas las características del proyecto, se ha seleccionado el modelo de desarrollo en cascada. Los objetivos de la propuesta son claros y el alcance es asumible para poder realizarse sin necesidad de varias iteraciones. El desarrollo se ha dividido en las siguientes fases:
+Dadas las características del proyecto, se ha seleccionado el modelo de desarrollo en cascada. Los objetivos de la propuesta son claros y el alcance es asumible para realizarse sin necesidad de iteraciones. El desarrollo se ha dividido en las siguientes fases:
 \begin{enumerate}
-    \item \textbf{Planificación}: lectura y comprensión del estándar a implementar con el fin de extraer toda la funcionalidad necesaria para la implementación del conjunto de instrucciones seleccionado.
+    \item \textbf{Planificación}: lectura y comprensión del estándar con el fin de extraer toda la funcionalidad necesaria para la implementación del conjunto de instrucciones seleccionado. Extracción de requisitos de usuario y casos de uso.
     \item \textbf{Análisis}: estudio del funcionamiento de CREATOR y evaluación de alternativas para satisfacer los objetivos fijados.
-    \item \textbf{Desarrollo del motor de ejecución e implementación de instrucciones}: codificación y prueba de la funcionalidad extraída en las primeras dos fases.
-    \item \textbf{Desarrollo y evaluación de la interfaz gráfica}: ampliación de la interfaz gráfica para la visualización de registros vectoriales.
+    \item \textbf{Desarrollo del motor de ejecución e implementación de instrucciones}: codificación y verificación de la funcionalidad extraída en las primeras dos fases.
+    \item \textbf{Desarrollo y evaluación de la interfaz gráfica}: ampliación y verificación de la interfaz gráfica para la visualización de registros vectoriales.
     \item \textbf{Evaluación del sistema completo}: conjunto de pruebas de validación.
 \end{enumerate}
 
 \subsubsection{Estimación de tiempo y cronograma}\label{subsec:Gantt-diagram}
-A continuación se muestra un diagrama de Gantt (Figura~\ref{Gantt-diagram}). Este diagrama representa cada una de las fases del proyecto junto con su extensión. Cada fase se ha dividido en varias tareas y subtareas con el fin de elaborar una estimación más precisa del tiempo de desarrollo de la propuesta.
+A continuación se muestra un diagrama de Gantt (Figura~\ref{Gantt-diagram}) con las fases del proyecto junto con su extensión. Cada fase se ha dividido en varias tareas y subtareas con el fin de elaborar una estimación más precisa del tiempo de desarrollo de la propuesta.
 
 \begin{landscape}
 \begin{figure}
@@ -101,10 +101,10 @@ Los costes directos son aquellos directamente relacionados con el desarrollo de 
 \subsubsection{Costes de personal}
 Para el desarrollo de la propuesta han sido necesario 4 roles: 
 \begin{itemize}
-    \item \textbf{Jefe de proyecto:} su principal responsabilidad es la coordinación del proyecto y llevar a cabo la planificación del mismo.
-    \item \textbf{Analista}: su principal responsabilidad es la del análisis de requisitos de usuario y diseño de la arquitectura del proyecto.
-    \item \textbf{Desarrollador:} su principal responsabilidad es la de la implementación de las funcionalidades indicadas en los requisitos de software.
-    \item \textbf{Evaluador}: su principal responsabilidad es la de diseñar y ejecutar las pruebas del sistema, así como aportar feedback al equipo de desarrollo.
+    \item \textbf{Jefe de proyecto:} su principal responsabilidad es la planificación y coordinación del proyecto.
+    \item \textbf{Analista}: su principal responsabilidad es el análisis de requisitos de usuario, la extracción de requisitos de software y el diseño de la arquitectura del proyecto.
+    \item \textbf{Desarrollador:} su principal responsabilidad es la implementación de las funcionalidades indicadas en los requisitos de software.
+    \item \textbf{Evaluador}: su principal responsabilidad es diseñar y ejecutar las pruebas del sistema, así como aportar feedback al equipo de desarrollo.
 \end{itemize}
 
 En la siguiente tabla se detalla el desglose de los costes de personal del proyecto.
@@ -163,9 +163,9 @@ Donde:
 \subsection{Costes indirectos}\label{subsec:indirect-cost}
 Los costes indirectos son aquellos derivados del desarrollo de la propuesta, pero no directamente relacionados con algún producto o servicio.
 
-Para el cálculo de la energía consumida se tiene en cuenta que el portátil utiliza un promedio de 90W, y el teclado y monitor un promedio de 30W. Dado que el desarrollo ha durando 320h, la energía total consumida es de $120W\times 320h = 3840Wh$. El coste de promedio de la electricidad durante el periodo de desarrollo ha sido de 0.198\euro/KWh, lo que resulta en un coste por consumo eléctrico de $0.198*\frac{3840}{1000} = 0.76\euro$.
+Para el cálculo de la energía consumida se tiene en cuenta que el portátil utiliza un promedio de 90W, y el teclado y monitor un promedio de 30W. Dado que el desarrollo ha durando 320h, la energía total consumida es de $120W\times 320h = 3840Wh$. El coste de promedio de la electricidad durante el periodo de desarrollo ha sido de 0.198\euro/KWh, lo que resulta en un coste por consumo eléctrico de $0.198*\frac{3840}{1000} = 0.76$\euro.
 
-Adicionalmente, el coste en transporte al centro educativo se estima en un total de 13\euro imputables al proyecto. Esto supone un total de 13,76\euro.
+Adicionalmente, el coste en transporte al centro educativo se estima en un total de 13\euro~imputables al proyecto. Esto supone un total de 13,76\euro.
 
 \subsection{Resumen de costes}
 Con todo lo anterior, se ha confeccionado la siguiente tabla con los costes del proyecto.
@@ -173,7 +173,7 @@ Con todo lo anterior, se ha confeccionado la siguiente tabla con los costes del 
 \begin{table}[H]
     \begin{tabular}{@{}lr@{}}
         \toprule
-        Coste de personal & 10.600\euro\\
+        Coste de personal & 10.600,00\euro\\
         Coste de equipamiento & 90,35\euro\\
         Costes indirectos & 13,76\euro\\ \midrule
         \textbf{Total} & \textbf{10.704,11\euro}\\
@@ -184,9 +184,9 @@ Con todo lo anterior, se ha confeccionado la siguiente tabla con los costes del 
 
 El coste final del proyecto asciende a \textbf{10.704,11\euro~(Diez mil setecientos cuatro euros con once céntimos)}.
 
-\subsection{Oferta Propuesta}\label{subsec:offer}
+\subsection{Oferta propuesta}\label{subsec:offer}
 
-A continuación se muestra la Tabla~\ref{tab:offer}, en la que se detalla la oferta propuesta. Se han estimado unos riesgos del 20\%, unos beneficios del 15\% y, por último, se han considerado unos impuestos del 21\% (atribuibles al Impuesto sobre el Valor Añadido en España). Tras aplicar los anteriores conceptos, la oferta asciende a un total de \textbf{17.873,72\euro~(Diecisiete mil ochocientos setenta y tres euros con setenta y dos céntimos)}.
+A continuación se muestra la Tabla~\ref{tab:offer}, en la que se detalla la oferta propuesta. Se han estimado unos riesgos del 20\%, unos beneficios del 15\% y, por último, se han considerado unos impuestos del 21\% (atribuibles al Impuesto sobre el Valor Añadido). Tras aplicar los anteriores conceptos, la oferta asciende a un total de \textbf{17.873,72\euro~(Diecisiete mil ochocientos setenta y tres euros con setenta y dos céntimos)}.
 
 \begin{table}[H]
     \begin{tabular}{@{}lccc@{}}
@@ -206,4 +206,4 @@ A continuación se muestra la Tabla~\ref{tab:offer}, en la que se detalla la ofe
 
 \section{Resumen}
 
-En este capítulo se ha detallado la planificación y presupuesto de la propuesta. El tiempo estimado de desarrollo es de 320 horas, repartidas en 10 meses. En cuanto a los costes del proyecto, tras desglosarlos en costes directos (de personal y equipamiento) e indirectos (electricidad y transporte), se ha obtenido un coste final de 10.704,11\euro. Finalmente, se ha elaborado una oferta para el desarrollo de 17.873,72\euro.
+En este capítulo se ha detallado la planificación y el presupuesto de la propuesta. El tiempo estimado de desarrollo es de 320 horas, repartidas en 10 meses. En cuanto a los costes del proyecto, tras desglosarlos en costes directos (de personal y equipamiento) e indirectos (electricidad y transporte), se ha obtenido un coste final de 10.704,11\euro. Finalmente, se ha elaborado una oferta para el desarrollo de 17.873,72\euro.

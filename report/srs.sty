@@ -195,7 +195,7 @@
   \def\@uc@template@id@description{Cada caso de uso se identifica con un ID que sigue el formato \textit{\printucidtemplate}, donde \textit{XX} identifica el número secuencial del caso de uso, empezando en \textit{01}.}
   \def\@uc@template@description{contiene la plantilla utilizada para la especificación de los casos de uso, incluyendo la descripción de cada atributo.}
   \def\@component@template@description{contiene la plantilla utilizada para la especificación de los componentes, incluyendo la descripción de cada atributo.}
-  \def\@test@template@id@description{Cada caso de prueba se identifica con un ID que sigue el formato \textit{\printtestidtemplate}, donde \textit{XX} identifica el número de secuencia del caso de prueba, empezando en \textit{01}, y \textit{YYY} representa el tipo, ya sea \textit{VET} (verificación) o \textit{VAT} (validación).}
+  \def\@test@template@id@description{Cada caso de prueba se identifica con un ID que sigue el formato \textit{\printtestidtemplate}, donde \textit{YYY} representa el tipo, ya sea \textit{VET} (verificación) o \textit{VAT} (validación), y \textit{XX} identifica el número de secuencia del caso de prueba, empezando en \textit{01}.}
   \def\@test@template@description{contiene la plantilla utilizada para la especificación de los casos de prueba, incluyendo la descripción de cada atributo.}
 
   % attribute names
@@ -273,7 +273,7 @@
   \def\@test@procedure@desc{
     Descripción de los pasos a seguir para realizar el test.}
   \def\@test@postcond@desc{
-    Condiciones que deben cumplirse después de realizar el test para pasarlo.}
+    Condiciones que deben cumplirse después de realizar el test para superarlo.}
   \def\@test@eval@desc{Resultado del test (\textit{OK} o \textit{Error}).}
   \def\@test@origin@desc{Requisitos que originaron el test.}
 \fi
@@ -551,7 +551,7 @@
   \end{SRStabular}
 }
 
-\newcommand{\printsreqidtemplate}{\@req@u@prefix-YY-XX}
+\newcommand{\printsreqidtemplate}{\@req@s@prefix-YY-XX}
 
 
 

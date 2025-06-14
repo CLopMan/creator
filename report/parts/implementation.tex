@@ -208,13 +208,13 @@ En línea con lo descrito en las secciones~\ref{subsec:defi-arch} y~\ref{subsec:
 \end{minipage}
 
 \subsection{Motor de ejecución}{\label{implementation:motor}}
-Tal y cómo se muestra en la figura~\ref{fig:file-structure}, se ha incluído el archivo \texttt{creator\_vector.js}. Este archivo implementa los componentes descritos el la sección~\ref{subsec:components} del capítulo~\ref{chap:design}\@.
+Tal y como se muestra en la figura~\ref{fig:file-structure}, se ha incluido el archivo \texttt{creator\_vector.js}. Este archivo implementa los componentes descritos en la sección~\ref{subsec:components} del capítulo~\ref{chap:design}\@.
 
-Los componentes del motor de ejecución se han implementado como una serie de funciones a las que llamar desde otras partes del sistema o desde la definición de las instrucciones. De esta forma se mantiene la retrocompatibilidad con las demás partes del sistema ya que sólo se harán llamadas a estas funciones en caso de estar operando con instrucciones vectoriales. Adicionalemente, separar esta funcionalidad en un único fichero facilita la integración con CREATOR en un futuro.
+Los componentes del motor de ejecución se han implementado como una serie de funciones a las que llamar desde otras partes del sistema o desde la definición de las instrucciones. De esta forma se mantiene la retrocompatibilidad con el resto del sistema ya que sólo se harán llamadas a estas funciones en caso de estar operando con instrucciones vectoriales. Adicionalmente, encapsular esta funcionalidad en un único fichero facilita la integración con CREATOR en un futuro.
 
 \subsubsection{Implementación de un registro vectorial}
 
-Tal y como se indica en la comparativa entre lenguajes de programación (sección~\ref{subsec:programming-languages}), {\js} cuenta con el objeto \textit{Array}~\cite{js-array}. Este objeto permite almacenar varios valores consecutivos y localizarlos por posición, lo que lo hace una forma fácil e intuitiva de operar con vectores de datos. Sin embargo, usar exclusivamente este tipo de datos no cubre toda la funcionalidad necesaria para este tipo de registros. Es por esto que, siguiendo lo expuesto en el capítulo~\ref{chap:design}, \textit{Diseño}, los vectores serán serializados a valores enteros de tipo \textit{BigInt} para almacenarnos en la estructura \textit{architecture} (figura~\ref{fig:representacion-vector}). Este valor mantiene el formato adecuado descrito en la sección~\ref{subsec:mapping-vector-elements}\@.
+Tal y como se indica en la comparativa entre lenguajes de programación (sección~\ref{subsec:programming-languages}), {\js} cuenta con el objeto \textit{Array}~\cite{js-array}. Este objeto permite almacenar varios valores consecutivos y localizarlos por posición, lo que lo hace una forma fácil e intuitiva de operar con vectores de datos. Sin embargo, usar exclusivamente este tipo de datos no cubre toda la funcionalidad necesaria para este tipo de registros. Es por esto que, siguiendo lo expuesto en el capítulo~\ref{chap:design}, \textit{Diseño}, los vectores serán serializados a valores enteros de tipo \textit{BigInt} para almacenarlos en la estructura \textit{architecture} (figura~\ref{fig:representacion-vector}). Este valor mantiene el formato adecuado descrito en la sección~\ref{subsec:mapping-vector-elements}\@.
 
 \subsubsection{Soporte a distintos anchos de elemento}
 
@@ -224,7 +224,14 @@ Para la implementación de operatividad con los distintos valores de SEW (\ref{c
 
 Para implementar el comportamiento de los elementos inactivos o los elementos de cola según los valores de VMA y VTA, respectivamente (sección~\ref{masked-and-tail-elements}), se han implementado diversas funciones.
 
-Para los elementos inactivos, se ofrece una interfaz completa para operar con una máscara tanto en operaciones aritméticas como de acceso a memoria. Esta interfaz permite la lectura de un registro vectorial como máscara, la escritura de un registro vectorial como máscara, la aplicación de máscara a una operación de memoria, la aplicación de máscara a una operación aritmética y la serialización de una máscara a un valor entero.
+Para los elementos inactivos, se ofrece una interfaz completa para operar con una máscara tanto en operaciones aritméticas como de acceso a memoria. Esta interfaz implementa las siguientes funcionalidades:
+\begin{itemize}
+  \item Lectura de un registro vectorial como máscara.
+  \item Escritura de un registro vectorial como máscara.
+  \item Aplicación de máscara a una operación de memoria.
+  \item Aplicación de máscara a una operación aritmética.
+  \item Serialización de una máscara a un valor entero..
+\end{itemize}
 
 Para los elementos de cola, se consulta el valor del campo \texttt{ta} de la arquitectura en el momento en que se escribe el vector. Según su valor, se aplicará el comportamiento adecuado al almacenar el valor en el destino. 
 
@@ -232,7 +239,7 @@ Respecto al comportamiento agnóstico de estos elementos, se ha decidido que tod
 
 \subsubsection{Operaciones de memoria}
 
-Finalmente, para las operaciones de memoria se ofrece una interfaz formada por varias funciones que permiten la lectura y escritura de vectores en distintas posiciones de memoria. Dada la gran variedad de operaciones de memoria que se describen en~\cite{riscv-isa2024}, se ha dado soporte directamente desde el motor de ejecución al acceso de posiciones consecutivas, acceso a posiciones arbitrarias y escritura en varios registros simultáneos.
+Finalmente, para las operaciones de memoria se ofrece una interfaz formada por varias funciones que permiten la lectura y escritura de vectores en distintas posiciones de memoria. Dada la gran variedad de operaciones de memoria que se describen en~\cite{riscv-isa2024}, se ha dado soporte directamente desde el motor de ejecución al acceso posiciones consecutivas, acceso a posiciones arbitrarias y escritura en varios registros simultáneos.
 
 
 
@@ -250,59 +257,61 @@ Finalmente, para las operaciones de memoria se ofrece una interfaz formada por v
 
 \subsection{Interfaz gráfica}\label{subsec:gui}
 
-La implementación de la interfaz gráfica ha representado un esfuerzo menor comparado con el motor de ejecución. Para su desarrollo ha sido necesario modificar los siguientes ficheros:
+Para el desarrollo de la interfaz gráfica ha sido necesario modificar los siguientes ficheros:
 \begin{itemize}
-    \item \texttt{creator\_uielto\_data\_view\_selector.js}: este archivo contiene el selector de vistas que permite cambiar el tipo de registros que se quiera visualizar.
-    \item \texttt{creator\_uielto\_register\_file.js}: este archivo contiene la plantilla para la representación de bancos de registros.
-    \item \texttt{creator\_uielto\_register.js}: este archivo contiene la plantilla para la representación de un registro.
-    \item \texttt{creator\_uielto\_register\_popover.js}: este archivo contiene la plantilla para la visualización de el pop-over que aparece al pulsar sobre un registro.
-    \item \texttt{creator\_uielto\_clk\_cycles\_plot.js}: este archivo contiene el código para la representación de forma gráfica de los ciclos de reloj por instrucción.
-    \item \texttt{creator\_uielto\_stats\_plot.js}: este archivo contiene la plantilla para la pestaña de estadísticas del simulador.
+    \item \texttt{creator\_uielto\_data\_view\_selector.js}: contiene el selector de vistas que permite cambiar el tipo de registros a visualizar.
+    \item \texttt{creator\_uielto\_register\_file.js}: contiene la plantilla para la representación de bancos de registros.
+    \item \texttt{creator\_uielto\_register.js}: contiene la plantilla para la representación de un registro.
+    \item \texttt{creator\_uielto\_register\_popover.js}: contiene la plantilla para la visualización del pop-over que aparece al pulsar sobre un registro.
+    \item \texttt{creator\_uielto\_clk\_cycles\_plot.js}: contiene el código para la representación de forma gráfica de los ciclos de reloj por instrucción.
+    \item \texttt{creator\_uielto\_stats\_plot.js}: contiene la plantilla para la pestaña de estadísticas del simulador.
 \end{itemize}
+
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{vec_interface.jpg}
+    \caption{CREATOR ejecutando un programa con instrucciones vectoriales}\label{fig:creator-exec-vec}
+\end{figure}
 
 \subsubsection{La pestaña VEC-Registers}
 La pestaña se ha diseñado de forma que mantenga el mismo estilo que los bancos de registros para enteros y valores en coma flotante. Se ha decidido agrupar registros de control vectoriales y registros vectoriales en una misma pestaña, de forma que todo registro relacionado con la extensión vectorial quede contenido en una misma zona (Figura~\ref{fig:register-bank}). A esta pestaña se puede acceder a través un menú desplegable que ahora contiene 3 opciones: \textit{INT/CTRL-Registers, FP-Registers} y \textit{VEC-Registers}.
 
 \begin{figure}[H]
-    \includegraphics[width=0.6\textwidth]{vec_register_bank.jpg}
+    \includegraphics[width=0.8\textwidth]{vec_register_bank.jpg}
     \caption{Pestaña VEC-Registers}\label{fig:register-bank}
 \end{figure}
 
-Los registros de control se han colocado en la parte superior del banco de registros. Los registros vectoriales se encuentran inmediatamente debajo. De la misma forma que para los demás registros, se puede seleccionar ver los valores almacenados en forma de valor con signo, valor sin signo y hexadecimal. En los primeros dos casos, se muestran los valores de menor índice del vector; en el caso de la representación en hexadecimal, se muestran los bits menos significativos ya que se corresponden con los primeros elementos del vector (Sección~\ref{subsec:mapping-vector-elements}).
+Los registros de control se han colocado en la parte superior del banco de registros. Los registros vectoriales se encuentran inmediatamente debajo. De la misma forma que para los demás registros, se pueden ver los valores almacenados en forma de valor con signo, valor sin signo y hexadecimal. En los primeros dos casos, se muestran los valores de menor índice del vector; en el caso de la representación en hexadecimal, se muestran los bits menos significativos ya que se corresponden con los primeros elementos del vector (Sección~\ref{subsec:mapping-vector-elements}).
 
 \subsubsection{Pop-over}
 
 El pop-over muestra la información de un registro. Para los registros vectoriales, al ser completamente diferentes a otro tipo de registros, se ha diseñado un componente con otra estructura para lograr una correcta visualización de los elementos almacenados en el vector (Figura~\ref{fig:pop-over}).
 
-El pop-over muestra en la cabecera la configuración de la arquitectura (i.e. SEW y VL). Además permite la visualización de cada uno de los elementos del vector en binario, hexadecimal, entero sin signo y entero con signo. Por último, los elementos de cola se distinguen visualmente al tener un tono más oscuro.
+El pop-over muestra en la cabecera la configuración de la arquitectura (i.e. SEW y VL). Además, permite la visualización de cada uno de los elementos del vector en binario, hexadecimal, entero sin signo y entero con signo. Por último, los elementos de cola se distinguen visualmente al tener un tono más oscuro.
 
 \begin{figure}[H]
 
-    \includegraphics[width=0.6\textwidth]{pop-over.png}
-    \caption{Pestaña VEC-Registers}\label{fig:pop-over}
+    \includegraphics[width=0.8\textwidth]{pop-over.png}
+    \caption{Pestaña VEC-Registers con Pop Over}\label{fig:pop-over}
 \end{figure}
 
 \subsubsection{Pestañas \textit{Stats} y \textit{CLK Cycles}}
 
-La pestañas \textit{Stats} y \textit{CLK Cycles} muestran diferente información acerca del porcentaje de ejecución de cada uno de los tipos de instrucciones y el número de ciclos de reloj invertido en cada tipo, respectivamente. Estas pestañas se han adaptado para que incluya un nuevo tipo de instrucción: \textit{vector arithmetic instruction} (Figuras~\ref{fig:stats-clk} y~\ref{fig:clk}).
+La pestañas \textit{Stats} y \textit{CLK Cycles} muestran información acerca del porcentaje de ejecución de cada uno de los tipos de instrucciones y el número de ciclos de reloj invertido en cada tipo, respectivamente. Estas pestañas se han adaptado para incluir un nuevo tipo de instrucción: \textit{vector arithmetic instruction} (Figuras~\ref{fig:stats-clk} y~\ref{fig:clk}).
 
-    \begin{minipage}[t]{0.45\textwidth}
-        \begin{figure}[H]
-            {\includegraphics[width=\linewidth]{stats.jpg}}
-            \caption{Pestaña \textit{Stats}}\label{fig:stats-clk}
-        \end{figure}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.45\textwidth}
-        \begin{figure}[H]
-            {\includegraphics[width=\linewidth]{clk_cycles.jpg}}
-            \caption{Pestaña \textit{CLK Cycles}}\label{fig:clk}
-        \end{figure}
-    \end{minipage}
+\begin{figure}[H]
+    {\includegraphics[width=0.8\textwidth]{stats.jpg}}
+    \caption{Pestaña \textit{Stats}}\label{fig:stats-clk}
+\end{figure}
+
+\begin{figure}[H]
+    {\includegraphics[width=0.8\textwidth]{clk_cycles.jpg}}
+    \caption{Pestaña \textit{CLK Cycles}}\label{fig:clk}
+\end{figure}
 
 \section{Despliegue}\label{sec:deploy}
 
-En esta sección se describen los requisitos recomendados para el uso de la aplicación, así como los pasos a seguir para desplegarla. Dado que no se utilizan herramientas diferentes a CREATOR y que, tal y cómo se estableció en los requisitos (sección~\ref{sec:requirements}), se debía conservar la funcionalidad anterior; los requisitos del sistema son los mismos que para la versión de CREATOR disponible el 3 de junio de 2024, fecha en la que se clonó el proyecto para el desarrollo de la propuesta. Estos requisitos se detallan a continuación:
+En esta sección se describen los requisitos recomendados para el uso de la aplicación, así como los pasos a seguir para desplegarla. Dado que no se utilizan herramientas diferentes a CREATOR y que, tal y como se estableció en los requisitos (sección~\ref{sec:requirements}), se debía conservar la funcionalidad anterior, los requisitos del sistema son los mismos que para la versión de CREATOR disponible el 3 de junio de 2024, fecha en la que se clonó el proyecto para el desarrollo de la propuesta. Estos requisitos se detallan a continuación:
 
 \begin{itemize}
     \item \textbf{Sistema operativo:} Linux, Ubuntu 22.04 LTS, Fedora 39.
@@ -319,7 +328,7 @@ En esta sección se describen los requisitos recomendados para el uso de la apli
 
 \end{itemize}
 
-Para desplegar la aplicación es necesario lanzar la aplicación en un servidor \texttt{npx}. Para ello es necesario seguir los siguientes pasos:
+La aplicación se despliega en un servidor npx de la siguiente manera:
 \begin{enumerate}
     \item Clonar el respositorio con el código fuente. Se puede hacer mediante el siguiente comando.
 \begin{lstlisting}[language=bash, basicstyle=\scriptsize]
@@ -334,9 +343,9 @@ npx http-server creator/ -p 9999
                 \includegraphics[width=0.9\textwidth]{server_up.png}
                 \caption{Página de inicio del simulador}\label{fig:inicio-simulador}
         \end{figure}
-    \item Seleccionar la arquitectura RISCV-V (RV32IMFDV).
+    \item Seleccionar la arquitectura RISC-V (RV32IMFDV).
 \end{enumerate}
 
 \section{Resumen}
 
-En este capítulo se han descrito las principales decisiones de implementación de la propuesta, así como la estructura de ficheros. También se han indicado los requisitos mínimos para utilizar la herramienta desarrollada, y los pasos a seguir para desplegarla.
+En este capítulo se han descrito las principales decisiones de implementación de la propuesta, así como la estructura de ficheros. También se han indicado los requisitos mínimos para utilizar la herramienta desarrollada y los pasos a seguir para desplegarla.

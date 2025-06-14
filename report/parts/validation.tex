@@ -1,10 +1,10 @@
 \chapter{Validación y verificación}\label{chap:validation}
 
-Este capítulo se presenta la validación y verificación del sistema desarrollado con el objetivo de asegurar que se han cumplido todos los requisitos expuestos en la sección~\ref{sec:requirements}.
+Este capítulo presenta la validación y verificación del sistema desarrollado con el objetivo de asegurar que se han cumplido todos los requisitos expuestos en la sección~\ref{sec:requirements}.
 
-Siguiendo el estándar para validación y  verificación del IEEE~\cite{6204026}, la verificación tiene como objetivo enfrentar el software desarrollado contra los requisitos de software, asegurando que se cumplen y que el producto ha sido correctamente desarrollado; la {validación} tiene como objetivo evaluar el producto final contra las necesidades del cliente, validando que el producto satisface el problema que se pretende resolver.
+Siguiendo el estándar para validación y  verificación del IEEE~\cite{6204026}, la verificación tiene como objetivo enfrentar el software desarrollado contra los requisitos de software, asegurando que se cumplen y que el producto ha sido correctamente desarrollado; la {validación} tiene como objetivo evaluar el producto final frente a las necesidades del cliente, determinado si el producto satisface el problema que se pretende resolver.
 
-De la mano con lo anterior expuesto, se han desarrollado dos clases de pruebas: pruebas de verificación (Sección~\ref{sec:verification}) y pruebas de validación (Sección~\ref{sec:validation}).
+Así pues, se han desarrollado dos clases de pruebas: pruebas de verificación (Sección~\ref{sec:verification}) y pruebas de validación (Sección~\ref{sec:validation}).
 
 {\printtesttemplate}
 
@@ -12,9 +12,9 @@ De la mano con lo anterior expuesto, se han desarrollado dos clases de pruebas: 
 
 \section{Pruebas de verificación}\label{sec:verification}
 
-Con el fin de verificar que el sistema cumple con los requisitos expuestos durante el análisis (capítulo~\ref{chap:analysis}) se han desarrollado una serie de pruebas que realizar durante el desarrollo de la propuesta. Estas pruebas se dividen en dos tipos. 
+Con el fin de verificar que el sistema cumple con los requisitos expuestos durante el análisis (capítulo~\ref{chap:analysis}) se han desarrollado una serie de pruebas durante el desarrollo de la propuesta. Estas pruebas se dividen en dos tipos. 
 
-El primer tipo de pruebas está orientado a evaluar el comportamiento del motor de ejecución. Para ello se han construido scripts en ensamblador (código~\ref{example-assembly}) que contienen pequeños conjuntos de instrucciones implementadas que compartan características comunes. Estos scripts se ejecutan de forma automática con 4 configuraciones diferentes de parámetros de arquitectura (Código~\ref{arquitecturas-test}) a través un script de \texttt{Python} llamado \texttt{run\_test.py}, conformando un macro-test que evalúa el conjunto de instrucciones implementado al completo. Un test será considerado exitoso si el la ejecución no contiene errores y el valor almacenado en los registros o memoria coincide con el valor esperado.
+El primer tipo de pruebas está orientado a evaluar el comportamiento del motor de ejecución. Para ello se han construido scripts en ensamblador (Código~\ref{example-assembly}) que contienen pequeños conjuntos de instrucciones implementadas con características comunes. Estos scripts se ejecutan de forma automática con 4 configuraciones diferentes de parámetros de arquitectura (Código~\ref{arquitecturas-test}) a través de un script de \texttt{Python} llamado \texttt{run\_test.py}, conformando un macro-test que evalúa el conjunto de instrucciones al completo. Un test será considerado exitoso si la ejecución no contiene errores y el valor almacenado en los registros o memoria coincide con el valor esperado.
 
 Finalmente, se incluye una matriz de trazabilidad (Figura~\ref{fig:traz-matrix-vet}) para asegurar que todos los requisitos funcionales han sido contemplados en la verificación.
 
@@ -74,7 +74,7 @@ main:
 
 \begin{testCase}{VET}{motor-execution}
     {Existe la arquitectura \texttt{RISC\_V\_VExtension.json} en el directorio \texttt{architecture}} % precondition
-    {Todos los scripts han ejecutado sin levantar errores}
+    {Todos los scripts se han ejecutado sin errores}
     {Evaluación completa del motor de ejecución} % description
     {OK} % evaluation
     {FN-motor, FN-motor-2, FN-wide-narrow, FN-motor-2, FN-motor-int, FN-ta, FN-motor-mask,FN-motor-vec} % origin
@@ -88,13 +88,13 @@ main:
 \begin{testCase}{VET}{gui-registerbanck1}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {Los registros se actualizan visualmente en su pestaña de banco de registros como números enteros con signo}
-    {Visualización del banco de registros} % description
+    {Visualización del banco de registros (Signed)} % description
     {OK} % evaluation
     {FN-GUI} % origin
     \begin{enumerate}
         \item Ejecutar un programa en ensamblador en el simulador a través de la interfaz gráfica
         \item Seleccionar la pestaña ``VEC Registers'' en el selector de vistas
-        \item Seleccionar la opción ``Signed'' en el menú de selección de forma de visualización
+        \item Seleccionar la opción ``Signed'' en el menú de selección de visualización
         \item Visualizar los valores en los registros
     \end{enumerate}
     % procedure
@@ -103,13 +103,13 @@ main:
 \begin{testCase}{VET}{gui-registerbanck2}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {Los registros se actualizan visualmente en su pestaña de banco de registros como números enteros sin signo}
-    {Visualización del banco de registros} % description
+    {Visualización del banco de registros (Unsigned)} % description
     {OK} % evaluation
     {FN-GUI}
     \begin{enumerate}
         \item Ejecutar un programa en ensamblador en el simulador a través de la interfaz gráfica
         \item Seleccionar la pestaña ``VEC Registers'' en el selector de vistas
-        \item Seleccionar la opción ``Unsigned'' en el menú de selección de forma de visualización
+        \item Seleccionar la opción ``Unsigned'' en el menú de selección de visualización
         \item Visualizar los valores en los registros
     \end{enumerate}
     % procedure
@@ -118,13 +118,13 @@ main:
 \begin{testCase}{VET}{gui-registerbanck3}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {Los registros se actualizan visualmente en su pestaña de banco de registros como números en hexadecimal}
-    {Visualización del banco de registros} % description
+    {Visualización del banco de registros (Hexadecimal)} % description
     {OK} % evaluation
     {FN-GUI}
     \begin{enumerate}
         \item Ejecutar un programa en ensamblador en el simulador a través de la interfaz gráfica
         \item Seleccionar la pestaña ``VEC Registers'' en el selector de vistas
-        \item Seleccionar la opción ``HEX'' en el menú de selección de forma de visualización
+        \item Seleccionar la opción ``HEX'' en el menú de selección de visualización
         \item Visualizar los valores en los registros
     \end{enumerate}
     % procedure
@@ -133,7 +133,7 @@ main:
 \begin{testCase}{VET}{gui-registerpopup1}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {El pop up muestra la información de un registro correctamente en hexadecimal}
-    {Visualización del pop up asociado a un registro (hex)} % description
+    {Visualización del pop up asociado a un registro (Hexadecimal)} % description
     {OK} % evaluation
     {FN-GUI}
     \begin{enumerate}
@@ -149,7 +149,7 @@ main:
 \begin{testCase}{VET}{gui-registerpopup3}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {El pop up muestra la información de un registro correctamente como entero con signo}
-    {Visualización del pop up asociado a un registro(signed)} % description
+    {Visualización del pop up asociado a un registro (Signed)} % description
     {OK} % evaluation
     {FN-GUI}
     \begin{enumerate}
@@ -165,7 +165,7 @@ main:
 \begin{testCase}{VET}{gui-registerpopup3}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {El pop up muestra la información de un registro correctamente como entero sin signo}
-    {Visualización del pop up asociado a un registro (unsigned)} % description
+    {Visualización del pop up asociado a un registro (Unsigned)} % description
     {OK} % evaluation
     {FN-GUI}
     \begin{enumerate}
@@ -181,7 +181,7 @@ main:
 \begin{testCase}{VET}{gui-registerpopup4}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {El pop up actualiza los elementos de cola en un registro}
-    {Visualización del pop up asociado a un registro (elementos de cola)} % description
+    {Visualización del pop up asociado a un registro (Elementos de cola)} % description
     {OK} % evaluation
     {FN-GUI}
     \begin{enumerate}
@@ -197,7 +197,7 @@ main:
 \begin{testCase}{VET}{gui-stats}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {Se ha actualizado el contador de instrucciones aritméticas vectoriales y el gráfico de tarta}
-    {Estadísticas de instrucciones vectoriales} % description
+    {Estadísticas de instrucciones vectoriales (Gráfico)} % description
     {OK} % evaluation
     {FN-GUI-stats}
     \begin{enumerate}
@@ -212,7 +212,7 @@ main:
 \begin{testCase}{VET}{gui-table}
     {Se ha iniciado el simulador y seleccionado la arquitectura \texttt{RISC\_V\_VExtension.json}}
     {Se ha actualizado el contador de instrucciones aritméticas vectoriales y la tabla de datos}
-    {Estadísticas de instrucciones vectoriales} % description
+    {Estadísticas de instrucciones vectoriales (Tabla)} % description
     {OK} % evaluation
     {FN-GUI-stats}
     \begin{enumerate}
@@ -233,7 +233,7 @@ main:
 {\FloatBarrier}
 \section{Pruebas de validación}\label{sec:validation}
 
-Las pruebas de validación tienen como objetivo verificar el cumplimiento de las expectativas del usuario sobre la aplicación desarrollada. Para ello se enfrentan los requisitos de usuario expuestos en la sección~\ref{subsec:user-req} con la aplicación a través del siguiente conjunto de pruebas. Estas pruebas están inspiradas en los casos de uso (Sección~\ref{subsec:use-cases}).
+Las pruebas de validación tienen como objetivo determinar el cumplimiento de las expectativas del usuario sobre la aplicación desarrollada. Para ello se enfrentan los requisitos de usuario expuestos en la sección~\ref{subsec:user-req} con la aplicación a través de un conjunto de pruebas inspiradas en los casos de uso (Sección~\ref{subsec:use-cases}).
 
 También se incluye una matriz de trazabilidad (Figura~\ref{fig:traz-matrix-vat}) que relaciona los requisitos de usuario con las pruebas de validación para garantizar que han sido contemplados en su totalidad en el plan de pruebas.
 
@@ -267,7 +267,7 @@ También se incluye una matriz de trazabilidad (Figura~\ref{fig:traz-matrix-vat}
 
 \begin{testCase}{VAT}{ejecucion}
     {El sistema se encuentra en ejecución}
-    {El código ejecuta correctamente}
+    {El código se ejecuta correctamente}
     {Escritura de código con instrucciones vectoriales} % description
     {OK} % evaluation
     {CA-escribir-codigo}
@@ -284,21 +284,21 @@ También se incluye una matriz de trazabilidad (Figura~\ref{fig:traz-matrix-vat}
 
 \begin{testCase}{VAT}{visualizacion}
     {El sistema se encuentra en ejecución}
-    {Los registros de control vectoriales tienen almacenados el valor incluido en la arquitectura}
+    {Los registros de control vectoriales tienen almacenados el valor esperado}
     {Visualización de parámetros de arquitectura} % description
     {OK} % evaluation
     {CA-visualizacion}
     \begin{enumerate}
         \item Seleccionar la pestaña ``Simulator''
         \item Seleccionar la pestaña ``VEC Registers''
-        \item Comprobar que cada uno de los registros de control tiene almacenado el valor de la arquitectura
+        \item Comprobar que cada uno de los registros de control tiene almacenado el valor especificado en la arquitectura.
     \end{enumerate}
     % procedure
 \end{testCase}
 
 \begin{testCase}{VAT}{escribir-codigo-param}
     {\NA}
-    {Los registros de control vectoriales tienen almacenados el valor incluido en la arquitectura}
+    {Los registros de control vectoriales tienen almacenados el valor esperado}
     {Modificación de parámetros de arquitectura} % description
     {OK} % evaluation
     {CA-escribir-codigo-param}
@@ -342,4 +342,4 @@ También se incluye una matriz de trazabilidad (Figura~\ref{fig:traz-matrix-vat}
 
 \section{Resumen}
 
-En este capítulo se ha descrito el conjunto de pruebas de verificación y validación que ha atravesado el sistema desarrollado. Con esto, se ha llegado a la conclusión de que los requisitos de software han sido correctamente implementados y se ha logrado obtener un sistema que satisface las necesidades del usuario expuestas en los requisitos de usuario.
+En este capítulo se ha descrito el conjunto de pruebas de verificación y validación que ha superado el sistema desarrollado. Con esto, se ha llegado a la conclusión de que los requisitos de software han sido correctamente implementados y se ha logrado obtener un sistema que satisface las necesidades del usuario expuestas en los requisitos de usuario.
