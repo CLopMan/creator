@@ -22,3 +22,11 @@ main:
     vmadc.vvm v6 v9 v10 v0
     vmadc.vxm v7 v9 t1 v0
     vmadc.vim v8 v9 2 v0
+
+    vadd.vi  v10 v10 -1
+    vadd.vi  v11 v11 -1
+    vadd.vi  v12 v12 -1
+
+    vmadc.vv v13 v10 v10
+    vmadc.vx v14 v11 t1
+    vmadc.vi v15 v12 -1

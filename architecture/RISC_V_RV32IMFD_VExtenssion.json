@@ -36,7 +36,7 @@
   "vlen": 128,
   "lmulExp": 0,
   "elen": 64,
-  "sew": 32,
+  "sew": 64,
   "ma": 0,
   "ta": 1,
   "components": [
@@ -118,7 +118,7 @@
             "vl"
           ],
           "nbits": "32",
-          "value": 3,
+          "value": 2,
           "default_value": 3,
           "properties": [
             "read",
@@ -32174,6 +32174,141 @@
         }
       ],
       "definition": "rd = rs1 + inm;",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmadc.vv",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmadc.vv,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmadc.vv vd vs2 vs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmadc.vv",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "vd_mask = extractMaskByName(vd_name);\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = unsigned(vs2[i]) + unsigned(vs1[i]);\nvd_mask[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nwriteMaskByName(vd_name, vd_mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmadc.vx",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmadc.vx,VEC-Reg,VEC-Reg,INT-Reg",
+      "signatureRaw": "vmadc.vx vd vs2 rs1",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmadc.vx",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "vd_mask = extractMaskByName(vd_name);\nfunction madc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = (unsigned(vs2[i]) + unsigned(rs1));\nvd[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nreturn vd;\n}\nvd_mask = vecIntOperation(vd_mask, vs2, rs1, madc);\nwriteMaskByName(vd_name, vd_mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmadc.vi",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3",
+      "signature": "vmadc.vi,VEC-Reg,VEC-Reg,inm-signed",
+      "signatureRaw": "vmadc.vi vd vs2 inm",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmadc.vi",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        }
+      ],
+      "definition": "vd_mask = extractMaskByName(vd_name);\nfunction madc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = (unsigned(vs2[i]) + unsigned(rs1));\nvd[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nreturn vd;\n}\nvd_mask = vecIntOperation(vd_mask, vs2, inm, madc);\nwriteMaskByName(vd_name, vd_mask);",
       "separated": [
         false,
         false,
