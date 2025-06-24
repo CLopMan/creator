@@ -15,9 +15,9 @@ main:
     vadd.vx v9 v9 t1
     vadd.vx v10 v10 t1
 
-#    vsbc.vvm v3 v2 v1 v0
-#    vsbc.vxm v4 v2 t0 v0
-#    vsbc.vim v5 v2 2 v0
+    vsbc.vvm v3 v2 v1 v0
+    vsbc.vxm v4 v2 t0 v0
+    vsbc.vim v5 v2 2 v0
 
     vmsbc.vvm v6 v9 v10 v0
     vmsbc.vxm v7 v9 t1 v0

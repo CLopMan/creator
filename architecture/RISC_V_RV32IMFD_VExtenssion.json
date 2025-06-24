@@ -32358,6 +32358,159 @@
       "help": ""
     },
     {
+      "name": "vsbc.vvm",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vsbc.vvm,VEC-Reg,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vsbc.vvm vd vs2 vs1 v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsbc.vvm",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = unsigned(vs2[i]) - unsigned(vs1[i]) - v0_mask[i];\nvd[i] = aux\n}",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsbc.vxm",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vsbc.vxm,VEC-Reg,VEC-Reg,INT-Reg,VEC-Reg",
+      "signatureRaw": "vsbc.vxm vd vs2 rs1 v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsbc.vxm",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfunction madc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = (unsigned(vs2[i]) - unsigned(rs1) - v0_mask[i]);\nvd[i] = aux\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, rs1, madc);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vsbc.vim",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vsbc.vim,VEC-Reg,VEC-Reg,inm-signed,VEC-Reg",
+      "signatureRaw": "vsbc.vim vd vs2 inm v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vsbc.vim",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nfunction madc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = (unsigned(vs2[i]) - unsigned(rs1) - v0_mask[i]);\nvd[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nreturn vd;\n}\nvd = vecIntOperation(vd, vs2, inm, madc);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",
