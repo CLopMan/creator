@@ -19,7 +19,7 @@
     "alt": "RISC-V V Extenssion",
     "id": "select_confRISV",
     "examples":["default"],
-    "description": "V Extenssion is a RISC V ratified extenssion approved in 2021 that includes generic functionality to operate with vector registers",
+    "description": "V Extension is a RISC V ratified extension approved in 2021 that includes generic functionality to operate with vector registers",
     "guide":"./docs/risc_v_reference_guide.pdf",
     "available": 1
   },

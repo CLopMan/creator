@@ -35,7 +35,7 @@
                 ' ' +
                 '   <b-card-group>' +
                 '     <card-author ' +
-                '       author_img="/creator/images/author_dcamarmas.png" ' +
+                '       author_img="/images/author_dcamarmas.png" ' +
                 '       author_alt="author_dcamarmas" ' +
                 '       author_full_name="Diego Camarmas Alonso" ' +
                 '       author_href_linked="https://www.linkedin.com/in/dcamarmas" ' +
@@ -44,7 +44,7 @@
                 '     ></card-author>' +
                 ' ' +
                 '     <card-author ' +
-                '       author_img="/creator/images/author_fgarcia.png" ' +
+                '       author_img="/images/author_fgarcia.png" ' +
                 '       author_alt="author_fgarcia" ' +
                 '       author_full_name="Félix García Carballeira" ' +
                 '       author_href_linked="https://es.linkedin.com/in/f%C3%A9lix-garc%C3%ADa-carballeira-4ab48a14" ' +
@@ -53,7 +53,7 @@
                 '     ></card-author>' +
                 '' +
                 '     <card-author ' +
-                '       author_img="/creator/images/author_acaldero.png" ' +
+                '       author_img="/images/author_acaldero.png" ' +
                 '       author_alt="author_acaldero" ' +
                 '       author_full_name="Alejandro Calderón Mateos" ' +
                 '       author_href_linked="https://www.linkedin.com/in/alejandro-calderon-mateos/" ' +
@@ -62,7 +62,7 @@
                 '     ></card-author>' +
                 '' +
                 '     <card-author ' +
-                '       author_img="/creator/images/author_edelpozo.png" ' +
+                '       author_img="/images/author_edelpozo.png" ' +
                 '       author_alt="author_edelpozo" ' +
                 '       author_full_name="Elías del Pozo Puñal" ' +
                 '       author_href_linked="https://www.linkedin.com/in/edelpozop/" ' +
