@@ -4,14 +4,14 @@ ext = "ins"
 opcode = "1010111"
 
 instructions = {
-    "vmadc" : '+',
+    "vmsbc" : '-',
     #"vwsub" : '-',
 }
 rhs = ['v' , 'x', 'i'] # u for inm-unsigned
 lhs = ['v' ,] #'w']
 #mask = [' v0.t', '']
 mask = ['',]
-structure = "{}.{}{} vd vs2 {}"
+structure = "{}.{}{}m vd vs2 {} v0{}"
 
 field = """
     {{
@@ -81,8 +81,8 @@ def add_fields(name, m, v_or_ex):
         {field.format(name,"co", 6, 0 )},
         {field.format("vd", "VEC-Reg", 11, 7)},
         {field.format("vs2", "VEC-Reg", 24, 20)},
-        {field.format("vs1", "VEC-Reg", 19, 15) if v_or_ex == 'v' else field.format("rs1", "INT-Reg", 19, 15) if v_or_ex=='x' else field.format("inm", "inm-signed", 19, 15) if v_or_ex == 'i' else field.format("inm", "inm-unsigned", 19, 15)}
-        {f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
+        {field.format("vs1", "VEC-Reg", 19, 15) if v_or_ex == 'v' else field.format("rs1", "INT-Reg", 19, 15) if v_or_ex=='x' else field.format("inm", "inm-signed", 19, 15) if v_or_ex == 'i' else field.format("inm", "inm-unsigned", 19, 15)},
+        {field.format("v0" , "VEC-Reg", 25, 25)}{f',\n{field.format("vm", "VEC-Reg", 25, 25)}' if len(m) > 0 else ''}
     """
     return fields
 
@@ -92,18 +92,20 @@ def add_code(m, v_or_x, op, lhs):
 
     code_unmask = {
         "v" : f"""
+        v0_mask = extractMaskFromV0(vl);
         vd_mask = extractMaskByName(vd_name);
         for (let i=0; i<checkVl(); ++i) {{
-           let aux = unsigned(vs2[i]) {op} unsigned(vs1[i]);
+           let aux = unsigned(vs2[i]) {op} unsigned(vs1[i]) {op} v0_mask[i];
            vd_mask[i] = capi_LogicalRightShift(aux, checkSEW());
         }}
         writeMaskByName(vd_name, vd_mask);
     """,
     "x" : f"""
-        vd_mask = extractMaskBuName(vd_name);
+        v0_mask = extractMaskFromV0(vl);
+        vd_mask = extractMaskByName(vd_name);
         function madc(vd, vs2, rs1) {{
             for (let i=0; i<checkVl(); ++i) {{
-               let aux = (unsigned(vs2[i]) {op} unsigned(rs1));
+               let aux = (unsigned(vs2[i]) {op} unsigned(rs1) {op} v0_mask[i]);
                vd[i] = capi_LogicalRightShift(aux, checkSEW());
             }}
             return vd;
@@ -112,10 +114,11 @@ def add_code(m, v_or_x, op, lhs):
         writeMaskByName(vd_name, vd_mask);
     """,
     'i': f"""
-        vd_mask = extractMaskBuName(vd_name);
+        v0_mask = extractMaskFromV0(vl);
+        vd_mask = extractMaskByName(vd_name);
         function madc(vd, vs2, rs1) {{
             for (let i=0; i<checkVl(); ++i) {{
-               let aux = (unsigned(vs2[i]) {op} unsigned(rs1));
+               let aux = (unsigned(vs2[i]) {op} unsigned(rs1) {op} v0_mask[i]);
                vd[i] = capi_LogicalRightShift(aux, checkSEW());
             }}
             return vd;

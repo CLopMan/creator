@@ -32070,6 +32070,159 @@
       "help": ""
     },
     {
+      "name": "vmsbc.vvm",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vmsbc.vvm,VEC-Reg,VEC-Reg,VEC-Reg,VEC-Reg",
+      "signatureRaw": "vmsbc.vvm vd vs2 vs1 v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsbc.vvm",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "vs1",
+          "type": "VEC-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nvd_mask = extractMaskByName(vd_name);\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = unsigned(vs2[i]) - unsigned(vs1[i]) - v0_mask[i];\nvd_mask[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nwriteMaskByName(vd_name, vd_mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsbc.vxm",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vmsbc.vxm,VEC-Reg,VEC-Reg,INT-Reg,VEC-Reg",
+      "signatureRaw": "vmsbc.vxm vd vs2 rs1 v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsbc.vxm",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "rs1",
+          "type": "INT-Reg",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nvd_mask = extractMaskByName(vd_name);\nfunction madc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = (unsigned(vs2[i]) - unsigned(rs1) - v0_mask[i]);\nvd[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nreturn vd;\n}\nvd_mask = vecIntOperation(vd_mask, vs2, rs1, madc);\nwriteMaskByName(vd_name, vd_mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
+      "name": "vmsbc.vim",
+      "type": "Vector arithmetic",
+      "signature_definition": "F0 F1 F2 F3 F4",
+      "signature": "vmsbc.vim,VEC-Reg,VEC-Reg,inm-signed,VEC-Reg",
+      "signatureRaw": "vmsbc.vim vd vs2 inm v0",
+      "co": "1010111",
+      "cop": "000",
+      "nwords": 1,
+      "clk_cycles": 1,
+      "fields": [
+        {
+          "name": "vmsbc.vim",
+          "type": "co",
+          "startbit": 6,
+          "stopbit": 0
+        },
+        {
+          "name": "vd",
+          "type": "VEC-Reg",
+          "startbit": 11,
+          "stopbit": 7
+        },
+        {
+          "name": "vs2",
+          "type": "VEC-Reg",
+          "startbit": 24,
+          "stopbit": 20
+        },
+        {
+          "name": "inm",
+          "type": "inm-signed",
+          "startbit": 19,
+          "stopbit": 15
+        },
+        {
+          "name": "v0",
+          "type": "VEC-Reg",
+          "startbit": 25,
+          "stopbit": 25
+        }
+      ],
+      "definition": "v0_mask = extractMaskFromV0(vl);\nvd_mask = extractMaskByName(vd_name);\nfunction madc(vd, vs2, rs1) {\nfor (let i=0; i<checkVl(); ++i) {\nlet aux = (unsigned(vs2[i]) - unsigned(rs1) - v0_mask[i]);\nvd[i] = capi_LogicalRightShift(aux, checkSEW());\n}\nreturn vd;\n}\nvd_mask = vecIntOperation(vd_mask, vs2, inm, madc);\nwriteMaskByName(vd_name, vd_mask);",
+      "separated": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "help": ""
+    },
+    {
       "name": "add",
       "type": "Arithmetic integer",
       "signature_definition": "F0 F3 F2 F1",
