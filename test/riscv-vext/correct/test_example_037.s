@@ -27,6 +27,6 @@ main:
     vadd.vi  v11 v11 -1
     vadd.vi  v12 v12 -1
 
-#    vmsbc.vv v13 v10 v10
-#    vmsbc.vx v14 v11 t1
-#    vmsbc.vi v15 v12 -1
+    vmsbc.vv v13 v10 v10
+    vmsbc.vx v14 v11 t1
+    vmsbc.vi v15 v12 -1
